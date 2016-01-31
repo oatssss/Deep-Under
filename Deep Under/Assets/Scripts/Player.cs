@@ -4,12 +4,13 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	private float speed = 20f;
-	private float turnSpeed = 60f;
+	//private float turnSpeed = 60f;
 	Rigidbody rigidbody;
 	public Camera camera; 
 
-	public float h; 
-	public float v; 
+	private float h; 
+	private float v; 
+	private float u;
 	
 	// Use this for initialization
 	void Start () {
@@ -20,15 +21,18 @@ public class Player : MonoBehaviour {
 	void FixedUpdate () {
 		h = Input.GetAxisRaw("Horizontal");
 		v = Input.GetAxisRaw("Vertical");	
-		Move(h,v);
+		if (Input.GetKey(KeyCode.Q)) u = 1;
+		else if (Input.GetKey(KeyCode.E)) u = -1;
+		else u = 0;
+		Move(h,v,u);
 		autoTurn();
 	}
 
-	//TODO: movement is jittery when button first pressed; fix. 
-	private void Move (float h, float v) { 
-		Vector3 movementHorizontal = (transform.right * h) * speed * Time.deltaTime;
-		Vector3 movementVertical = (camera.transform.forward * v) * speed * Time.deltaTime; 
-		rigidbody.MovePosition(transform.position + movementVertical + movementHorizontal);
+	private void Move (float h, float v, float u) { 
+		Vector3 movementHorizontal = (transform.right * h) * speed/4f * Time.deltaTime;
+		Vector3 movementForward = (camera.transform.forward * v) * speed * Time.deltaTime; 
+		Vector3 movementVertical = (transform.up * u) * speed/4f * Time.deltaTime;
+		rigidbody.MovePosition(transform.position + movementVertical + movementHorizontal + movementForward);
 	}
 
 
