@@ -8,8 +8,8 @@ public class Player : MonoBehaviour {
 	Rigidbody rigidbody;
 	public Camera camera; 
 
-	float h; 
-	float v; 
+	public float h; 
+	public float v; 
 	
 	// Use this for initialization
 	void Start () {
