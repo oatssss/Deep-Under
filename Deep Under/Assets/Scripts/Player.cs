@@ -21,19 +21,18 @@ public class Player : MonoBehaviour {
 		h = Input.GetAxisRaw("Horizontal");
 		v = Input.GetAxisRaw("Vertical");	
 		Move(h,v);
-		Turn();
+		autoTurn();
 	}
 
 	//TODO: movement is jittery when button first pressed; fix. 
 	private void Move (float h, float v) { 
 		Vector3 movementHorizontal = (transform.right * h) * speed * Time.deltaTime;
-		Vector3 movementVertical = (transform.forward * v) * speed * Time.deltaTime; 
-		rigidbody.MovePosition(transform.position + movementHorizontal + movementVertical);
+		Vector3 movementVertical = (camera.transform.forward * v) * speed * Time.deltaTime; 
+		rigidbody.MovePosition(transform.position + movementVertical + movementHorizontal);
 	}
 
-	private void Turn () { 
-		if (v!=0) { 
-			transform.rotation = Quaternion.RotateTowards(transform.rotation, camera.transform.rotation, turnSpeed * Time.deltaTime );
-		}
+
+	private void autoTurn () { 
+		if (v!=0) transform.rotation = Quaternion.RotateTowards (transform.rotation, camera.transform.rotation, 2f);	
 	}
 }
