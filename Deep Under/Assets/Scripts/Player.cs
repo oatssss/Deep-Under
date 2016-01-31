@@ -29,7 +29,7 @@ public class Player : MonoBehaviour {
 	}
 
 	private void Move (float h, float v, float u) { 
-		Vector3 movementHorizontal = (transform.right * h) * speed/4f * Time.deltaTime;
+		Vector3 movementHorizontal = (camera.transform.right * h) * speed/4f * Time.deltaTime;
 		Vector3 movementForward = (camera.transform.forward * v) * speed * Time.deltaTime; 
 		Vector3 movementVertical = (transform.up * u) * speed/4f * Time.deltaTime;
 		rigidbody.MovePosition(transform.position + movementVertical + movementHorizontal + movementForward);
