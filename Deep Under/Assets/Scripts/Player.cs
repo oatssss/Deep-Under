@@ -43,7 +43,7 @@ public class Player : MonoBehaviour {
 
 	private void bob () { 
 		if (v == 0 && h == 0) { 
-			rigidbody.MovePosition(transform.position + (Vector3.up * (Mathf.Sin(Time.time * 2f)) * 0.01f));
+			rigidbody.MovePosition(transform.position + (Vector3.up * (Mathf.Sin(Time.time * 2f)) * 0.005f));
 		}
 	}
 }
