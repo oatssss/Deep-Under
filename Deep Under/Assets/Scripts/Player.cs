@@ -26,6 +26,7 @@ public class Player : MonoBehaviour {
 		else u = 0;
 		Move(h,v,u);
 		autoTurn();
+		bob();
 	}
 
 	private void Move (float h, float v, float u) { 
@@ -38,5 +39,11 @@ public class Player : MonoBehaviour {
 
 	private void autoTurn () { 
 		if (v!=0) transform.rotation = Quaternion.RotateTowards (transform.rotation, camera.transform.rotation, 2f);	
+	}
+
+	private void bob () { 
+		if (v == 0 && h == 0) { 
+			rigidbody.MovePosition(transform.position + (Vector3.up * (Mathf.Sin(Time.time * 2f)) * 0.01f));
+		}
 	}
 }
