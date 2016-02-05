@@ -3,7 +3,12 @@ guid: dd29f6b54afb3c84b82cd19c1bbf0e7f
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: TropicalFish14
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3
