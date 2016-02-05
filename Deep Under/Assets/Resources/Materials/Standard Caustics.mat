@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: TropicalFish03-03 - Default
+  m_Name: Standard Caustics
   m_Shader: {fileID: 4800000, guid: 4c449df4d5df643ef82ae76b929356c1, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -134,11 +134,11 @@ Material:
       data:
         first:
           name: _CausticsStartLevel
-        second: 10
+        second: 50
       data:
         first:
           name: _CausticsShallowFadeDistance
-        second: 1
+        second: 50
       data:
         first:
           name: _CausticsScale
@@ -151,7 +151,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _EmissionColorUI
@@ -160,6 +160,3 @@ Material:
         first:
           name: _CausticsDrift
         second: {r: 0.1, g: 0, b: -0.4, a: 1}
---- !u!1002 &2100001
-EditorExtensionImpl:
-  serializedVersion: 6
