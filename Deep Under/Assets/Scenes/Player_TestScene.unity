@@ -497,7 +497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualizeFocus: 0
-  focalLength: 3
+  focalLength: 20
   focalSize: 2
   aperture: 0.74
   focalTransform: {fileID: 0}
