@@ -162,16 +162,16 @@ Material:
         second: 313.21838
       data:
         first:
+          name: _InvFade
+        second: 0.628783
+      data:
+        first:
           name: _FresnelScale
         second: 0.6571428
       data:
         first:
           name: _GerstnerIntensity
         second: 1.6714286
-      data:
-        first:
-          name: _InvFade
-        second: 0.628783
       data:
         first:
           name: _WaveScale
@@ -255,16 +255,16 @@ Material:
         second: {r: 1, g: 1, b: 0, a: 0}
       data:
         first:
+          name: _BumpMap_ST
+        second: {r: 1, g: 1, b: 0, a: 0}
+      data:
+        first:
           name: _Displacement
         second: {r: 6.6371665, g: 20.353983, b: -1, a: -0.681416}
       data:
         first:
           name: _ShoreTiling
         second: {r: 1, g: 1, b: 0.1, a: 0.1}
-      data:
-        first:
-          name: _BumpMap_ST
-        second: {r: 1, g: 1, b: 0, a: 0}
       data:
         first:
           name: _ReflectionTex_ST
@@ -276,7 +276,7 @@ Material:
       data:
         first:
           name: _InvFadeParemeter
-        second: {r: 0.21896552, g: 0.1594483, b: 0.04310345, a: 0}
+        second: {r: 0.21896552, g: 0.15944828, b: 0.04310345, a: 0}
       data:
         first:
           name: _AnimationTiling
@@ -300,7 +300,7 @@ Material:
       data:
         first:
           name: _ReflectionColor
-        second: {r: 0.393, g: 0.5, b: 0.744, a: 0.225}
+        second: {r: 0.5794164, g: 0.6849238, b: 0.76119405, a: 0.43137255}
       data:
         first:
           name: _SpecularColor
