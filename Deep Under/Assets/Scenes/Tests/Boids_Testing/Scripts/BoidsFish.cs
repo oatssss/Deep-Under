@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Rigidbody))]
 public class BoidsFish : MonoBehaviour
 {
     public enum SIZE { SMALL, MEDIUM, LARGE }
@@ -13,7 +15,7 @@ public class BoidsFish : MonoBehaviour
     
     private List<BoidsFish> Flock = new List<BoidsFish>();
     private List<BoidsFish> Repellants = new List<BoidsFish>();
-    public FlockTarget Target;
+    [HideInInspector] public FlockTarget Target;
     
     /// <summary> This message is called by the child FlockVolume gameobject </summary>
     void AddPeer(BoidsFish peer)
@@ -125,13 +127,16 @@ public class BoidsFish : MonoBehaviour
         Vector3 separation = this.VectorAwayFromNeighbours();
         Vector3 alignment = this.VectorTowardsAlignment();
         Vector3 target = this.VectorTowardsTarget();
-
-        Vector3 updatedVelocity = cohesion + separation + alignment + target;
+        
+        // (this.transform.right * Random.Range(-1f, 1f)) + (this.transform.up * Random.Range(-1f, 1f))
+        
+        Vector3 updatedVelocity = this.transform.forward * 5;
+        updatedVelocity += cohesion + separation + alignment + target;
         this.RigidBody.velocity = updatedVelocity;
         
         // Steer the fish's heading towards the velocity vector
-        if (updatedVelocity == Vector3.zero)
-            { return; }
+        // if (updatedVelocity == Vector3.zero)
+        //     { return; }
         Quaternion dirQ = Quaternion.LookRotation(updatedVelocity);
         Quaternion slerp = Quaternion.Slerp (transform.rotation, dirQ, updatedVelocity.magnitude * 1 * Time.fixedDeltaTime);
         this.RigidBody.MoveRotation(slerp);
