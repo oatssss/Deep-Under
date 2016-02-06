@@ -25,8 +25,6 @@ public class CameraFollow : MonoBehaviour {
 		Quaternion change = Quaternion.FromToRotation(oldRot, newRot); //record change in rotation using the 2 vectors
 		offset = change * offset; //apply change in rotation to offset
 		Vector3 targetPos = player.transform.position + offset; // apply offset
-
-
 		if (Vector3.Distance(transform.position, targetPos) > 0.1f)transform.position = Vector3.Lerp(transform.position, targetPos,(1 - Mathf.Exp( -smoothing * Time.deltaTime ))); //TODO: jitter caused by smoothing.
 		//transform.position = targetPos;
 	}
