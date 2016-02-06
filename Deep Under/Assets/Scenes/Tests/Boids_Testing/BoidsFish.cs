@@ -12,14 +12,8 @@ public class BoidsFish : MonoBehaviour
     [SerializeField] private SphereCollider RepelVolume;
     [SerializeField] private SphereCollider FlockVolume;
     
-    private float RepelRadius;
-    private float FlockRadius;
-    
-    void Awake()
-    {
-        RepelRadius = this.transform.localScale.magnitude * this.RepelVolume.radius;
-        FlockRadius = this.transform.localScale.magnitude * this.FlockVolume.radius;
-    }
+    private float RepelRadius { get { return this.transform.localScale.magnitude * this.RepelVolume.radius; } }
+    private float FlockRadius  { get { return this.transform.localScale.magnitude * this.FlockVolume.radius; } }
     
     [SerializeField] private SIZE size;
     public SIZE Size
@@ -80,7 +74,10 @@ public class BoidsFish : MonoBehaviour
         Vector3 centerOfMass = Vector3.zero;
         foreach (BoidsFish peer in this.Flock)
         {
-            centerOfMass += peer.transform.position;
+            // Only pay attention to peers within a fov of 180 degrees
+            /*Vector3 directionToPeer = (peer.transform.position - this.transform.position).normalized;
+            if (Vector3.Angle(this.transform.forward, directionToPeer) < (180 - 30*((directionToPeer.magnitude - this.FlockRadius) / -this.FlockRadius)))
+                {*/ centerOfMass += peer.transform.position; /*}*/
         }
         centerOfMass /= this.Flock.Count;
         
@@ -89,10 +86,10 @@ public class BoidsFish : MonoBehaviour
         float distance = cohesion.magnitude;
         
         cohesion.Normalize();
-        if (distance < this.FlockRadius/4)
+        if (distance < this.FlockRadius/7)
             { cohesion = this.transform.forward*100; }
         // We want to attract farther fish less than closer fish
-        cohesion *= ((this.FlockRadius - distance) * BoidsSettings.Instance.Cohesion / 1000 * distance) + this.FlockRadius*1.2f;
+        cohesion *= (((this.FlockRadius - distance) * BoidsSettings.Instance.Cohesion) / ((this.FlockRadius / 5) + distance));
         
         return cohesion;
     }
@@ -112,7 +109,7 @@ public class BoidsFish : MonoBehaviour
 
             repulsion.Normalize();
             // We want to repel fish that are close faster than fish that are far
-            repulsion *= (this.RepelRadius - distance) * BoidsSettings.Instance.Separation / distance;
+            repulsion *= ((this.RepelRadius - distance) * BoidsSettings.Instance.Separation) / distance;
             separation += repulsion;
         }
         separation /= this.Repellants.Count;
@@ -133,7 +130,7 @@ public class BoidsFish : MonoBehaviour
         }
         alignment /= this.Flock.Count;
         
-        return ((alignment - this.RigidBody.velocity) * BoidsSettings.Instance.Alignment) / 2;
+        return (alignment - this.RigidBody.velocity) * BoidsSettings.Instance.Alignment;
     }
     
     private Vector3 VectorTowardsTarget()
@@ -144,7 +141,7 @@ public class BoidsFish : MonoBehaviour
             // If this fish wasn't following a target before, mark it as following a target now
             if (!this.WasFollowingPhysicalTarget)
                 { this.WasFollowingPhysicalTarget = true; }
-            return ((this.PhysicalTarget.transform.position - this.transform.position) * BoidsSettings.Instance.Target) / 10;
+            return (this.PhysicalTarget.transform.position - this.transform.position) * BoidsSettings.Instance.Target;
         }
         // Otherwise, follow a standard target
         else
