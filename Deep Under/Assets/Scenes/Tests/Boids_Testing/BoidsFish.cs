@@ -10,6 +10,16 @@ public class BoidsFish : MonoBehaviour
     
     [SerializeField] private Rigidbody RigidBody;
     [SerializeField] private SphereCollider RepelVolume;
+    [SerializeField] private SphereCollider FlockVolume;
+    
+    private float RepelRadius;
+    private float FlockRadius;
+    
+    void Awake()
+    {
+        RepelRadius = this.transform.localScale.magnitude * this.RepelVolume.radius;
+        FlockRadius = this.transform.localScale.magnitude * this.FlockVolume.radius;
+    }
     
     [SerializeField] private SIZE size;
     public SIZE Size
@@ -52,6 +62,15 @@ public class BoidsFish : MonoBehaviour
         this.Repellants.Remove(repellant);
     }
     
+    /// <summary> This gets called whenever this fish stops following a target </summary>
+    protected virtual void StopFollowingTarget()
+    {
+        this.WasFollowingPhysicalTarget = false;
+        // TODO
+            // Maybe get a new random point to swim towards?
+            // Or just switch to idle?
+    }
+    
     private Vector3 VectorTowardsFlock()
     {
         if (this.Flock.Count <= 0)
@@ -67,18 +86,15 @@ public class BoidsFish : MonoBehaviour
         
         // Get a vector in the direction of the CoM
         Vector3 cohesion = centerOfMass - this.transform.position;
+        float distance = cohesion.magnitude;
         
-        // Return 1% of the vector so the influence isn't too harsh
-        return (cohesion * BoidsSettings.Instance.Cohesion) / 6;
-    }
-    
-    /// <summary> This gets called whenever this fish stops following a target </summary>
-    protected virtual void StopFollowingTarget()
-    {
-        this.WasFollowingPhysicalTarget = false;
-        // TODO
-            // Maybe get a new random point to swim towards?
-            // Or just switch to idle?
+        cohesion.Normalize();
+        if (distance < this.FlockRadius/4)
+            { cohesion = this.transform.forward*100; }
+        // We want to attract farther fish less than closer fish
+        cohesion *= ((this.FlockRadius - distance) * BoidsSettings.Instance.Cohesion / 1000 * distance) + this.FlockRadius*1.2f;
+        
+        return cohesion;
     }
     
     private Vector3 VectorAwayFromNeighbours()
@@ -93,11 +109,10 @@ public class BoidsFish : MonoBehaviour
             // Get a vector going away from this repellant
             Vector3 repulsion = this.transform.position - repellant.transform.position;
             float distance = repulsion.magnitude;
-            float repelRadius = this.RepelVolume.radius;
 
             repulsion.Normalize();
             // We want to repel fish that are close faster than fish that are far
-            repulsion *= (repelRadius - distance)  * BoidsSettings.Instance.Separation / distance;
+            repulsion *= (this.RepelRadius - distance) * BoidsSettings.Instance.Separation / distance;
             separation += repulsion;
         }
         separation /= this.Repellants.Count;
@@ -155,6 +170,7 @@ public class BoidsFish : MonoBehaviour
         
         Vector3 updatedVelocity = this.transform.forward * 5;                                       // Fish is always moving a minimum speed
         updatedVelocity += cohesion + separation + alignment + target;                              // Glue all the stages together
+        updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 2*Time.fixedDeltaTime);
         updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, BoidsSettings.Instance.FishSpeed);    // Limit the speed of the fish to a maximum
         this.RigidBody.velocity = updatedVelocity;
         
@@ -163,7 +179,7 @@ public class BoidsFish : MonoBehaviour
         
         // Steer the fish's transform to face the velocity vector
         Quaternion dirQ = Quaternion.LookRotation(updatedVelocity);
-        Quaternion slerp = Quaternion.Slerp (transform.rotation, dirQ, updatedVelocity.magnitude * 1 * Time.fixedDeltaTime);
+        Quaternion slerp = Quaternion.Slerp (transform.rotation, dirQ, updatedVelocity.magnitude * 2 * Time.fixedDeltaTime);
         this.RigidBody.MoveRotation(slerp);
     }
 }
