@@ -7,12 +7,15 @@ public class Player : MonoBehaviour {
 	//private float lsYDeadValue = 1f;	//fix dead value
 
 	private float speed = 40f;
-	//private float turnSpeed = 60f;
 	Rigidbody rigidbody;
 	public Camera camera; 
 
 	public Light spotlight; 
-	private bool lightOn = false; 
+	private bool lightOn = false;
+
+	public Transform lightOrb;
+	public Transform lightOrbPosition;
+	 
 
 	public float h; 
 	public float v; 
@@ -32,6 +35,7 @@ public class Player : MonoBehaviour {
 		else if (Input.GetKey (KeyCode.Joystick1Button5)) u = -1;
 		else u = 0;
 		if (Input.GetKeyUp(KeyCode.Joystick1Button11)) lightToggle();
+		if (Input.GetKeyUp(KeyCode.Joystick1Button0)) createLightOrb();
 		Move(h,v,u);
 		autoTurn();
 		//bob();
@@ -60,6 +64,11 @@ public class Player : MonoBehaviour {
 		if (lightOn) lightOn = false; 
 		else lightOn = true; 
 		spotlight.gameObject.SetActive(lightOn);
+	}
+
+	private void createLightOrb () { 
+		lightOrb.position = lightOrbPosition.transform.position;
+		GameObject.Instantiate(lightOrb);
 	}
 
 	private void controllerButtonTest() { 
