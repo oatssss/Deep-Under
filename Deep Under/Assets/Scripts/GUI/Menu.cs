@@ -34,6 +34,15 @@ public class Menu : MonoBehaviour {
         this.Animator.SetTrigger("Reset");
     }
     
+    public void ResetTriggers()
+    {
+        // this.Animator.ResetTrigger("Open");
+        // this.Animator.ResetTrigger("Close");
+        // this.Animator.ResetTrigger("Hide");
+        // this.Animator.ResetTrigger("HidePermanent");
+        this.Animator.ResetTrigger("Reset");
+    }
+    
     void Awake()
     {
         this.RectTransform.offsetMin = this.RectTransform.offsetMax = Vector2.zero;

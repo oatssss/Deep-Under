@@ -11,6 +11,8 @@ public class GUIManager : UnitySingleton<GUIManager> {
     
     private void OpenMenu(Menu menu, TRANSITION transition)
     {
+        menu.ResetTriggers();
+        
         if (Instance.CurrentMenu != null)
         {
             if (transition == TRANSITION.STACK || transition == TRANSITION.NOSTACK)
