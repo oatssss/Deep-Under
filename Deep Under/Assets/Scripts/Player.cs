@@ -34,12 +34,15 @@ public class Player : MonoBehaviour {
 		if (Input.GetKey (KeyCode.Joystick1Button4)) u = 1;
 		else if (Input.GetKey (KeyCode.Joystick1Button5)) u = -1;
 		else u = 0;
-		if (Input.GetKeyUp(KeyCode.Joystick1Button11)) lightToggle();
-		if (Input.GetKeyUp(KeyCode.Joystick1Button0)) createLightOrb();
 		Move(h,v,u);
 		autoTurn();
 		//bob();
 		controllerButtonTest(); 
+	}
+
+	void Update() { 
+		if (Input.GetKeyUp(KeyCode.Joystick1Button11)) lightToggle();
+		if (Input.GetKeyUp(KeyCode.Joystick1Button0)) createLightOrb();
 	}
 
 	private void Move (float h, float v, float u) { 
