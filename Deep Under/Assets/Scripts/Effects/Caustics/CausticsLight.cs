@@ -22,4 +22,10 @@ public class CausticsLight : MonoBehaviour {
         this.Light.cookie = CookieFrames[this.FrameIndex];
         FrameIndex = (FrameIndex + 1) % CookieFrames.Length;
     }
+    
+    [ContextMenu ("Sort Frames by Name")]
+    void DoSortFrames() {
+        System.Array.Sort(CookieFrames, (a,b) => a.name.CompareTo(b.name));
+        Debug.Log(gameObject.name + ".frames have been sorted alphabetically.");
+    }
 }
