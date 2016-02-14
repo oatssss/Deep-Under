@@ -8,23 +8,31 @@ public class Player : MonoBehaviour {
 
 	private float speed = 40f;
 	Rigidbody rigidbody;
-	public Camera camera; 
+	public CameraFollow camera; 
 
 	public Light spotlight; 
 	private bool lightOn = false;
 
 	public Transform lightOrb;
 	public Transform lightOrbPosition;
-	 
 
-	public float h; 
-	public float v; 
-	public float u;
+	public Transform [] LWingLights; 
+	public Transform [] RWingLights;
+
+	private float h; 
+	private float v; 
+	private float u;
+
+	public float energy = 0f; 
+	private float maxEnergy = 100f; 
+	public float energyDrainRate;
+	public bool charging = false; 
 	
 	// Use this for initialization
 	void Start () {
 		rigidbody = GetComponent<Rigidbody>();
 		spotlight.gameObject.SetActive(lightOn); 
+		energyDrainRate = 20f;
 	}
 
 	void FixedUpdate () {
@@ -37,12 +45,13 @@ public class Player : MonoBehaviour {
 		Move(h,v,u);
 		autoTurn();
 		//bob();
-		controllerButtonTest(); 
+		//controllerButtonTest(); 
 	}
 
 	void Update() { 
-		if (Input.GetKeyUp(KeyCode.Joystick1Button11)) lightToggle();
-		if (Input.GetKeyUp(KeyCode.Joystick1Button0)) createLightOrb();
+		if (Input.GetKeyUp(KeyCode.Joystick1Button11) || Input.GetKeyUp(KeyCode.F)) lightToggle();
+		if (Input.GetKeyUp(KeyCode.Joystick1Button0) || Input.GetKeyUp(KeyCode.Space)) createLightOrb();
+		removeEnergy(energyDrainRate);
 	}
 
 	private void Move (float h, float v, float u) { 
@@ -54,7 +63,10 @@ public class Player : MonoBehaviour {
 
 
 	private void autoTurn () { 
-		transform.rotation = Quaternion.RotateTowards (transform.rotation, camera.transform.rotation, 2f);	
+	 	if (v > 0f && h < Mathf.Abs(0.5f)){
+	 		transform.rotation = Quaternion.RotateTowards (transform.rotation, camera.transform.rotation, 4f);	
+	 		//camera.startLook = 0f;	
+	 	}	
 	}
 
 	private void bob () { 
@@ -72,6 +84,21 @@ public class Player : MonoBehaviour {
 	private void createLightOrb () { 
 		lightOrb.position = lightOrbPosition.transform.position;
 		GameObject.Instantiate(lightOrb);
+	}
+
+	public void addEnergy (float orbStrength) { 
+		if (energy < maxEnergy ){
+			energy += orbStrength * Time.deltaTime; 
+			Debug.Log(energy);
+		}
+	}
+
+	/* time decreases energy and other fishes decrease energy; rate fluctuates depeding on whether auliv is near another fish */
+	public void removeEnergy (float rate) { 
+		if (energy > 0f && !charging) { 
+			energy -= rate * Time.deltaTime; 
+			Debug.Log(energy);
+		}	 
 	}
 
 	private void controllerButtonTest() { 
