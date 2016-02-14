@@ -15,15 +15,15 @@ public class GUIManager : UnitySingleton<GUIManager> {
         
         if (Instance.CurrentMenu != null)
         {
-            if (transition == TRANSITION.STACK || transition == TRANSITION.NOSTACK)
+            if (transition == TRANSITION.CLOSE)
+                { Instance.CurrentMenu.Close(); }
+            else
             {
                 if (transition == TRANSITION.STACK)
                     { Instance.History.Push(Instance.CurrentMenu); }
                     
                 Instance.CurrentMenu.Hide();
             }
-            else
-                { Instance.CurrentMenu.Close(); }
         }
         
         Instance.CurrentMenu = menu;
@@ -43,9 +43,9 @@ public class GUIManager : UnitySingleton<GUIManager> {
         Instance.OpenMenu(menu, true);
     }
     
-    public void CloseMenu()
+    public void BackFromCurrentMenu()
     {
-        Menu previous = Instance.History.Pop();
+        Menu previous = (Instance.History.Count > 0) ? Instance.History.Pop() : null;
         
         if (previous != null)
         {

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using Extensions;
 
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
@@ -10,6 +11,10 @@ public class BoidsFish : MonoBehaviour
     
     [SerializeField] private Rigidbody RigidBody;
     [SerializeField] private SphereCollider RepelVolume;
+    [SerializeField] private SphereCollider FlockVolume;
+    
+    public float RepelRadius { get { return this.transform.localScale.magnitude * this.RepelVolume.radius; } }
+    public float FlockRadius  { get { return this.transform.localScale.magnitude * this.FlockVolume.radius; } }
     
     [SerializeField] private SIZE size;
     public SIZE Size
@@ -19,37 +24,111 @@ public class BoidsFish : MonoBehaviour
     }
     public STATE State;
     
-    private List<BoidsFish> Flock = new List<BoidsFish>();
-    private List<BoidsFish> Repellants = new List<BoidsFish>();
+    [SerializeField] private List<BoidsFish> Flock = new List<BoidsFish>();
+    [SerializeField] private List<BoidsFish> Repellants = new List<BoidsFish>();
+    public int FlockSize { get { return this.Flock.Count; } }
     
     // A physical target will always take precedence over a standard target
-    private bool WasFollowingPhysicalTarget = false;
-    [HideInInspector] public FishTarget PhysicalTarget;
+    private bool IsFollowingTarget = false;
+    private MonoBehaviour physicalTarget;
+    public MonoBehaviour PhysicalTarget
+    {
+        get { return this.physicalTarget; }
+        set
+        {
+            this.physicalTarget = value;
+            if (value == null)
+                { this.StopFollowingTarget(); }
+            else
+                { this.IsFollowingTarget = true; }
+        }
+    }
     private Vector3 Target = Vector3.zero;
     
+    // If fish are outside the bounding volumes, they try to move back inside them
+    private List<BoidsBoundary> BoundaryVolumes = new List<BoidsBoundary>();
+    private MonoBehaviour LastPhysicalTarget;
+    private bool IsOutOfBounds = false;
     
-    /// <summary> This message is called by the child FlockVolume gameobject </summary>
-    void AddPeer(BoidsFish peer)
+    // Make sure that this fish belongs to the Fish layer
+    void Start()
     {
-        this.Flock.Add(peer);
+        this.EnforceLayerMembership("Fish");
+    }
+    
+    public void OutsideBounds(BoidsBoundary boundary)
+    {
+        this.BoundaryVolumes.Remove(boundary);
+        if (this.BoundaryVolumes.Count <= 0)
+        {
+            this.IsOutOfBounds = true;
+            this.LastPhysicalTarget = this.PhysicalTarget;
+            this.PhysicalTarget = boundary;
+        }
+    }
+    
+    public void InsideBounds(BoidsBoundary boundary)
+    {
+        this.BoundaryVolumes.Add(boundary);
+        
+        // If this fish just returned from being out of bounds
+        if (this.IsOutOfBounds)
+        {
+            // TODO : Direct fishies more inward, otherwise they stay along the boundary edge
+            
+            this.IsOutOfBounds = false;
+            this.PhysicalTarget = this.LastPhysicalTarget;
+            this.LastPhysicalTarget = null;
+        }
     }
     
     /// <summary> This message is called by the child FlockVolume gameobject </summary>
-    void RemovePeer(BoidsFish peer)
+    public void AddPeer(BoidsFish peer)
+    {
+        if (this.Flock.Count < BoidsSettings.Instance.MaxFlockSize)
+        {
+            this.Flock.Add(peer);
+        }
+        else
+        {
+            BoidsFish randomPeer = this.Flock[Random.Range(0, this.FlockSize)];
+            
+            this.RemovePeer(randomPeer);
+            this.AddPeer(peer);
+        }
+    }
+    
+    /// <summary> This message is called by the child FlockVolume gameobject </summary>
+    public void RemovePeer(BoidsFish peer)
     {
         this.Flock.Remove(peer);
     }
     
-    /// <summary> This message is called by the child AdjacentsVolume gameobject </summary>
-    void AddRepellant(BoidsFish repellant)
+    /// <summary> This message is called by the child RepelVolume gameobject </summary>
+    public void AddRepellant(BoidsFish repellant)
     {
         this.Repellants.Add(repellant);
     }
     
-    /// <summary> This message is called by the child AdjacentsVolume gameobject </summary>
-    void RemoveRepellant(BoidsFish repellant)
+    /// <summary> This message is called by the child RepelVolume gameobject </summary>
+    public void RemoveRepellant(BoidsFish repellant)
     {
         this.Repellants.Remove(repellant);
+    }
+    
+    /// <summary> This gets called whenever this fish stops following a target </summary>
+    protected virtual void StopFollowingTarget()
+    {
+        this.IsFollowingTarget = false;
+        // TODO
+            // Maybe get a new random point to swim towards?
+            // Or just switch to idle?
+    }
+    
+    private void SetTarget(Vector3 target)
+    {
+        this.Target = target;
+        this.IsFollowingTarget = true;
     }
     
     private Vector3 VectorTowardsFlock()
@@ -67,18 +146,16 @@ public class BoidsFish : MonoBehaviour
         
         // Get a vector in the direction of the CoM
         Vector3 cohesion = centerOfMass - this.transform.position;
+        float distance = cohesion.magnitude;
         
-        // Return 1% of the vector so the influence isn't too harsh
-        return (cohesion * BoidsSettings.Instance.Cohesion) / 6;
-    }
-    
-    /// <summary> This gets called whenever this fish stops following a target </summary>
-    protected virtual void StopFollowingTarget()
-    {
-        this.WasFollowingPhysicalTarget = false;
-        // TODO
-            // Maybe get a new random point to swim towards?
-            // Or just switch to idle?
+        // cohesion.Normalize();
+        if (distance < this.FlockRadius/7)
+            { cohesion = this.transform.forward*BoidsSettings.Instance.MaxFishSpeed; }
+        // We want to attract farther fish more than closer fish
+        cohesion *= BoidsSettings.Instance.Cohesion;
+        // cohesion *= (((this.FlockRadius - distance) * BoidsSettings.Instance.Cohesion) / ((this.FlockRadius / 5) + distance));
+        
+        return cohesion;
     }
     
     private Vector3 VectorAwayFromNeighbours()
@@ -93,11 +170,9 @@ public class BoidsFish : MonoBehaviour
             // Get a vector going away from this repellant
             Vector3 repulsion = this.transform.position - repellant.transform.position;
             float distance = repulsion.magnitude;
-            float repelRadius = this.RepelVolume.radius;
 
-            repulsion.Normalize();
             // We want to repel fish that are close faster than fish that are far
-            repulsion *= (repelRadius - distance)  * BoidsSettings.Instance.Separation / distance;
+            repulsion *= ((this.RepelRadius - distance + (this.RepelRadius/2)) * BoidsSettings.Instance.Separation) / distance;
             separation += repulsion;
         }
         separation /= this.Repellants.Count;
@@ -117,45 +192,42 @@ public class BoidsFish : MonoBehaviour
             alignment += peer.RigidBody.velocity;
         }
         alignment /= this.Flock.Count;
+        alignment.Normalize();
         
-        return ((alignment - this.RigidBody.velocity) * BoidsSettings.Instance.Alignment) / 2;
+        return alignment * BoidsSettings.Instance.Alignment * 5;
     }
     
     private Vector3 VectorTowardsTarget()
     {
+        if (!this.IsFollowingTarget)
+            { return Vector3.zero; }
+        
         // Follow a physical target if it exists
         if (this.PhysicalTarget != null)
-        {
-            // If this fish wasn't following a target before, mark it as following a target now
-            if (!this.WasFollowingPhysicalTarget)
-                { this.WasFollowingPhysicalTarget = true; }
-            return ((this.PhysicalTarget.transform.position - this.transform.position) * BoidsSettings.Instance.Target) / 10;
-        }
+            { return (this.PhysicalTarget.transform.position - this.transform.position) * BoidsSettings.Instance.Target; }
+            
         // Otherwise, follow a standard target
         else
-        {
-            // If this fish just stopped following a target call the method
-            if (this.WasFollowingPhysicalTarget)
-            {
-                this.StopFollowingTarget();
-            }
-            return this.Target;
-        }
+            { return (this.Target - this.transform.position) * BoidsSettings.Instance.Target; }
     }
     
     void FixedUpdate()
-    {
+    {            
         // Handle rigidbody velocity updates
         Vector3 cohesion = (this.State != STATE.FLEEING) ? this.VectorTowardsFlock() : -this.VectorTowardsFlock();
+        // Vector3 separation = this.WasFollowingPhysicalTarget ? this.VectorAwayFromNeighbours() : this.VectorAwayFromNeighbours();
         Vector3 separation = this.VectorAwayFromNeighbours();
         Vector3 alignment = this.VectorTowardsAlignment();
         Vector3 target = (this.State != STATE.IDLE) ? this.VectorTowardsTarget() : Vector3.zero;
+        float cohesionMagnitude = cohesion.magnitude;
         
-        // (this.transform.right * Random.Range(-1f, 1f)) + (this.transform.up * Random.Range(-1f, 1f))
-        
-        Vector3 updatedVelocity = this.transform.forward * 5;                                       // Fish is always moving a minimum speed
-        updatedVelocity += cohesion + separation + alignment + target;                              // Glue all the stages together
-        updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, BoidsSettings.Instance.FishSpeed);    // Limit the speed of the fish to a maximum
+        // Glue all the stages together
+        Vector3 updatedVelocity = this.transform.forward * BoidsSettings.Instance.MinFishSpeed;     // Fish is always moving a minimum speed
+        updatedVelocity += Vector3.ClampMagnitude(cohesion + alignment + target, cohesionMagnitude);
+        updatedVelocity += separation;
+        updatedVelocity *= BoidsSettings.Instance.FishSpeedMultiplier;
+        updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 2*Time.fixedDeltaTime);
+        updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, BoidsSettings.Instance.MaxFishSpeed);    // Limit the speed of the fish to a maximum
         this.RigidBody.velocity = updatedVelocity;
         
         // Add a bob (thx Ali)
@@ -163,7 +235,7 @@ public class BoidsFish : MonoBehaviour
         
         // Steer the fish's transform to face the velocity vector
         Quaternion dirQ = Quaternion.LookRotation(updatedVelocity);
-        Quaternion slerp = Quaternion.Slerp (transform.rotation, dirQ, updatedVelocity.magnitude * 1 * Time.fixedDeltaTime);
+        Quaternion slerp = Quaternion.Slerp (transform.rotation, dirQ, updatedVelocity.magnitude * 2 * Time.fixedDeltaTime);
         this.RigidBody.MoveRotation(slerp);
     }
 }
