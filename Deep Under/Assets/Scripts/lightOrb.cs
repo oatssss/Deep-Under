@@ -11,7 +11,6 @@ public class lightOrb : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//timer += Time.deltaTime; 
-		//if (timer > 3f) Destroy(this.gameObject);
+
 	}
 }
