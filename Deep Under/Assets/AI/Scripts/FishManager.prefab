@@ -46,9 +46,9 @@ MonoBehaviour:
   numberOfMFish: 15
   numberOfSFish: 35
   Manager: {fileID: 0}
-  LargeFish: {fileID: 149108, guid: d56a8d4e3eb654bd5a4e63d1b6fe352e, type: 2}
-  MediumFish: {fileID: 149108, guid: 61c24ce76b466424898efcd42c1f7b01, type: 2}
-  SmallFish: {fileID: 149108, guid: 77668b37b041e4b9a86987fad89bc3cd, type: 2}
+  LargeFish: {fileID: 120948, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+  MediumFish: {fileID: 120948, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+  SmallFish: {fileID: 120948, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
