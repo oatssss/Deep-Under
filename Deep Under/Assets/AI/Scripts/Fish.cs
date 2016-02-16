@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Fish : MonoBehaviour {
 
+	public GameObject body;
+	public GameObject fleeTest;
+
 	public float speed;	// Default
 	public enum STATE { IDLE, SWIMMING, FLEEING, HUNTING }
 	public STATE state;
@@ -13,6 +16,7 @@ public class Fish : MonoBehaviour {
 	public SIZE size;
 
 	protected float runAwayTime;
+	protected float idleTime;
 	
 	public void Initialize(){
 		this.destination = randomizeDestination();
@@ -20,80 +24,76 @@ public class Fish : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		setSize ();
 		state = STATE.IDLE;			// fish start off IDLE
 		this.gameObject.tag="Fish"; // set fish tag
 	}
 
+	protected virtual void setSize()
+	{
+		// will be implementated in subclasses
+	}
+
 	// Update is called once per frame
-	void Update () {
-		this.transform.LookAt(destination);
+	void FixedUpdate () {
 		//FSM implementation
 		switch (state) {
-			case STATE.IDLE:
-				Wait(4.0f); 	// idle for 4 seconds then start swimming
-				state = STATE.SWIMMING;
-				//TODO: make this a list of tasks iterating through maybe
-				this.destination = randomizeDestination(); 	
-				this.state = STATE.SWIMMING;
+		case STATE.IDLE:
+			{
+				idleTime += Time.deltaTime;
+				if (idleTime >= 1.0f) {
+					//TODO: make this a list of tasks iterating through maybe
+					this.destination = randomizeDestination (); 	
+					this.state = STATE.SWIMMING;
+				}
 				break;
-			case STATE.SWIMMING:
-				transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
+			}
+		case STATE.SWIMMING:
+			{
+				this.GetComponent<Rigidbody> ().MoveRotation (Quaternion.LookRotation (destination - transform.position));
+				this.GetComponent<Rigidbody> ().MovePosition (Vector3.MoveTowards (transform.position, destination, speed * Time.deltaTime));
 				
 				//if (AtDestination()) ...?
-				if(transform.position == destination){
+				if (AtDestination ()) {
 					state = STATE.IDLE;
+					idleTime = 0;
 				}
 				break;
-			case STATE.FLEEING:
-				transform.position = -Vector3.MoveTowards(transform.position, dangerPoint, speed * Time.deltaTime);
+			}
+		case STATE.FLEEING:
+			{
+				this.GetComponent<Rigidbody> ().MoveRotation (Quaternion.LookRotation (dangerPoint - transform.position));
+				this.GetComponent<Rigidbody> ().MovePosition (Vector3.MoveTowards (transform.position, dangerPoint, -speed * Time.deltaTime));
 				// runs away for 5 seconds
-				if(runAwayTime > 5.0f){	
-					state = STATE.IDLE;
-				}
 				runAwayTime += Time.deltaTime;
+				if (runAwayTime > 5.0f) {	
+					state = STATE.IDLE;
+					idleTime = 0;
+					fleeTest.SetActive (false);
+				}
 				break;
+			}
 		}
 	}
 
-	void OnTriggerEnter(Collider otherCollider) {
-		
-		if (otherCollider.tag == "Fish") 
-		{
-			// encountered a bigger fish
-			if ((int)otherCollider.gameObject.GetComponent<Fish>().size > (int)this.size){
-				dangerPoint = otherCollider.gameObject.transform.position;
-				state = STATE.FLEEING;
-			}
-			if (state == STATE.HUNTING)
-			{
-				bool eaten = Hunt(otherCollider.gameObject);
-				if (eaten){
-					state = STATE.IDLE;	// No longer hunting
-				}
-			}
-		}
-	} // end OnTriggerEnter 
-
 	//Helper methods
 	public Vector3 randomizeDestination(){
-		float radius = 45.0f;				// depends on the size of terrain?
+		float radius = 20.0f;				// depends on the size of terrain?
 		Vector3 random = Random.insideUnitSphere * radius;
-		random = new Vector3(random.x, Mathf.Abs(random.y), random.z);
+		random = new Vector3(random.x, random.y, random.z);
+		random += transform.position;
+		random.y = Mathf.Abs (random.y);
 		return random;
 	}
 
 	// NOTE: not used anywhere yet	
 	protected bool AtDestination() {
 		// if more or less reached destination
-		if (DistanceFromDestination() < 0.5f){
+		if (Vector3.Distance(this.GetComponent<Rigidbody>().position, destination) < 5){
 			return true;
 		}
 		
 		return false;
-	}
-	public float DistanceFromDestination() {
-		float distance = Vector3.Dot (this.transform.position - destination, Vector3.Normalize (CurrentDirection()));
-		return distance;
 	}
 	public Vector3 CurrentDirection() {
 		return destination - this.transform.position;
@@ -103,7 +103,31 @@ public class Fish : MonoBehaviour {
 		state = STATE.IDLE;						//TODO: Change later so that fish might not catch other fish
 		return true;
 	}
-	IEnumerator Wait(float time) {
-		yield return new WaitForSeconds(time);
+
+#region triggerDetection
+
+	public void OnTriggerEnterEx(Collider otherCollider, Collider selfCollider)
+	{
+		if (otherCollider == body.GetComponent<Collider>())
+			return;
+		if (otherCollider.tag == "Fish") 
+		{
+			// encountered a bigger fish
+			if (state != STATE.FLEEING && (int)otherCollider.gameObject.GetComponentInParent<Fish> ().size > (int)this.size) {
+				dangerPoint = otherCollider.gameObject.transform.position;
+				state = STATE.FLEEING;
+				runAwayTime = 0.0f;
+				fleeTest.SetActive (true);
+			}
+//			if (state == STATE.HUNTING)
+//			{
+//				bool eaten = Hunt(otherCollider.gameObject);
+//				if (eaten){
+//					state = STATE.IDLE;	// No longer hunting
+//				}
+//			}
+		}
 	}
+
+#endregion
 }

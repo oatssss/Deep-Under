@@ -46,6 +46,8 @@ public class FishManager : MonoBehaviour {
 	// Helper methods
 	protected Vector3 GetRandomPos() {
 		float radius = 50.0f;				// depends on the size of terrain?
-		return Random.insideUnitSphere * radius;   
+		Vector3 randPos = Random.insideUnitSphere * radius;
+		randPos.y += 50.0f;
+		return randPos;   
 	}
 }
