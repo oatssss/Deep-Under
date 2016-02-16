@@ -24,8 +24,8 @@ public class BoidsFish : MonoBehaviour
     }
     public STATE State;
     
-    [SerializeField] private List<BoidsFish> Flock = new List<BoidsFish>();
-    [SerializeField] private List<BoidsFish> Repellants = new List<BoidsFish>();
+    private List<BoidsFish> Flock = new List<BoidsFish>();
+    private List<BoidsFish> Repellants = new List<BoidsFish>();
     public int FlockSize { get { return this.Flock.Count; } }
     
     // A physical target will always take precedence over a standard target
@@ -47,7 +47,7 @@ public class BoidsFish : MonoBehaviour
     
     // If fish are outside the bounding volumes, they try to move back inside them
     private List<BoidsBoundary> BoundaryVolumes = new List<BoidsBoundary>();
-    private MonoBehaviour LastPhysicalTarget;
+    private BoidsBoundary LastBoundary;
     private bool IsOutOfBounds = false;
     
     // Make sure that this fish belongs to the Fish layer
@@ -62,8 +62,7 @@ public class BoidsFish : MonoBehaviour
         if (this.BoundaryVolumes.Count <= 0)
         {
             this.IsOutOfBounds = true;
-            this.LastPhysicalTarget = this.PhysicalTarget;
-            this.PhysicalTarget = boundary;
+            this.LastBoundary = boundary;
         }
     }
     
@@ -77,8 +76,7 @@ public class BoidsFish : MonoBehaviour
             // TODO : Direct fishies more inward, otherwise they stay along the boundary edge
             
             this.IsOutOfBounds = false;
-            this.PhysicalTarget = this.LastPhysicalTarget;
-            this.LastPhysicalTarget = null;
+            this.LastBoundary = null;
         }
     }
     
@@ -125,7 +123,7 @@ public class BoidsFish : MonoBehaviour
             // Or just switch to idle?
     }
     
-    private void SetTarget(Vector3 target)
+    public void SetTarget(Vector3 target)
     {
         this.Target = target;
         this.IsFollowingTarget = true;
@@ -199,6 +197,11 @@ public class BoidsFish : MonoBehaviour
     
     private Vector3 VectorTowardsTarget()
     {
+        // Move towards the boundary if out of bounds
+        if (this.IsOutOfBounds)
+            { return (this.LastBoundary.transform.position - this.transform.position) * BoidsSettings.Instance.Target; }
+        
+        // Only continue if the fish is following a target
         if (!this.IsFollowingTarget)
             { return Vector3.zero; }
         
@@ -215,7 +218,6 @@ public class BoidsFish : MonoBehaviour
     {            
         // Handle rigidbody velocity updates
         Vector3 cohesion = (this.State != STATE.FLEEING) ? this.VectorTowardsFlock() : -this.VectorTowardsFlock();
-        // Vector3 separation = this.WasFollowingPhysicalTarget ? this.VectorAwayFromNeighbours() : this.VectorAwayFromNeighbours();
         Vector3 separation = this.VectorAwayFromNeighbours();
         Vector3 alignment = this.VectorTowardsAlignment();
         Vector3 target = (this.State != STATE.IDLE) ? this.VectorTowardsTarget() : Vector3.zero;
@@ -227,7 +229,7 @@ public class BoidsFish : MonoBehaviour
         updatedVelocity += separation;
         updatedVelocity *= BoidsSettings.Instance.FishSpeedMultiplier;
         updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 2*Time.fixedDeltaTime);
-        updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, BoidsSettings.Instance.MaxFishSpeed);    // Limit the speed of the fish to a maximum
+        updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, BoidsSettings.Instance.MaxFishSpeed);
         this.RigidBody.velocity = updatedVelocity;
         
         // Add a bob (thx Ali)
