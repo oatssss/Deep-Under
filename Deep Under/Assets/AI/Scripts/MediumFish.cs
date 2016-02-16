@@ -1,5 +1,7 @@
 ﻿public class MediumFish : Fish {
-	public MediumFish() {
-		speed = 5.0f;
+	
+	protected override void setSize()
+	{
+		this.size = SIZE.MEDIUM;
 	}
 }
