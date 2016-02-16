@@ -1,5 +1,7 @@
 ﻿public class SmallFish : Fish {
-	public SmallFish() {
-		speed = 8.0f;
+
+	protected override void setSize()
+	{
+		this.size = SIZE.SMALL;
 	}
 }
