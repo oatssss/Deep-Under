@@ -368,7 +368,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 225928283}
-  - 114: {fileID: 225928284}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -390,17 +389,6 @@ Transform:
   - {fileID: 650057730}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &225928284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 225928282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 865918795b7224c6799e70c754cd2da0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &428775825
 GameObject:
   m_ObjectHideFlags: 0
@@ -2865,8 +2853,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1801822091}
-  m_LocalRotation: {x: -0.042779267, y: -0.75685537, z: 0.0497892, w: -0.6502777}
-  m_LocalPosition: {x: -25.912693, y: 143.26314, z: -2.485435}
+  m_LocalRotation: {x: -0.0483524, y: 0.4978341, z: 0.027811926, w: 0.8654766}
+  m_LocalPosition: {x: -19.278896, y: 147.36021, z: -11.213251}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 428775826}
