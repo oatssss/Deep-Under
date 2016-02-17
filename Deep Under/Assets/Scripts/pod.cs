@@ -6,9 +6,10 @@ public class pod : MonoBehaviour {
 	private float rotSpeed = 40f; 
 	public float orbStrength = 20f; 
 
+	Player auliv;
 	// Use this for initialization
 	void Start () {
-	
+		auliv = GameObject.Find("auliv/SUB_RIG_007").GetComponent<Player>();
 	}
 	
 	// Update is called once per frame
@@ -22,16 +23,14 @@ public class pod : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider other) { 
-		if (other.CompareTag("Auliv")) { 
-			Player auliv = other.GetComponent<Player>();
+		if (other.CompareTag("Auliv") && auliv != null) { 
 			auliv.charging = true; 
 			auliv.addEnergy(this.orbStrength);
 		}
 	}
 
 	void OnTriggerExit (Collider other) { 
-		if (other.CompareTag("Auliv")) { 
-			Player auliv = other.GetComponent<Player>();
+		if (other.CompareTag("Auliv") && auliv != null) { 
 			auliv.charging = false; 
 			//Debug.Log ("Auliv has left the building");
 		}
