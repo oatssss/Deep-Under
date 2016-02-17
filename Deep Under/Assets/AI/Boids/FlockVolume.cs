@@ -4,7 +4,7 @@ using Extensions;
 [RequireComponent(typeof(SphereCollider))]
 public class FlockVolume : MonoBehaviour {
 
-    [SerializeField] private BoidsFish ParentFish;
+    [SerializeField] private SmallBoidsFish ParentFish;
     [SerializeField] private SphereCollider Volume;
     
     void Start()
