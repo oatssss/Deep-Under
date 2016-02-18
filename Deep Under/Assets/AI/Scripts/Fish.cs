@@ -59,7 +59,7 @@ public class Fish : MonoBehaviour {
 					idleTime = 0;
 				}
 				break;
-			}
+			} 
 		case STATE.FLEEING:
 			{
 				this.GetComponent<Rigidbody> ().MoveRotation (Quaternion.LookRotation (dangerPoint - transform.position));

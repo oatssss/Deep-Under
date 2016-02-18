@@ -25,7 +25,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 495446}
-  - 114: {fileID: 11479554}
+  - 114: {fileID: 11415320}
   - 54: {fileID: 5447198}
   - 136: {fileID: 13649820}
   m_Layer: 10
@@ -181,6 +181,24 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &11415320
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 120948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c355deffab6224276b9471c6be5c193e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RigidBody: {fileID: 5447198}
+  RepelVolume: {fileID: 13587794}
+  size: 0
+  maxSpeed: 8
+  minSpeed: 2
+  state: 0
+  FlockVolume: {fileID: 13585348}
 --- !u!114 &11453082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7dff80f0ea246c695a780a511d1aa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentFish: {fileID: 11479554}
+  ParentFish: {fileID: 11415320}
   Volume: {fileID: 13587794}
 --- !u!114 &11471762
 MonoBehaviour:
@@ -205,26 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6dcfa069efd43b7a59e6dca8bb68af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentFish: {fileID: 11479554}
+  ParentFish: {fileID: 11415320}
   Volume: {fileID: 13585348}
---- !u!114 &11479554
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 120948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd05de00f293540f2a786ec9e24f3e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RigidBody: {fileID: 5447198}
-  RepelVolume: {fileID: 13587794}
-  FlockVolume: {fileID: 13585348}
-  size: 0
-  State: 1
-  Flock: []
-  Repellants: []
 --- !u!135 &13585348
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -268,7 +268,35 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: RepelVolume
+      value: 
+      objectReference: {fileID: 13587794}
+    - target: {fileID: 0}
+      propertyPath: RigidBody
+      value: 
+      objectReference: {fileID: 5447198}
+    - target: {fileID: 0}
+      propertyPath: FlockVolume
+      value: 
+      objectReference: {fileID: 13585348}
+    - target: {fileID: 0}
+      propertyPath: maxSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: minSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ParentFish
+      value: 
+      objectReference: {fileID: 11415320}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 120948}

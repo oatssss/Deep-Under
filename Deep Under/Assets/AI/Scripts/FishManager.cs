@@ -8,9 +8,9 @@ public class FishManager : MonoBehaviour {
 	public List<Transform> MediumFishList;
 	public List<Transform> SmallFishList;
 
-	public int numberOfLFish = 2;
-	public int numberOfMFish = 15;
-	public int numberOfSFish = 35;
+	[Range(0,5f)] public int numberOfLFish = 2;
+	[Range(0,25f)] public int numberOfMFish = 15;
+	[Range(0,50f)] public int numberOfSFish = 35;
 
 	public GameObject Manager;
 	public GameObject LargeFish;
