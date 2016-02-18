@@ -6,7 +6,7 @@ public class Player : MonoBehaviour {
 	//private float lsXDeadValue = 0.058f; //fix dead values in both LS and RS
 	//private float lsYDeadValue = 1f;	//fix dead value
 
-	private float speed = 40f;
+	private float speed = 80f;
 	Rigidbody rigidbody;
 	public CameraFollow camera; 
 
@@ -43,30 +43,40 @@ public class Player : MonoBehaviour {
 		else if (Input.GetKey (KeyCode.Joystick1Button5)) u = -1;
 		else u = 0;
 		Move(h,v,u);
-		autoTurn();
+		//autoTurn();
 		//bob();
-		//controllerButtonTest(); 
+
 	}
 
 	void Update() { 
 		if (Input.GetKeyUp(KeyCode.Joystick1Button11) || Input.GetKeyUp(KeyCode.F)) lightToggle();
 		if (Input.GetKeyUp(KeyCode.Joystick1Button0) || Input.GetKeyUp(KeyCode.Space)) createLightOrb();
+		//controllerButtonTest(); 
 		removeEnergy(energyDrainRate);
 	}
 
-	private void Move (float h, float v, float u) { 
-		Vector3 movementHorizontal = (camera.transform.right * h) * speed/2f * Time.deltaTime;
+	private void Move (float h, float v, float u) {
+	 
+		Vector3 movementHorizontal = (camera.transform.right * h) * speed * Time.deltaTime;
 		Vector3 movementForward = (camera.transform.forward * v) * speed * Time.deltaTime; 
+		Vector3 dir = movementHorizontal + movementForward; 
+		if (Mathf.Abs(h) >= 0.2f || Mathf.Abs(v) >= 0.2f) turn(dir);
 		Vector3 movementVertical = (transform.up * u) * speed/2f * Time.deltaTime;
-		rigidbody.MovePosition(transform.position + movementHorizontal + movementForward +  movementVertical );
+		rigidbody.MovePosition(transform.position + movementHorizontal + movementForward +  movementVertical);
+
 	}
 
 
 	private void autoTurn () { 
-	 	if (v > 0f && h < Mathf.Abs(0.5f)){
+		if (v > 0f && Mathf.Abs(h) < 0.5f){
 	 		transform.rotation = Quaternion.RotateTowards (transform.rotation, camera.transform.rotation, 4f);	
-	 		//camera.startLook = 0f;	
-	 	}	
+	 	}
+	}
+
+	private void turn (Vector3 dir) { 
+		Quaternion lookDirection = Quaternion.LookRotation(dir);
+		float turnSpeed = Mathf.Sqrt(Mathf.Pow(h,2) + Mathf.Pow(v,2)) * 4f;
+		transform.rotation = Quaternion.Lerp(transform.rotation, lookDirection, turnSpeed * Time.deltaTime);	
 	}
 
 	private void bob () { 
