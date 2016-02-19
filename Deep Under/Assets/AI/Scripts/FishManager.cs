@@ -43,6 +43,26 @@ public class FishManager : MonoBehaviour {
 	
 	}
 
+	public void DestroyFish(BoidsFish fishToDestroy)
+	{
+		foreach (Transform aTransform in LargeFishList)
+		{
+			aTransform.gameObject.GetComponent<BoidsFish> ().willDestroyFish (fishToDestroy);
+		}
+		foreach (Transform aTransform in MediumFishList)
+		{
+			aTransform.gameObject.GetComponent<BoidsFish> ().willDestroyFish (fishToDestroy);
+		}
+		foreach (Transform aTransform in SmallFishList)
+		{
+			aTransform.gameObject.GetComponent<BoidsFish> ().willDestroyFish (fishToDestroy);
+		}
+		LargeFishList.Remove (fishToDestroy.transform);
+		MediumFishList.Remove (fishToDestroy.transform);
+		SmallFishList.Remove (fishToDestroy.transform);
+		Destroy (fishToDestroy.gameObject);
+	}
+
 	// Helper methods
 	protected Vector3 GetRandomPos() {
 		float radius = 50.0f;				// depends on the size of terrain?

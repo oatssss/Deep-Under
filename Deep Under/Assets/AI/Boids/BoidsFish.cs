@@ -55,23 +55,26 @@ public abstract class BoidsFish : MonoBehaviour
 
 	private List<BoidsFish> Repellants = new List<BoidsFish>();
 	private List<BoidsFish> Predators = new List<BoidsFish>();
+	private List<BoidsFish> preys = new List<BoidsFish>();
 
 	public int PredatorsSize { get { return this.Predators.Count; } }
 
-	// A physical target will always take precedence over a standard target
-	private bool IsFollowingTarget = false;
-	private MonoBehaviour physicalTarget;
-	public MonoBehaviour PhysicalTarget
+	// Hunting target is always the closest prey
+	Vector3 huntingTargetPosition()
 	{
-		get { return this.physicalTarget; }
-		set
+		float minDistance = 99999f;
+		BoidsFish nearestPrey = null;
+		foreach (BoidsFish aPrey in preys)
 		{
-			this.physicalTarget = value;
-			if (value == null)
-			{ this.StopFollowingTarget(); }
-			else
-			{ this.IsFollowingTarget = true; }
+			float distance = Vector3.Distance (aPrey.transform.position, transform.position);
+			if (distance < minDistance)
+			{
+				minDistance = distance;
+				nearestPrey = aPrey;
+			}
 		}
+
+		return nearestPrey.transform.position;
 	}
 	
 	// standard Target
@@ -128,20 +131,22 @@ public abstract class BoidsFish : MonoBehaviour
 	{
 		this.Repellants.Remove(repellant);
 	}
-	
-	/// <summary> This gets called whenever this fish stops following a target </summary>
-	protected virtual void StopFollowingTarget()
+
+	public void addPrey(BoidsFish prey)
 	{
-		this.IsFollowingTarget = false;
-		// TODO
-		// Maybe get a new random point to swim towards?
-		// Or just switch to idle?
+		preys.Add (prey);
+		State = STATE.HUNTING;
+		stateTimer = 0f;
 	}
-	
-	protected void SetTarget(Vector3 target)
+
+	public void removePrey(BoidsFish prey)
 	{
-		this.Target = target;
-		this.IsFollowingTarget = true;
+		preys.Remove (prey);
+		if (preys.Count == 0)
+		{
+			State = STATE.IDLE;
+			stateTimer = 0f;
+		}
 	}
 	
 	protected virtual Vector3 VectorAwayFromNeighbours()
@@ -171,28 +176,34 @@ public abstract class BoidsFish : MonoBehaviour
 		// Move towards the boundary if out of bounds
 		if (this.IsOutOfBounds)
 		{ return (this.LastBoundary.transform.position - this.transform.position) * BoidsSettings.Instance.Target; }
-		
-		// Only continue if the fish is following a target
-		if (!this.IsFollowingTarget)
-		{ return Vector3.zero; }
-		
-		// Follow a physical target if it exists
-		if (this.PhysicalTarget != null)
-		{ return (this.PhysicalTarget.transform.position - this.transform.position) * BoidsSettings.Instance.Target; }
-		
+
+		// If hunting, towards prey
+		if (State == STATE.HUNTING)
+			return huntingTargetPosition() - transform.position;
+
 		// Otherwise, follow a standard target
 		else
 		{ return (this.Target - this.transform.position) * BoidsSettings.Instance.Target; }
+	}
+
+	Vector3 eatingDirection()
+	{
+		// when it eats it faces towards horizon
+		Vector3 forwardDirection = transform.TransformDirection (Vector3.forward);
+		forwardDirection.y = 0f;
+		return forwardDirection;
 	}
 	
 	void FixedUpdate()
 	{
 		Vector3 updatedVelocity = this.CalculateVelocity();
-		this.RigidBody.velocity = updatedVelocity;
-		
 		// Add a bob (thx Ali)
-		this.RigidBody.MovePosition(transform.position + (Vector3.up * (Mathf.Sin(Time.time * 2f)) * 0.005f));
-		
+		updatedVelocity += Vector3.left * (Mathf.Sin (Time.time * 2f)) * 0.03f;
+		// if eaeting, stay still
+		if (State == STATE.EATING)
+			updatedVelocity = Vector3.Normalize (eatingDirection()) * 0.01f;
+		this.RigidBody.velocity = updatedVelocity;
+
 		// Steer the fish's transform to face the velocity vector
 		Quaternion dirQ = Quaternion.LookRotation(updatedVelocity);
 		Quaternion slerp = Quaternion.Slerp (transform.rotation, dirQ, updatedVelocity.magnitude * 2 * Time.fixedDeltaTime);
@@ -204,8 +215,8 @@ public abstract class BoidsFish : MonoBehaviour
 		if (State == STATE.SWIMMING && stateTimer > hungerSpan)
 		{
 			//TODO: Fish goes hungry and detaches from group
-			State = STATE.IDLE; 	// Idle fish does not want to flock and is just swimming away
-			StopFollowingTarget();		// Stop flocking
+			State = STATE.IDLE; 		// Idle fish does not want to flock and is just swimming away
+			//StopFollowingTarget();	// Stop flocking //calvinz but follow flock is defined in VectorTowardsFlock, not target
 			stateTimer = 0f; 			// reset timer
 		}
 		else if (State == STATE.IDLE && stateTimer > 10.0f)
@@ -216,14 +227,16 @@ public abstract class BoidsFish : MonoBehaviour
 		}
 		else if (State == STATE.HUNTING)
 		{
-			float distance = CalculateDistance(this.PhysicalTarget);
+			float distance = Vector3.Distance(huntingTargetPosition(), transform.position);
 			if (distance < 1.0)	// if target is caught 
 			{
 				State = STATE.EATING;
+				stateTimer = 0f;
 			}
 			else if (distance > 100.0)		// Target is too far, give up can be changed later
 			{
 				State = STATE.IDLE;
+				stateTimer = 0f;
 			}
 		}
 		else if (State == STATE.FLEEING)
@@ -231,12 +244,25 @@ public abstract class BoidsFish : MonoBehaviour
 			if (PredatorsSize == 0)
 			{
 				State = STATE.IDLE;
+				stateTimer = 0f;
 			}
 		}
 		else if (State == STATE.EATING)
 		{
-			//TODO: be disabled for like 2 seconds or something
+			if (stateTimer > 2f)
+			{
+				checkOtherPreysAndStateChange ();
+			}
 		}
+	}
+
+	void checkOtherPreysAndStateChange()
+	{
+		stateTimer = 0f;
+		if (preys.Count > 0)
+			State = STATE.HUNTING;
+		else
+			State = STATE.IDLE;
 	}
 
 	public Vector3 RandomizeDestination(){
@@ -247,9 +273,33 @@ public abstract class BoidsFish : MonoBehaviour
 		random.y = Mathf.Abs (random.y);
 		return random;
 	}
-	public float CalculateDistance(MonoBehaviour obj){
-		//TODO: calculate distance
-		return 0f;
+
+	void OnCollisionEnter(Collision collision)
+    {
+		BoidsFish collidedFish = collision.gameObject.GetComponent<BoidsFish> ();
+		if (collidedFish != null && preys.Contains (collidedFish)) 
+		{
+			// collided with prey, eat it
+			State = STATE.EATING;
+			stateTimer = 0f;
+			destroyFish (collidedFish);
+		}
+    }
+
+	void destroyFish(BoidsFish fishToDestroy)
+	{
+		FishManager fishManager = GameObject.Find ("FishManager").GetComponent<FishManager> ();
+		fishManager.DestroyFish (fishToDestroy);
+	}
+
+	public virtual void willDestroyFish(BoidsFish fishToDestroy)
+	{
+		preys.Remove (fishToDestroy);
+		if (State != STATE.EATING)
+			checkOtherPreysAndStateChange ();
+		Repellants.Remove (fishToDestroy);
+		Predators.Remove (fishToDestroy);
+		// do something if predators are gone
 	}
 
 	protected abstract Vector3 CalculateVelocity();

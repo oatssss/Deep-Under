@@ -11,7 +11,7 @@ public class BoidsSettings : UnitySingleton<BoidsSettings> {
     [Range(0,2f)] public float Alignment = 1f;
     [Range(0,1f)] public float Target = 1f;
     
-    [Range(0,30f)] public float MinFishSpeed = 1f;
+    [Range(0,30f)] public float MinFishSpeed = .5f;
     [Range(1f,30f)] public float MaxFishSpeed = 5f;
     [Range(1f,5f)] public float FishSpeedMultiplier = 1f;
     
