@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using Extensions;
 
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
@@ -11,17 +10,28 @@ public abstract class BoidsFish : MonoBehaviour
 
 	[SerializeField] public Rigidbody RigidBody;
 	[SerializeField] private SphereCollider RepelVolume;
-    [SerializeField] private SphereCollider PredatorVolume;
 
 	public float RepelRadius { get { return this.transform.localScale.magnitude * this.RepelVolume.radius; } }
+    protected float EvadeRadius
+    {
+        get
+        {
+            if (this.Size == SIZE.SMALL)
+            {
+                return BoidsSettings.Instance.MediumPredatorRadius;
+            }
+            else
+            {
+                return BoidsSettings.Instance.LargePredatorRadius;
+            }
+        }
+    }
 
 	private float StateTimer;
 	private float HungerSpan;
 
     protected float MinSpeed;
 	protected float MaxSpeed;
-
-	public float Speed { get; protected set; }
 
     [SerializeField] private SIZE size;
 	public SIZE Size
@@ -34,10 +44,11 @@ public abstract class BoidsFish : MonoBehaviour
 	public abstract STATE State { get; protected set; }
 
 	private List<BoidsFish> Repellants = new List<BoidsFish>();
-	private List<BoidsFish> Predators = new List<BoidsFish>();
+	[SerializeField] private List<BoidsFish> Predators = new List<BoidsFish>();
+    public int PredatorCount { get { return this.Predators.Count; } }
 
 	// A physical target will always take precedence over a standard target
-	protected bool IsFollowingTarget = false;
+	public bool IsFollowingTarget = false;
 	private MonoBehaviour physicalTarget;
 	public MonoBehaviour PhysicalTarget
 	{
@@ -46,9 +57,9 @@ public abstract class BoidsFish : MonoBehaviour
 		{
 			this.physicalTarget = value;
 			if (value == null)
-			{ this.StopFollowingTarget(); }
+                { this.StopFollowingTarget(); }
 			else
-			{ this.IsFollowingTarget = true; }
+                { this.IsFollowingTarget = true; }
 		}
 	}
 
@@ -61,11 +72,11 @@ public abstract class BoidsFish : MonoBehaviour
 	[SerializeField] protected bool IsOutOfBounds = false;
 
 	// Make sure that this fish belongs to the Fish layer
-	void Start()
+	protected virtual void Start()
 	{
 		// Make sure that this fish belongs to the Fish layer
 		// this.EnforceLayerMembership("Fish");
-		State = STATE.SWIMMING;
+		this.State = STATE.SWIMMING;
 		this.StateTimer = 0f;
 		this.HungerSpan = Random.Range(10f,50f);
 		//		Debug.Log("This fish hunger span is : " + hungerSpan);
@@ -94,6 +105,16 @@ public abstract class BoidsFish : MonoBehaviour
 		}
 	}
 
+    public void Flee()
+    {
+        this.State = STATE.FLEEING;
+    }
+
+    public void Relax()
+    {
+        this.State = STATE.SWIMMING;
+    }
+
 	/// <summary> Called by the child RepelVolume gameobject </summary>
 	public void AddRepellant(BoidsFish repellant)
 	{
@@ -106,13 +127,13 @@ public abstract class BoidsFish : MonoBehaviour
 		this.Repellants.Remove(repellant);
 	}
 
-    /// <summary> Called by the child PredatorVolume gameobject </summary>
+    /// <summary> Called by the predator </summary>
 	public void AddPredator(BoidsFish predator)
 	{
 		this.Predators.Add(predator);
 	}
 
-	/// <summary> Called by the child PredatorVolume gameobject </summary>
+	/// <summary> Called by the predator gameobject </summary>
 	public void RemovePredator(BoidsFish predator)
 	{
 		this.Predators.Remove(predator);
@@ -188,17 +209,22 @@ public abstract class BoidsFish : MonoBehaviour
 			float distance = away.magnitude;
 
 			// We want to repel fish that are close faster than fish that are far
-			away *= ((this.RepelRadius - distance + (this.RepelRadius/2)) * BoidsSettings.Instance.Separation) / distance;
+			away *= ((this.EvadeRadius - distance + (this.EvadeRadius/2)) * BoidsSettings.Instance.Evade) / distance;
 			avoid += away;
 		}
 		avoid /= this.Predators.Count;
 
-        return Vector3.zero;
+        return avoid;
     }
 
-	void FixedUpdate()
+	protected virtual void FixedUpdate()
 	{
 		Vector3 updatedVelocity = this.CalculateVelocity();
+#if UNITY_EDITOR
+        updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, this.MaxSpeed);
+#else
+        updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, BoidsSettings.Instance.FishSpeedMultiplier * this.MaxSpeed);
+#endif
 		this.RigidBody.velocity = updatedVelocity;
 
 		// Add a bob (thx Ali)
@@ -209,11 +235,31 @@ public abstract class BoidsFish : MonoBehaviour
 		Quaternion slerp = Quaternion.Slerp (transform.rotation, dirQ, updatedVelocity.magnitude * 2 * Time.fixedDeltaTime);
 		this.RigidBody.MoveRotation(slerp);
 
-		this.StateTimer+= Time.fixedDeltaTime;
+		this.StateTimer += Time.fixedDeltaTime;
 	}
 
     void Update()
     {
+
+#if UNITY_EDITOR
+        if (BoidsSettings.Instance.DrawTargetRays)
+        {
+            // Draw a line to predators
+            foreach (BoidsFish predator in this.Predators)
+            {
+                Color drawColor = (this.State == STATE.FLEEING) ? Color.red : Color.yellow;
+                Debug.DrawLine(this.transform.position, predator.transform.position, drawColor, 0f, true);
+            }
+
+            // Draw a line to the target
+            Vector3 offset = new Vector3(0.2f, 0.2f, 0.2f);
+            if (this.PhysicalTarget != null)
+            {
+                Debug.DrawLine(this.transform.position+offset, this.PhysicalTarget.transform.position+offset, Color.green, 0f, false);
+            }
+        }
+#endif
+
         // FSM IMPLEMENTATION
 		if (State == STATE.SWIMMING && StateTimer > HungerSpan)
 		{

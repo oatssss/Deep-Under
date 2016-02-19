@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using Extensions;
 
 public class PredatorVolume : MonoBehaviour {
@@ -14,45 +15,44 @@ public class PredatorVolume : MonoBehaviour {
         InvokeRepeating("UpdateRadius", 0f, 1f);
 #endif
 
-        if (this.ParentFish.Size == BoidsFish.SIZE.SMALL)
-            { this.EnforceLayerMembership("Small Predator Volumes"); }
-
-        else if (this.ParentFish.Size == BoidsFish.SIZE.MEDIUM)
+        if (this.ParentFish.Size == BoidsFish.SIZE.MEDIUM)
             { this.EnforceLayerMembership("Medium Predator Volumes"); }
+
+        else if (this.ParentFish.Size == BoidsFish.SIZE.LARGE)
+            { this.EnforceLayerMembership("Large Predator Volumes"); }
     }
 
     void UpdateRadius()
     {
-        if (this.ParentFish.Size == BoidsFish.SIZE.SMALL)
-            { this.Volume.radius = BoidsSettings.Instance.SmallPredatorRadius; }
-
-        else if (this.ParentFish.Size == BoidsFish.SIZE.MEDIUM)
+        if (this.ParentFish.Size == BoidsFish.SIZE.MEDIUM)
             { this.Volume.radius = BoidsSettings.Instance.MediumPredatorRadius; }
+
+        else if (this.ParentFish.Size == BoidsFish.SIZE.LARGE)
+            { this.Volume.radius = BoidsSettings.Instance.LargePredatorRadius; }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("SDFSDFDSSDDF");
         // Get the triggering BoidsFish
-        BoidsFish predator = other.gameObject.GetComponent<BoidsFish>();
-        if (predator != null)
+        BoidsFish predatee = other.gameObject.GetComponent<BoidsFish>();
+        if (predatee != null)
         {
-            // Is the triggering BoidsFish the same size as this one?
-            if (predator.Size > this.ParentFish.Size)
+            // Is the triggering BoidsFish lower on the food chain?
+            if (predatee.Size < this.ParentFish.Size)
             {
-                this.ParentFish.AddPredator(predator);
+                predatee.AddPredator(this.ParentFish);
             }
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        BoidsFish predator = other.gameObject.GetComponent<BoidsFish>();
-        if (predator != null)
+        BoidsFish predatee = other.gameObject.GetComponent<BoidsFish>();
+        if (predatee != null)
         {
-            if (predator.Size > this.ParentFish.Size)
+            if (predatee.Size < this.ParentFish.Size)
             {
-                this.ParentFish.RemovePredator(predator);
+                predatee.RemovePredator(this.ParentFish);
             }
         }
     }

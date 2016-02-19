@@ -6,14 +6,14 @@ public class FlockVolume : MonoBehaviour {
 
     [SerializeField] private SmallBoidsFish ParentFish;
     [SerializeField] private SphereCollider Volume;
-    
+
     void Start()
     {
         InvokeRepeating("UpdateRadius", 0f, 1f);
-        
+
         this.EnforceLayerMembership("Flock Volumes");
     }
-	
+
     /// <summary> For enabling the flock radius to be adaptive. Flock radius will decrease as this fish's flock grows. </summary>
     void UpdateRadius()
     {
@@ -30,13 +30,17 @@ public class FlockVolume : MonoBehaviour {
         if (peer != null)
         {
             // Is the triggering BoidsFish the same size as this one?
-            if (peer.Size == this.ParentFish.Size)
+            if (peer.Size <= this.ParentFish.Size)
             {
                 this.ParentFish.AddPeer(peer);
             }
+            else // IT'S A PREDATOR AHHHH
+            {
+                this.ParentFish.Flee();
+            }
         }
     }
-    
+
     void OnTriggerExit(Collider other)
     {
         // Is the triggering object a BoidsFish?

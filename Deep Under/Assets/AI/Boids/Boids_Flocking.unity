@@ -11746,15 +11746,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FlockRadius: 20
   RepelRadius: 2
-  SmallPredatorRadius: 30
   MediumPredatorRadius: 35
+  LargePredatorRadius: 50
+  MediumHuntRadius: 20
+  LargeHuntRadius: 40
   Cohesion: 0.6
   Alignment: 1
   Target: 1
-  MinFishSpeed: 1
-  MaxFishSpeed: 5
+  Evade: 2
+  SmallFish_IdleMin: 2
+  SmallFish_IdleMax: 6
+  SmallFish_SwimMin: 4
+  SmallFish_SwimMax: 8
+  SmallFish_AbsoluteMax: 10
+  MediumFish_IdleMin: 4
+  MediumFish_IdleMax: 8
+  MediumFish_AbsoluteMax: 14
+  LargeFish_IdleMin: 6
+  LargeFish_IdleMax: 12
+  LargeFish_AbsoluteMax: 18
   FishSpeedMultiplier: 1
   MaxFlockSize: 30
+  MinFlockSizeToScareMediumFish: 6
+  DrawTargetRays: 1
 --- !u!1001 &1365456764
 Prefab:
   m_ObjectHideFlags: 0
@@ -12482,6 +12496,48 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 483876, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_PrefabInternal: {fileID: 777646007}
+--- !u!1001 &1446841870
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1448427256
 Prefab:
   m_ObjectHideFlags: 0
@@ -12527,6 +12583,56 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1448674423
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 179524, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: m_Name
+      value: MediumFish (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11443820, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+      propertyPath: size
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1457716893
 Prefab:
@@ -12722,15 +12828,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FlockRadius: 20
   RepelRadius: 2
-  SmallPredatorRadius: 30
   MediumPredatorRadius: 35
+  LargePredatorRadius: 50
+  MediumHuntRadius: 20
+  LargeHuntRadius: 40
   Cohesion: 0.7
   Alignment: 1
   Target: 1
-  MinFishSpeed: 3
-  MaxFishSpeed: 10
+  Evade: 0.05
+  SmallFish_IdleMin: 2
+  SmallFish_IdleMax: 6
+  SmallFish_SwimMin: 4
+  SmallFish_SwimMax: 8
+  SmallFish_AbsoluteMax: 10
+  MediumFish_IdleMin: 4
+  MediumFish_IdleMax: 8
+  MediumFish_AbsoluteMax: 14
+  LargeFish_IdleMin: 6
+  LargeFish_IdleMax: 12
+  LargeFish_AbsoluteMax: 18
   FishSpeedMultiplier: 1
   MaxFlockSize: 10
+  MinFlockSizeToScareMediumFish: 6
+  DrawTargetRays: 1
 --- !u!4 &1474515539
 Transform:
   m_ObjectHideFlags: 0

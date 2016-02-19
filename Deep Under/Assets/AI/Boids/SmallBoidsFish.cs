@@ -10,6 +10,12 @@ public class SmallBoidsFish : BoidsFish
 
 	public float FlockRadius  { get { return this.transform.localScale.magnitude * this.FlockVolume.radius; } }
 
+    private float IdleMin = 2f;
+    private float IdleMax = 6f;
+    private float SwimMin = 4f;
+    private float SwimMax = 8f;
+    private float AbsoluteMax = 10f;
+
     public override STATE State
 	{
 		get				{ return this.state; }
@@ -17,24 +23,32 @@ public class SmallBoidsFish : BoidsFish
 		{
 			this.state = value;
 			if (value == STATE.EATING)
-				Speed = MinSpeed;
+                { this.MinSpeed = this.MaxSpeed = this.IdleMin; }
 			else if (value == STATE.FLEEING)
-				Speed = MaxSpeed;
+				{ this.MinSpeed = this.MaxSpeed = this.AbsoluteMax; }
 			else if (value == STATE.IDLE)
-				Speed = MinSpeed + (MaxSpeed-MinSpeed)*0.1f;
+            {
+                this.MinSpeed = this.IdleMin;
+                this.MaxSpeed = this.IdleMax;
+            }
 			else if (value == STATE.SWIMMING)
-				Speed = MinSpeed + (MaxSpeed-MinSpeed)*0.5f;
+            {
+                this.MinSpeed = this.SwimMin;
+                this.MaxSpeed = this.SwimMax;
+            }
 			else if (value == STATE.HUNTING)
-				Speed = MaxSpeed;
+				{ this.MinSpeed = this.MaxSpeed = this.AbsoluteMax; }
 		}
 	}
 
-	private List<BoidsFish> Flock = new List<BoidsFish>();
-	public int FlockSize { get { return this.Flock.Count; } }
+	[SerializeField] private List<BoidsFish> Flock = new List<BoidsFish>();
+	public int FlockSize { get { return this.Flock.Count + 1; } }  // +1 since including itself
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         this.EnforceLayerMembership("Small Fish");
+        this.Size = SIZE.SMALL;
     }
 
 	/// <summary> This message is called by the child FlockVolume gameobject </summary>
@@ -44,13 +58,6 @@ public class SmallBoidsFish : BoidsFish
 		{
 			this.Flock.Add(peer);
 		}
-		/*else
-		{
-			BoidsFish randomPeer = this.Flock[Random.Range(0, this.FlockSize)];
-
-			this.RemovePeer(randomPeer);
-			this.AddPeer(peer);
-		}*/
 	}
 
 	/// <summary> This message is called by the child FlockVolume gameobject </summary>
@@ -62,7 +69,7 @@ public class SmallBoidsFish : BoidsFish
 	private Vector3 VectorTowardsFlock()
 	{
 		if (this.Flock.Count <= 0)
-		{ return Vector3.zero; }
+            { return Vector3.zero; }
 
 		// Get the position of the center of the flock by averaging positions
 		Vector3 centerOfMass = Vector3.zero;
@@ -78,7 +85,7 @@ public class SmallBoidsFish : BoidsFish
 
 		// cohesion.Normalize();
 		if (distance < this.FlockRadius/7)
-		{ cohesion = this.transform.forward*BoidsSettings.Instance.MaxFishSpeed; }
+            { cohesion = this.transform.forward*BoidsSettings.Instance.SmallFish_IdleMax; }
 		// We want to attract farther fish more than closer fish
 		cohesion *= BoidsSettings.Instance.Cohesion;
 		// cohesion *= (((this.FlockRadius - distance) * BoidsSettings.Instance.Cohesion) / ((this.FlockRadius / 5) + distance));
@@ -105,15 +112,17 @@ public class SmallBoidsFish : BoidsFish
 
 	protected override Vector3 CalculateVelocity()
 	{
+
 		// Handle rigidbody velocity updates
 		Vector3 cohesion = (this.State != STATE.FLEEING) ? this.VectorTowardsFlock() : -this.VectorTowardsFlock();
 		Vector3 separation = this.VectorAwayFromNeighbours();
 		Vector3 alignment = this.VectorTowardsAlignment();
 		Vector3 target = this.VectorTowardsTarget();
+        Vector3 avoid = this.VectorAwayFromPredators();
 		float cohesionMagnitude = cohesion.magnitude;
 
 		// Glue all the stages together
-		Vector3 updatedVelocity = this.transform.forward * BoidsSettings.Instance.MinFishSpeed;     // Fish is always moving a minimum speed
+		Vector3 updatedVelocity = this.transform.forward * this.MinSpeed;     // Fish is always moving a minimum speed
         if (this.Flock.Count > 0)
         {
             updatedVelocity += Vector3.ClampMagnitude(cohesion + alignment + target, cohesionMagnitude);
@@ -123,12 +132,29 @@ public class SmallBoidsFish : BoidsFish
             updatedVelocity += Vector3.ClampMagnitude(cohesion + alignment, cohesionMagnitude);
             updatedVelocity += target;
         }
-		updatedVelocity += Vector3.ClampMagnitude(cohesion + alignment + target, cohesionMagnitude);
 		updatedVelocity += separation;
+        updatedVelocity += avoid;
+#if UNITY_EDITOR
 		updatedVelocity *= BoidsSettings.Instance.FishSpeedMultiplier;
+#endif
 		updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 2*Time.fixedDeltaTime);
-		updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, BoidsSettings.Instance.MaxFishSpeed);
+		// updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, BoidsSettings.Instance.SmallFish_IdleMax);
 
 		return updatedVelocity;
 	}
+
+    protected override void FixedUpdate()
+    {
+
+#if UNITY_EDITOR
+        this.State = this.State;
+        this.IdleMin = BoidsSettings.Instance.SmallFish_IdleMin;
+        this.IdleMax = BoidsSettings.Instance.SmallFish_IdleMax;
+        this.SwimMin = BoidsSettings.Instance.SmallFish_SwimMin;
+        this.SwimMax = BoidsSettings.Instance.SmallFish_SwimMax;
+        this.AbsoluteMax = BoidsSettings.Instance.SmallFish_AbsoluteMax;
+#endif
+
+        base.FixedUpdate();
+    }
 }
