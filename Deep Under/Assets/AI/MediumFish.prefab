@@ -265,8 +265,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RigidBody: {fileID: 5410864}
   RepelVolume: {fileID: 13579092}
-  PredatorVolume: {fileID: 0}
-  HuntVolume: {fileID: 0}
+  HuntVolume: {fileID: 13555606}
+  MaxSpeed: 0
   size: 0
   state: 1
   Predators: []
@@ -329,7 +329,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: HuntVolume
+      value: 
+      objectReference: {fileID: 13555606}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 179524}

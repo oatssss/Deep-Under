@@ -40,6 +40,8 @@ public class BoidsSettings : UnitySingleton<BoidsSettings> {
     [Space(10)]
 
     [Header("Miscellaneous")]
+    //[Range(0,30f)] public float MinFishSpeed = .5f;
+    //[Range(1f,30f)] public float MaxFishSpeed = 5f;
     [Range(1f,5f)] public float FishSpeedMultiplier = 1f;
     [Range(0,100)] public int MaxFlockSize = 10;
     [Range(2,15)] public int MinFlockSizeToScareMediumFish = 6;

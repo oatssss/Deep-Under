@@ -11747,8 +11747,8 @@ MonoBehaviour:
   FlockRadius: 20
   RepelRadius: 2
   MediumPredatorRadius: 35
-  LargePredatorRadius: 50
   MediumHuntRadius: 20
+  LargePredatorRadius: 50
   LargeHuntRadius: 40
   Cohesion: 0.6
   Alignment: 1
@@ -12829,8 +12829,8 @@ MonoBehaviour:
   FlockRadius: 20
   RepelRadius: 2
   MediumPredatorRadius: 35
-  LargePredatorRadius: 50
   MediumHuntRadius: 20
+  LargePredatorRadius: 50
   LargeHuntRadius: 40
   Cohesion: 0.7
   Alignment: 1
@@ -12843,7 +12843,7 @@ MonoBehaviour:
   SmallFish_AbsoluteMax: 10
   MediumFish_IdleMin: 4
   MediumFish_IdleMax: 8
-  MediumFish_AbsoluteMax: 14
+  MediumFish_AbsoluteMax: 20
   LargeFish_IdleMin: 6
   LargeFish_IdleMax: 12
   LargeFish_AbsoluteMax: 18

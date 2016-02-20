@@ -76,4 +76,9 @@ public class MediumBoidsFish : BoidsFish {
 
         base.FixedUpdate();
     }
+
+	public override void willDestroyFish(BoidsFish fishToDestroy)
+	{
+		base.willDestroyFish (fishToDestroy);
+	}
 }

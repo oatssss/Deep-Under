@@ -10,7 +10,7 @@ public class FishManager : MonoBehaviour {
 
 	[Range(0,5f)] public int numberOfLFish = 2;
 	[Range(0,25f)] public int numberOfMFish = 15;
-	[Range(0,50f)] public int numberOfSFish = 35;
+	[Range(0,300f)] public int numberOfSFish = 35;
 
 	public GameObject Manager;
 	public GameObject LargeFish;
@@ -41,6 +41,26 @@ public class FishManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void DestroyFish(BoidsFish fishToDestroy)
+	{
+		foreach (Transform aTransform in LargeFishList)
+		{
+			aTransform.gameObject.GetComponent<BoidsFish> ().willDestroyFish (fishToDestroy);
+		}
+		foreach (Transform aTransform in MediumFishList)
+		{
+			aTransform.gameObject.GetComponent<BoidsFish> ().willDestroyFish (fishToDestroy);
+		}
+		foreach (Transform aTransform in SmallFishList)
+		{
+			aTransform.gameObject.GetComponent<BoidsFish> ().willDestroyFish (fishToDestroy);
+		}
+		LargeFishList.Remove (fishToDestroy.transform);
+		MediumFishList.Remove (fishToDestroy.transform);
+		SmallFishList.Remove (fishToDestroy.transform);
+		Destroy (fishToDestroy.gameObject);
 	}
 
 	// Helper methods

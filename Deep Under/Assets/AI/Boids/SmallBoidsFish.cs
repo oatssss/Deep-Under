@@ -141,7 +141,7 @@ public class SmallBoidsFish : BoidsFish
 		updatedVelocity *= BoidsSettings.Instance.FishSpeedMultiplier;
 #endif
 		updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 2*Time.fixedDeltaTime);
-		// updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, BoidsSettings.Instance.SmallFish_IdleMax);
+		updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, BoidsSettings.Instance.SmallFish_IdleMax);
 
 		return updatedVelocity;
 	}
@@ -160,4 +160,10 @@ public class SmallBoidsFish : BoidsFish
 
         base.FixedUpdate();
     }
+
+	public override void willDestroyFish(BoidsFish fishToDestroy)
+	{
+		base.willDestroyFish (fishToDestroy);
+		Flock.Remove (fishToDestroy);
+	}
 }

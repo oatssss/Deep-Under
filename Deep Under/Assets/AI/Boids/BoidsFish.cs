@@ -10,6 +10,7 @@ public abstract class BoidsFish : MonoBehaviour
 
 	[SerializeField] public Rigidbody RigidBody;
 	[SerializeField] private SphereCollider RepelVolume;
+	[SerializeField] private SphereCollider HuntVolume;
 
 	public float RepelRadius { get { return this.transform.localScale.magnitude * this.RepelVolume.radius; } }
     protected float EvadeRadius
@@ -31,7 +32,7 @@ public abstract class BoidsFish : MonoBehaviour
 	private float HungerSpan;
 
     protected float MinSpeed;
-	protected float MaxSpeed;
+	[SerializeField] protected float MaxSpeed;
 
     [SerializeField] private SIZE size;
 	public SIZE Size
@@ -57,9 +58,9 @@ public abstract class BoidsFish : MonoBehaviour
 		{
 			this.physicalTarget = value;
 			if (value == null)
-                { this.StopFollowingTarget(); }
+			{ this.StopFollowingTarget(); }
 			else
-                { this.IsFollowingTarget = true; }
+			{ this.IsFollowingTarget = true; }
 		}
 	}
 
@@ -123,6 +124,7 @@ public abstract class BoidsFish : MonoBehaviour
 	public void Idle()
 	{
 		this.State = STATE.IDLE;
+		StopFollowingTarget ();
 	}
 
 	/// <summary> Called by the child RepelVolume gameobject </summary>
@@ -190,19 +192,19 @@ public abstract class BoidsFish : MonoBehaviour
 	{
 		// Move towards the boundary if out of bounds
 		if (this.IsOutOfBounds)
-            { return (this.LastBoundary.transform.position - this.transform.position) * BoidsSettings.Instance.Target; }
+		{ return (this.LastBoundary.transform.position - this.transform.position) * BoidsSettings.Instance.Target; }
 
 		// Only continue if the fish is following a target
 		if (!this.IsFollowingTarget)
-            { return Vector3.zero; }
+		{ return Vector3.zero; }
 
 		// Follow a physical target if it exists
 		if (this.PhysicalTarget != null)
-            { return (this.PhysicalTarget.transform.position - this.transform.position) * BoidsSettings.Instance.Target; }
+		{ return (this.PhysicalTarget.transform.position - this.transform.position) * BoidsSettings.Instance.Target; }
 
 		// Otherwise, follow a standard target
 		else
-            { return (this.Target - this.transform.position) * BoidsSettings.Instance.Target; }
+		{ return (this.Target - this.transform.position) * BoidsSettings.Instance.Target; }
 	}
 
     protected Vector3 VectorAwayFromPredators()
@@ -230,15 +232,18 @@ public abstract class BoidsFish : MonoBehaviour
 	protected virtual void FixedUpdate()
 	{
 		Vector3 updatedVelocity = this.CalculateVelocity();
+		//calvinz: Add bob to the velocity, so the fish turns naturally, also bobs on x axis is more realistic
+		updatedVelocity += Vector3.left * (Mathf.Sin (Time.time * 2f)) * 0.03f;
 #if UNITY_EDITOR
-        updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, this.MaxSpeed);
+		updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, this.MaxSpeed);
 #else
-        updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, BoidsSettings.Instance.FishSpeedMultiplier * this.MaxSpeed);
+		updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, BoidsSettings.Instance.FishSpeedMultiplier * this.MaxSpeed);
 #endif
-		this.RigidBody.velocity = updatedVelocity;
 
-		// Add a bob (thx Ali)
-		this.RigidBody.MovePosition(transform.position + (Vector3.up * (Mathf.Sin(Time.time * 2f)) * 0.005f));
+		//calvinz: if eating, stay (almost) still
+		if (State == STATE.EATING)
+			updatedVelocity *= 0.01f;
+		this.RigidBody.velocity = updatedVelocity;
 
 		// Steer the fish's transform to face the velocity vector
 		Quaternion dirQ = Quaternion.LookRotation(updatedVelocity);
@@ -284,8 +289,8 @@ public abstract class BoidsFish : MonoBehaviour
 		}
 		else if (State == STATE.HUNTING)
 		{
-			float distance = CalculateDistance(this.PhysicalTarget);
-			if (distance < 1.0)	// if target is caught
+			float distance = CalculateDistance (this.PhysicalTarget);
+			if (distance < 1.0)	// if target is caught 
 			{
 				State = STATE.EATING;
 			}
@@ -303,14 +308,61 @@ public abstract class BoidsFish : MonoBehaviour
 		}
 		else if (State == STATE.EATING)
 		{
-			//TODO: be disabled for like 2 seconds or something
+			if (StateTimer > 2f)
+			{
+				State = STATE.IDLE;
+			}
 		}
         // Else this fish is going to be eaten and is about to be destroyed
     }
 
-	public float CalculateDistance(MonoBehaviour obj){
-		//TODO: calculate distance
-		return 0f;
+	public float CalculateDistance(MonoBehaviour obj)
+	{
+		BoidsFish targetFish = obj as BoidsFish;
+		if (targetFish != null)
+			return Vector3.Distance(targetFish.transform.position, transform.position);
+		else
+			return 0;
+	}
+
+	public Vector3 RandomizeDestination(){
+		float radius = 20.0f;				// depends on the size of terrain?
+		Vector3 random = Random.insideUnitSphere * radius;
+		random = new Vector3(random.x, random.y, random.z);
+		random += transform.position;
+		random.y = Mathf.Abs (random.y);
+		return random;
+	}
+
+	void OnCollisionEnter(Collision collision)
+    {
+		BoidsFish collidedFish = collision.gameObject.GetComponent<BoidsFish> ();
+		HuntVolume huntVolume = HuntVolume.gameObject.GetComponent<HuntVolume> ();
+		if (huntVolume != null)
+		{
+			if (collidedFish != null && huntVolume.isFishPredatees(collidedFish)) 
+			{
+				// collided with prey, eat it
+				State = STATE.EATING;
+				destroyFish (collidedFish);
+			}
+		}
+    }
+
+	void destroyFish(BoidsFish fishToDestroy)
+	{
+		FishManager fishManager = GameObject.Find ("FishManager").GetComponent<FishManager> ();
+		fishManager.DestroyFish (fishToDestroy);
+	}
+
+	public virtual void willDestroyFish(BoidsFish fishToDestroy)
+	{
+		HuntVolume huntVolume = HuntVolume.gameObject.GetComponent<HuntVolume> ();
+		if (huntVolume != null)
+			huntVolume.willDestroyFish (fishToDestroy);
+		Repellants.Remove (fishToDestroy);
+		Predators.Remove (fishToDestroy);
+		// do something if predators are gone
 	}
 
 	protected abstract Vector3 CalculateVelocity();

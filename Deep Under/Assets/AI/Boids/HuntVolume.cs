@@ -35,6 +35,10 @@ public class HuntVolume : MonoBehaviour {
 
     void Update()
     {
+		// when eating, dont try to hunt anyone
+		if (this.ParentFish.State == BoidsFish.STATE.EATING)
+			return;
+
         BoidsFish predatee = this.ParentFish.PhysicalTarget as BoidsFish;
         if (predatee != null)
         {
@@ -86,7 +90,9 @@ public class HuntVolume : MonoBehaviour {
 		if (predatee != null)
 			this.ParentFish.Hunt ();
 		else
+		{
 			this.ParentFish.Idle ();
+		}
     }
 
     void OnTriggerEnter(Collider other)
@@ -121,4 +127,14 @@ public class HuntVolume : MonoBehaviour {
             }
         }
     }
+
+	public void willDestroyFish(BoidsFish fishToDestroy)
+	{
+		Predatees.Remove(fishToDestroy);
+	}
+
+	public bool isFishPredatees(BoidsFish fish)
+	{
+		return Predatees.Contains (fish);
+	}
 }

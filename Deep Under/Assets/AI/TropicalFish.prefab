@@ -86,7 +86,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &412348
 Transform:
   m_ObjectHideFlags: 1
@@ -241,8 +241,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RigidBody: {fileID: 5447198}
   RepelVolume: {fileID: 13587794}
+  HuntVolume: {fileID: 13538978}
+  MaxSpeed: 0
   size: 0
+  state: 0
+  Predators: []
+  IsFollowingTarget: 0
+  BoundaryVolumes: []
+  LastBoundary: {fileID: 0}
+  IsOutOfBounds: 0
   FlockVolume: {fileID: 13538978}
+  Flock: []
 --- !u!114 &11453082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -327,7 +336,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: RepelVolume
@@ -356,6 +365,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: HuntVolume
+      value: 
+      objectReference: {fileID: 13538978}
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

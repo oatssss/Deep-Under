@@ -26,13 +26,14 @@ public class pod : MonoBehaviour {
 		if (other.CompareTag("Auliv") && auliv != null) { 
 			auliv.charging = true; 
 			auliv.addEnergy(this.orbStrength);
+			Debug.Log ("Auliv is hereee");
 		}
 	}
 
 	void OnTriggerExit (Collider other) { 
 		if (other.CompareTag("Auliv") && auliv != null) { 
 			auliv.charging = false; 
-			//Debug.Log ("Auliv has left the building");
+			Debug.Log ("Auliv has left the building");
 		}
 	}
 }
