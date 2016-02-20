@@ -35,25 +35,18 @@ public class PredatorVolume : MonoBehaviour {
     {
         // Get the triggering BoidsFish
         BoidsFish predatee = other.gameObject.GetComponent<BoidsFish>();
-        if (predatee != null)
+        if (predatee != null && (predatee.Size < this.ParentFish.Size))
         {
-            // Is the triggering BoidsFish lower on the food chain?
-            if (predatee.Size < this.ParentFish.Size)
-            {
-                predatee.AddPredator(this.ParentFish);
-            }
+            predatee.AddPredator(this.ParentFish);
         }
     }
 
     void OnTriggerExit(Collider other)
     {
         BoidsFish predatee = other.gameObject.GetComponent<BoidsFish>();
-        if (predatee != null)
+        if (predatee != null && (predatee.Size < this.ParentFish.Size))
         {
-            if (predatee.Size < this.ParentFish.Size)
-            {
-                predatee.RemovePredator(this.ParentFish);
-            }
+            predatee.RemovePredator(this.ParentFish);
         }
     }
 }

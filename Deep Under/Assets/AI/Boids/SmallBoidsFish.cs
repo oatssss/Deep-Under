@@ -23,7 +23,7 @@ public class SmallBoidsFish : BoidsFish
 		{
 			if (this.state != value)
 				StateTimer = 0;
-			
+
 			this.state = value;
 			if (value == STATE.EATING)
                 { this.MinSpeed = this.MaxSpeed = this.IdleMin; }
@@ -141,29 +141,26 @@ public class SmallBoidsFish : BoidsFish
 		updatedVelocity *= BoidsSettings.Instance.FishSpeedMultiplier;
 #endif
 		updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 2*Time.fixedDeltaTime);
-		updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, BoidsSettings.Instance.SmallFish_IdleMax);
 
 		return updatedVelocity;
 	}
 
+#if UNITY_EDITOR
     protected override void FixedUpdate()
     {
-
-#if UNITY_EDITOR
         this.State = this.State;
         this.IdleMin = BoidsSettings.Instance.SmallFish_IdleMin;
         this.IdleMax = BoidsSettings.Instance.SmallFish_IdleMax;
         this.SwimMin = BoidsSettings.Instance.SmallFish_SwimMin;
         this.SwimMax = BoidsSettings.Instance.SmallFish_SwimMax;
         this.AbsoluteMax = BoidsSettings.Instance.SmallFish_AbsoluteMax;
-#endif
-
         base.FixedUpdate();
     }
+#endif
 
-	public override void willDestroyFish(BoidsFish fishToDestroy)
+	public override void RemoveFishReferences(BoidsFish referencedFish)
 	{
-		base.willDestroyFish (fishToDestroy);
-		Flock.Remove (fishToDestroy);
+		base.RemoveFishReferences(referencedFish);
+		Flock.Remove(referencedFish);
 	}
 }

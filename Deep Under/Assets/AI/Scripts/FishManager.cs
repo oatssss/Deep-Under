@@ -1,65 +1,67 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
-public class FishManager : MonoBehaviour {
+public class FishManager : UnitySingleton<FishManager> {
 
-	public List<Transform> LargeFishList;
-	public List<Transform> MediumFishList;
-	public List<Transform> SmallFishList;
+	public List<BoidsFish> LargeFishList = new List<BoidsFish>();
+	public List<BoidsFish> MediumFishList = new List<BoidsFish>();
+	public List<BoidsFish> SmallFishList = new List<BoidsFish>();
 
 	[Range(0,5f)] public int numberOfLFish = 2;
 	[Range(0,25f)] public int numberOfMFish = 15;
 	[Range(0,300f)] public int numberOfSFish = 35;
 
-	public GameObject Manager;
 	public GameObject LargeFish;
 	public GameObject MediumFish;
 	public GameObject SmallFish;
-	private GameObject _fish;
 
 	// Use this for initialization
 	void Start () {
-		Manager = GameObject.Find("FishManager");
+        BoidsFish _fish;
+
 		for (int i = 0; i < numberOfLFish; i++) {
-			_fish = (GameObject) Instantiate(LargeFish, GetRandomPos(), transform.rotation); 
-			LargeFishList.Add(_fish.transform);
-			_fish.transform.parent = Manager.transform;
+			_fish = ((GameObject) Instantiate(LargeFish, GetRandomPos(), transform.rotation)).GetComponent<BoidsFish>();
+			_fish.transform.parent = this.transform;
 		}
 		for (int j = 0; j < numberOfMFish; j++) {
-			_fish = (GameObject) Instantiate(MediumFish, GetRandomPos(), transform.rotation); 
-			MediumFishList.Add(_fish.transform);
-			_fish.transform.parent = Manager.transform;
+			_fish = ((GameObject) Instantiate(MediumFish, GetRandomPos(), transform.rotation)).GetComponent<BoidsFish>();
+			_fish.transform.parent = this.transform;
 		}
 		for (int k = 0; k < numberOfSFish; k++) {
-			_fish = (GameObject) Instantiate(SmallFish, GetRandomPos(), transform.rotation); 
-			SmallFishList.Add(_fish.transform);
-			_fish.transform.parent = Manager.transform;
+			_fish = ((GameObject) Instantiate(SmallFish, GetRandomPos(), transform.rotation)).GetComponent<BoidsFish>();
+			_fish.transform.parent = this.transform;
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    public void RegisterFish(BoidsFish fish)
+    {
+        if (fish.Size == BoidsFish.SIZE.SMALL)
+            { this.SmallFishList.Add(fish); }
+
+        else if (fish.Size == BoidsFish.SIZE.MEDIUM)
+            { this.MediumFishList.Add(fish); }
+
+        else
+            { this.LargeFishList.Add(fish); }
+    }
 
 	public void DestroyFish(BoidsFish fishToDestroy)
 	{
-		foreach (Transform aTransform in LargeFishList)
+		foreach (BoidsFish aFish in LargeFishList)
 		{
-			aTransform.gameObject.GetComponent<BoidsFish> ().willDestroyFish (fishToDestroy);
+			aFish.RemoveFishReferences (fishToDestroy);
 		}
-		foreach (Transform aTransform in MediumFishList)
+		foreach (BoidsFish aFish in MediumFishList)
 		{
-			aTransform.gameObject.GetComponent<BoidsFish> ().willDestroyFish (fishToDestroy);
+			aFish.RemoveFishReferences (fishToDestroy);
 		}
-		foreach (Transform aTransform in SmallFishList)
+		foreach (BoidsFish aFish in SmallFishList)
 		{
-			aTransform.gameObject.GetComponent<BoidsFish> ().willDestroyFish (fishToDestroy);
+			aFish.RemoveFishReferences (fishToDestroy);
 		}
-		LargeFishList.Remove (fishToDestroy.transform);
-		MediumFishList.Remove (fishToDestroy.transform);
-		SmallFishList.Remove (fishToDestroy.transform);
+		LargeFishList.Remove (fishToDestroy);
+		MediumFishList.Remove (fishToDestroy);
+		SmallFishList.Remove (fishToDestroy);
 		Destroy (fishToDestroy.gameObject);
 	}
 
@@ -68,6 +70,6 @@ public class FishManager : MonoBehaviour {
 		float radius = 50.0f;				// depends on the size of terrain?
 		Vector3 randPos = Random.insideUnitSphere * radius;
 		randPos.y += 50.0f;
-		return randPos;   
+		return randPos;
 	}
 }

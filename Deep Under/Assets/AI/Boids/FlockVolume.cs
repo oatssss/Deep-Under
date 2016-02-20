@@ -45,13 +45,9 @@ public class FlockVolume : MonoBehaviour {
     {
         // Is the triggering object a BoidsFish?
         BoidsFish peer = other.gameObject.GetComponent<BoidsFish>();
-        if (peer != null)
+        if (peer != null && (peer.Size == this.ParentFish.Size))
         {
-            // Is the triggering BoidsFish the same size as this one?
-            if (peer.Size == this.ParentFish.Size)
-            {
-                this.ParentFish.RemovePeer(peer);
-            }
+            this.ParentFish.RemovePeer(peer);
         }
     }
 }

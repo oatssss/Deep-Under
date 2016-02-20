@@ -14,7 +14,7 @@ public class MediumBoidsFish : BoidsFish {
 		{
 			if (this.state != value)
 				StateTimer = 0;
-			
+
 			this.state = value;
 			if (value == STATE.EATING)
                 { this.MinSpeed = this.MaxSpeed = this.IdleMin; }
@@ -57,28 +57,21 @@ public class MediumBoidsFish : BoidsFish {
         updatedVelocity += avoid;
 		updatedVelocity *= BoidsSettings.Instance.FishSpeedMultiplier;
 		updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 2*Time.fixedDeltaTime);
-		updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, this.MaxSpeed);
 
 		return updatedVelocity;
 	}
 
+#if UNITY_EDITOR
     protected override void FixedUpdate()
     {
-
-#if UNITY_EDITOR
         this.State = this.State;
         this.IdleMin = BoidsSettings.Instance.MediumFish_IdleMin;
         this.IdleMax = BoidsSettings.Instance.MediumFish_IdleMax;
         // this.SwimMin = BoidsSettings.Instance.SmallFish_SwimMin;
         // this.SwimMax = BoidsSettings.Instance.SmallFish_SwimMax;
         this.AbsoluteMax = BoidsSettings.Instance.MediumFish_AbsoluteMax;
-#endif
-
         base.FixedUpdate();
     }
+#endif
 
-	public override void willDestroyFish(BoidsFish fishToDestroy)
-	{
-		base.willDestroyFish (fishToDestroy);
-	}
 }

@@ -10,7 +10,6 @@ public abstract class BoidsFish : MonoBehaviour
 
 	[SerializeField] public Rigidbody RigidBody;
 	[SerializeField] private SphereCollider RepelVolume;
-	[SerializeField] private SphereCollider HuntVolume;
 
 	public float RepelRadius { get { return this.transform.localScale.magnitude * this.RepelVolume.radius; } }
     protected float EvadeRadius
@@ -47,6 +46,7 @@ public abstract class BoidsFish : MonoBehaviour
 	private List<BoidsFish> Repellants = new List<BoidsFish>();
 	[SerializeField] private List<BoidsFish> Predators = new List<BoidsFish>();
     public int PredatorCount { get { return this.Predators.Count; } }
+    public List<BoidsFish> Predatees = new List<BoidsFish>();
 
 	// A physical target will always take precedence over a standard target
 	public bool IsFollowingTarget = false;
@@ -81,6 +81,9 @@ public abstract class BoidsFish : MonoBehaviour
 		this.StateTimer = 0f;
 		this.HungerSpan = Random.Range(10f,50f);
 		//		Debug.Log("This fish hunger span is : " + hungerSpan);
+
+        // Each boids fish is responsible for registering itself to the fish manager
+        FishManager.Instance.RegisterFish(this);
 	}
 
 	public void OutsideBounds(BoidsBoundary boundary)
@@ -149,6 +152,18 @@ public abstract class BoidsFish : MonoBehaviour
 	public void RemovePredator(BoidsFish predator)
 	{
 		this.Predators.Remove(predator);
+	}
+
+    /// <summary> Called by the hunt volume </summary>
+	public void AddPredatee(BoidsFish predatee)
+	{
+		this.Predatees.Add(predatee);
+	}
+
+	/// <summary> Called by the hunt volume </summary>
+	public void RemovePredatee(BoidsFish predatee)
+	{
+		this.Predatees.Remove(predatee);
 	}
 
 	/// <summary> This gets called whenever this fish stops following a target </summary>
@@ -235,9 +250,9 @@ public abstract class BoidsFish : MonoBehaviour
 		//calvinz: Add bob to the velocity, so the fish turns naturally, also bobs on x axis is more realistic
 		updatedVelocity += Vector3.left * (Mathf.Sin (Time.time * 2f)) * 0.03f;
 #if UNITY_EDITOR
-		updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, this.MaxSpeed);
+        updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, BoidsSettings.Instance.FishSpeedMultiplier * this.MaxSpeed);
 #else
-		updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, BoidsSettings.Instance.FishSpeedMultiplier * this.MaxSpeed);
+		updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, this.MaxSpeed);
 #endif
 
 		//calvinz: if eating, stay (almost) still
@@ -275,6 +290,8 @@ public abstract class BoidsFish : MonoBehaviour
         }
 #endif
 
+        this.AnalyzePrey();
+
         // FSM IMPLEMENTATION
 		if (State == STATE.SWIMMING && StateTimer > HungerSpan)
 		{
@@ -290,7 +307,7 @@ public abstract class BoidsFish : MonoBehaviour
 		else if (State == STATE.HUNTING)
 		{
 			float distance = CalculateDistance (this.PhysicalTarget);
-			if (distance < 1.0)	// if target is caught 
+			if (distance < 1.0)	// if target is caught
 			{
 				State = STATE.EATING;
 			}
@@ -316,6 +333,68 @@ public abstract class BoidsFish : MonoBehaviour
         // Else this fish is going to be eaten and is about to be destroyed
     }
 
+    private void AnalyzePrey()
+    {
+        // when eating, dont try to hunt anyone
+		if (this.State == STATE.EATING)
+			return;
+
+        BoidsFish predatee = this.PhysicalTarget as BoidsFish;
+        if (predatee != null)
+        {
+            foreach (BoidsFish potentialSwitch in this.Predatees)
+            {
+                if (potentialSwitch == predatee || potentialSwitch.Size < predatee.Size)
+                    { continue; }
+
+                float sqrDistToCurrent = (this.transform.position - predatee.transform.position).sqrMagnitude;
+                float sqrDistToPotential = (this.transform.position - potentialSwitch.transform.position).sqrMagnitude;
+                if (sqrDistToPotential < sqrDistToCurrent)
+                    { predatee = potentialSwitch; }
+            }
+
+            this.PhysicalTarget = predatee;
+        }
+        else
+        {
+            float closestSqrDist = float.PositiveInfinity;
+            BoidsFish closestFish = null;
+            foreach (BoidsFish fish in this.Predatees)
+            {
+                float sqrDistToFish = (this.transform.position - fish.transform.position).sqrMagnitude;
+                if (sqrDistToFish < closestSqrDist)
+                {
+                    closestSqrDist = sqrDistToFish;
+                    closestFish = fish;
+                }
+            }
+
+            if (closestFish != null)
+            {
+                this.PhysicalTarget = closestFish;
+                predatee = closestFish;
+            }
+        }
+
+        // Only medium fish are scared of approaching flocks
+        if (this.Size == SIZE.MEDIUM)
+        {
+            SmallBoidsFish smallPredatee = predatee as SmallBoidsFish;
+            if (smallPredatee != null)
+            {
+                if (smallPredatee.FlockSize > BoidsSettings.Instance.MinFlockSizeToScareMediumFish)
+                    { this.PhysicalTarget = null; }
+            }
+        }
+
+        if (predatee != null)
+			this.Hunt ();
+		else
+		{
+			this.Idle ();
+		}
+    }
+
 	public float CalculateDistance(MonoBehaviour obj)
 	{
 		BoidsFish targetFish = obj as BoidsFish;
@@ -337,31 +416,25 @@ public abstract class BoidsFish : MonoBehaviour
 	void OnCollisionEnter(Collision collision)
     {
 		BoidsFish collidedFish = collision.gameObject.GetComponent<BoidsFish> ();
-		HuntVolume huntVolume = HuntVolume.gameObject.GetComponent<HuntVolume> ();
-		if (huntVolume != null)
+		if (collidedFish.Size < this.Size)
 		{
-			if (collidedFish != null && huntVolume.isFishPredatees(collidedFish)) 
-			{
-				// collided with prey, eat it
-				State = STATE.EATING;
-				destroyFish (collidedFish);
-			}
+            // collided with prey, eat it
+            this.State = STATE.EATING;
+            collidedFish.Eaten(this);
 		}
     }
 
-	void destroyFish(BoidsFish fishToDestroy)
-	{
-		FishManager fishManager = GameObject.Find ("FishManager").GetComponent<FishManager> ();
-		fishManager.DestroyFish (fishToDestroy);
-	}
+    private void Eaten(BoidsFish eater)
+    {
+        FishManager.Instance.DestroyFish(this);
+        Destroy(this.gameObject);
+    }
 
-	public virtual void willDestroyFish(BoidsFish fishToDestroy)
+	public virtual void RemoveFishReferences(BoidsFish referencedFish)
 	{
-		HuntVolume huntVolume = HuntVolume.gameObject.GetComponent<HuntVolume> ();
-		if (huntVolume != null)
-			huntVolume.willDestroyFish (fishToDestroy);
-		Repellants.Remove (fishToDestroy);
-		Predators.Remove (fishToDestroy);
+		Repellants.Remove(referencedFish);
+		Predators.Remove(referencedFish);
+        Predatees.Remove(referencedFish);
 		// do something if predators are gone
 	}
 
