@@ -82,6 +82,11 @@ public class HuntVolume : MonoBehaviour {
                     { this.ParentFish.PhysicalTarget = null; }
             }
         }
+
+		if (predatee != null)
+			this.ParentFish.Hunt ();
+		else
+			this.ParentFish.Idle ();
     }
 
     void OnTriggerEnter(Collider other)

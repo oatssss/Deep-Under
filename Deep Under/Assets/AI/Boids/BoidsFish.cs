@@ -27,7 +27,7 @@ public abstract class BoidsFish : MonoBehaviour
         }
     }
 
-	private float StateTimer;
+	protected float StateTimer;
 	private float HungerSpan;
 
     protected float MinSpeed;
@@ -40,7 +40,7 @@ public abstract class BoidsFish : MonoBehaviour
 		protected set   { this.size = value; }
 	}
 
-    [SerializeField] protected STATE state;
+	[SerializeField] protected STATE state;
 	public abstract STATE State { get; protected set; }
 
 	private List<BoidsFish> Repellants = new List<BoidsFish>();
@@ -113,7 +113,17 @@ public abstract class BoidsFish : MonoBehaviour
     public void Relax()
     {
         this.State = STATE.SWIMMING;
-    }
+	}
+
+	public void Hunt()
+	{
+		this.State = STATE.HUNTING;
+	}
+
+	public void Idle()
+	{
+		this.State = STATE.IDLE;
+	}
 
 	/// <summary> Called by the child RepelVolume gameobject </summary>
 	public void AddRepellant(BoidsFish repellant)
@@ -266,13 +276,11 @@ public abstract class BoidsFish : MonoBehaviour
 			//TODO: Fish goes hungry and detaches from group
 			State = STATE.IDLE; 	// Idle fish does not want to flock and is just swimming away
 			StopFollowingTarget();		// Stop flocking
-			StateTimer = 0f; 			// reset timer
 		}
 		else if (State == STATE.IDLE && StateTimer > 10.0f)
 		{
 			// Resume swimming and joining crowd
 			State = STATE.SWIMMING;
-			StateTimer = 0f;
 		}
 		else if (State == STATE.HUNTING)
 		{

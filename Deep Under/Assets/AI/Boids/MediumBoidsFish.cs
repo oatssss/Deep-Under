@@ -12,6 +12,9 @@ public class MediumBoidsFish : BoidsFish {
 		get				{ return this.state; }
 		protected set
 		{
+			if (this.state != value)
+				StateTimer = 0;
+			
 			this.state = value;
 			if (value == STATE.EATING)
                 { this.MinSpeed = this.MaxSpeed = this.IdleMin; }
@@ -54,7 +57,7 @@ public class MediumBoidsFish : BoidsFish {
         updatedVelocity += avoid;
 		updatedVelocity *= BoidsSettings.Instance.FishSpeedMultiplier;
 		updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 2*Time.fixedDeltaTime);
-		updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, BoidsSettings.Instance.MediumFish_IdleMax);
+		updatedVelocity = Vector3.ClampMagnitude(updatedVelocity, this.MaxSpeed);
 
 		return updatedVelocity;
 	}

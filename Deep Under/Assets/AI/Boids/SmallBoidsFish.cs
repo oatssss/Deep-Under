@@ -21,6 +21,9 @@ public class SmallBoidsFish : BoidsFish
 		get				{ return this.state; }
 		protected set
 		{
+			if (this.state != value)
+				StateTimer = 0;
+			
 			this.state = value;
 			if (value == STATE.EATING)
                 { this.MinSpeed = this.MaxSpeed = this.IdleMin; }
