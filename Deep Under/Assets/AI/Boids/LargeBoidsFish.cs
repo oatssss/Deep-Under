@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using Extensions;
 
-public class MediumBoidsFish : BoidsFish {
+public class LargeBoidsFish : BoidsFish {
 
-    private float IdleMin = 4f;
-    private float IdleMax = 8f;
-    private float AbsoluteMax = 14f;
+    private float IdleMin = 6f;
+    private float IdleMax = 13f;
+    private float AbsoluteMax = 20f;
 
     public override STATE State
 	{
@@ -39,8 +39,8 @@ public class MediumBoidsFish : BoidsFish {
 	protected override void Start()
     {
         base.Start();
-        this.EnforceLayerMembership("Medium Fish");
-        this.Size = SIZE.MEDIUM;
+        this.EnforceLayerMembership("Large Fish");
+        this.Size = SIZE.LARGE;
 	}
 
     protected override Vector3 CalculateVelocity()
@@ -51,7 +51,7 @@ public class MediumBoidsFish : BoidsFish {
         Vector3 avoid = this.VectorAwayFromPredators();
 
 		// Glue all the stages together
-		Vector3 updatedVelocity = this.transform.forward * BoidsSettings.Instance.MediumFish_IdleMin;     // Fish is always moving a minimum speed
+		Vector3 updatedVelocity = this.transform.forward * BoidsSettings.Instance.LargeFish_IdleMin;     // Fish is always moving a minimum speed
         updatedVelocity += target;
 		updatedVelocity += separation;
         updatedVelocity += avoid;
@@ -65,13 +65,12 @@ public class MediumBoidsFish : BoidsFish {
     protected override void FixedUpdate()
     {
         this.State = this.State;
-        this.IdleMin = BoidsSettings.Instance.MediumFish_IdleMin;
-        this.IdleMax = BoidsSettings.Instance.MediumFish_IdleMax;
-        // this.SwimMin = BoidsSettings.Instance.MediumFish_SwimMin;
-        // this.SwimMax = BoidsSettings.Instance.MediumFish_SwimMax;
-        this.AbsoluteMax = BoidsSettings.Instance.MediumFish_AbsoluteMax;
+        this.IdleMin = BoidsSettings.Instance.LargeFish_IdleMin;
+        this.IdleMax = BoidsSettings.Instance.LargeFish_IdleMax;
+        // this.SwimMin = BoidsSettings.Instance.LargeFish_SwimMin;
+        // this.SwimMax = BoidsSettings.Instance.LargeFish_SwimMax;
+        this.AbsoluteMax = BoidsSettings.Instance.LargeFish_AbsoluteMax;
         base.FixedUpdate();
     }
 #endif
-
 }

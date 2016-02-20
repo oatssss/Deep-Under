@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fish
   - Auliv
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -17,15 +18,15 @@ TagManager:
   - 
   - Flock Volumes
   - Repel Volumes
-  - Fish
+  - Small Fish
+  - Medium Fish
+  - Large Fish
   - Level Boundaries
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Obstacle Volumes
+  - Medium Predator Volumes
+  - Large Predator Volumes
+  - Medium Hunt Volumes
+  - Large Hunt Volumes
   - 
   - 
   - 

@@ -6,19 +6,18 @@ public class RepelVolume : MonoBehaviour {
 
     [SerializeField] private BoidsFish ParentFish;
     [SerializeField] private SphereCollider Volume;
-    
+
 
     void Start()
     {
-        
+
 #if UNITY_EDITOR
         InvokeRepeating("UpdateRadius", 0f, 1f);
 #endif
 
         this.EnforceLayerMembership("Repel Volumes");
     }
-    
-    /// <summary> For enabling the flock radius to be adaptive. Flock radius will decrease as this fish's flock grows. </summary>
+
     void UpdateRadius()
     {
         this.Volume.radius = BoidsSettings.Instance.RepelRadius;
@@ -38,7 +37,7 @@ public class RepelVolume : MonoBehaviour {
             }
         }
     }
-    
+
     void OnTriggerExit(Collider other)
     {
         // Is the triggering object a BoidsFish?
