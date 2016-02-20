@@ -5,10 +5,10 @@ public class BoidsSettings : UnitySingleton<BoidsSettings> {
     [Header("Volumes")]
 	[Range(1,50f)] public float FlockRadius = 20f;
     [Range(1,25f)] public float RepelRadius = 5f;
-    [Range(1,50f)] public float MediumPredatorRadius = 30f;
-    [Range(1,50f)] public float MediumHuntRadius = 20f;
-    [Range(1,50f)] public float LargePredatorRadius = 50f;
-    [Range(1,50f)] public float LargeHuntRadius = 40f;
+    [Range(1,80f)] public float MediumPredatorRadius = 45f;
+    [Range(1,80f)] public float MediumHuntRadius = 30f;
+    [Range(1,80f)] public float LargePredatorRadius = 80f;
+    [Range(1,80f)] public float LargeHuntRadius = 55f;
     [Space(10)]
 
     [Header("Velocities")]
@@ -45,6 +45,7 @@ public class BoidsSettings : UnitySingleton<BoidsSettings> {
     [Range(1f,5f)] public float FishSpeedMultiplier = 1f;
     [Range(0,100)] public int MaxFlockSize = 10;
     [Range(2,15)] public int MinFlockSizeToScareMediumFish = 6;
+    [Range(2,15)] public int MinFlockSizeToAttractLargeFish = 6;
     public bool DrawTargetRays = true;
 
 #if UNITY_EDITOR

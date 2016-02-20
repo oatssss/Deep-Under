@@ -37,6 +37,7 @@ public class PredatorVolume : MonoBehaviour {
         BoidsFish predatee = other.gameObject.GetComponent<BoidsFish>();
         if (predatee != null && (predatee.Size < this.ParentFish.Size))
         {
+
             predatee.AddPredator(this.ParentFish);
         }
     }

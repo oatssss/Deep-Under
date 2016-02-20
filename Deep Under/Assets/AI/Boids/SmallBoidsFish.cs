@@ -118,6 +118,7 @@ public class SmallBoidsFish : BoidsFish
 
 		// Handle rigidbody velocity updates
 		Vector3 cohesion = (this.State != STATE.FLEEING) ? this.VectorTowardsFlock() : -this.VectorTowardsFlock();
+        cohesion = (this.PredatorCount > 0) ? 2*cohesion : cohesion; // When predators are near, flock closer to try and scare
 		Vector3 separation = this.VectorAwayFromNeighbours();
 		Vector3 alignment = this.VectorTowardsAlignment();
 		Vector3 target = this.VectorTowardsTarget();
@@ -144,6 +145,11 @@ public class SmallBoidsFish : BoidsFish
 
 		return updatedVelocity;
 	}
+
+    protected override void AnalyzePrey()
+    {
+        // Small fish don't have prey
+    }
 
 #if UNITY_EDITOR
     protected override void FixedUpdate()

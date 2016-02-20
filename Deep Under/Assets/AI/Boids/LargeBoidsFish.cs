@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using Extensions;
 
-public class MediumBoidsFish : BoidsFish {
+public class LargeBoidsFish : BoidsFish {
 
-    private float IdleMin = 4f;
-    private float IdleMax = 8f;
-    private float AbsoluteMax = 14f;
+    private float IdleMin = 6f;
+    private float IdleMax = 13f;
+    private float AbsoluteMax = 20f;
 
     public override STATE State
 	{
@@ -39,8 +39,8 @@ public class MediumBoidsFish : BoidsFish {
 	protected override void Start()
     {
         base.Start();
-        this.EnforceLayerMembership("Medium Fish");
-        this.Size = SIZE.MEDIUM;
+        this.EnforceLayerMembership("Large Fish");
+        this.Size = SIZE.LARGE;
 	}
 
     protected override Vector3 CalculateVelocity()
@@ -51,7 +51,7 @@ public class MediumBoidsFish : BoidsFish {
         Vector3 avoid = this.VectorAwayFromPredators();
 
 		// Glue all the stages together
-		Vector3 updatedVelocity = this.transform.forward * BoidsSettings.Instance.MediumFish_IdleMin;     // Fish is always moving a minimum speed
+		Vector3 updatedVelocity = this.transform.forward * BoidsSettings.Instance.LargeFish_IdleMin;     // Fish is always moving a minimum speed
         updatedVelocity += target;
 		updatedVelocity += separation;
         updatedVelocity += avoid;
@@ -75,6 +75,14 @@ public class MediumBoidsFish : BoidsFish {
                 if (potentialSwitch == predatee || potentialSwitch.Size < predatee.Size)
                     { continue; }
 
+                // Skip small fish that aren't in a big enough flock
+                SmallBoidsFish potentialSmall = potentialSwitch as SmallBoidsFish;
+                SmallBoidsFish predateeSmall = predatee as SmallBoidsFish;
+                if ((predateeSmall != null && potentialSmall != null) && (potentialSmall.FlockSize < BoidsSettings.Instance.MinFlockSizeToAttractLargeFish))
+                {
+                    continue;
+                }
+
                 float sqrDistToCurrent = (this.transform.position - predatee.transform.position).sqrMagnitude;
                 float sqrDistToPotential = (this.transform.position - potentialSwitch.transform.position).sqrMagnitude;
                 if (sqrDistToPotential < sqrDistToCurrent)
@@ -89,6 +97,12 @@ public class MediumBoidsFish : BoidsFish {
             BoidsFish closestFish = null;
             foreach (BoidsFish fish in this.Predatees)
             {
+
+                // Skip small fish that aren't in a big enough flock
+                SmallBoidsFish small = fish as SmallBoidsFish;
+                if ((small != null) && (small.FlockSize < BoidsSettings.Instance.MinFlockSizeToAttractLargeFish))
+                    { continue; }
+
                 float sqrDistToFish = (this.transform.position - fish.transform.position).sqrMagnitude;
                 if (sqrDistToFish < closestSqrDist)
                 {
@@ -99,19 +113,7 @@ public class MediumBoidsFish : BoidsFish {
 
             if (closestFish != null)
             {
-                this.PhysicalTarget = closestFish;
-                predatee = closestFish;
-            }
-        }
-
-        // Only medium fish are scared of approaching flocks
-        if (this.Size == SIZE.MEDIUM)
-        {
-            SmallBoidsFish smallPredatee = predatee as SmallBoidsFish;
-            if (smallPredatee != null)
-            {
-                if (smallPredatee.FlockSize > BoidsSettings.Instance.MinFlockSizeToScareMediumFish)
-                    { this.PhysicalTarget = null; }
+                this.PhysicalTarget = predatee = closestFish;
             }
         }
 
@@ -127,13 +129,12 @@ public class MediumBoidsFish : BoidsFish {
     protected override void FixedUpdate()
     {
         this.State = this.State;
-        this.IdleMin = BoidsSettings.Instance.MediumFish_IdleMin;
-        this.IdleMax = BoidsSettings.Instance.MediumFish_IdleMax;
-        // this.SwimMin = BoidsSettings.Instance.MediumFish_SwimMin;
-        // this.SwimMax = BoidsSettings.Instance.MediumFish_SwimMax;
-        this.AbsoluteMax = BoidsSettings.Instance.MediumFish_AbsoluteMax;
+        this.IdleMin = BoidsSettings.Instance.LargeFish_IdleMin;
+        this.IdleMax = BoidsSettings.Instance.LargeFish_IdleMax;
+        // this.SwimMin = BoidsSettings.Instance.LargeFish_SwimMin;
+        // this.SwimMax = BoidsSettings.Instance.LargeFish_SwimMax;
+        this.AbsoluteMax = BoidsSettings.Instance.LargeFish_AbsoluteMax;
         base.FixedUpdate();
     }
 #endif
-
 }

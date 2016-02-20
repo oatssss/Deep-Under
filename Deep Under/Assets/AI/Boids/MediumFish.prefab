@@ -105,7 +105,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107820}
-  m_LocalRotation: {x: -0.70688045, y: -0.017893037, z: -0.01789304, w: 0.70688033}
+  m_LocalRotation: {x: 0.7071066, y: 0, z: 0, w: -0.70710695}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
@@ -130,7 +130,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalPosition: {x: 10, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 411508}
@@ -161,7 +161,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 9a0acf26a39398a469277924844c374f, type: 2}
+  - {fileID: 2100000, guid: cffb9bcf7c0ea504cac8a3b088605f41, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -183,7 +183,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107820}
-  m_Mesh: {fileID: 4300000, guid: 13147dda4575dfa48b0c837d9c6ea628, type: 3}
+  m_Mesh: {fileID: 4300000, guid: a658225b37d2b464d9ed2f5427972406, type: 3}
 --- !u!54 &5410864
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -265,11 +265,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RigidBody: {fileID: 5410864}
   RepelVolume: {fileID: 13579092}
-  HuntVolume: {fileID: 13555606}
   MaxSpeed: 0
-  size: 0
+  size: 1
   state: 1
   Predators: []
+  Predatees: []
   IsFollowingTarget: 0
   BoundaryVolumes: []
   LastBoundary: {fileID: 0}
@@ -319,8 +319,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.5
-  m_Height: 8
+  m_Radius: 1.9
+  m_Height: 9
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 using Extensions;
 
 public class HuntVolume : MonoBehaviour {

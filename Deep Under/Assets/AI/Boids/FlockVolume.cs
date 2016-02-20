@@ -34,7 +34,7 @@ public class FlockVolume : MonoBehaviour {
             {
                 this.ParentFish.AddPeer(peer);
             }
-            else // IT'S A PREDATOR AHHHH
+            else if (peer.Size >= BoidsFish.SIZE.LARGE)// IT'S A PREDATOR AHHHH
             {
                 this.ParentFish.Flee();
             }
