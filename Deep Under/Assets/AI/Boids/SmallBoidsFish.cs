@@ -146,11 +146,6 @@ public class SmallBoidsFish : BoidsFish
 		return updatedVelocity;
 	}
 
-    protected override void AnalyzePrey()
-    {
-        // Small fish don't have prey
-    }
-
 #if UNITY_EDITOR
     protected override void FixedUpdate()
     {

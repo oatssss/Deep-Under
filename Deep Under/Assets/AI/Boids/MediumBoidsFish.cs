@@ -61,68 +61,6 @@ public class MediumBoidsFish : BoidsFish {
 		return updatedVelocity;
 	}
 
-    protected override void AnalyzePrey()
-    {
-        // when eating, dont try to hunt anyone
-		if (this.State == STATE.EATING)
-			return;
-
-        BoidsFish predatee = this.PhysicalTarget as BoidsFish;
-        if (predatee != null)
-        {
-            foreach (BoidsFish potentialSwitch in this.Predatees)
-            {
-                if (potentialSwitch == predatee || potentialSwitch.Size < predatee.Size)
-                    { continue; }
-
-                float sqrDistToCurrent = (this.transform.position - predatee.transform.position).sqrMagnitude;
-                float sqrDistToPotential = (this.transform.position - potentialSwitch.transform.position).sqrMagnitude;
-                if (sqrDistToPotential < sqrDistToCurrent)
-                    { predatee = potentialSwitch; }
-            }
-
-            this.PhysicalTarget = predatee;
-        }
-        else
-        {
-            float closestSqrDist = float.PositiveInfinity;
-            BoidsFish closestFish = null;
-            foreach (BoidsFish fish in this.Predatees)
-            {
-                float sqrDistToFish = (this.transform.position - fish.transform.position).sqrMagnitude;
-                if (sqrDistToFish < closestSqrDist)
-                {
-                    closestSqrDist = sqrDistToFish;
-                    closestFish = fish;
-                }
-            }
-
-            if (closestFish != null)
-            {
-                this.PhysicalTarget = closestFish;
-                predatee = closestFish;
-            }
-        }
-
-        // Only medium fish are scared of approaching flocks
-        if (this.Size == SIZE.MEDIUM)
-        {
-            SmallBoidsFish smallPredatee = predatee as SmallBoidsFish;
-            if (smallPredatee != null)
-            {
-                if (smallPredatee.FlockSize > BoidsSettings.Instance.MinFlockSizeToScareMediumFish)
-                    { this.PhysicalTarget = null; }
-            }
-        }
-
-        if (predatee != null)
-			this.Hunt ();
-		else
-		{
-			this.Idle ();
-		}
-    }
-
 #if UNITY_EDITOR
     protected override void FixedUpdate()
     {
