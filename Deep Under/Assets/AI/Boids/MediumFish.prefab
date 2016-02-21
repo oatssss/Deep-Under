@@ -65,7 +65,7 @@ GameObject:
   - 54: {fileID: 5410864}
   m_Layer: 11
   m_Name: MediumFish
-  m_TagString: Untagged
+  m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -265,6 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RigidBody: {fileID: 5410864}
   RepelVolume: {fileID: 13579092}
+  energyBall: {fileID: 457916, guid: 89728e4994ba29249b407a5ffa5eee8a, type: 2}
   MaxSpeed: 0
   size: 1
   state: 1
@@ -317,9 +318,9 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179524}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.9
+  m_Radius: 1.89999998
   m_Height: 9
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -334,6 +335,18 @@ Prefab:
       propertyPath: HuntVolume
       value: 
       objectReference: {fileID: 13555606}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: energyBall
+      value: 
+      objectReference: {fileID: 457916, guid: 89728e4994ba29249b407a5ffa5eee8a, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Fish
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 179524}

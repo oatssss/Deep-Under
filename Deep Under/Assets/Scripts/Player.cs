@@ -102,6 +102,18 @@ public class Player : MonoBehaviour {
 			Debug.Log(energy);
 		}
 	}
+	public void addEnergyBall (float extra) {
+		float newEnergy = 0f;
+		if (energy < maxEnergy ){
+			newEnergy = energy + extra;
+			if (newEnergy >= maxEnergy) {
+				energy = maxEnergy;
+			}
+			else {
+				energy = newEnergy;
+			}
+		}
+	}
 
 	/* time decreases energy and other fishes decrease energy; rate fluctuates depeding on whether auliv is near another fish */
 	public void removeEnergy (float rate) { 

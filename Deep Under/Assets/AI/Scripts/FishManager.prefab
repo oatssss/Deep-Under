@@ -42,12 +42,11 @@ MonoBehaviour:
   LargeFishList: []
   MediumFishList: []
   SmallFishList: []
-  numberOfLFish: 5
-  numberOfMFish: 20
-  numberOfSFish: 100
-  Manager: {fileID: 0}
-  LargeFish: {fileID: 120948, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
-  MediumFish: {fileID: 120948, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+  numberOfLFish: 0
+  numberOfMFish: 10
+  numberOfSFish: 50
+  LargeFish: {fileID: 190734, guid: 5ecf47a3803cd40db806e9102ab8959d, type: 2}
+  MediumFish: {fileID: 179524, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
   SmallFish: {fileID: 120948, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
 --- !u!1001 &100100000
 Prefab:

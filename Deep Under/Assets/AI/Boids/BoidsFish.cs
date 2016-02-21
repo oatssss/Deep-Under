@@ -30,6 +30,8 @@ public abstract class BoidsFish : MonoBehaviour
 	protected float StateTimer;
 	private float HungerSpan;
 
+	public Transform energyBall;
+
     protected float MinSpeed;
 	[SerializeField] protected float MaxSpeed;
 
@@ -445,6 +447,9 @@ public abstract class BoidsFish : MonoBehaviour
 
     private void Eaten(BoidsFish eater)
     {
+		Debug.Log("ABOUT TO DIE");
+		energyBall.position = this.transform.position;
+		GameObject.Instantiate(energyBall);
         FishManager.Instance.DestroyFish(this);
         Destroy(this.gameObject);
     }
