@@ -19,8 +19,8 @@ public class EnergyBall : MonoBehaviour {
 		if (timer > 20f) Destroy(this.gameObject);
 	}
 
-	void OnTriggerEnter(Collider other) { 
-		if (other.CompareTag("Player") && auliv != null) { 
+	void OnCollisionEnter(Collision other) { 
+		if (other.gameObject.CompareTag("Player") && auliv != null) { 
 			energy = Random.Range(15f, 25f);
 			auliv.addEnergyBall(this.energy);
 			Debug.Log ("Orb picked up! +"+energy);

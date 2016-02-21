@@ -23,16 +23,17 @@ public class Player : MonoBehaviour {
 	private float v; 
 	private float u;
 
-	public float energy = 0f; 
+	public float energy; 
 	private float maxEnergy = 100f; 
 	public float energyDrainRate;
 	public bool charging = false; 
 	
 	// Use this for initialization
 	void Start () {
+		energy = 80f;
 		rigidbody = GetComponent<Rigidbody>();
 		spotlight.gameObject.SetActive(lightOn); 
-		energyDrainRate = 20f;
+		energyDrainRate = 3f;
 	}
 
 	void FixedUpdate () {
@@ -99,7 +100,7 @@ public class Player : MonoBehaviour {
 	public void addEnergy (float orbStrength) { 
 		if (energy < maxEnergy ){
 			energy += orbStrength * Time.deltaTime; 
-			Debug.Log(energy);
+//			Debug.Log(energy);
 		}
 	}
 	public void addEnergyBall (float extra) {
@@ -119,7 +120,7 @@ public class Player : MonoBehaviour {
 	public void removeEnergy (float rate) { 
 		if (energy > 0f && !charging) { 
 			energy -= rate * Time.deltaTime; 
-			Debug.Log(energy);
+//			Debug.Log(energy);
 		}	 
 	}
 
