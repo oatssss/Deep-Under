@@ -48,6 +48,7 @@ MonoBehaviour:
   LargeFish: {fileID: 190734, guid: 5ecf47a3803cd40db806e9102ab8959d, type: 2}
   MediumFish: {fileID: 179524, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
   SmallFish: {fileID: 120948, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+  EnergyBall: {fileID: 165694, guid: 89728e4994ba29249b407a5ffa5eee8a, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -63,6 +64,10 @@ Prefab:
       propertyPath: numberOfMFish
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: EnergyBall
+      value: 
+      objectReference: {fileID: 165694, guid: 89728e4994ba29249b407a5ffa5eee8a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 199064}

@@ -14,6 +14,7 @@ public class FishManager : UnitySingleton<FishManager> {
 	public GameObject LargeFish;
 	public GameObject MediumFish;
 	public GameObject SmallFish;
+    public GameObject EnergyBall;
 
 	// Use this for initialization
 	void Start () {
