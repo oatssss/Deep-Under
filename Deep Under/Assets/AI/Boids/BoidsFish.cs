@@ -437,7 +437,7 @@ public abstract class BoidsFish : MonoBehaviour
 	void OnCollisionEnter(Collision collision)
     {
 		BoidsFish collidedFish = collision.gameObject.GetComponent<BoidsFish> ();
-		if (collidedFish.Size < this.Size)
+		if (collision.gameObject.tag=="Fish" && collidedFish.Size < this.Size)
 		{
             // collided with prey, eat it
             this.State = STATE.EATING;
@@ -447,7 +447,7 @@ public abstract class BoidsFish : MonoBehaviour
 
     private void Eaten(BoidsFish eater)
     {
-		Debug.Log("ABOUT TO DIE");
+//		Debug.Log("ABOUT TO DIE");
 		energyBall.position = this.transform.position;
 		GameObject.Instantiate(energyBall);
         FishManager.Instance.DestroyFish(this);

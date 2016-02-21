@@ -16,7 +16,7 @@ public class EnergyBall : MonoBehaviour {
 	void Update () {
 		// Energy ball disappears after 10 seconds
 		timer += Time.deltaTime;
-		if (timer > 10f) Destroy(this.gameObject);
+		if (timer > 20f) Destroy(this.gameObject);
 	}
 
 	void OnTriggerEnter(Collider other) { 
