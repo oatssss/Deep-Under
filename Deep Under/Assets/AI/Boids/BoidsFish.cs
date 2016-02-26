@@ -445,7 +445,6 @@ public abstract class BoidsFish : MonoBehaviour
 
     private void Eaten(BoidsFish eater)
     {
-		Debug.Log("ABOUT TO DIE");
         GameObject energyBall = (GameObject) Instantiate(FishManager.Instance.EnergyBall, this.transform.position, FishManager.Instance.EnergyBall.transform.rotation);
         FishManager.Instance.DestroyFish(this);
     }

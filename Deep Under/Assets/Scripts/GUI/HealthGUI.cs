@@ -14,6 +14,8 @@ public class HealthGUI : MonoBehaviour {
 	}
 	
 	void OnGUI() {
+	
+		GUI.contentColor = (auliv.energy < 20f)? Color.red : Color.white;
 
 		GUI.Label(new Rect(pos.x+size.x+5f, pos.y, 100f, 20f), (int)auliv.energy+"%");
 		//draw the bar background:
