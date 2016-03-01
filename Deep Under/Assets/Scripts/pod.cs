@@ -23,7 +23,7 @@ public class pod : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider other) { 
-		if (other.CompareTag("Auliv") && auliv != null) { 
+		if ((other.CompareTag("Auliv") || other.CompareTag("Player")) && auliv != null) { 
 			auliv.charging = true; 
 			auliv.addEnergy(this.orbStrength);
 			Debug.Log ("Auliv is hereee");
@@ -31,7 +31,7 @@ public class pod : MonoBehaviour {
 	}
 
 	void OnTriggerExit (Collider other) { 
-		if (other.CompareTag("Auliv") && auliv != null) { 
+		if ((other.CompareTag("Auliv") || other.CompareTag("Player"))  && auliv != null) { 
 			auliv.charging = false; 
 			Debug.Log ("Auliv has left the building");
 		}
