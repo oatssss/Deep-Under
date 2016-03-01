@@ -14,7 +14,8 @@ public class FishManager : UnitySingleton<FishManager> {
 	public GameObject LargeFish;
 	public GameObject MediumFish;
 	public GameObject SmallFish;
-
+    public GameObject EnergyBall;
+	
 	// Use this for initialization
 	void Start () {
         BoidsFish _fish;
@@ -32,6 +33,7 @@ public class FishManager : UnitySingleton<FishManager> {
 			_fish.transform.parent = this.transform;
 		}
 	}
+	
 
     public void RegisterFish(BoidsFish fish)
     {
@@ -71,5 +73,9 @@ public class FishManager : UnitySingleton<FishManager> {
 		Vector3 randPos = Random.insideUnitSphere * radius;
 		randPos.y += 50.0f;
 		return randPos;
+	}
+
+	public Vector3 FishCount() {
+		return new Vector3(this.LargeFishList.Count, this.MediumFishList.Count, this.SmallFishList.Count);
 	}
 }

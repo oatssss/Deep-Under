@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Collider))]
@@ -445,7 +445,14 @@ public abstract class BoidsFish : MonoBehaviour
 
     private void Eaten(BoidsFish eater)
     {
+<<<<<<< Updated upstream
+//		Debug.Log("ABOUT TO DIE");
+		energyBall.position = this.transform.position;
+		GameObject.Instantiate(energyBall);
+=======
+		Debug.Log("ABOUT TO DIE");
         GameObject energyBall = (GameObject) Instantiate(FishManager.Instance.EnergyBall, this.transform.position, FishManager.Instance.EnergyBall.transform.rotation);
+>>>>>>> Stashed changes
         FishManager.Instance.DestroyFish(this);
     }
 

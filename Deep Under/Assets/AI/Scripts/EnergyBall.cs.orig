@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class EnergyBall : MonoBehaviour {
@@ -19,8 +19,13 @@ public class EnergyBall : MonoBehaviour {
 		if (timer > 20f) Destroy(this.gameObject);
 	}
 
+<<<<<<< Updated upstream
 	void OnCollisionEnter(Collision other) { 
 		if (other.gameObject.CompareTag("Player") && auliv != null) { 
+=======
+	void OnTriggerEnter(Collider other) {
+		if (other.CompareTag("Player") && auliv != null) {
+>>>>>>> Stashed changes
 			energy = Random.Range(15f, 25f);
 			auliv.addEnergyBall(this.energy);
 			Debug.Log ("Orb picked up! +"+energy);
