@@ -43,24 +43,6 @@ public class MediumBoidsFish : BoidsFish {
         this.Size = SIZE.MEDIUM;
 	}
 
-    protected override Vector3 CalculateVelocity()
-	{
-		// Handle rigidbody velocity updates
-		Vector3 separation = this.VectorAwayFromNeighbours();
-		Vector3 target = this.VectorTowardsTarget();
-        Vector3 avoid = this.VectorAwayFromPredators();
-
-		// Glue all the stages together
-		Vector3 updatedVelocity = this.transform.forward * BoidsSettings.Instance.MediumFish_IdleMin;     // Fish is always moving a minimum speed
-        updatedVelocity += target;
-		updatedVelocity += separation;
-        updatedVelocity += avoid;
-		updatedVelocity *= BoidsSettings.Instance.FishSpeedMultiplier;
-		updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 2*Time.fixedDeltaTime);
-
-		return updatedVelocity;
-	}
-
 #if UNITY_EDITOR
     protected override void FixedUpdate()
     {

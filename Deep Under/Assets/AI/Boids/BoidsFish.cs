@@ -68,46 +68,79 @@ public abstract class BoidsFish : MonoBehaviour
 	private Vector3 Target = Vector3.zero;
 
 	// If fish are outside the bounding volumes, they try to move back inside them
-	[SerializeField] private List<BoidsBoundary> BoundaryVolumes = new List<BoidsBoundary>();
-	[SerializeField] private BoidsBoundary LastBoundary;
-	[SerializeField] protected bool IsOutOfBounds = false;
+	[SerializeField] private List<HardBoundary> HardBoundaries = new List<HardBoundary>();
+	[SerializeField] private HardBoundary LastHardBoundary;
+    [SerializeField] protected bool IsOutsideHardBounds = false;
+    [SerializeField] private List<SoftBoundaryComponent> SoftBoundaryComponents = new List<SoftBoundaryComponent>();
+    [SerializeField] private SoftBoundaryComponent LastSoftBoundaryComponent;
+    [SerializeField] private SoftBoundary CurrentSoftBoundary;
+    [SerializeField] private SoftBoundary OriginalSoftBoundary;
+    [SerializeField] protected bool IsOutsideSoftBounds = false;
+
+    protected void Awake()
+    {
+		this.State = STATE.SWIMMING;
+		this.StateTimer = 0f;
+		this.HungerSpan = Random.Range(10f,50f);
+        this.CurrentSoftBoundary = this.OriginalSoftBoundary;
+    }
 
 	// Make sure that this fish belongs to the Fish layer
 	protected virtual void Start()
 	{
-		// Make sure that this fish belongs to the Fish layer
-		// this.EnforceLayerMembership("Fish");
-		this.State = STATE.SWIMMING;
-		this.StateTimer = 0f;
-		this.HungerSpan = Random.Range(10f,50f);
-		//		Debug.Log("This fish hunger span is : " + hungerSpan);
-
         // Each boids fish is responsible for registering itself to the fish manager
         FishManager.Instance.RegisterFish(this);
 	}
 
-	public void OutsideBounds(BoidsBoundary boundary)
+	public void OutsideHardBounds(HardBoundary boundary)
 	{
-		this.BoundaryVolumes.Remove(boundary);
-		if (this.BoundaryVolumes.Count <= 0)
+		this.HardBoundaries.Remove(boundary);
+		if (this.HardBoundaries.Count <= 0)
 		{
-			this.IsOutOfBounds = true;
+			this.IsOutsideHardBounds = true;
 		}
 	}
 
-	public void InsideBounds(BoidsBoundary boundary)
+	public void InsideHardBounds(HardBoundary boundary)
 	{
-		this.BoundaryVolumes.Add(boundary);
-        this.LastBoundary = boundary;
+		this.HardBoundaries.Add(boundary);
+        this.LastHardBoundary = boundary;
 
 		// If this fish just returned from being out of bounds
-		if (this.IsOutOfBounds)
+		if (this.IsOutsideHardBounds)
 		{
 			// TODO : Direct fishies more inward, otherwise they stay along the boundary edge
 
-			this.IsOutOfBounds = false;
+			this.IsOutsideHardBounds = false;
 		}
 	}
+
+    public void OutsideSoftBounds(SoftBoundaryComponent boundaryComponent)
+    {
+        this.SoftBoundaryComponents.Remove(boundaryComponent);
+        if (this.SoftBoundaryComponents.Count <= 0)
+        {
+            this.IsOutsideSoftBounds = true;
+        }
+    }
+
+    public void InsideSoftBounds(SoftBoundaryComponent boundaryComponent)
+    {
+        // For fish that don't have a current soft boundary assigned, do nothing
+        if (this.CurrentSoftBoundary == null)
+            { return; }
+
+        if (this.CurrentSoftBoundary.Contains(boundaryComponent))
+        {
+            this.SoftBoundaryComponents.Add(boundaryComponent);
+            this.LastSoftBoundaryComponent = boundaryComponent;
+
+            if (this.IsOutsideSoftBounds)
+            {
+                this.IsOutsideSoftBounds = false;
+            }
+        }
+    }
 
     public void Flee()
     {
@@ -170,6 +203,12 @@ public abstract class BoidsFish : MonoBehaviour
 	protected virtual void StopFollowingTarget()
 	{
 		this.IsFollowingTarget = false;
+
+        // Make a new soft bound if while following the target, this fish moved out of its current soft boundary
+        if (this.IsOutsideSoftBounds)
+        {
+            // TODO : Move soft bounds, or remove it
+        }
 		// TODO
 		// Maybe get a new random point to swim towards?
 		// Or just switch to idle?
@@ -205,12 +244,8 @@ public abstract class BoidsFish : MonoBehaviour
 
 	protected Vector3 VectorTowardsTarget()
 	{
-		// Move towards the boundary if out of bounds
-		if (this.IsOutOfBounds)
-		{ return (this.LastBoundary.transform.position - this.transform.position) * BoidsSettings.Instance.Target; }
-
 		// Only continue if the fish is following a target
-		if (!this.IsFollowingTarget)
+		if (!this.IsFollowingTarget || this.IsOutsideHardBounds)
 		{ return Vector3.zero; }
 
 		// Follow a physical target if it exists
@@ -244,9 +279,27 @@ public abstract class BoidsFish : MonoBehaviour
         return avoid;
     }
 
+    protected Vector3 VectorWithinBounds()
+    {
+        if (this.IsOutsideHardBounds)
+            { return (this.LastHardBoundary.transform.position - this.transform.position) * BoidsSettings.Instance.Bounds; }
+
+        if (this.IsOutsideSoftBounds)
+        {
+            if (this.LastSoftBoundaryComponent == null) return Vector3.zero;
+            return (this.LastSoftBoundaryComponent.transform.position - this.transform.position) * BoidsSettings.Instance.Bounds;
+        }
+
+        return Vector3.zero;
+    }
+
 	protected virtual void FixedUpdate()
 	{
 		Vector3 updatedVelocity = this.CalculateVelocity();
+#if UNITY_EDITOR
+        updatedVelocity *= BoidsSettings.Instance.FishSpeedMultiplier;
+#endif
+		updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 2*Time.fixedDeltaTime);
 		//calvinz: Add bob to the velocity, so the fish turns naturally, also bobs on x axis is more realistic
 		updatedVelocity += Vector3.left * (Mathf.Sin (Time.time * 2f)) * 0.03f;
 #if UNITY_EDITOR
@@ -457,6 +510,16 @@ public abstract class BoidsFish : MonoBehaviour
 		// do something if predators are gone
 	}
 
-	protected abstract Vector3 CalculateVelocity();
+	protected virtual Vector3 CalculateVelocity()
+    {
+        // Handle rigidbody velocity updates
+        Vector3 minimum = this.transform.forward * this.MinSpeed;     // Fish is always moving a minimum speed
+		Vector3 separation = this.VectorAwayFromNeighbours();
+		Vector3 target = this.VectorTowardsTarget();
+        Vector3 bounds = this.VectorWithinBounds();
+        Vector3 avoid = this.VectorAwayFromPredators();
+
+		return minimum + target + bounds + separation + avoid;
+    }
 }
 

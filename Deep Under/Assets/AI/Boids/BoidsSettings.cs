@@ -15,8 +15,9 @@ public class BoidsSettings : UnitySingleton<BoidsSettings> {
     [Range(0,1f)] public float Cohesion = 0.7f;
     public float Separation { get { return (2f-Cohesion); } }
     [Range(0,2f)] public float Alignment = 1f;
-    [Range(0,1f)] public float Target = 1f;
-    [Range(0,1f)] public float Evade = 1f;
+    [Range(0,20f)] public float Target = 5f;
+    [Range(0,2f)] public float Bounds = 1f;
+    [Range(0,2f)] public float Evade = 1f;
     [Space(10)]
 
     [Header("Small Fish Speeds")]

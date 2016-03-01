@@ -2,11 +2,13 @@
 using Extensions;
 
 [RequireComponent(typeof(Collider))]
-public class BoidsBoundary : MonoBehaviour {
-    
-    void Start()
+public class SoftBoundaryComponent : MonoBehaviour {
+
+    [SerializeField] private SoftBoundary SoftBoundary;
+
+	void Start()
     {
-        this.EnforceLayerMembership("Level Boundaries");
+        this.EnforceLayerMembership("Soft Boundaries");
     }
 
     void OnTriggerEnter(Collider other)
@@ -15,17 +17,17 @@ public class BoidsBoundary : MonoBehaviour {
         BoidsFish fish = other.gameObject.GetComponent<BoidsFish>();
         if (fish != null)
         {
-            fish.InsideBounds(this);
+            fish.InsideSoftBounds(this);
         }
     }
-    
+
     void OnTriggerExit(Collider other)
     {
         // Is the triggering object a BoidsFish?
         BoidsFish fish = other.gameObject.GetComponent<BoidsFish>();
         if (fish != null)
         {
-            fish.OutsideBounds(this);
+            fish.OutsideSoftBounds(this);
         }
     }
 }

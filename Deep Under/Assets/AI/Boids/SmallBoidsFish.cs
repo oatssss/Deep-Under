@@ -118,30 +118,28 @@ public class SmallBoidsFish : BoidsFish
 
 		// Handle rigidbody velocity updates
 		Vector3 cohesion = (this.State != STATE.FLEEING) ? this.VectorTowardsFlock() : -this.VectorTowardsFlock();
-        cohesion = (this.PredatorCount > 0) ? 2*cohesion : cohesion; // When predators are near, flock closer to try and scare
+        cohesion = (this.PredatorCount > 0) ? 3*cohesion : cohesion; // When predators are near, flock closer to try and scare
 		Vector3 separation = this.VectorAwayFromNeighbours();
 		Vector3 alignment = this.VectorTowardsAlignment();
 		Vector3 target = this.VectorTowardsTarget();
+        Vector3 bounds = this.VectorWithinBounds();
         Vector3 avoid = this.VectorAwayFromPredators();
 		float cohesionMagnitude = cohesion.magnitude;
 
 		// Glue all the stages together
 		Vector3 updatedVelocity = this.transform.forward * this.MinSpeed;     // Fish is always moving a minimum speed
-        if (this.Flock.Count > 0)
+        if (this.Flock.Count > 0)   // Since we clamp using the magnitude of cohesion, only do it for non-zero values
         {
-            updatedVelocity += Vector3.ClampMagnitude(cohesion + alignment + target, cohesionMagnitude);
+            updatedVelocity += Vector3.ClampMagnitude(cohesion + alignment + target + bounds, cohesionMagnitude);
         }
         else
         {
             updatedVelocity += Vector3.ClampMagnitude(cohesion + alignment, cohesionMagnitude);
             updatedVelocity += target;
+            updatedVelocity += bounds;
         }
 		updatedVelocity += separation;
         updatedVelocity += avoid;
-#if UNITY_EDITOR
-		updatedVelocity *= BoidsSettings.Instance.FishSpeedMultiplier;
-#endif
-		updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 2*Time.fixedDeltaTime);
 
 		return updatedVelocity;
 	}
