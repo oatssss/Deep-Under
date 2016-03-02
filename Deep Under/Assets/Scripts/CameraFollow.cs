@@ -3,9 +3,9 @@ using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
 
-	Vector3 offset;
-	Vector3 defaultLook;  
+	Vector3 offset;  
 	Quaternion defaultRotation; 
+
 
 	public Player player;  
 	private float cameraSpeed = 60f;
@@ -22,26 +22,13 @@ public class CameraFollow : MonoBehaviour {
 	void Start () {
 		//dplayer = GetComponent<Player>();
 		offset = transform.position - player.transform.position;
-		defaultLook = offset;
-		defaultRotation = transform.rotation; 
-
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false; 
-
 
 	}
 
 	void FixedUpdate () {
-		Vector3 oldRot = transform.rotation * Vector3.forward; //get current/old rotation in vector form
-		y = Input.GetAxis("Mouse X"); //rotation on y axis
-		x = Input.GetAxis("Mouse Y"); //rotation on x axis
-		cameraRotate(x,y);
-		Vector3 newRot = transform.rotation * Vector3.forward; // save new rotation in vector form 
-		Quaternion change = Quaternion.FromToRotation(oldRot, newRot); //record change in rotation using the 2 vectors
-		offset = change * offset; //apply change in rotation to offset
-		Vector3 targetPos = player.transform.position + offset; // apply offset
-		if (Vector3.Distance(transform.position, targetPos) > 0.1f) transform.position = Vector3.Lerp(transform.position, targetPos,(1 - Mathf.Exp( -smoothing * Time.deltaTime ))); //TODO: jitter caused by smoothing.
-		//transform.position = targetPos;
+		follow();
 
 	}
 
@@ -52,6 +39,19 @@ public class CameraFollow : MonoBehaviour {
 		}*/
 	}
 
+	public void follow () { 
+		Vector3 oldRot = transform.rotation * Vector3.forward; //get current/old rotation in vector form
+		y = Input.GetAxis("Mouse X"); //rotation on y axis
+		x = Input.GetAxis("Mouse Y"); //rotation on x axis
+		//if (!player.isAiming) 
+		cameraRotate(x,y);
+		Vector3 newRot = transform.rotation * Vector3.forward; // save new rotation in vector form 
+		Quaternion change = Quaternion.FromToRotation(oldRot, newRot); //record change in rotation using the 2 vectors
+		offset = change * offset; //apply change in rotation to offset
+		Vector3 targetPos = player.transform.position + offset; // apply offset
+		if (Vector3.Distance(transform.position, targetPos) > 0.1f) transform.position = Vector3.Lerp(transform.position, targetPos,(1 - Mathf.Exp( -smoothing * Time.deltaTime ))); //TODO: jitter caused by smoothing.
+		//transform.position = targetPos;
+	}
     
 
     private void cameraRotate (float x, float y) { 
@@ -78,6 +78,24 @@ public class CameraFollow : MonoBehaviour {
 		Vector3 targetPos = player.transform.position + offset;
 		transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 0.1f); 
 		transform.Rotate(swingVector);
+    }
+
+    public void swingToPosition (Transform t) { 
+    	Vector3 playerToPos = t.position - player.transform.position;
+    	Quaternion change = Quaternion.FromToRotation(offset, playerToPos);
+    	offset = change * offset;
+    	transform.rotation = Quaternion.Lerp(transform.rotation, t.rotation, 1f);
+    	startLook = 0f;
+    }
+
+    public void scaleOffsetLength (float amount) { 
+    	Vector3 scaledOffset = offset;
+		scaledOffset.Scale(new Vector3(amount, amount, amount));
+		offset = Vector3.Lerp(offset, scaledOffset, cameraSpeed*Time.deltaTime); 
+    }
+
+    public void translateHorizontal (float amount) { 
+    	offset = offset + transform.right*amount;
     }
 
 
