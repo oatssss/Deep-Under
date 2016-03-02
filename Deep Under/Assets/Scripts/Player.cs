@@ -38,9 +38,10 @@ public class Player : MonoBehaviour {
 		energy = 80f;
 		rigidbody = GetComponent<Rigidbody>();
 		spotlight.gameObject.SetActive(lightOn);
-		lineRenderer = GetComponent<LineRenderer>();
-		lineRenderer.SetVertexCount(lineSmoothness); // set according to how smooth we want line to be
-		lineRenderer.useWorldSpace = true;
+		Cursor.lockState = CursorLockMode.Locked;
+		//lineRenderer = GetComponent<LineRenderer>();
+		//lineRenderer.SetVertexCount(lineSmoothness); // set according to how smooth we want line to be
+		//lineRenderer.useWorldSpace = true;
 		camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
 		defaultCameraPosition.transform.position = camera.transform.position;
 		defaultCameraPosition.transform.rotation = camera.transform.rotation;
@@ -118,7 +119,7 @@ public class Player : MonoBehaviour {
 		lightOrb clone = GameObject.Instantiate(lightOrb);
 		clone.transform.position = lightOrbPosition.position;
 		Vector3 force = transform.forward*throwForce;
-		Debug.Log(force.ToString());
+		//Debug.Log(force.ToString());
 		clone.rb.AddForce(force);
 		shoot = false; 
 	}
@@ -166,7 +167,8 @@ public class Player : MonoBehaviour {
 	private void exitAim (float zoomAmount, float shiftAmount) {
 		isAiming = false; 
 		camera.scaleOffsetLength(zoomAmount); //zoom out
-		camera.translateHorizontal(-shiftAmount); //translate after offset is put back to orig length 
+		camera.translateHorizontal(-shiftAmount); //translate after offset is put back to orig length
+		camera.swingToPosition(defaultCameraPosition.transform); 
 	}
 
 	private void drawAim () { 

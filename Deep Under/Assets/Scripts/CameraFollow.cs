@@ -43,7 +43,8 @@ public class CameraFollow : MonoBehaviour {
 		Vector3 oldRot = transform.rotation * Vector3.forward; //get current/old rotation in vector form
 		y = Input.GetAxis("Mouse X"); //rotation on y axis
 		x = Input.GetAxis("Mouse Y"); //rotation on x axis
-		if (!player.isAiming) cameraRotate(x,y);
+		//if (!player.isAiming) 
+		cameraRotate(x,y);
 		Vector3 newRot = transform.rotation * Vector3.forward; // save new rotation in vector form 
 		Quaternion change = Quaternion.FromToRotation(oldRot, newRot); //record change in rotation using the 2 vectors
 		offset = change * offset; //apply change in rotation to offset
