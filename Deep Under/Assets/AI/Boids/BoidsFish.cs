@@ -203,6 +203,7 @@ public abstract class BoidsFish : MonoBehaviour
 	protected virtual void StopFollowingTarget()
 	{
 		this.IsFollowingTarget = false;
+        this.physicalTarget = null;
 
         // Make a new soft bound if while following the target, this fish moved out of its current soft boundary
         if (this.IsOutsideSoftBounds)
@@ -352,8 +353,9 @@ public abstract class BoidsFish : MonoBehaviour
 		if (State == STATE.SWIMMING && StateTimer > HungerSpan)
 		{
 			//TODO: Fish goes hungry and detaches from group
-			State = STATE.IDLE; 	// Idle fish does not want to flock and is just swimming away
-			StopFollowingTarget();		// Stop flocking
+			// State = STATE.IDLE; 	// Idle fish does not want to flock and is just swimming away
+			// StopFollowingTarget();		// Stop flocking
+            this.Idle();
 		}
 		else if (State == STATE.IDLE && StateTimer > 10.0f)
 		{
@@ -367,23 +369,23 @@ public abstract class BoidsFish : MonoBehaviour
 			{
 				State = STATE.EATING;
 			}
-			else if (distance > 100.0)		// Target is too far, give up can be changed later
+			else if (distance > 100)		// Target is too far, give up can be changed later
 			{
-				State = STATE.IDLE;
+				this.Idle();
 			}
 		}
 		else if (State == STATE.FLEEING)
 		{
 			if (this.Predators.Count == 0)
 			{
-				State = STATE.IDLE;
+				this.Idle();
 			}
 		}
 		else if (State == STATE.EATING)
 		{
 			if (StateTimer > 2f)
 			{
-				State = STATE.IDLE;
+				this.Idle();
 			}
 		}
         // Else this fish is going to be eaten and is about to be destroyed
@@ -398,6 +400,9 @@ public abstract class BoidsFish : MonoBehaviour
         BoidsFish predatee = this.PhysicalTarget as BoidsFish;
         if (predatee != null)
         {
+            if (predatee.gameObject == GameManager.Instance.Player.gameObject)
+                { return; }
+
             foreach (BoidsFish potentialSwitch in this.Predatees)
             {
                 if (potentialSwitch == predatee || potentialSwitch.Size < predatee.Size)
@@ -408,7 +413,7 @@ public abstract class BoidsFish : MonoBehaviour
                     // Skip small fish that aren't in a big enough flock
                     SmallBoidsFish potentialSmall = potentialSwitch as SmallBoidsFish;
                     SmallBoidsFish predateeSmall = predatee as SmallBoidsFish;
-                    if ((predateeSmall != null && potentialSmall != null) && (potentialSmall.FlockSize < BoidsSettings.Instance.MinFlockSizeToAttractLargeFish))
+                    if (predatee.gameObject == GameManager.Instance.Player.gameObject && (predateeSmall != null && potentialSmall != null) && (potentialSmall.FlockSize < BoidsSettings.Instance.MinFlockSizeToAttractLargeFish))
                     {
                         continue;
                     }
@@ -432,7 +437,7 @@ public abstract class BoidsFish : MonoBehaviour
                 if (this.Size >= SIZE.LARGE)
                 {
                     SmallBoidsFish small = fish as SmallBoidsFish;
-                    if ((small != null) && (small.FlockSize < BoidsSettings.Instance.MinFlockSizeToAttractLargeFish))
+                    if (fish.gameObject == GameManager.Instance.Player.gameObject && (small != null) && (small.FlockSize < BoidsSettings.Instance.MinFlockSizeToAttractLargeFish))
                         { continue; }
                 }
 
