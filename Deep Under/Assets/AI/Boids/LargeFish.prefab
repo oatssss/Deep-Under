@@ -192,8 +192,8 @@ Rigidbody:
   m_GameObject: {fileID: 190734}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 5
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -226,16 +226,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RigidBody: {fileID: 5486136}
   RepelVolume: {fileID: 13521706}
-  energyBall: {fileID: 0}
   MaxSpeed: 20
   size: 2
   state: 0
   Predators: []
   Predatees: []
   IsFollowingTarget: 0
-  BoundaryVolumes: []
-  LastBoundary: {fileID: 0}
-  IsOutOfBounds: 0
+  HardBoundaries: []
+  LastHardBoundary: {fileID: 0}
+  IsOutsideHardBounds: 0
+  SoftBoundaryComponents: []
+  LastSoftBoundaryComponent: {fileID: 0}
+  CurrentSoftBoundary: {fileID: 0}
+  OriginalSoftBoundary: {fileID: 0}
+  IsOutsideSoftBounds: 0
 --- !u!114 &11447470
 MonoBehaviour:
   m_ObjectHideFlags: 1

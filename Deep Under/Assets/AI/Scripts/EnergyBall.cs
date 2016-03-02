@@ -3,15 +3,9 @@ using System.Collections;
 
 public class EnergyBall : MonoBehaviour {
 
-	public Player auliv;
 	public float energy;
 
 	private float timer;
-
-	// Use this for initialization
-	void Start () {
-		auliv = GameManager.Instance.Player;
-	}
 
 	void Update () {
 		// Energy ball disappears after 10 seconds
@@ -19,10 +13,10 @@ public class EnergyBall : MonoBehaviour {
 		if (timer > 20f) Destroy(this.gameObject);
 	}
 
-	void OnCollisionEnter(Collision other) { 
-		if (other.gameObject.CompareTag("Player") && auliv != null) { 
+	void OnCollisionEnter(Collision other) {
+		if (other.gameObject.CompareTag("Player") && GameManager.Instance.Player != null) {
 			energy = Random.Range(15f, 25f);
-			auliv.addEnergyBall(this.energy);
+			GameManager.Instance.Player.addEnergyBall(this.energy);
 			Debug.Log ("Orb picked up! +"+energy);
 			Destroy(this.gameObject);
 		}

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class Player : SmallBoidsFish {
 
 	//private float lsXDeadValue = 0.058f; //fix dead values in both LS and RS
 	//private float lsYDeadValue = 1f;	//fix dead value
@@ -36,7 +36,7 @@ public class Player : MonoBehaviour {
 		energyDrainRate = 3f;
 	}
 
-	void FixedUpdate () {
+	protected override void FixedUpdate () {
 
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
@@ -47,11 +47,12 @@ public class Player : MonoBehaviour {
 
 	}
 
-	void Update() {
+	protected override void Update() {
 		if (Input.GetKeyUp(KeyCode.Joystick1Button11) || Input.GetKeyUp(KeyCode.F)) lightToggle();
 		if (Input.GetKeyUp(KeyCode.Joystick1Button0) || Input.GetKeyUp(KeyCode.Space)) createLightOrb();
 		//controllerButtonTest();
 		removeEnergy(energyDrainRate);
+        base.Update();
 	}
 
 	private void Move (float h, float v, float u) {

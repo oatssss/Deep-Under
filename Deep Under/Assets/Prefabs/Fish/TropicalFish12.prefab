@@ -34,7 +34,7 @@ GameObject:
   - 136: {fileID: 13603374}
   m_Layer: 10
   m_Name: TropicalFish12
-  m_TagString: Player
+  m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -174,8 +174,8 @@ Rigidbody:
   m_GameObject: {fileID: 112644}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 5
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -224,14 +224,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RigidBody: {fileID: 5402770}
   RepelVolume: {fileID: 13556202}
-  PredatorVolume: {fileID: 0}
+  MaxSpeed: 0
   size: 0
   state: 1
   Predators: []
-  BoundaryVolumes: []
-  LastBoundary: {fileID: 0}
-  IsOutOfBounds: 0
+  Predatees: []
+  IsFollowingTarget: 0
+  HardBoundaries: []
+  LastHardBoundary: {fileID: 0}
+  IsOutsideHardBounds: 0
+  SoftBoundaryComponents: []
+  LastSoftBoundaryComponent: {fileID: 0}
+  CurrentSoftBoundary: {fileID: 0}
+  OriginalSoftBoundary: {fileID: 0}
+  IsOutsideSoftBounds: 0
   FlockVolume: {fileID: 13504694}
+  Flock: []
 --- !u!114 &11459788
 MonoBehaviour:
   m_ObjectHideFlags: 1

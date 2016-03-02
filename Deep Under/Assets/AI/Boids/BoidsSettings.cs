@@ -11,7 +11,7 @@ public class BoidsSettings : UnitySingleton<BoidsSettings> {
     [Range(1,80f)] public float LargeHuntRadius = 55f;
     [Space(10)]
 
-    [Header("Velocities")]
+    [Header("Calculated Stages")]
     [Range(0,1f)] public float Cohesion = 0.7f;
     public float Separation { get { return (2f-Cohesion); } }
     [Range(0,2f)] public float Alignment = 1f;

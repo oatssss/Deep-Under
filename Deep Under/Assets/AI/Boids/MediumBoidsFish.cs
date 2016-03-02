@@ -26,33 +26,28 @@ public class MediumBoidsFish : BoidsFish {
                 this.MinSpeed = this.IdleMin;
                 this.MaxSpeed = this.IdleMax;
             }
-			/*else if (value == STATE.SWIMMING)
-            {
-                this.MinSpeed = this.SwimMin;
-                this.MaxSpeed = this.SwimMax;
-            }*/
 			else if (value == STATE.HUNTING)
 				{ this.MinSpeed = this.MaxSpeed = this.AbsoluteMax; }
 		}
 	}
 
-	protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         this.EnforceLayerMembership("Medium Fish");
         this.Size = SIZE.MEDIUM;
-	}
+    }
 
 #if UNITY_EDITOR
-    protected override void FixedUpdate()
+    protected override void Update()
     {
-        this.State = this.State;
+        // this.State = this.State;
         this.IdleMin = BoidsSettings.Instance.MediumFish_IdleMin;
         this.IdleMax = BoidsSettings.Instance.MediumFish_IdleMax;
         // this.SwimMin = BoidsSettings.Instance.MediumFish_SwimMin;
         // this.SwimMax = BoidsSettings.Instance.MediumFish_SwimMax;
         this.AbsoluteMax = BoidsSettings.Instance.MediumFish_AbsoluteMax;
-        base.FixedUpdate();
+        base.Update();
     }
 #endif
 

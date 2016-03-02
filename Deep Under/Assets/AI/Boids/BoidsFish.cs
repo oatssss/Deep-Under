@@ -31,7 +31,7 @@ public abstract class BoidsFish : MonoBehaviour
 	private float HungerSpan;
 
     protected float MinSpeed;
-	[SerializeField] protected float MaxSpeed;
+	protected float MaxSpeed;
 
     [SerializeField] private SIZE size;
 	public SIZE Size
@@ -44,9 +44,9 @@ public abstract class BoidsFish : MonoBehaviour
 	public abstract STATE State { get; protected set; }
 
 	private List<BoidsFish> Repellants = new List<BoidsFish>();
-	[SerializeField] private List<BoidsFish> Predators = new List<BoidsFish>();
+	private List<BoidsFish> Predators = new List<BoidsFish>();
     public int PredatorCount { get { return this.Predators.Count; } }
-    public List<BoidsFish> Predatees = new List<BoidsFish>();
+    [HideInInspector] public List<BoidsFish> Predatees = new List<BoidsFish>();
 
 	// A physical target will always take precedence over a standard target
 	public bool IsFollowingTarget = false;
@@ -68,16 +68,16 @@ public abstract class BoidsFish : MonoBehaviour
 	private Vector3 Target = Vector3.zero;
 
 	// If fish are outside the bounding volumes, they try to move back inside them
-	[SerializeField] private List<HardBoundary> HardBoundaries = new List<HardBoundary>();
-	[SerializeField] private HardBoundary LastHardBoundary;
-    [SerializeField] protected bool IsOutsideHardBounds = false;
-    [SerializeField] private List<SoftBoundaryComponent> SoftBoundaryComponents = new List<SoftBoundaryComponent>();
-    [SerializeField] private SoftBoundaryComponent LastSoftBoundaryComponent;
-    [SerializeField] private SoftBoundary CurrentSoftBoundary;
-    [SerializeField] private SoftBoundary OriginalSoftBoundary;
-    [SerializeField] protected bool IsOutsideSoftBounds = false;
+	private List<HardBoundary> HardBoundaries = new List<HardBoundary>();
+	private HardBoundary LastHardBoundary;
+    protected bool IsOutsideHardBounds = false;
+    private List<SoftBoundaryComponent> SoftBoundaryComponents = new List<SoftBoundaryComponent>();
+    private SoftBoundaryComponent LastSoftBoundaryComponent;
+    private SoftBoundary CurrentSoftBoundary;
+    private SoftBoundary OriginalSoftBoundary;
+    protected bool IsOutsideSoftBounds = false;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
 		this.State = STATE.SWIMMING;
 		this.StateTimer = 0f;
@@ -286,7 +286,9 @@ public abstract class BoidsFish : MonoBehaviour
 
         if (this.IsOutsideSoftBounds)
         {
-            if (this.LastSoftBoundaryComponent == null) return Vector3.zero;
+            if (this.LastSoftBoundaryComponent == null)
+                { return Vector3.zero; }
+
             return (this.LastSoftBoundaryComponent.transform.position - this.transform.position) * BoidsSettings.Instance.Bounds;
         }
 
@@ -310,7 +312,7 @@ public abstract class BoidsFish : MonoBehaviour
 
 		//calvinz: if eating, stay (almost) still
 		if (State == STATE.EATING)
-			updatedVelocity *= 0.01f;
+			updatedVelocity *= 0.5f;
 		this.RigidBody.velocity = updatedVelocity;
 
 		// Steer the fish's transform to face the velocity vector
@@ -321,7 +323,7 @@ public abstract class BoidsFish : MonoBehaviour
 		this.StateTimer += Time.fixedDeltaTime;
 	}
 
-    void Update()
+    protected virtual void Update()
     {
 
 #if UNITY_EDITOR
@@ -343,6 +345,7 @@ public abstract class BoidsFish : MonoBehaviour
         }
 #endif
 
+        // Check the conditions of the surrounding prey, should the target switch?
         this.AnalyzePrey();
 
         // FSM IMPLEMENTATION
@@ -425,11 +428,13 @@ public abstract class BoidsFish : MonoBehaviour
             BoidsFish closestFish = null;
             foreach (BoidsFish fish in this.Predatees)
             {
-
-                // Skip small fish that aren't in a big enough flock
-                SmallBoidsFish small = fish as SmallBoidsFish;
-                if ((small != null) && (small.FlockSize < BoidsSettings.Instance.MinFlockSizeToAttractLargeFish))
-                    { continue; }
+                // Large fish skip small fish that aren't in a big enough flock
+                if (this.Size >= SIZE.LARGE)
+                {
+                    SmallBoidsFish small = fish as SmallBoidsFish;
+                    if ((small != null) && (small.FlockSize < BoidsSettings.Instance.MinFlockSizeToAttractLargeFish))
+                        { continue; }
+                }
 
                 float sqrDistToFish = (this.transform.position - fish.transform.position).sqrMagnitude;
                 if (sqrDistToFish < closestSqrDist)
@@ -452,7 +457,7 @@ public abstract class BoidsFish : MonoBehaviour
             if (smallPredatee != null)
             {
                 if (smallPredatee.FlockSize > BoidsSettings.Instance.MinFlockSizeToScareMediumFish)
-                    { this.PhysicalTarget = null; }
+                    { this.PhysicalTarget = predatee = null; }
             }
         }
 

@@ -47,9 +47,9 @@ public class SmallBoidsFish : BoidsFish
 	[SerializeField] private List<BoidsFish> Flock = new List<BoidsFish>();
 	public int FlockSize { get { return this.Flock.Count + 1; } }  // +1 since including itself
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         this.EnforceLayerMembership("Small Fish");
         this.Size = SIZE.SMALL;
     }
@@ -118,7 +118,7 @@ public class SmallBoidsFish : BoidsFish
 
 		// Handle rigidbody velocity updates
 		Vector3 cohesion = (this.State != STATE.FLEEING) ? this.VectorTowardsFlock() : -this.VectorTowardsFlock();
-        cohesion = (this.PredatorCount > 0) ? 3*cohesion : cohesion; // When predators are near, flock closer to try and scare
+        cohesion = (this.PredatorCount > 0) ? 2*cohesion : cohesion; // When predators are near, flock closer to try and scare
 		Vector3 separation = this.VectorAwayFromNeighbours();
 		Vector3 alignment = this.VectorTowardsAlignment();
 		Vector3 target = this.VectorTowardsTarget();
@@ -145,15 +145,15 @@ public class SmallBoidsFish : BoidsFish
 	}
 
 #if UNITY_EDITOR
-    protected override void FixedUpdate()
+    protected override void Update()
     {
-        this.State = this.State;
+        // this.State = this.State;
         this.IdleMin = BoidsSettings.Instance.SmallFish_IdleMin;
         this.IdleMax = BoidsSettings.Instance.SmallFish_IdleMax;
         this.SwimMin = BoidsSettings.Instance.SmallFish_SwimMin;
         this.SwimMax = BoidsSettings.Instance.SmallFish_SwimMax;
         this.AbsoluteMax = BoidsSettings.Instance.SmallFish_AbsoluteMax;
-        base.FixedUpdate();
+        base.Update();
     }
 #endif
 
