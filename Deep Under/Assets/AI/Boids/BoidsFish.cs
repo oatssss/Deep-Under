@@ -400,11 +400,20 @@ public abstract class BoidsFish : MonoBehaviour
         BoidsFish predatee = this.PhysicalTarget as BoidsFish;
         if (predatee != null)
         {
-            if (predatee.gameObject == GameManager.Instance.Player.gameObject)
-                { return; }
-
             foreach (BoidsFish potentialSwitch in this.Predatees)
             {
+                // Don't switch if the predatee is A.U.L.I.V.
+                if (predatee.gameObject == GameManager.Instance.Player.gameObject)
+                    { break; }
+
+                // Switch to A.U.L.I.V. if within prey
+                if (potentialSwitch.gameObject == GameManager.Instance.Player.gameObject)
+                {
+                    predatee = potentialSwitch;
+                    break;
+                }
+
+                // Skip if potential switch is smaller in size or the same fish as already being hunted
                 if (potentialSwitch == predatee || potentialSwitch.Size < predatee.Size)
                     { continue; }
 
@@ -413,7 +422,7 @@ public abstract class BoidsFish : MonoBehaviour
                     // Skip small fish that aren't in a big enough flock
                     SmallBoidsFish potentialSmall = potentialSwitch as SmallBoidsFish;
                     SmallBoidsFish predateeSmall = predatee as SmallBoidsFish;
-                    if (predatee.gameObject == GameManager.Instance.Player.gameObject && (predateeSmall != null && potentialSmall != null) && (potentialSmall.FlockSize < BoidsSettings.Instance.MinFlockSizeToAttractLargeFish))
+                    if ((predateeSmall != null && potentialSmall != null) && (potentialSmall.FlockSize < BoidsSettings.Instance.MinFlockSizeToAttractLargeFish))
                     {
                         continue;
                     }
@@ -433,6 +442,13 @@ public abstract class BoidsFish : MonoBehaviour
             BoidsFish closestFish = null;
             foreach (BoidsFish fish in this.Predatees)
             {
+                // Set A.U.L.I.V. as prey immediately if present
+                if (fish.gameObject == GameManager.Instance.Player.gameObject)
+                {
+                    closestFish = fish;
+                    break;
+                }
+
                 // Large fish skip small fish that aren't in a big enough flock
                 if (this.Size >= SIZE.LARGE)
                 {
