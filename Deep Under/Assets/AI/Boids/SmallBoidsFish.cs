@@ -105,7 +105,8 @@ public class SmallBoidsFish : BoidsFish
 		Vector3 alignment = Vector3.zero;
 		foreach (BoidsFish peer in this.Flock)
 		{
-			alignment += peer.RigidBody.velocity;
+			if (peer.RigidBody)
+				alignment += peer.RigidBody.velocity;
 		}
 		alignment /= this.Flock.Count;
 		alignment.Normalize();

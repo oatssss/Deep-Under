@@ -391,6 +391,24 @@ public abstract class BoidsFish : MonoBehaviour
         // Else this fish is going to be eaten and is about to be destroyed
     }
 
+	protected bool checkIfVisible(BoidsFish target)
+	{
+		// if target is out of sight
+		if (Vector3.Angle (transform.forward, target.transform.position - transform.position) > 90)
+			return false;
+
+		// if target is obscured
+		RaycastHit raycastHit;
+		int layerMask = 1 << 8 | 1 << 9 | 1 << 14 | 1 << 15 | 1 << 16 | 1 << 17 | 1 << 18;
+		layerMask = ~layerMask;
+		Physics.Raycast (transform.position, target.transform.position - transform.position, out raycastHit, Mathf.Infinity, layerMask);
+		if (raycastHit.collider != target.GetComponent<Collider> ()) 
+		{
+			return false;
+		}
+		return true;
+	}
+
     protected void AnalyzePrey()
     {
         // when eating, dont try to hunt anyone
@@ -398,10 +416,19 @@ public abstract class BoidsFish : MonoBehaviour
 			return;
 
         BoidsFish predatee = this.PhysicalTarget as BoidsFish;
+
+		// if the target is out of sight, stop hunting
+		if (predatee && !checkIfVisible (predatee))
+			predatee = null;
+
         if (predatee != null)
         {
             foreach (BoidsFish potentialSwitch in this.Predatees)
             {
+				// ignore if not visible
+				if (!checkIfVisible (potentialSwitch))
+					continue;
+
                 // Don't switch if the predatee is A.U.L.I.V.
                 if (predatee.gameObject == GameManager.Instance.Player.gameObject)
                     { break; }
@@ -442,6 +469,10 @@ public abstract class BoidsFish : MonoBehaviour
             BoidsFish closestFish = null;
             foreach (BoidsFish fish in this.Predatees)
             {
+				// ignore if not visible
+				if (!checkIfVisible (fish))
+					continue;
+
                 // Set A.U.L.I.V. as prey immediately if present
                 if (fish.gameObject == GameManager.Instance.Player.gameObject)
                 {
