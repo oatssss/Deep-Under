@@ -10,7 +10,7 @@ public class HealthGUI : MonoBehaviour {
 	public Player auliv;
 
 	void Start(){
-		auliv = GameObject.Find ("auliv").GetComponent<Player>();
+		auliv = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 	}
 	
 	void OnGUI() {

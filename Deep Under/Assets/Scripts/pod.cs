@@ -10,7 +10,7 @@ public class pod : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 //		auliv = GameObject.Find("auliv/SUB_RIG_007").GetComponent<Player>();
-		auliv = GameObject.Find ("auliv").GetComponent<Player>();
+		auliv = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 	}
 
 	// Update is called once per frame
