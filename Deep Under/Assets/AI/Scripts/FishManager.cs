@@ -15,7 +15,7 @@ public class FishManager : UnitySingleton<FishManager> {
 	public GameObject MediumFish;
 	public GameObject SmallFish;
     public GameObject EnergyBall;
-	
+
 	// Use this for initialization
 	void Start () {
         BoidsFish _fish;
@@ -33,7 +33,7 @@ public class FishManager : UnitySingleton<FishManager> {
 			_fish.transform.parent = this.transform;
 		}
 	}
-	
+
 
     public void RegisterFish(BoidsFish fish)
     {

@@ -47,9 +47,9 @@ public class SmallBoidsFish : BoidsFish
 	[SerializeField] private List<BoidsFish> Flock = new List<BoidsFish>();
 	public int FlockSize { get { return this.Flock.Count + 1; } }  // +1 since including itself
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         this.EnforceLayerMembership("Small Fish");
         this.Size = SIZE.SMALL;
     }
@@ -105,7 +105,8 @@ public class SmallBoidsFish : BoidsFish
 		Vector3 alignment = Vector3.zero;
 		foreach (BoidsFish peer in this.Flock)
 		{
-			alignment += peer.RigidBody.velocity;
+			if (peer.RigidBody)
+				alignment += peer.RigidBody.velocity;
 		}
 		alignment /= this.Flock.Count;
 		alignment.Normalize();
@@ -122,40 +123,38 @@ public class SmallBoidsFish : BoidsFish
 		Vector3 separation = this.VectorAwayFromNeighbours();
 		Vector3 alignment = this.VectorTowardsAlignment();
 		Vector3 target = this.VectorTowardsTarget();
+        Vector3 bounds = this.VectorWithinBounds();
         Vector3 avoid = this.VectorAwayFromPredators();
 		float cohesionMagnitude = cohesion.magnitude;
 
 		// Glue all the stages together
 		Vector3 updatedVelocity = this.transform.forward * this.MinSpeed;     // Fish is always moving a minimum speed
-        if (this.Flock.Count > 0)
+        if (this.Flock.Count > 0)   // Since we clamp using the magnitude of cohesion, only do it for non-zero values
         {
-            updatedVelocity += Vector3.ClampMagnitude(cohesion + alignment + target, cohesionMagnitude);
+            updatedVelocity += Vector3.ClampMagnitude(cohesion + alignment + target + bounds, cohesionMagnitude);
         }
         else
         {
             updatedVelocity += Vector3.ClampMagnitude(cohesion + alignment, cohesionMagnitude);
             updatedVelocity += target;
+            updatedVelocity += bounds;
         }
 		updatedVelocity += separation;
         updatedVelocity += avoid;
-#if UNITY_EDITOR
-		updatedVelocity *= BoidsSettings.Instance.FishSpeedMultiplier;
-#endif
-		updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 2*Time.fixedDeltaTime);
 
 		return updatedVelocity;
 	}
 
 #if UNITY_EDITOR
-    protected override void FixedUpdate()
+    protected override void Update()
     {
-        this.State = this.State;
+        // this.State = this.State;
         this.IdleMin = BoidsSettings.Instance.SmallFish_IdleMin;
         this.IdleMax = BoidsSettings.Instance.SmallFish_IdleMax;
         this.SwimMin = BoidsSettings.Instance.SmallFish_SwimMin;
         this.SwimMax = BoidsSettings.Instance.SmallFish_SwimMax;
         this.AbsoluteMax = BoidsSettings.Instance.SmallFish_AbsoluteMax;
-        base.FixedUpdate();
+        base.Update();
     }
 #endif
 
