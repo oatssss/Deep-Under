@@ -402,22 +402,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55d643289c97bae49b0d65923b6e09b7, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &185191765 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 190200, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-  m_PrefabInternal: {fileID: 1030560061}
---- !u!135 &185191766
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 185191765}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 50
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &204160071 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 55ac03278440a76459970ba5b68e54c9, type: 3}
@@ -1329,7 +1313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0f1862bd46af440910cd0f751b4e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1350090080}
+  player: {fileID: 1796915426}
   rollSpeed: 3
   startLook: 0
 --- !u!114 &818969605
@@ -2293,7 +2277,27 @@ Prefab:
     - target: {fileID: 11420620, guid: b0542ce48aa9ba74291171c256824204, type: 2}
       propertyPath: soundCollider
       value: 
-      objectReference: {fileID: 185191766}
+      objectReference: {fileID: 0}
+    - target: {fileID: 469574, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 439078, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.29883626
+      objectReference: {fileID: 0}
+    - target: {fileID: 439078, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.64085644
+      objectReference: {fileID: 0}
+    - target: {fileID: 439078, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.64085644
+      objectReference: {fileID: 0}
+    - target: {fileID: 439078, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.29883626
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0542ce48aa9ba74291171c256824204, type: 2}
   m_IsPrefabParent: 0
@@ -2691,12 +2695,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60abfab82c497bd44b63e3f861cfd08f, type: 3}
   m_IsPrefabParent: 0
---- !u!114 &1350090080 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11420620, guid: b0542ce48aa9ba74291171c256824204,
-    type: 2}
-  m_PrefabInternal: {fileID: 1030560061}
-  m_Script: {fileID: 11500000, guid: 0b930a52899695a4583a1ca515da605e, type: 3}
 --- !u!1 &1381590997 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
@@ -3901,6 +3899,12 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1796915426 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11406262, guid: b0542ce48aa9ba74291171c256824204,
+    type: 2}
+  m_PrefabInternal: {fileID: 1030560061}
+  m_Script: {fileID: 11500000, guid: 0b930a52899695a4583a1ca515da605e, type: 3}
 --- !u!1001 &1799735976
 Prefab:
   m_ObjectHideFlags: 0

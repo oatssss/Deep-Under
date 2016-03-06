@@ -2147,7 +2147,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 132160}
-  m_LocalRotation: {x: -0.29883626, y: -0.64085644, z: 0.64085644, w: 0.29883626}
+  m_LocalRotation: {x: -0.29883623, y: -0.6408564, z: 0.6408564, w: 0.29883623}
   m_LocalPosition: {x: -2.1727464, y: -3.230951, z: -1.3135169}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5443,18 +5443,17 @@ MonoBehaviour:
   IsFollowingTarget: 0
   FlockVolume: {fileID: 0}
   Flock: []
-  camera: {fileID: 0}
+  camera: {fileID: 11433718, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
   defaultCameraPosition: {fileID: 140680}
-  isAiming: 0
   spotlight: {fileID: 10851502}
   lightOrb: {fileID: 11429732, guid: e937efbabc308493387d74f00e21e034, type: 2}
   lightOrbPosition: {fileID: 443850}
-  shoot: 0
   energy: 0
   energyDrainRate: 0
   charging: 0
   soundCollider: {fileID: 13544690}
   soundRadius: 40
+  soundDuration: 10
 --- !u!120 &12041800
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -5512,7 +5511,12 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 11433718, guid: 9acb3b50b4510564cafc4ab9baf87bfa,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 103156}
