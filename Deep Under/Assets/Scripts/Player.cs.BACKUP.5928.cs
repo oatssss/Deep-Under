@@ -1,24 +1,36 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Player : SmallBoidsFish {
 
 	private float speed = 80f;
 	private float autoTurnSpeed = 10f;
+<<<<<<< HEAD
 	private Rigidbody rigidbody;
+=======
+	Rigidbody rigidbody;
+>>>>>>> 838e99936a835a73c14a6452ed126894f03a99a9
 
 	public CameraFollow camera;
 	public GameObject defaultCameraPosition; //is constantly updated by player, so is situated here
 	private float aimZoomAmount = 2f; //scalar
 	private float aimShiftAmount = 15f; //translational
+<<<<<<< HEAD
 	private bool isAiming = false;
+=======
+	public bool isAiming = false;
+>>>>>>> 838e99936a835a73c14a6452ed126894f03a99a9
 
 	public Light spotlight;
 	private bool lightOn = false;
 
 	public lightOrb lightOrb;
 	public Transform lightOrbPosition;
+<<<<<<< HEAD
 	private bool shoot = false;
+=======
+	public bool shoot = false;
+>>>>>>> 838e99936a835a73c14a6452ed126894f03a99a9
 	private float throwForce = 1600f;
 
 	private float h;
@@ -32,12 +44,15 @@ public class Player : SmallBoidsFish {
 
 	LineRenderer lineRenderer;
 	private int lineSmoothness = 10;
+<<<<<<< HEAD
 
 	public SphereCollider soundCollider; 
 	private bool makingSound = false; 
 	public float soundRadius = 40f;
 	public float soundDuration = 10f;
 	private float timer = 0f;
+=======
+>>>>>>> 838e99936a835a73c14a6452ed126894f03a99a9
 
 	// Use this for initialization
 	protected override void Start () {
@@ -53,7 +68,10 @@ public class Player : SmallBoidsFish {
 		defaultCameraPosition.transform.rotation = camera.transform.rotation;
 		energyDrainRate = 3f;
         base.Start();
+<<<<<<< HEAD
         soundCollider.radius = 0f;	
+=======
+>>>>>>> 838e99936a835a73c14a6452ed126894f03a99a9
 	}
 
 	protected override void FixedUpdate () {

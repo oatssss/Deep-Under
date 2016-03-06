@@ -1,24 +1,24 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Player : SmallBoidsFish {
 
 	private float speed = 80f;
 	private float autoTurnSpeed = 10f;
-	private Rigidbody rigidbody;
+	Rigidbody rigidbody;
 
 	public CameraFollow camera;
 	public GameObject defaultCameraPosition; //is constantly updated by player, so is situated here
 	private float aimZoomAmount = 2f; //scalar
 	private float aimShiftAmount = 15f; //translational
-	private bool isAiming = false;
+	public bool isAiming = false;
 
 	public Light spotlight;
 	private bool lightOn = false;
 
 	public lightOrb lightOrb;
 	public Transform lightOrbPosition;
-	private bool shoot = false;
+	public bool shoot = false;
 	private float throwForce = 1600f;
 
 	private float h;
@@ -32,12 +32,6 @@ public class Player : SmallBoidsFish {
 
 	LineRenderer lineRenderer;
 	private int lineSmoothness = 10;
-
-	public SphereCollider soundCollider; 
-	private bool makingSound = false; 
-	public float soundRadius = 40f;
-	public float soundDuration = 10f;
-	private float timer = 0f;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -53,7 +47,6 @@ public class Player : SmallBoidsFish {
 		defaultCameraPosition.transform.rotation = camera.transform.rotation;
 		energyDrainRate = 3f;
         base.Start();
-        soundCollider.radius = 0f;	
 	}
 
 	protected override void FixedUpdate () {
@@ -72,12 +65,7 @@ public class Player : SmallBoidsFish {
         }
         if (shoot) createLightOrb();
 		Move(h,v,a);
-		if (makingSound) timer += Time.deltaTime;
-		if (timer > soundDuration) {
-			timer = 0f; 
-			makingSound = false; 
-			soundCollider.radius = 0f;
-		}
+
 		//autoTurn();
 		//bob();
 
@@ -86,7 +74,6 @@ public class Player : SmallBoidsFish {
 	protected override void Update() {
 		if (Input.GetKeyUp(KeyCode.Joystick1Button11) || Input.GetKeyUp(KeyCode.F)) lightToggle();
 		if (Input.GetKeyUp(KeyCode.Joystick1Button7) || Input.GetKeyUp(KeyCode.Mouse0)) callCreateLightOrb();
-		if (Input.GetKeyUp(KeyCode.Joystick1Button2)) makeSound();
 		//controllerButtonTest();
 		removeEnergy(energyDrainRate);
 		if (Input.GetKeyDown(KeyCode.Joystick1Button6) || Input.GetKeyDown(KeyCode.LeftShift)) {
@@ -140,12 +127,6 @@ public class Player : SmallBoidsFish {
 
 	private void callCreateLightOrb (){
 		if (isAiming) shoot = true;
-	}
-
-	private void makeSound () { 
-		makingSound = true;
-		timer = 0f;
-		soundCollider.radius = soundRadius;
 	}
 
 	public void addEnergy (float orbStrength) {

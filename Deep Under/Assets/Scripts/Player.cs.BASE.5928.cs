@@ -1,24 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : SmallBoidsFish {
+public class Player : MonoBehaviour {
 
 	private float speed = 80f;
-	private float autoTurnSpeed = 10f;
-	private Rigidbody rigidbody;
+	private float autoTurnSpeed = 10f; 
+	Rigidbody rigidbody;
 
 	public CameraFollow camera;
 	public GameObject defaultCameraPosition; //is constantly updated by player, so is situated here
 	private float aimZoomAmount = 2f; //scalar
 	private float aimShiftAmount = 15f; //translational
-	private bool isAiming = false;
+	public bool isAiming = false; 
 
 	public Light spotlight;
 	private bool lightOn = false;
 
 	public lightOrb lightOrb;
 	public Transform lightOrbPosition;
-	private bool shoot = false;
+	public bool shoot = false; 
 	private float throwForce = 1600f;
 
 	private float h;
@@ -31,16 +31,10 @@ public class Player : SmallBoidsFish {
 	public bool charging = false;
 
 	LineRenderer lineRenderer;
-	private int lineSmoothness = 10;
-
-	public SphereCollider soundCollider; 
-	private bool makingSound = false; 
-	public float soundRadius = 40f;
-	public float soundDuration = 10f;
-	private float timer = 0f;
+	private int lineSmoothness = 10; 
 
 	// Use this for initialization
-	protected override void Start () {
+	void Start () {
 		energy = 80f;
 		rigidbody = GetComponent<Rigidbody>();
 		spotlight.gameObject.SetActive(lightOn);
@@ -52,50 +46,42 @@ public class Player : SmallBoidsFish {
 		defaultCameraPosition.transform.position = camera.transform.position;
 		defaultCameraPosition.transform.rotation = camera.transform.rotation;
 		energyDrainRate = 3f;
-        base.Start();
-        soundCollider.radius = 0f;	
+
 	}
 
-	protected override void FixedUpdate () {
+	void FixedUpdate () {
 		//Debug.DrawLine(defaultCameraPosition.transform.position, transform.position);
 		//Debug.DrawLine(camera.transform.position, transform.position);
 		Debug.DrawRay(transform.position, transform.forward*10f);
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
-		if (Input.GetKey(KeyCode.Joystick1Button4)) a = 1;
-		else if (Input.GetKey(KeyCode.Joystick1Button5)) a = -1;
+		if (Input.GetKey(KeyCode.Joystick1Button4)) a = 1; 
+		else if (Input.GetKey(KeyCode.Joystick1Button5)) a = -1; 
         else {
        		a = Input.GetAxis("Altitude");
         }
-		if (Input.GetKey(KeyCode.Joystick1Button6) || Input.GetKey(KeyCode.LeftShift)) {
-        	autoTurn();
+		if (Input.GetKey(KeyCode.Joystick1Button6) || Input.GetKey(KeyCode.LeftShift)) { 
+        	autoTurn();	
         }
         if (shoot) createLightOrb();
 		Move(h,v,a);
-		if (makingSound) timer += Time.deltaTime;
-		if (timer > soundDuration) {
-			timer = 0f; 
-			makingSound = false; 
-			soundCollider.radius = 0f;
-		}
+
 		//autoTurn();
 		//bob();
 
 	}
 
-	protected override void Update() {
+	void Update() {
 		if (Input.GetKeyUp(KeyCode.Joystick1Button11) || Input.GetKeyUp(KeyCode.F)) lightToggle();
 		if (Input.GetKeyUp(KeyCode.Joystick1Button7) || Input.GetKeyUp(KeyCode.Mouse0)) callCreateLightOrb();
-		if (Input.GetKeyUp(KeyCode.Joystick1Button2)) makeSound();
 		//controllerButtonTest();
 		removeEnergy(energyDrainRate);
-		if (Input.GetKeyDown(KeyCode.Joystick1Button6) || Input.GetKeyDown(KeyCode.LeftShift)) {
-        	aim(aimZoomAmount, aimShiftAmount);
+		if (Input.GetKeyDown(KeyCode.Joystick1Button6) || Input.GetKeyDown(KeyCode.LeftShift)) { 
+        	aim(aimZoomAmount, aimShiftAmount);	
         }
-		if (Input.GetKeyUp(KeyCode.Joystick1Button6) || Input.GetKeyUp(KeyCode.LeftShift)) {
-        	exitAim(aimZoomAmount, aimShiftAmount);
+		if (Input.GetKeyUp(KeyCode.Joystick1Button6) || Input.GetKeyUp(KeyCode.LeftShift)) { 
+        	exitAim(aimZoomAmount, aimShiftAmount);	
         }
-        base.Update();
 	}
 
 	private void Move (float h, float v, float u) {
@@ -112,7 +98,7 @@ public class Player : SmallBoidsFish {
 
 	private void autoTurn () {
 	 	transform.rotation = Quaternion.Lerp(transform.rotation, camera.transform.rotation, autoTurnSpeed * Time.deltaTime);
-
+	 	
 	}
 
 	private void turn (Vector3 dir) {
@@ -135,17 +121,11 @@ public class Player : SmallBoidsFish {
 		Vector3 force = transform.forward*throwForce;
 		//Debug.Log(force.ToString());
 		clone.rb.AddForce(force);
-		shoot = false;
+		shoot = false; 
 	}
 
-	private void callCreateLightOrb (){
+	private void callCreateLightOrb (){ 
 		if (isAiming) shoot = true;
-	}
-
-	private void makeSound () { 
-		makingSound = true;
-		timer = 0f;
-		soundCollider.radius = soundRadius;
 	}
 
 	public void addEnergy (float orbStrength) {
@@ -175,29 +155,29 @@ public class Player : SmallBoidsFish {
 		}
 	}
 
-	private void aim (float zoomAmount, float shiftAmount) {
-		isAiming = true;
+	private void aim (float zoomAmount, float shiftAmount) { 
+		isAiming = true; 
 		camera.translateHorizontal(shiftAmount);	//translate before offset length is altered
-		camera.scaleOffsetLength(1f/zoomAmount); //zoom in
+		camera.scaleOffsetLength(1f/zoomAmount); //zoom in 
 		//TODO: show throwing line
-		drawAim();
+		drawAim(); 
 
 	}
 
 	private void exitAim (float zoomAmount, float shiftAmount) {
-		isAiming = false;
+		isAiming = false; 
 		camera.scaleOffsetLength(zoomAmount); //zoom out
 		camera.translateHorizontal(-shiftAmount); //translate after offset is put back to orig length
-		camera.swingToPosition(defaultCameraPosition.transform);
+		camera.swingToPosition(defaultCameraPosition.transform); 
 	}
 
-	private void drawAim () {
-
+	private void drawAim () { 
+		
 
 	}
 
 
-
+	
 	private void controllerButtonTest() {
 		if (Input.GetKeyDown (KeyCode.Joystick1Button0)) Debug.Log("Square pressed");
 		if (Input.GetKeyDown (KeyCode.Joystick1Button1)) Debug.Log("X pressed");

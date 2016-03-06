@@ -31,7 +31,7 @@ public abstract class BoidsFish : MonoBehaviour
 	private float HungerSpan;
 
     protected float MinSpeed;
-	[SerializeField] protected float MaxSpeed;
+	protected float MaxSpeed;
 
     [SerializeField] private SIZE size;
 	public SIZE Size
@@ -44,9 +44,9 @@ public abstract class BoidsFish : MonoBehaviour
 	public abstract STATE State { get; protected set; }
 
 	private List<BoidsFish> Repellants = new List<BoidsFish>();
-	[SerializeField] private List<BoidsFish> Predators = new List<BoidsFish>();
+	private List<BoidsFish> Predators = new List<BoidsFish>();
     public int PredatorCount { get { return this.Predators.Count; } }
-    public List<BoidsFish> Predatees = new List<BoidsFish>();
+    [HideInInspector] public List<BoidsFish> Predatees = new List<BoidsFish>();
 
 	// A physical target will always take precedence over a standard target
 	public bool IsFollowingTarget = false;
@@ -68,46 +68,79 @@ public abstract class BoidsFish : MonoBehaviour
 	private Vector3 Target = Vector3.zero;
 
 	// If fish are outside the bounding volumes, they try to move back inside them
-	[SerializeField] private List<BoidsBoundary> BoundaryVolumes = new List<BoidsBoundary>();
-	[SerializeField] private BoidsBoundary LastBoundary;
-	[SerializeField] protected bool IsOutOfBounds = false;
+	private List<HardBoundary> HardBoundaries = new List<HardBoundary>();
+	private HardBoundary LastHardBoundary;
+    protected bool IsOutsideHardBounds = false;
+    private List<SoftBoundaryComponent> SoftBoundaryComponents = new List<SoftBoundaryComponent>();
+    private SoftBoundaryComponent LastSoftBoundaryComponent;
+    private SoftBoundary CurrentSoftBoundary;
+    private SoftBoundary OriginalSoftBoundary;
+    protected bool IsOutsideSoftBounds = false;
+
+    protected virtual void Awake()
+    {
+		this.State = STATE.SWIMMING;
+		this.StateTimer = 0f;
+		this.HungerSpan = Random.Range(10f,50f);
+        this.CurrentSoftBoundary = this.OriginalSoftBoundary;
+    }
 
 	// Make sure that this fish belongs to the Fish layer
 	protected virtual void Start()
 	{
-		// Make sure that this fish belongs to the Fish layer
-		// this.EnforceLayerMembership("Fish");
-		this.State = STATE.SWIMMING;
-		this.StateTimer = 0f;
-		this.HungerSpan = Random.Range(10f,50f);
-		//		Debug.Log("This fish hunger span is : " + hungerSpan);
-
         // Each boids fish is responsible for registering itself to the fish manager
         FishManager.Instance.RegisterFish(this);
 	}
 
-	public void OutsideBounds(BoidsBoundary boundary)
+	public void OutsideHardBounds(HardBoundary boundary)
 	{
-		this.BoundaryVolumes.Remove(boundary);
-		if (this.BoundaryVolumes.Count <= 0)
+		this.HardBoundaries.Remove(boundary);
+		if (this.HardBoundaries.Count <= 0)
 		{
-			this.IsOutOfBounds = true;
+			this.IsOutsideHardBounds = true;
 		}
 	}
 
-	public void InsideBounds(BoidsBoundary boundary)
+	public void InsideHardBounds(HardBoundary boundary)
 	{
-		this.BoundaryVolumes.Add(boundary);
-        this.LastBoundary = boundary;
+		this.HardBoundaries.Add(boundary);
+        this.LastHardBoundary = boundary;
 
 		// If this fish just returned from being out of bounds
-		if (this.IsOutOfBounds)
+		if (this.IsOutsideHardBounds)
 		{
 			// TODO : Direct fishies more inward, otherwise they stay along the boundary edge
 
-			this.IsOutOfBounds = false;
+			this.IsOutsideHardBounds = false;
 		}
 	}
+
+    public void OutsideSoftBounds(SoftBoundaryComponent boundaryComponent)
+    {
+        this.SoftBoundaryComponents.Remove(boundaryComponent);
+        if (this.SoftBoundaryComponents.Count <= 0)
+        {
+            this.IsOutsideSoftBounds = true;
+        }
+    }
+
+    public void InsideSoftBounds(SoftBoundaryComponent boundaryComponent)
+    {
+        // For fish that don't have a current soft boundary assigned, do nothing
+        if (this.CurrentSoftBoundary == null)
+            { return; }
+
+        if (this.CurrentSoftBoundary.Contains(boundaryComponent))
+        {
+            this.SoftBoundaryComponents.Add(boundaryComponent);
+            this.LastSoftBoundaryComponent = boundaryComponent;
+
+            if (this.IsOutsideSoftBounds)
+            {
+                this.IsOutsideSoftBounds = false;
+            }
+        }
+    }
 
     public void Flee()
     {
@@ -170,6 +203,13 @@ public abstract class BoidsFish : MonoBehaviour
 	protected virtual void StopFollowingTarget()
 	{
 		this.IsFollowingTarget = false;
+        this.physicalTarget = null;
+
+        // Make a new soft bound if while following the target, this fish moved out of its current soft boundary
+        if (this.IsOutsideSoftBounds)
+        {
+            // TODO : Move soft bounds, or remove it
+        }
 		// TODO
 		// Maybe get a new random point to swim towards?
 		// Or just switch to idle?
@@ -205,12 +245,8 @@ public abstract class BoidsFish : MonoBehaviour
 
 	protected Vector3 VectorTowardsTarget()
 	{
-		// Move towards the boundary if out of bounds
-		if (this.IsOutOfBounds)
-		{ return (this.LastBoundary.transform.position - this.transform.position) * BoidsSettings.Instance.Target; }
-
 		// Only continue if the fish is following a target
-		if (!this.IsFollowingTarget)
+		if (!this.IsFollowingTarget || this.IsOutsideHardBounds)
 		{ return Vector3.zero; }
 
 		// Follow a physical target if it exists
@@ -244,9 +280,29 @@ public abstract class BoidsFish : MonoBehaviour
         return avoid;
     }
 
+    protected Vector3 VectorWithinBounds()
+    {
+        if (this.IsOutsideHardBounds)
+            { return (this.LastHardBoundary.transform.position - this.transform.position) * BoidsSettings.Instance.Bounds; }
+
+        if (this.IsOutsideSoftBounds)
+        {
+            if (this.LastSoftBoundaryComponent == null)
+                { return Vector3.zero; }
+
+            return (this.LastSoftBoundaryComponent.transform.position - this.transform.position) * BoidsSettings.Instance.Bounds;
+        }
+
+        return Vector3.zero;
+    }
+
 	protected virtual void FixedUpdate()
 	{
 		Vector3 updatedVelocity = this.CalculateVelocity();
+#if UNITY_EDITOR
+        updatedVelocity *= BoidsSettings.Instance.FishSpeedMultiplier;
+#endif
+		updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 2*Time.fixedDeltaTime);
 		//calvinz: Add bob to the velocity, so the fish turns naturally, also bobs on x axis is more realistic
 		updatedVelocity += Vector3.left * (Mathf.Sin (Time.time * 2f)) * 0.03f;
 #if UNITY_EDITOR
@@ -257,7 +313,7 @@ public abstract class BoidsFish : MonoBehaviour
 
 		//calvinz: if eating, stay (almost) still
 		if (State == STATE.EATING)
-			updatedVelocity *= 0.01f;
+			updatedVelocity *= 0.5f;
 		this.RigidBody.velocity = updatedVelocity;
 
 		// Steer the fish's transform to face the velocity vector
@@ -268,7 +324,7 @@ public abstract class BoidsFish : MonoBehaviour
 		this.StateTimer += Time.fixedDeltaTime;
 	}
 
-    void Update()
+    protected virtual void Update()
     {
 
 #if UNITY_EDITOR
@@ -290,14 +346,16 @@ public abstract class BoidsFish : MonoBehaviour
         }
 #endif
 
+        // Check the conditions of the surrounding prey, should the target switch?
         this.AnalyzePrey();
 
         // FSM IMPLEMENTATION
 		if (State == STATE.SWIMMING && StateTimer > HungerSpan)
 		{
 			//TODO: Fish goes hungry and detaches from group
-			State = STATE.IDLE; 	// Idle fish does not want to flock and is just swimming away
-			StopFollowingTarget();		// Stop flocking
+			// State = STATE.IDLE; 	// Idle fish does not want to flock and is just swimming away
+			// StopFollowingTarget();		// Stop flocking
+            this.Idle();
 		}
 		else if (State == STATE.IDLE && StateTimer > 10.0f)
 		{
@@ -311,27 +369,45 @@ public abstract class BoidsFish : MonoBehaviour
 			{
 				State = STATE.EATING;
 			}
-			else if (distance > 100.0)		// Target is too far, give up can be changed later
+			else if (distance > 100)		// Target is too far, give up can be changed later
 			{
-				State = STATE.IDLE;
+				this.Idle();
 			}
 		}
 		else if (State == STATE.FLEEING)
 		{
 			if (this.Predators.Count == 0)
 			{
-				State = STATE.IDLE;
+				this.Idle();
 			}
 		}
 		else if (State == STATE.EATING)
 		{
 			if (StateTimer > 2f)
 			{
-				State = STATE.IDLE;
+				this.Idle();
 			}
 		}
         // Else this fish is going to be eaten and is about to be destroyed
     }
+
+	protected bool checkIfVisible(BoidsFish target)
+	{
+		// if target is out of sight
+		if (Vector3.Angle (transform.forward, target.transform.position - transform.position) > 90)
+			return false;
+
+		// if target is obscured
+		RaycastHit raycastHit;
+		int layerMask = 1 << 8 | 1 << 9 | 1 << 14 | 1 << 15 | 1 << 16 | 1 << 17 | 1 << 18;
+		layerMask = ~layerMask;
+		Physics.Raycast (transform.position, target.transform.position - transform.position, out raycastHit, Mathf.Infinity, layerMask);
+		if (raycastHit.collider != target.GetComponent<Collider> ()) 
+		{
+			return false;
+		}
+		return true;
+	}
 
     protected void AnalyzePrey()
     {
@@ -340,10 +416,31 @@ public abstract class BoidsFish : MonoBehaviour
 			return;
 
         BoidsFish predatee = this.PhysicalTarget as BoidsFish;
+
+		// if the target is out of sight, stop hunting
+		if (predatee && !checkIfVisible (predatee))
+			predatee = null;
+
         if (predatee != null)
         {
             foreach (BoidsFish potentialSwitch in this.Predatees)
             {
+				// ignore if not visible
+				if (!checkIfVisible (potentialSwitch))
+					continue;
+
+                // Don't switch if the predatee is A.U.L.I.V.
+                if (predatee.gameObject == GameManager.Instance.Player.gameObject)
+                    { break; }
+
+                // Switch to A.U.L.I.V. if within prey
+                if (potentialSwitch.gameObject == GameManager.Instance.Player.gameObject)
+                {
+                    predatee = potentialSwitch;
+                    break;
+                }
+
+                // Skip if potential switch is smaller in size or the same fish as already being hunted
                 if (potentialSwitch == predatee || potentialSwitch.Size < predatee.Size)
                     { continue; }
 
@@ -372,11 +469,24 @@ public abstract class BoidsFish : MonoBehaviour
             BoidsFish closestFish = null;
             foreach (BoidsFish fish in this.Predatees)
             {
+				// ignore if not visible
+				if (!checkIfVisible (fish))
+					continue;
 
-                // Skip small fish that aren't in a big enough flock
-                SmallBoidsFish small = fish as SmallBoidsFish;
-                if ((small != null) && (small.FlockSize < BoidsSettings.Instance.MinFlockSizeToAttractLargeFish))
-                    { continue; }
+                // Set A.U.L.I.V. as prey immediately if present
+                if (fish.gameObject == GameManager.Instance.Player.gameObject)
+                {
+                    closestFish = fish;
+                    break;
+                }
+
+                // Large fish skip small fish that aren't in a big enough flock
+                if (this.Size >= SIZE.LARGE)
+                {
+                    SmallBoidsFish small = fish as SmallBoidsFish;
+                    if (fish.gameObject == GameManager.Instance.Player.gameObject && (small != null) && (small.FlockSize < BoidsSettings.Instance.MinFlockSizeToAttractLargeFish))
+                        { continue; }
+                }
 
                 float sqrDistToFish = (this.transform.position - fish.transform.position).sqrMagnitude;
                 if (sqrDistToFish < closestSqrDist)
@@ -399,7 +509,7 @@ public abstract class BoidsFish : MonoBehaviour
             if (smallPredatee != null)
             {
                 if (smallPredatee.FlockSize > BoidsSettings.Instance.MinFlockSizeToScareMediumFish)
-                    { this.PhysicalTarget = null; }
+                    { this.PhysicalTarget = predatee = null; }
             }
         }
 
@@ -457,6 +567,16 @@ public abstract class BoidsFish : MonoBehaviour
 		// do something if predators are gone
 	}
 
-	protected abstract Vector3 CalculateVelocity();
+	protected virtual Vector3 CalculateVelocity()
+    {
+        // Handle rigidbody velocity updates
+        Vector3 minimum = this.transform.forward * this.MinSpeed;     // Fish is always moving a minimum speed
+		Vector3 separation = this.VectorAwayFromNeighbours();
+		Vector3 target = this.VectorTowardsTarget();
+        Vector3 bounds = this.VectorWithinBounds();
+        Vector3 avoid = this.VectorAwayFromPredators();
+
+		return minimum + target + bounds + separation + avoid;
+    }
 }
 
