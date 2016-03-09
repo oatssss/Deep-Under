@@ -24,7 +24,6 @@ public class CameraFollow : MonoBehaviour {
 		offset = transform.position - player.transform.position;
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false; 
-
 	}
 
 	void FixedUpdate () {

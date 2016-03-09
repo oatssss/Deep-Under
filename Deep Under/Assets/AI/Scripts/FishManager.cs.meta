@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: 5c00023fa87e041f8a0ab8b329a919b4
-timeCreated: 1454364803
+timeCreated: 1457493077
 licenseType: Pro
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - LargeFish: {fileID: 190734, guid: 5ecf47a3803cd40db806e9102ab8959d, type: 2}
+  - MediumFish: {fileID: 179524, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+  - SmallFish: {fileID: 131040, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+  - EnergyBall: {fileID: 165694, guid: 89728e4994ba29249b407a5ffa5eee8a, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

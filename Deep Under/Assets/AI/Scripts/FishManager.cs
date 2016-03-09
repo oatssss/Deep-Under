@@ -20,18 +20,18 @@ public class FishManager : UnitySingleton<FishManager> {
 	void Start () {
         BoidsFish _fish;
 
-		for (int i = 0; i < numberOfLFish; i++) {
-			_fish = ((GameObject) Instantiate(LargeFish, GetRandomPos(), transform.rotation)).GetComponent<BoidsFish>();
-			_fish.transform.parent = this.transform;
-		}
-		for (int j = 0; j < numberOfMFish; j++) {
-			_fish = ((GameObject) Instantiate(MediumFish, GetRandomPos(), transform.rotation)).GetComponent<BoidsFish>();
-			_fish.transform.parent = this.transform;
-		}
-		for (int k = 0; k < numberOfSFish; k++) {
-			_fish = ((GameObject) Instantiate(SmallFish, GetRandomPos(), transform.rotation)).GetComponent<BoidsFish>();
-			_fish.transform.parent = this.transform;
-		}
+//		for (int i = 0; i < numberOfLFish; i++) {
+//			_fish = ((GameObject) Instantiate(LargeFish, GetRandomPos(), transform.rotation)).GetComponent<BoidsFish>();
+//			_fish.transform.parent = this.transform;
+//		}
+//		for (int j = 0; j < numberOfMFish; j++) {
+//			_fish = ((GameObject) Instantiate(MediumFish, GetRandomPos(), transform.rotation)).GetComponent<BoidsFish>();
+//			_fish.transform.parent = this.transform;
+//		}
+//		for (int k = 0; k < numberOfSFish; k++) {
+//			_fish = ((GameObject) Instantiate(SmallFish, GetRandomPos(), transform.rotation)).GetComponent<BoidsFish>();
+//			_fish.transform.parent = this.transform;
+//		}
 	}
 
 

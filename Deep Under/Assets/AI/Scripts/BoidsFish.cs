@@ -7,6 +7,7 @@ public abstract class BoidsFish : MonoBehaviour
 {
 	public enum SIZE { SMALL, MEDIUM, LARGE }
 	public enum STATE { IDLE, SWIMMING, FLEEING, HUNTING, EATING, EATEN }
+	public Light fLight;
 
 	[SerializeField] public Rigidbody RigidBody;
 	[SerializeField] private SphereCollider RepelVolume;
@@ -90,6 +91,7 @@ public abstract class BoidsFish : MonoBehaviour
 	{
         // Each boids fish is responsible for registering itself to the fish manager
         FishManager.Instance.RegisterFish(this);
+		InvokeRepeating("RandomizeDestination",5.0f,3.0f);
 	}
 
 	public void OutsideHardBounds(HardBoundary boundary)
@@ -155,12 +157,20 @@ public abstract class BoidsFish : MonoBehaviour
 	public void Hunt()
 	{
 		this.State = STATE.HUNTING;
+		if (this.Size == SIZE.MEDIUM)
+		{
+			fLight.color = Color.red;
+		}
 	}
 
 	public void Idle()
 	{
 		this.State = STATE.IDLE;
 		StopFollowingTarget ();
+		if (this.Size == SIZE.MEDIUM)
+		{
+			fLight.color = Color.yellow;
+		}
 	}
 
 	/// <summary> Called by the child RepelVolume gameobject </summary>
@@ -357,10 +367,11 @@ public abstract class BoidsFish : MonoBehaviour
 			// StopFollowingTarget();		// Stop flocking
             this.Idle();
 		}
-		else if (State == STATE.IDLE && StateTimer > 10.0f)
+		else if (State == STATE.IDLE)
 		{
 			// Resume swimming and joining crowd
-			State = STATE.SWIMMING;
+			if  (StateTimer > 10.0f)
+				State = STATE.SWIMMING;
 		}
 		else if (State == STATE.HUNTING)
 		{
@@ -533,13 +544,20 @@ public abstract class BoidsFish : MonoBehaviour
 			return 0;
 	}
 
-	public Vector3 RandomizeDestination(){
+	protected virtual void RandomizeDirection(){
+
+		Vector3 random = new Vector3(Random.Range(-80.0f,80.0f), Random.Range (-80.0f,80.0f),0.0f);
+		Vector3.Normalize(random);
+		this.RigidBody.AddForce(random);
+	}
+
+	public void RandomizeDestination(){
 		float radius = 20.0f;				// depends on the size of terrain?
 		Vector3 random = Random.insideUnitSphere * radius;
 		random = new Vector3(random.x, random.y, random.z);
 		random += transform.position;
 		random.y = Mathf.Abs (random.y);
-		return random;
+		SetTarget(random);
 	}
 
 	void OnCollisionEnter(Collision collision)
@@ -566,7 +584,7 @@ public abstract class BoidsFish : MonoBehaviour
         Predatees.Remove(referencedFish);
 		// do something if predators are gone
 	}
-
+	
 	protected virtual Vector3 CalculateVelocity()
     {
         // Handle rigidbody velocity updates

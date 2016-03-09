@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: .801470578, g: .86483103, b: 1, a: 1}
   m_AmbientEquatorColor: {r: .114, g: .125, b: .133000001, a: 1}
   m_AmbientGroundColor: {r: .0469999984, g: .0430000015, b: .0350000001, a: 1}
-  m_AmbientIntensity: .349999994
+  m_AmbientIntensity: .180000007
   m_AmbientMode: 0
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: .5
@@ -34,7 +34,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: .610000014
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
 --- !u!157 &3
@@ -111,7 +111,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 29
 --- !u!1001 &42419104
 Prefab:
   m_ObjectHideFlags: 0
@@ -420,6 +420,9 @@ MonoBehaviour:
   spawnQuantity: 1
   spawnChance: 1
   creature: {fileID: 179524, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+  fishManager: {fileID: 1475477093}
+  typeOfFish: 1
+  maxFish: 20
 --- !u!1 &223161767 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
@@ -438,7 +441,10 @@ MonoBehaviour:
   spawnRate: 1.5
   spawnQuantity: 3
   spawnChance: .75
-  creature: {fileID: 120948, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+  creature: {fileID: 131040, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+  fishManager: {fileID: 1475477093}
+  typeOfFish: 1
+  maxFish: 10
 --- !u!1 &225928282
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,7 +492,10 @@ MonoBehaviour:
   spawnRate: 2
   spawnQuantity: 3
   spawnChance: .5
-  creature: {fileID: 120948, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+  creature: {fileID: 131040, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+  fishManager: {fileID: 1475477093}
+  typeOfFish: 1
+  maxFish: 10
 --- !u!1 &331662575 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
@@ -505,7 +514,10 @@ MonoBehaviour:
   spawnRate: 1.5
   spawnQuantity: 3
   spawnChance: .75
-  creature: {fileID: 120948, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+  creature: {fileID: 131040, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+  fishManager: {fileID: 1475477093}
+  typeOfFish: 1
+  maxFish: 10
 --- !u!1001 &433160415
 Prefab:
   m_ObjectHideFlags: 0
@@ -1318,7 +1330,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 818969598}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 736625c5bd0114703b70583b42d6d292, type: 3}
   m_Name: 
@@ -1372,6 +1384,9 @@ MonoBehaviour:
   spawnQuantity: 1
   spawnChance: 1
   creature: {fileID: 179524, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+  fishManager: {fileID: 1475477093}
+  typeOfFish: 2
+  maxFish: 20
 --- !u!1 &836514732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,7 +1630,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 30
 --- !u!1 &875595915
 GameObject:
   m_ObjectHideFlags: 0
@@ -2293,6 +2308,52 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0542ce48aa9ba74291171c256824204, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1059509391
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 495466, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 90.5788345
+      objectReference: {fileID: 0}
+    - target: {fileID: 495466, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 88.0999603
+      objectReference: {fileID: 0}
+    - target: {fileID: 495466, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 407.967529
+      objectReference: {fileID: 0}
+    - target: {fileID: 495466, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495466, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495466, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495466, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 495466, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: m_RootOrder
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 199064, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1118599444
 GameObject:
   m_ObjectHideFlags: 0
@@ -2536,48 +2597,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f85e6081179153242b681d77b9007ff3, type: 3}
   m_IsPrefabParent: 0
---- !u!1001 &1199838531
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 237.43512
-      objectReference: {fileID: 0}
-    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 88.0999603
-      objectReference: {fileID: 0}
-    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 408.979218
-      objectReference: {fileID: 0}
-    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
-      propertyPath: m_RootOrder
-      value: 22
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1265554694
 GameObject:
   m_ObjectHideFlags: 0
@@ -2685,7 +2704,7 @@ Transform:
   m_Children:
   - {fileID: 1448517092}
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 32
 --- !u!1001 &1280239204
 Prefab:
   m_ObjectHideFlags: 0
@@ -2746,7 +2765,10 @@ MonoBehaviour:
   spawnRate: 1
   spawnQuantity: 2
   spawnChance: .25
-  creature: {fileID: 120948, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+  creature: {fileID: 131040, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+  fishManager: {fileID: 1475477093}
+  typeOfFish: 1
+  maxFish: 10
 --- !u!1 &1392969130
 GameObject:
   m_ObjectHideFlags: 0
@@ -3015,6 +3037,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1455561846}
+--- !u!1 &1475477093 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 199064, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+  m_PrefabInternal: {fileID: 1059509391}
 --- !u!1 &1515111903
 GameObject:
   m_ObjectHideFlags: 0
@@ -3088,7 +3114,7 @@ Transform:
   m_LocalScale: {x: 1110, y: 329.170593, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 33
 --- !u!64 &1515111908
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3204,6 +3230,48 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55ac03278440a76459970ba5b68e54c9, type: 3}
+  m_IsPrefabParent: 0
+--- !u!1001 &1553454955
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 444822, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 444822, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 444822, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 444822, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 444822, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 444822, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 444822, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 444822, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1565971605
 GameObject:
@@ -3327,6 +3395,10 @@ Prefab:
     - target: {fileID: 400000, guid: 89d477af63ddff146a19d8724363779c, type: 3}
       propertyPath: m_LocalScale.z
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 89d477af63ddff146a19d8724363779c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 89d477af63ddff146a19d8724363779c, type: 3}
@@ -3837,6 +3909,9 @@ MonoBehaviour:
   spawnQuantity: 1
   spawnChance: 1
   creature: {fileID: 179524, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+  fishManager: {fileID: 1475477093}
+  typeOfFish: 2
+  maxFish: 20
 --- !u!1 &1768636669
 GameObject:
   m_ObjectHideFlags: 0
@@ -4091,7 +4166,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 31
 --- !u!1 &2040662659
 GameObject:
   m_ObjectHideFlags: 0

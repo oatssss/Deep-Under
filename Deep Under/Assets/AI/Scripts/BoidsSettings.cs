@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class BoidsSettings : UnitySingleton<BoidsSettings> {
+public class BoidsSettings : UnitySingletonPersistent<BoidsSettings> {
 
     [Header("Volumes")]
 	[Range(1,50f)] public float FlockRadius = 20f;

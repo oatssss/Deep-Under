@@ -109,6 +109,9 @@ public class Player : SmallBoidsFish {
 
 	}
 
+	protected override void RandomizeDirection(){
+		
+	}
 
 	private void autoTurn () {
 	 	transform.rotation = Quaternion.Lerp(transform.rotation, camera.transform.rotation, autoTurnSpeed * Time.deltaTime);
@@ -195,7 +198,6 @@ public class Player : SmallBoidsFish {
 
 
 	}
-
 
 
 	private void controllerButtonTest() {
