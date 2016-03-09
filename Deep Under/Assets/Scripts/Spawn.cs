@@ -29,7 +29,7 @@ public class Spawn : MonoBehaviour {
 			{
 				for (int i = 0; i < spawnQuantity; i++)
 				{
-					Debug.Log("Spawning small fish");
+//					Debug.Log("Spawning small fish");
 					Instantiate(creature, this.transform.position + new Vector3(0, 4, 0), Quaternion.Euler(0.0f, (float)Random.Range(0, 360), 0.0f));
 				}
 			}
@@ -38,7 +38,7 @@ public class Spawn : MonoBehaviour {
 			{
 				for (int i = 0; i < spawnQuantity; i++)
 				{
-					Debug.Log("Spawning medium fish");
+//					Debug.Log("Spawning medium fish");
 					Instantiate(creature, this.transform.position + new Vector3(0, 4, 0), Quaternion.Euler(0.0f, (float)Random.Range(0, 360), 0.0f));
 				}
 			}
@@ -47,7 +47,7 @@ public class Spawn : MonoBehaviour {
 			{
 				for (int i = 0; i < spawnQuantity; i++)
 				{
-					Debug.Log("Spawning large fish");
+//					Debug.Log("Spawning large fish");
 					Instantiate(creature, this.transform.position + new Vector3(0, 4, 0), Quaternion.Euler(0.0f, (float)Random.Range(0, 360), 0.0f));
 				}
 			}

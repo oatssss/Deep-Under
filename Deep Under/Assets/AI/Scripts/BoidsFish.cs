@@ -569,6 +569,12 @@ public abstract class BoidsFish : MonoBehaviour
             this.State = STATE.EATING;
             collidedFish.Eaten(this);
 		}
+		else if (collision.gameObject.tag=="Player" && collidedFish.Size < this.Size)
+		{
+			// collided with Auliv, kill?
+			Player auliv = collision.gameObject.GetComponent<Player>();
+			auliv.Die ();
+		}
     }
 
     private void Eaten(BoidsFish eater)
