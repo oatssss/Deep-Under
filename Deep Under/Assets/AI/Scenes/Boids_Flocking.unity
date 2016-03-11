@@ -545,6 +545,10 @@ Prefab:
       propertyPath: m_Name
       value: TropicalFish (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_IsPrefabParent: 0
@@ -955,6 +959,10 @@ Prefab:
       propertyPath: m_Name
       value: TropicalFish (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_IsPrefabParent: 0
@@ -1058,6 +1066,59 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 483876, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_PrefabInternal: {fileID: 1659688132}
+--- !u!1 &100184748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 100184749}
+  - 65: {fileID: 100184751}
+  - 114: {fileID: 100184750}
+  m_Layer: 0
+  m_Name: SoftBoundaryComponent (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &100184749
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100184748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10, y: 0, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_Children: []
+  m_Father: {fileID: 604199447}
+  m_RootOrder: 1
+--- !u!114 &100184750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100184748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6263c44f4434c77a6b0b93b09010d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoftBoundary: {fileID: 604199446}
+--- !u!65 &100184751
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100184748}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &111326549 stripped
 Transform:
   m_PrefabParentObject: {fileID: 483876, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -1603,7 +1664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &182986203
 Transform:
   m_ObjectHideFlags: 0
@@ -2014,6 +2075,10 @@ Prefab:
       propertyPath: m_Name
       value: TropicalFish (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_IsPrefabParent: 0
@@ -2351,6 +2416,10 @@ Prefab:
     - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
       propertyPath: m_Name
       value: TropicalFish (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -2839,6 +2908,10 @@ Prefab:
       propertyPath: m_Name
       value: TropicalFish (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_IsPrefabParent: 0
@@ -3131,6 +3204,59 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 483876, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_PrefabInternal: {fileID: 278078755}
+--- !u!1 &394400758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 394400759}
+  - 65: {fileID: 394400761}
+  - 114: {fileID: 394400760}
+  m_Layer: 0
+  m_Name: SoftBoundaryComponent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &394400759
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 394400758}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10, y: 0, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_Children: []
+  m_Father: {fileID: 604199447}
+  m_RootOrder: 0
+--- !u!114 &394400760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 394400758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6263c44f4434c77a6b0b93b09010d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoftBoundary: {fileID: 604199446}
+--- !u!65 &394400761
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 394400758}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &400228178 stripped
 Transform:
   m_PrefabParentObject: {fileID: 483876, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -3227,6 +3353,10 @@ Prefab:
     - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
       propertyPath: m_Name
       value: TropicalFish (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -3820,6 +3950,10 @@ Prefab:
       propertyPath: m_Name
       value: TropicalFish (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_IsPrefabParent: 0
@@ -3865,6 +3999,10 @@ Prefab:
     - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
       propertyPath: m_Name
       value: TropicalFish
+      objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -3957,6 +4095,10 @@ Prefab:
     - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
       propertyPath: m_Name
       value: TropicalFish (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -4092,6 +4234,51 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &485276787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 485276789}
+  - 114: {fileID: 485276788}
+  m_Layer: 0
+  m_Name: SoftBoundary1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &485276788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 485276787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d9d5023e44f4114a5138cb35b8bd6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoAddBoundaryComponents: 1
+  SoftBoundaryComponents: []
+  SpawnsFish: 0
+  FishCount: 0
+--- !u!4 &485276789
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 485276787}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1655452968}
+  - {fileID: 578915850}
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
 --- !u!4 &488998324 stripped
 Transform:
   m_PrefabParentObject: {fileID: 483876, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -4138,6 +4325,10 @@ Prefab:
     - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
       propertyPath: m_Name
       value: TropicalFish (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -4280,6 +4471,10 @@ Prefab:
     - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
       propertyPath: m_Name
       value: TropicalFish (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -5002,6 +5197,59 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 578629460}
+--- !u!1 &578915849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 578915850}
+  - 65: {fileID: 578915852}
+  - 114: {fileID: 578915851}
+  m_Layer: 0
+  m_Name: SoftBoundaryComponent (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &578915850
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 578915849}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10, y: 0, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_Children: []
+  m_Father: {fileID: 485276789}
+  m_RootOrder: 1
+--- !u!114 &578915851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 578915849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6263c44f4434c77a6b0b93b09010d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoftBoundary: {fileID: 485276788}
+--- !u!65 &578915852
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 578915849}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &593336333
 Prefab:
   m_ObjectHideFlags: 0
@@ -5094,6 +5342,51 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &604199445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 604199447}
+  - 114: {fileID: 604199446}
+  m_Layer: 0
+  m_Name: SoftBoundary2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &604199446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 604199445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d9d5023e44f4114a5138cb35b8bd6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoAddBoundaryComponents: 1
+  SoftBoundaryComponents: []
+  SpawnsFish: 0
+  FishCount: 0
+--- !u!4 &604199447
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 604199445}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 30, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 394400759}
+  - {fileID: 100184749}
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
 --- !u!4 &604527124 stripped
 Transform:
   m_PrefabParentObject: {fileID: 483876, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -5974,6 +6267,10 @@ Prefab:
       propertyPath: m_Name
       value: TropicalFish (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_IsPrefabParent: 0
@@ -6145,6 +6442,10 @@ Prefab:
       propertyPath: m_Name
       value: TropicalFish (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_IsPrefabParent: 0
@@ -6202,6 +6503,10 @@ Prefab:
     - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
       propertyPath: m_Name
       value: TropicalFish (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -8259,15 +8564,15 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 951409571}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd70d448b18cfbc46af26466f752332c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   visualizeFocus: 0
   focalLength: 3
-  focalSize: 2
-  aperture: 0.74
+  focalSize: 0
+  aperture: 0.5
   focalTransform: {fileID: 0}
   maxBlurSize: 2
   highResolution: 0
@@ -8282,25 +8587,6 @@ MonoBehaviour:
   dx11BokehTexture: {fileID: 2800000, guid: a4cdca73d61814d33ac1587f6c163bca, type: 3}
   dx11BokehScale: 1.2
   dx11BokehIntensity: 2.5
---- !u!114 &951409574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 951409571}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76b5ec6153a1d55438228df10fe66844, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distanceFog: 1
-  excludeFarPixels: 1
-  useRadialDistance: 0
-  heightFog: 1
-  height: 1
-  heightDensity: 2
-  startDistance: 10
-  fogShader: {fileID: 4800000, guid: 70d8568987ac0499f952b54c7c13e265, type: 3}
 --- !u!4 &953370267 stripped
 Transform:
   m_PrefabParentObject: {fileID: 483876, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -8531,6 +8817,10 @@ Prefab:
     - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
       propertyPath: m_Name
       value: TropicalFish (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -9256,6 +9546,10 @@ Prefab:
       propertyPath: m_Name
       value: TropicalFish (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_IsPrefabParent: 0
@@ -9791,6 +10085,10 @@ Prefab:
       propertyPath: m_Name
       value: TropicalFish (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_IsPrefabParent: 0
@@ -9936,6 +10234,10 @@ Prefab:
     - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
       propertyPath: m_Name
       value: TropicalFish (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -10144,6 +10446,10 @@ Prefab:
     - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
       propertyPath: m_Name
       value: TropicalFish (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -11389,6 +11695,10 @@ Prefab:
       propertyPath: m_Name
       value: TropicalFish (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_IsPrefabParent: 0
@@ -11480,6 +11790,10 @@ Prefab:
     - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
       propertyPath: m_Name
       value: TropicalFish (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -11731,7 +12045,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1359996375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11754,7 +12068,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 100
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1359996377
 Transform:
@@ -11851,16 +12165,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
       propertyPath: numberOfSFish
-      value: 300
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
       propertyPath: numberOfMFish
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
       propertyPath: numberOfLFish
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: IsolatedSoftBoundaryPrefab
+      value: 
+      objectReference: {fileID: 11442668, guid: 3f420a87fd27e40698c64af0ac4fb2f5,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
   m_IsPrefabParent: 0
@@ -14615,6 +14934,59 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1655452967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1655452968}
+  - 65: {fileID: 1655452970}
+  - 114: {fileID: 1655452969}
+  m_Layer: 0
+  m_Name: SoftBoundaryComponent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1655452968
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1655452967}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10, y: 0, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_Children: []
+  m_Father: {fileID: 485276789}
+  m_RootOrder: 0
+--- !u!114 &1655452969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1655452967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6263c44f4434c77a6b0b93b09010d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoftBoundary: {fileID: 485276788}
+--- !u!65 &1655452970
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1655452967}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1656436303 stripped
 Transform:
   m_PrefabParentObject: {fileID: 483876, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -14665,6 +15037,10 @@ Prefab:
     - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
       propertyPath: m_Name
       value: TropicalFish (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -15015,6 +15391,10 @@ Prefab:
     - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
       propertyPath: m_Name
       value: TropicalFish (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -15395,6 +15775,10 @@ Prefab:
     - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
       propertyPath: m_Name
       value: TropicalFish (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
@@ -16690,6 +17074,10 @@ Prefab:
       propertyPath: m_Name
       value: TropicalFish (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_IsPrefabParent: 0
@@ -17323,6 +17711,10 @@ Prefab:
       propertyPath: m_Name
       value: TropicalFish (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 112644, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b53a1fc53e2c734890a3b55ad95e64e, type: 2}
   m_IsPrefabParent: 0
@@ -17822,15 +18214,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b930a52899695a4583a1ca515da605e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fLight: {fileID: 0}
+  RigidBody: {fileID: 0}
+  RepelVolume: {fileID: 0}
+  size: 0
+  state: 0
+  Repellants: []
+  Predators: []
+  Predatees: []
+  IsFollowingTarget: 0
+  FlockVolume: {fileID: 0}
+  Flock: []
   camera: {fileID: 0}
+  defaultCameraPosition: {fileID: 0}
   spotlight: {fileID: 0}
   lightOrb: {fileID: 0}
   lightOrbPosition: {fileID: 0}
-  LWingLights: []
-  RWingLights: []
   energy: 0
   energyDrainRate: 0
   charging: 0
+  soundCollider: {fileID: 0}
+  soundRadius: 40
+  soundDuration: 10
+  lastPod: {fileID: 0}
+  guiAlert: {fileID: 0}
 --- !u!23 &2069336715
 MeshRenderer:
   m_ObjectHideFlags: 0

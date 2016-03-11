@@ -17,17 +17,18 @@ public class SoftBoundaryComponent : MonoBehaviour {
         if (!this.SoftBoundary)
         {
             SoftBoundary parentBoundary = null;
-                if (transform.parent)
-                    { parentBoundary = transform.parent.GetComponent<SoftBoundary>(); }
-                if (parentBoundary)
-                    { this.SoftBoundary = parentBoundary; }
-                else
-                {
-                    EditorUtility.DisplayDialog("Invalid Soft Boundary Component Context", "A soft boundary component may only exist as a child of a soft boundary", "I understand");
-                    DestroyImmediate(this);
-                }
+            if (transform.parent)
+                { parentBoundary = transform.parent.GetComponent<SoftBoundary>(); }
+            if (parentBoundary)
+                { this.SoftBoundary = parentBoundary; }
+            else
+            {
+                EditorUtility.DisplayDialog("Invalid Soft Boundary Component Context", "A soft boundary component may only exist as a child of a soft boundary", "I understand");
+                DestroyImmediate(this);
             }
         }
+    }
+
 #endif
 
 	void Start()

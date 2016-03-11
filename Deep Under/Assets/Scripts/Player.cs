@@ -5,9 +5,9 @@ public class Player : SmallBoidsFish {
 
 	private float speed = 80f;
 	private float autoTurnSpeed = 10f;
-	private Rigidbody rigidbody;
+	new private Rigidbody rigidbody;
 
-	public CameraFollow camera;
+	new public CameraFollow camera;
 	public GameObject defaultCameraPosition; //is constantly updated by player, so is situated here
 	private float aimZoomAmount = 2f; //scalar
 	private float aimShiftAmount = 15f; //translational
@@ -33,8 +33,8 @@ public class Player : SmallBoidsFish {
 	LineRenderer lineRenderer;
 	private int lineSmoothness = 10;
 
-	public SphereCollider soundCollider; 
-	private bool makingSound = false; 
+	public SphereCollider soundCollider;
+	private bool makingSound = false;
 	public float soundRadius = 40f;
 	public float soundDuration = 10f;
 	private float timer = 0f;
@@ -58,7 +58,7 @@ public class Player : SmallBoidsFish {
 		defaultCameraPosition.transform.rotation = camera.transform.rotation;
 		energyDrainRate = 3f;
         base.Start();
-        soundCollider.radius = 0f;	
+        soundCollider.radius = 0f;
 		startPosition = this.transform.position;
 //		generalLight = GameObject.Find("Caustics Effect").GetComponent<SceneLight>();
 		guiAlert = GameObject.Find("Alert").GetComponent<Alert>();
@@ -82,8 +82,8 @@ public class Player : SmallBoidsFish {
 		Move(h,v,a);
 		if (makingSound) timer += Time.deltaTime;
 		if (timer > soundDuration) {
-			timer = 0f; 
-			makingSound = false; 
+			timer = 0f;
+			makingSound = false;
 			soundCollider.radius = 0f;
 		}
 		//autoTurn();
@@ -120,7 +120,7 @@ public class Player : SmallBoidsFish {
 	}
 
 	protected override void RandomizeDirection(){
-		
+
 	}
 
 	private void autoTurn () {
@@ -155,7 +155,7 @@ public class Player : SmallBoidsFish {
 		if (isAiming) shoot = true;
 	}
 
-	private void makeSound () { 
+	private void makeSound () {
 		makingSound = true;
 		timer = 0f;
 		soundCollider.radius = soundRadius;

@@ -44,14 +44,14 @@ public abstract class BoidsFish : MonoBehaviour
 	[SerializeField] protected STATE state;
 	public abstract STATE State { get; protected set; }
 
-	private List<BoidsFish> Repellants = new List<BoidsFish>();
-	private List<BoidsFish> Predators = new List<BoidsFish>();
+	[SerializeField] private List<BoidsFish> Repellants = new List<BoidsFish>();
+	[SerializeField] private List<BoidsFish> Predators = new List<BoidsFish>();
     public int PredatorCount { get { return this.Predators.Count; } }
-    [HideInInspector] public List<BoidsFish> Predatees = new List<BoidsFish>();
+    /*[HideInInspector]*/ public List<BoidsFish> Predatees = new List<BoidsFish>();
 
 	// A physical target will always take precedence over a standard target
 	public bool IsFollowingTarget = false;
-	private MonoBehaviour physicalTarget;
+	[SerializeField] private MonoBehaviour physicalTarget;
 	public MonoBehaviour PhysicalTarget
 	{
 		get { return this.physicalTarget; }
@@ -66,24 +66,38 @@ public abstract class BoidsFish : MonoBehaviour
 	}
 
 	// standard Target
-	private Vector3 Target = Vector3.zero;
+	[SerializeField] private Vector3 Target = Vector3.zero;
 
 	// If fish are outside the bounding volumes, they try to move back inside them
 	private List<HardBoundary> HardBoundaries = new List<HardBoundary>();
 	private HardBoundary LastHardBoundary;
     protected bool IsOutsideHardBounds = false;
     private List<SoftBoundaryComponent> SoftBoundaryComponents = new List<SoftBoundaryComponent>();
-    private SoftBoundaryComponent LastSoftBoundaryComponent;
-    private SoftBoundary CurrentSoftBoundary;
-    private SoftBoundary OriginalSoftBoundary;
-    protected bool IsOutsideSoftBounds = false;
+    [SerializeField] private SoftBoundaryComponent LastSoftBoundaryComponent;
+    private SoftBoundary CurrentExternalSoftBoundary;
+    [SerializeField] private SoftBoundary currentSoftBoundary;
+    private SoftBoundary CurrentSoftBoundary
+    {
+        get { return this.currentSoftBoundary; }
+        set
+        {
+            if (this.IsolatedSoftBoundary != null)
+            {
+                Destroy(this.IsolatedSoftBoundary.gameObject);
+                this.IsolatedSoftBoundary = null;
+            }
+            this.currentSoftBoundary = value;
+        }
+    }
+
+    private SoftBoundary IsolatedSoftBoundary;
+    [SerializeField] protected bool IsOutsideSoftBounds = true;
 
     protected virtual void Awake()
     {
 		this.State = STATE.SWIMMING;
 		this.StateTimer = 0f;
 		this.HungerSpan = Random.Range(10f,50f);
-        this.CurrentSoftBoundary = this.OriginalSoftBoundary;
     }
 
 	// Make sure that this fish belongs to the Fish layer
@@ -119,6 +133,9 @@ public abstract class BoidsFish : MonoBehaviour
 
     public void OutsideSoftBounds(SoftBoundaryComponent boundaryComponent)
     {
+        if (this.CurrentExternalSoftBoundary == boundaryComponent.SoftBoundary)
+            { this.CurrentExternalSoftBoundary = null; }
+
         this.SoftBoundaryComponents.Remove(boundaryComponent);
         if (this.SoftBoundaryComponents.Count <= 0)
         {
@@ -128,12 +145,15 @@ public abstract class BoidsFish : MonoBehaviour
 
     public void InsideSoftBounds(SoftBoundaryComponent boundaryComponent)
     {
+        this.CurrentExternalSoftBoundary = boundaryComponent.SoftBoundary;
+
         // For fish that don't have a current soft boundary assigned, do nothing
         if (this.CurrentSoftBoundary == null)
             { return; }
 
         if (this.CurrentSoftBoundary.Contains(boundaryComponent))
         {
+            this.CurrentExternalSoftBoundary = null;
             this.SoftBoundaryComponents.Add(boundaryComponent);
             this.LastSoftBoundaryComponent = boundaryComponent;
 
@@ -142,6 +162,25 @@ public abstract class BoidsFish : MonoBehaviour
                 this.IsOutsideSoftBounds = false;
             }
         }
+    }
+
+    public void SetSoftBoundary(SoftBoundary boundary)
+    {
+        this.CurrentSoftBoundary = boundary;
+
+        this.LastSoftBoundaryComponent = boundary.GetFirstComponent();
+
+        this.IsOutsideSoftBounds = true;
+    }
+
+    protected virtual float IsolatedSoftBoundaryRadius { get { return 10f; } }
+    private void CreateIsolatedSoftBoundary()
+    {
+        SoftBoundary isolatedSoftBoundary = Instantiate<SoftBoundary>(FishManager.Instance.IsolatedSoftBoundaryPrefab);
+        this.SetSoftBoundary(isolatedSoftBoundary);
+        this.IsolatedSoftBoundary = isolatedSoftBoundary;
+        isolatedSoftBoundary.transform.position = this.transform.position;
+        isolatedSoftBoundary.GetComponent<SphereCollider>().radius = this.IsolatedSoftBoundaryRadius;
     }
 
     public void Flee()
@@ -215,10 +254,17 @@ public abstract class BoidsFish : MonoBehaviour
 		this.IsFollowingTarget = false;
         this.physicalTarget = null;
 
-        // Make a new soft bound if while following the target, this fish moved out of its current soft boundary
+        // Make a new soft bound if while following the target, this fish moved out of all soft boundary volumes, otherwise take the soft boundary it's currently in
         if (this.IsOutsideSoftBounds)
         {
-            // TODO : Move soft bounds, or remove it
+            if (this.CurrentExternalSoftBoundary != null)
+            {
+                this.CurrentSoftBoundary = this.CurrentExternalSoftBoundary;
+            }
+            else
+            {
+                this.CreateIsolatedSoftBoundary();
+            }
         }
 		// TODO
 		// Maybe get a new random point to swim towards?
@@ -295,7 +341,7 @@ public abstract class BoidsFish : MonoBehaviour
         if (this.IsOutsideHardBounds)
             { return (this.LastHardBoundary.transform.position - this.transform.position) * BoidsSettings.Instance.Bounds; }
 
-        if (this.IsOutsideSoftBounds)
+        if (this.IsOutsideSoftBounds && !this.IsFollowingTarget)
         {
             if (this.LastSoftBoundaryComponent == null)
                 { return Vector3.zero; }
@@ -380,7 +426,7 @@ public abstract class BoidsFish : MonoBehaviour
 			{
 				State = STATE.EATING;
 			}
-			else if (distance > 100)		// Target is too far, give up can be changed later
+			else if (distance > 100 || this.Predatees.Count == 0)		// Target is too far, give up can be changed later
 			{
 				this.Idle();
 			}
@@ -413,7 +459,7 @@ public abstract class BoidsFish : MonoBehaviour
 		int layerMask = 1 << 8 | 1 << 9 | 1 << 14 | 1 << 15 | 1 << 16 | 1 << 17 | 1 << 18;
 		layerMask = ~layerMask;
 		Physics.Raycast (transform.position, target.transform.position - transform.position, out raycastHit, Mathf.Infinity, layerMask);
-		if (raycastHit.collider != target.GetComponent<Collider> ()) 
+		if (raycastHit.collider != target.GetComponent<Collider> ())
 		{
 			return false;
 		}
@@ -441,11 +487,11 @@ public abstract class BoidsFish : MonoBehaviour
 					continue;
 
                 // Don't switch if the predatee is A.U.L.I.V.
-                if (predatee.gameObject == GameManager.Instance.Player.gameObject)
+                if (predatee == GameManager.Instance.Player)
                     { break; }
 
                 // Switch to A.U.L.I.V. if within prey
-                if (potentialSwitch.gameObject == GameManager.Instance.Player.gameObject)
+                if (potentialSwitch == GameManager.Instance.Player)
                 {
                     predatee = potentialSwitch;
                     break;
@@ -485,7 +531,7 @@ public abstract class BoidsFish : MonoBehaviour
 					continue;
 
                 // Set A.U.L.I.V. as prey immediately if present
-                if (fish.gameObject == GameManager.Instance.Player.gameObject)
+                if (fish == GameManager.Instance.Player)
                 {
                     closestFish = fish;
                     break;
@@ -495,7 +541,7 @@ public abstract class BoidsFish : MonoBehaviour
                 if (this.Size >= SIZE.LARGE)
                 {
                     SmallBoidsFish small = fish as SmallBoidsFish;
-                    if (fish.gameObject == GameManager.Instance.Player.gameObject && (small != null) && (small.FlockSize < BoidsSettings.Instance.MinFlockSizeToAttractLargeFish))
+                    if (fish == GameManager.Instance.Player && (small != null) && (small.FlockSize < BoidsSettings.Instance.MinFlockSizeToAttractLargeFish))
                         { continue; }
                 }
 
@@ -510,6 +556,7 @@ public abstract class BoidsFish : MonoBehaviour
             if (closestFish != null)
             {
                 this.PhysicalTarget = predatee = closestFish;
+                this.Hunt();
             }
         }
 
@@ -520,19 +567,22 @@ public abstract class BoidsFish : MonoBehaviour
             if (smallPredatee != null)
             {
                 if (smallPredatee.FlockSize > BoidsSettings.Instance.MinFlockSizeToScareMediumFish)
-                    { this.PhysicalTarget = predatee = null; }
+                {
+                    this.PhysicalTarget = predatee = null;
+                    this.Idle();
+                }
             }
         }
 
-        if (this.Size != SIZE.SMALL)
-        {
-            if (predatee != null)
-                this.Hunt ();
-            else
-            {
-                this.Idle ();
-            }
-        }
+        // if (this.Size != SIZE.SMALL)
+        // {
+        //     if (predatee != null)
+        //         this.Hunt ();
+        //     else
+        //     {
+        //         this.Idle ();
+        //     }
+        // }
     }
 
 	public float CalculateDistance(MonoBehaviour obj)
@@ -551,7 +601,12 @@ public abstract class BoidsFish : MonoBehaviour
 		this.RigidBody.AddForce(random);
 	}
 
+    // USE A COROUTINE INSTEAD OF INVOKEREPEATING
 	public void RandomizeDestination(){
+        if (this.State != STATE.IDLE || this.IsOutsideHardBounds || this.IsOutsideSoftBounds)
+        {
+            return;
+        }
 		float radius = 20.0f;				// depends on the size of terrain?
 		Vector3 random = Random.insideUnitSphere * radius;
 		random = new Vector3(random.x, random.y, random.z);
@@ -579,18 +634,18 @@ public abstract class BoidsFish : MonoBehaviour
 
     private void Eaten(BoidsFish eater)
     {
-        GameObject energyBall = (GameObject) Instantiate(FishManager.Instance.EnergyBall, this.transform.position, FishManager.Instance.EnergyBall.transform.rotation);
+        /*GameObject energyBall = (GameObject) */Instantiate(FishManager.Instance.EnergyBall, this.transform.position, FishManager.Instance.EnergyBall.transform.rotation);
         FishManager.Instance.DestroyFish(this);
     }
 
 	public virtual void RemoveFishReferences(BoidsFish referencedFish)
 	{
 		Repellants.Remove(referencedFish);
-		Predators.Remove(referencedFish);
+		Predators.RemoveAll(fish => fish == referencedFish);
         Predatees.Remove(referencedFish);
 		// do something if predators are gone
 	}
-	
+
 	protected virtual Vector3 CalculateVelocity()
     {
         // Handle rigidbody velocity updates

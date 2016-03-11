@@ -37,4 +37,9 @@ public class SoftBoundary : MonoBehaviour {
     {
         this.FishCount--;
     }
+
+    public SoftBoundaryComponent GetFirstComponent()
+    {
+        return this.SoftBoundaryComponents[0];
+    }
 }
