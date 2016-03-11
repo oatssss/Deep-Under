@@ -3,14 +3,16 @@ using System.Collections;
 
 public class Player : SmallBoidsFish {
 
-	private float speed = 80f;
+	public float speed = 80f;
 	private float autoTurnSpeed = 10f;
+
 	private Rigidbody rigidbody;
+
 
 	public CameraFollow camera;
 	public GameObject defaultCameraPosition; //is constantly updated by player, so is situated here
 	private float aimZoomAmount = 2f; //scalar
-	private float aimShiftAmount = 15f; //translational
+	private float aimShiftAmount = 10; //translational
 	private bool isAiming = false;
 
 	public Light spotlight;
@@ -57,9 +59,7 @@ public class Player : SmallBoidsFish {
 	}
 
 	protected override void FixedUpdate () {
-		//Debug.DrawLine(defaultCameraPosition.transform.position, transform.position);
-		//Debug.DrawLine(camera.transform.position, transform.position);
-		Debug.DrawRay(transform.position, transform.forward*10f);
+
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
 		if (Input.GetKey(KeyCode.Joystick1Button4)) a = 1;
