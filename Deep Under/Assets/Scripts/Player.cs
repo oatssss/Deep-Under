@@ -5,14 +5,12 @@ public class Player : SmallBoidsFish {
 
 	public float speed = 80f;
 	private float autoTurnSpeed = 10f;
+	new private Rigidbody rigidbody;
 
-	private Rigidbody rigidbody;
-
-
-	public CameraFollow camera;
+	new public CameraFollow camera;
 	public GameObject defaultCameraPosition; //is constantly updated by player, so is situated here
 	private float aimZoomAmount = 2f; //scalar
-	private float aimShiftAmount = 10; //translational
+	private float aimShiftAmount = 15f; //translational
 	private bool isAiming = false;
 
 	public Light spotlight;
@@ -35,11 +33,16 @@ public class Player : SmallBoidsFish {
 	LineRenderer lineRenderer;
 	private int lineSmoothness = 10;
 
-	public SphereCollider soundCollider; 
-	private bool makingSound = false; 
+	public SphereCollider soundCollider;
+	private bool makingSound = false;
 	public float soundRadius = 40f;
 	public float soundDuration = 10f;
 	private float timer = 0f;
+
+	public pod lastPod = null;
+	private Vector3 startPosition;
+//	public SceneLight generalLight;
+	public Alert guiAlert;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -55,7 +58,10 @@ public class Player : SmallBoidsFish {
 		defaultCameraPosition.transform.rotation = camera.transform.rotation;
 		energyDrainRate = 3f;
         base.Start();
-        soundCollider.radius = 0f;	
+        soundCollider.radius = 0f;
+		startPosition = this.transform.position;
+//		generalLight = GameObject.Find("Caustics Effect").GetComponent<SceneLight>();
+		guiAlert = GameObject.Find("Alert").GetComponent<Alert>();
 	}
 
 	protected override void FixedUpdate () {
@@ -74,8 +80,8 @@ public class Player : SmallBoidsFish {
 		Move(h,v,a);
 		if (makingSound) timer += Time.deltaTime;
 		if (timer > soundDuration) {
-			timer = 0f; 
-			makingSound = false; 
+			timer = 0f;
+			makingSound = false;
 			soundCollider.radius = 0f;
 		}
 		//autoTurn();
@@ -88,7 +94,9 @@ public class Player : SmallBoidsFish {
 		if (Input.GetKeyUp(KeyCode.Joystick1Button7) || Input.GetKeyUp(KeyCode.Mouse0)) callCreateLightOrb();
 		if (Input.GetKeyUp(KeyCode.Joystick1Button2)) makeSound();
 		//controllerButtonTest();
-		removeEnergy(energyDrainRate);
+		if(this.energy > 0) removeEnergy(energyDrainRate);
+		else Die();
+
 		if (Input.GetKeyDown(KeyCode.Joystick1Button6) || Input.GetKeyDown(KeyCode.LeftShift)) {
         	aim(aimZoomAmount, aimShiftAmount);
         }
@@ -109,6 +117,9 @@ public class Player : SmallBoidsFish {
 
 	}
 
+	protected override void RandomizeDirection(){
+
+	}
 
 	private void autoTurn () {
 	 	transform.rotation = Quaternion.Lerp(transform.rotation, camera.transform.rotation, autoTurnSpeed * Time.deltaTime);
@@ -142,7 +153,7 @@ public class Player : SmallBoidsFish {
 		if (isAiming) shoot = true;
 	}
 
-	private void makeSound () { 
+	private void makeSound () {
 		makingSound = true;
 		timer = 0f;
 		soundCollider.radius = soundRadius;
@@ -156,6 +167,7 @@ public class Player : SmallBoidsFish {
 	}
 	public void addEnergyBall (float extra) {
 		float newEnergy = 0f;
+		guiAlert.Display("Picked up energy",0.5f);
 		if (energy < maxEnergy ){
 			newEnergy = energy + extra;
 			if (newEnergy >= maxEnergy) {
@@ -196,7 +208,26 @@ public class Player : SmallBoidsFish {
 
 	}
 
+	public void Die() {
+		guiAlert.Display("You died.",1.5f);
+		if (this.lastPod == null)
+			Teleport(startPosition);
+		else
+			Teleport(this.lastPod.transform.position);
+		this.energy = maxEnergy;
+	}
 
+	private void Teleport(Vector3 p){
+//		generalLight.lights(false);
+//		Wait();
+		this.transform.position = p;
+//		generalLight.lights(true);
+	}
+
+	IEnumerator Wait(){
+		//TODO: add disable movement
+		yield return new WaitForSeconds (2.0f);
+	}
 
 	private void controllerButtonTest() {
 		if (Input.GetKeyDown (KeyCode.Joystick1Button0)) Debug.Log("Square pressed");

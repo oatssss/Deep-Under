@@ -9,3 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Player_TestScene.unity
   - enabled: 1
     path: Assets/Scenes/Fish_Test.unity
+  - enabled: 0
+    path: Assets/AI/Scenes/Boids_Flocking.unity
+  - enabled: 0
+    path: Assets/AI/Boids/Artifact_Test.unity
+  - enabled: 0
+    path: Assets/Scripts/Effects/Volumetric Lighting/LightShafts/scene-spot.unity

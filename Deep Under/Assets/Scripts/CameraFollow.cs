@@ -28,7 +28,6 @@ public class CameraFollow : MonoBehaviour {
 		offsetLength = offset.magnitude;
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false; 
-
 	}
 
 	void FixedUpdate () {

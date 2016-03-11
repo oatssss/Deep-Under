@@ -1,39 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class FishManager : UnitySingleton<FishManager> {
+public class FishManager : UnitySingletonPersistent<FishManager> {
 
 	public List<BoidsFish> LargeFishList = new List<BoidsFish>();
 	public List<BoidsFish> MediumFishList = new List<BoidsFish>();
 	public List<BoidsFish> SmallFishList = new List<BoidsFish>();
 
-	[Range(0,5f)] public int numberOfLFish = 2;
-	[Range(0,25f)] public int numberOfMFish = 15;
-	[Range(0,300f)] public int numberOfSFish = 35;
-
-	public GameObject LargeFish;
-	public GameObject MediumFish;
-	public GameObject SmallFish;
+	public LargeBoidsFish LargeFish;
+	public MediumBoidsFish MediumFish;
+	public SmallBoidsFish SmallFish;
     public GameObject EnergyBall;
-
-	// Use this for initialization
-	void Start () {
-        BoidsFish _fish;
-
-		for (int i = 0; i < numberOfLFish; i++) {
-			_fish = ((GameObject) Instantiate(LargeFish, GetRandomPos(), transform.rotation)).GetComponent<BoidsFish>();
-			_fish.transform.parent = this.transform;
-		}
-		for (int j = 0; j < numberOfMFish; j++) {
-			_fish = ((GameObject) Instantiate(MediumFish, GetRandomPos(), transform.rotation)).GetComponent<BoidsFish>();
-			_fish.transform.parent = this.transform;
-		}
-		for (int k = 0; k < numberOfSFish; k++) {
-			_fish = ((GameObject) Instantiate(SmallFish, GetRandomPos(), transform.rotation)).GetComponent<BoidsFish>();
-			_fish.transform.parent = this.transform;
-		}
-	}
-
+    public SoftBoundary IsolatedSoftBoundaryPrefab;
 
     public void RegisterFish(BoidsFish fish)
     {

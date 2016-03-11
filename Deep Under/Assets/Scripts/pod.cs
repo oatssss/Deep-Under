@@ -30,7 +30,11 @@ public class pod : MonoBehaviour {
 			// Debug.Log ("Auliv is hereee");
 		}
 	}
-
+	void OnTriggerEnter(Collider other) {
+		if (other.CompareTag("Player") && auliv != null) {
+			auliv.lastPod = this;
+		}
+	}
 	void OnTriggerExit (Collider other) {
 		if (other.CompareTag("Player") && auliv != null) {
 			auliv.charging = false;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GameManager : UnitySingleton<GameManager> {
+public class GameManager : UnitySingletonPersistent<GameManager> {
 
     private Player player = null;
     public Player Player
@@ -8,7 +8,13 @@ public class GameManager : UnitySingleton<GameManager> {
         get
         {
             if (this.player == null)
-                { this.player = GameObject.FindWithTag("Player").GetComponent<Player>(); }
+            {
+                GameObject playerObject = GameObject.FindWithTag("Player");
+                if (playerObject)
+                {
+                    this.player = playerObject.GetComponent<Player>();
+                }
+            }
 
             return this.player;
         }

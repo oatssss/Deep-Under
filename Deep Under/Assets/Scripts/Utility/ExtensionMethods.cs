@@ -8,7 +8,7 @@ namespace Extensions
         {
             if (script.gameObject.layer != LayerMask.NameToLayer(layer))
             {
-                Debug.LogErrorFormat("[{1}] does not belong to the \"{0}\" layer. Assigning now...", layer, script.gameObject);
+                Debug.LogWarningFormat("[{1}] does not belong to the \"{0}\" layer. Assigning now...", layer, script.gameObject);
                 script.gameObject.layer = LayerMask.NameToLayer(layer);
             }
         }

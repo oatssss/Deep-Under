@@ -251,6 +251,10 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
+          name: _MainTex_ST
+        second: {r: 1, g: 1, b: 0, a: 0}
+      data:
+        first:
           name: _Displacement
         second: {r: 6.6371665, g: 20.353983, b: -1, a: -0.681416}
       data:
@@ -259,8 +263,8 @@ Material:
         second: {r: 1, g: 1, b: 0.1, a: 0.1}
       data:
         first:
-          name: _MainTex_ST
-        second: {r: 1, g: 1, b: 0, a: 0}
+          name: _BaseColor
+        second: {r: 0.15370905, g: 0.26813015, b: 0.29850745, a: 0.82}
       data:
         first:
           name: _BumpMap_ST
@@ -293,10 +297,6 @@ Material:
         first:
           name: _BumpDirection
         second: {r: 40, g: 40, b: 40, a: -40}
-      data:
-        first:
-          name: _BaseColor
-        second: {r: 0.15370905, g: 0.26813015, b: 0.29850745, a: 0.82}
       data:
         first:
           name: _ReflectionColor
@@ -339,6 +339,10 @@ Material:
         second: {r: 0.7033888, g: -0.6799999, b: 0.7175735, a: -0.2}
       data:
         first:
+          name: _HorizonColor
+        second: {r: 0.052907113, g: 0.24486735, b: 0.2835821, a: 1}
+      data:
+        first:
           name: _RefrColor
         second: {r: 0.5233905, g: 0.9477612, b: 0.9121496, a: 1}
       data:
@@ -353,10 +357,6 @@ Material:
         first:
           name: _ReflectiveColor_ST
         second: {r: 1, g: 1, b: 0, a: 0}
-      data:
-        first:
-          name: _HorizonColor
-        second: {r: 0.052907113, g: 0.24486735, b: 0.2835821, a: 1}
       data:
         first:
           name: _RefractionTex_ST
