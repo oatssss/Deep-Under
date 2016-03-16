@@ -3,14 +3,14 @@ using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
 
-	Vector3 offset;  
+	public Vector3 offset;  
+	public float offsetLength;
 	Quaternion defaultRotation; 
 
 
 	public Player player;  
-	private float cameraSpeed = 60f;
+	private float cameraSpeed = 120f;
 	private float smoothing = 15f; 
-	public float rollSpeed =  3f;
 
 	private float x;
 	private float y; 
@@ -18,17 +18,22 @@ public class CameraFollow : MonoBehaviour {
 	private float maxLookDown = 70f;
 	public float startLook = 0f; 
 
+	public Vector3 oldPosition;
+	public bool following = true;
+
 
 	void Start () {
 		//dplayer = GetComponent<Player>();
 		offset = transform.position - player.transform.position;
+		offsetLength = offset.magnitude;
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false; 
 	}
 
 	void FixedUpdate () {
+		oldPosition = transform.position; 
 		follow();
-
+		getMovementDir();
 	}
 
 	void Update () { 
@@ -42,7 +47,6 @@ public class CameraFollow : MonoBehaviour {
 		Vector3 oldRot = transform.rotation * Vector3.forward; //get current/old rotation in vector form
 		y = Input.GetAxis("Mouse X"); //rotation on y axis
 		x = Input.GetAxis("Mouse Y"); //rotation on x axis
-		//if (!player.isAiming) 
 		cameraRotate(x,y);
 		Vector3 newRot = transform.rotation * Vector3.forward; // save new rotation in vector form 
 		Quaternion change = Quaternion.FromToRotation(oldRot, newRot); //record change in rotation using the 2 vectors
@@ -74,7 +78,9 @@ public class CameraFollow : MonoBehaviour {
     	Vector3 swingVector = new Vector3 (0f, degrees, 0f);
     	Quaternion swingAmount = Quaternion.Euler(swingVector);
     	offset = swingAmount * offset; 
-		Vector3 targetPos = player.transform.position + offset;
+		Vector3 targetPos;
+		if (following) targetPos = player.transform.position + offset;
+		else targetPos = offset; 
 		transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 0.1f); 
 		transform.Rotate(swingVector);
     }
@@ -98,17 +104,10 @@ public class CameraFollow : MonoBehaviour {
     }
 
 
-	/*//OBSOLETE
-    private void fixRoll(){
-    	if (transform.rotation.eulerAngles.z > 2f && transform.rotation.eulerAngles.z < 358f) {
-	    	if (transform.rotation.eulerAngles.z > 180f) { 
-	    		transform.RotateAround(transform.position, transform.forward, Time.deltaTime * cameraSpeed * rollSpeed);
-	    	}
-	    	else {
-	    	transform.RotateAround(transform.position, transform.forward, -Time.deltaTime * cameraSpeed * rollSpeed);
-	    	}
-		}
-    }*/
-		
+	public Vector3 getMovementDir () { 
+		Vector3 updatedPosition = transform.position; 
+		Vector3 dir = updatedPosition - oldPosition;
+		return dir;
 
+	}
 }

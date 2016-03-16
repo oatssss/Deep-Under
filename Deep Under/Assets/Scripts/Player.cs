@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player : SmallBoidsFish {
 
-	private float speed = 80f;
+	public float speed = 80f;
 	private float autoTurnSpeed = 10f;
 	new private Rigidbody rigidbody;
 
@@ -65,9 +65,7 @@ public class Player : SmallBoidsFish {
 	}
 
 	protected override void FixedUpdate () {
-		//Debug.DrawLine(defaultCameraPosition.transform.position, transform.position);
-		//Debug.DrawLine(camera.transform.position, transform.position);
-		Debug.DrawRay(transform.position, transform.forward*10f);
+
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
 		if (Input.GetKey(KeyCode.Joystick1Button4)) a = 1;
