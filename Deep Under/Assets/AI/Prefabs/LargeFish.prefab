@@ -268,8 +268,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190734}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: 121.658447, y: 88.1000443, z: -247.691528}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 462012}
   - {fileID: 466500}
@@ -685,8 +685,15 @@ MonoBehaviour:
   RepelVolume: {fileID: 13521706}
   size: 2
   state: 0
+  Repellants: []
+  Predators: []
   Predatees: []
   IsFollowingTarget: 0
+  physicalTarget: {fileID: 0}
+  Target: {x: 0, y: 0, z: 0}
+  LastSoftBoundaryComponent: {fileID: 0}
+  currentSoftBoundary: {fileID: 0}
+  IsOutsideSoftBounds: 1
 --- !u!114 &11447470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -772,9 +779,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 5.5
-  m_Height: 29
+  m_Height: 10
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 12}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

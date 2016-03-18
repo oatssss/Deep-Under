@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player : SmallBoidsFish {
 
-	public float speed = 80f;
+	public float speed = 30f;
 	private float autoTurnSpeed = 10f;
 	new private Rigidbody rigidbody;
 
@@ -211,7 +211,9 @@ public class Player : SmallBoidsFish {
 	public void Die() {
 		guiAlert.Display("You died.",1.5f);
 		if (this.lastPod == null)
-			Teleport(startPosition);
+		{
+			Application.LoadLevel(Application.loadedLevel);
+		}
 		else
 			Teleport(this.lastPod.transform.position);
 		this.energy = maxEnergy;

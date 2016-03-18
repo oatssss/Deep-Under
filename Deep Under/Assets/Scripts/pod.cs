@@ -5,12 +5,16 @@ public class pod : MonoBehaviour {
 
 	private float rotSpeed = 40f;
 	public float orbStrength = 20f;
+	public Light fLight;
+	private bool visited;
 
 	Player auliv;
 	// Use this for initialization
 	void Start () {
 //		auliv = GameObject.Find("auliv/SUB_RIG_007").GetComponent<Player>();
 		auliv = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+		fLight.color = Color.yellow;
+		visited = false;
 	}
 
 	// Update is called once per frame
@@ -33,12 +37,15 @@ public class pod : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if (other.CompareTag("Player") && auliv != null) {
 			auliv.lastPod = this;
+			fLight.color = Color.green;
+			visited = true;
 		}
 	}
 	void OnTriggerExit (Collider other) {
 		if (other.CompareTag("Player") && auliv != null) {
 			auliv.charging = false;
 			// Debug.Log ("Auliv has left the building");
+			fLight.color = Color.blue;
 		}
 	}
 }
