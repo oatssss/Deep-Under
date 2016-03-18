@@ -111,7 +111,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 27
 --- !u!1001 &42419104
 Prefab:
   m_ObjectHideFlags: 0
@@ -416,11 +416,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28c755b2466f29489e383c47fe7b5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AssociatedSoftBoundary: {fileID: 0}
   spawnRate: 3
   spawnQuantity: 1
   spawnChance: 1
-  creature: {fileID: 179524, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
-  fishManager: {fileID: 1475477093}
   typeOfFish: 1
   maxFish: 20
 --- !u!1 &223161767 stripped
@@ -438,11 +437,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28c755b2466f29489e383c47fe7b5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AssociatedSoftBoundary: {fileID: 0}
   spawnRate: 1.5
   spawnQuantity: 3
   spawnChance: .75
-  creature: {fileID: 131040, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
-  fishManager: {fileID: 1475477093}
   typeOfFish: 1
   maxFish: 10
 --- !u!1 &225928282
@@ -473,7 +471,7 @@ Transform:
   - {fileID: 818969603}
   - {fileID: 650057730}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 24
 --- !u!1 &314449281 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
@@ -489,11 +487,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28c755b2466f29489e383c47fe7b5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AssociatedSoftBoundary: {fileID: 0}
   spawnRate: 2
   spawnQuantity: 3
   spawnChance: .5
-  creature: {fileID: 131040, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
-  fishManager: {fileID: 1475477093}
   typeOfFish: 1
   maxFish: 10
 --- !u!1 &331662575 stripped
@@ -511,11 +508,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28c755b2466f29489e383c47fe7b5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AssociatedSoftBoundary: {fileID: 0}
   spawnRate: 1.5
   spawnQuantity: 3
   spawnChance: .75
-  creature: {fileID: 131040, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
-  fishManager: {fileID: 1475477093}
   typeOfFish: 1
   maxFish: 10
 --- !u!1001 &433160415
@@ -1363,9 +1359,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0f1862bd46af440910cd0f751b4e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0, z: 0}
+  offsetLength: 0
   player: {fileID: 1796915426}
-  rollSpeed: 3
   startLook: 0
+  oldPosition: {x: 0, y: 0, z: 0}
+  following: 1
 --- !u!114 &818969605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1422,11 +1421,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28c755b2466f29489e383c47fe7b5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AssociatedSoftBoundary: {fileID: 0}
   spawnRate: 3
   spawnQuantity: 1
   spawnChance: 1
-  creature: {fileID: 179524, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
-  fishManager: {fileID: 1475477093}
   typeOfFish: 2
   maxFish: 20
 --- !u!1 &836514732
@@ -1672,7 +1670,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 29
 --- !u!1 &875595915
 GameObject:
   m_ObjectHideFlags: 0
@@ -2316,6 +2314,21 @@ Prefab:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: LargeFish
+      value: 
+      objectReference: {fileID: 11418556, guid: 5ecf47a3803cd40db806e9102ab8959d,
+        type: 2}
+    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: MediumFish
+      value: 
+      objectReference: {fileID: 11443820, guid: 02f50e268033845bda12e36cd33977ed,
+        type: 2}
+    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: SmallFish
+      value: 
+      objectReference: {fileID: 11422376, guid: b5ec07997a6824c2abd0899c012cf861,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
   m_IsPrefabParent: 0
@@ -2519,7 +2532,7 @@ Transform:
   - {fileID: 842495073}
   - {fileID: 610482703}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 25
 --- !u!1001 &1162231959
 Prefab:
   m_ObjectHideFlags: 0
@@ -2669,7 +2682,7 @@ Transform:
   m_Children:
   - {fileID: 1448517092}
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 31
 --- !u!1001 &1280239204
 Prefab:
   m_ObjectHideFlags: 0
@@ -2727,11 +2740,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28c755b2466f29489e383c47fe7b5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AssociatedSoftBoundary: {fileID: 0}
   spawnRate: 1
   spawnQuantity: 2
   spawnChance: .25
-  creature: {fileID: 131040, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
-  fishManager: {fileID: 1475477093}
   typeOfFish: 1
   maxFish: 10
 --- !u!1 &1392969130
@@ -2849,6 +2861,8 @@ MonoBehaviour:
   pos: {x: 20, y: 40}
   size: {x: 200, y: 20}
   empty: {fileID: 0}
+  almostempty: {fileID: 0}
+  almostfull: {fileID: 0}
   full: {fileID: 0}
   auliv: {fileID: 0}
 --- !u!1 &1448517091
@@ -3003,10 +3017,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1455561846}
---- !u!1 &1475477093 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 199064, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
-  m_PrefabInternal: {fileID: 1059509391}
 --- !u!1 &1515111903
 GameObject:
   m_ObjectHideFlags: 0
@@ -3080,7 +3090,7 @@ Transform:
   m_LocalScale: {x: 1110, y: 329.170593, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 32
 --- !u!64 &1515111908
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3196,48 +3206,6 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55ac03278440a76459970ba5b68e54c9, type: 3}
-  m_IsPrefabParent: 0
---- !u!1001 &1553454955
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 444822, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 444822, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 444822, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 444822, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 444822, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 444822, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 444822, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 444822, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
-      propertyPath: m_RootOrder
-      value: 17
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1565971605
 GameObject:
@@ -3488,7 +3456,7 @@ Transform:
   m_LocalScale: {x: 1110, y: 329.170593, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
 --- !u!64 &1605864774
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3871,11 +3839,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28c755b2466f29489e383c47fe7b5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AssociatedSoftBoundary: {fileID: 0}
   spawnRate: 3
   spawnQuantity: 1
   spawnChance: 1
-  creature: {fileID: 179524, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
-  fishManager: {fileID: 1475477093}
   typeOfFish: 2
   maxFish: 20
 --- !u!1 &1768636669
@@ -3951,7 +3918,7 @@ Transform:
   m_LocalScale: {x: 1110, y: 329.170593, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 23
 --- !u!64 &1768636674
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4132,7 +4099,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 30
 --- !u!1 &2040662659
 GameObject:
   m_ObjectHideFlags: 0
@@ -4460,7 +4427,7 @@ Transform:
   m_LocalScale: {x: 1110, y: 329.170593, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 26
 --- !u!64 &2093643150
 MeshCollider:
   m_ObjectHideFlags: 0
