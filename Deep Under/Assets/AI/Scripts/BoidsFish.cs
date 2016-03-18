@@ -168,7 +168,7 @@ public abstract class BoidsFish : MonoBehaviour
     {
         this.CurrentSoftBoundary = boundary;
 
-        this.LastSoftBoundaryComponent = boundary.GetFirstComponent();
+		this.LastSoftBoundaryComponent = boundary ? boundary.GetFirstComponent() : null;
 
         this.IsOutsideSoftBounds = true;
     }
@@ -426,7 +426,7 @@ public abstract class BoidsFish : MonoBehaviour
 			{
 				State = STATE.EATING;
 			}
-			else if (distance > 100 || this.Predatees.Count == 0)		// Target is too far, give up can be changed later
+			else if (distance > 300 || this.PhysicalTarget == null)		// Target is too far, give up can be changed later
 			{
 				this.Idle();
 			}
@@ -450,13 +450,16 @@ public abstract class BoidsFish : MonoBehaviour
 
 	protected bool checkIfVisible(BoidsFish target)
 	{
+		if (Vector3.Distance (target.transform.position, transform.position) < 20)
+			return true;
+
 		// if target is out of sight
-		if (Vector3.Angle (transform.forward, target.transform.position - transform.position) > 90)
+		if (Vector3.Angle (transform.forward, target.transform.position - transform.position) > 60)
 			return false;
 
 		// if target is obscured
 		RaycastHit raycastHit;
-		int layerMask = 1 << 8 | 1 << 9 | 1 << 14 | 1 << 15 | 1 << 16 | 1 << 17 | 1 << 18;
+		int layerMask = 1 << 8 | 1 << 9 | 1 << 14 | 1 << 15 | 1 << 16 | 1 << 17 | 1 << 18 | 1 << 20;
 		layerMask = ~layerMask;
 		Physics.Raycast (transform.position, target.transform.position - transform.position, out raycastHit, Mathf.Infinity, layerMask);
 		if (raycastHit.collider != target.GetComponent<Collider> ())
@@ -472,7 +475,7 @@ public abstract class BoidsFish : MonoBehaviour
 		if (this.State == STATE.EATING)
 			return;
 
-        BoidsFish predatee = this.PhysicalTarget as BoidsFish;
+		BoidsFish predatee = this.PhysicalTarget as BoidsFish;
 
 		// if the target is out of sight, stop hunting
 		if (predatee && !checkIfVisible (predatee))
@@ -553,11 +556,16 @@ public abstract class BoidsFish : MonoBehaviour
                 }
             }
 
-            if (closestFish != null)
-            {
-                this.PhysicalTarget = predatee = closestFish;
-                this.Hunt();
-            }
+			if (closestFish != null) 
+			{
+				this.PhysicalTarget = predatee = closestFish;
+				this.Hunt ();
+			} 
+			else 
+			{
+				this.PhysicalTarget = null;
+				this.Idle ();
+			}
         }
 
         // Only medium fish are scared of approaching flocks
