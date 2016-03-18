@@ -43,7 +43,7 @@ public class Spawn : MonoBehaviour {
             }
         }
 
-        else /*if (typeOfFish == BoidsFish.SIZE.LARGE && FishManager.Instance.LargeFishList.Count < maxFish)*/
+        else if (typeOfFish == BoidsFish.SIZE.LARGE && FishManager.Instance.LargeFishList.Count < maxFish)
         {
             for (int i = 0; i < spawnQuantity; i++)
             {
