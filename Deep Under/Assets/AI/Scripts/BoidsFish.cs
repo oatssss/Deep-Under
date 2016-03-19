@@ -167,7 +167,9 @@ public abstract class BoidsFish : MonoBehaviour
     public void SetSoftBoundary(SoftBoundary boundary)
     {
         this.CurrentSoftBoundary = boundary;
-		this.LastSoftBoundaryComponent = boundary ? boundary.GetFirstComponent() : null;
+
+        this.LastSoftBoundaryComponent = boundary.GetFirstComponent();
+
         this.IsOutsideSoftBounds = true;
     }
 
@@ -255,7 +257,7 @@ public abstract class BoidsFish : MonoBehaviour
         // Make a new soft bound if while following the target, this fish moved out of all soft boundary volumes, otherwise take the soft boundary it's currently in
         if (this.IsOutsideSoftBounds)
         {
-            if (this.CurrentExternalSoftBoundary != null && this.Size != SIZE.SMALL)
+            if (this.CurrentExternalSoftBoundary != null)
             {
                 this.CurrentSoftBoundary = this.CurrentExternalSoftBoundary;
             }

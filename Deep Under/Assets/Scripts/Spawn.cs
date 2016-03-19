@@ -51,11 +51,9 @@ public class Spawn : MonoBehaviour {
                 spawned = Instantiate<LargeBoidsFish>(FishManager.Instance.LargeFish);
             }
         }
-		if (spawned)
-		{        
-			spawned.RigidBody.MovePosition(this.transform.position + new Vector3(0, 4, 0));
-        	spawned.RigidBody.MoveRotation(Quaternion.Euler(0.0f, (float)Random.Range(0, 360), 0.0f));
-        	spawned.SetSoftBoundary(this.AssociatedSoftBoundary);
-		}
+
+        spawned.RigidBody.MovePosition(this.transform.position + new Vector3(0, 4, 0));
+        spawned.RigidBody.MoveRotation(Quaternion.Euler(0.0f, (float)Random.Range(0, 360), 0.0f));
+        spawned.SetSoftBoundary(this.AssociatedSoftBoundary);
 	}
 }
