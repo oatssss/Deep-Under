@@ -8,6 +8,7 @@ public class lightOrb : MonoBehaviour {
 
 	void Awake() {
 		rb = GetComponent<Rigidbody>();
+		OrbManager.Instance.addOrb(this);
 	}
 	
 	// Update is called once per frame
@@ -23,6 +24,5 @@ public class lightOrb : MonoBehaviour {
 	private void bob () {
 		transform.position = transform.position + (Vector3.up * (Mathf.Sin(Time.time * 3f)) * 0.01f);
 	}
-
 
 }
