@@ -87,7 +87,7 @@ public class Player : SmallBoidsFish {
         	addBoost();
         }
         else removeBoost();
-        Debug.Log(speed);
+//        Debug.Log(speed);
         if (shoot) createLightOrb();
 		if (isMoving) Move(h,v,a);
 

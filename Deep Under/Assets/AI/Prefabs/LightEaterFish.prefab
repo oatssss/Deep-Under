@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 418736}
   - 33: {fileID: 3372224}
   - 23: {fileID: 2307222}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: gum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 447794}
   - 33: {fileID: 3352240}
   - 23: {fileID: 2393614}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Cone_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - 4: {fileID: 481168}
   - 135: {fileID: 13578898}
   - 54: {fileID: 5409322}
-  m_Layer: 12
+  m_Layer: 21
   m_Name: ObstacleVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - 4: {fileID: 454390}
   - 33: {fileID: 3355546}
   - 23: {fileID: 2308660}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Cone_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,9 +79,9 @@ GameObject:
   - 114: {fileID: 11456256}
   - 54: {fileID: 5455192}
   - 136: {fileID: 13686502}
-  m_Layer: 10
+  m_Layer: 21
   m_Name: LightEaterFish
-  m_TagString: Fish
+  m_TagString: LightEater
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - 4: {fileID: 480700}
   - 33: {fileID: 3353680}
   - 23: {fileID: 2356160}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Cone_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 439176}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 491676}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: FISH SMAL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   - 4: {fileID: 434048}
   - 33: {fileID: 3339842}
   - 23: {fileID: 2397564}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Cone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - 4: {fileID: 496394}
   - 135: {fileID: 13597834}
   - 114: {fileID: 11452028}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: RepelVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - 4: {fileID: 473504}
   - 33: {fileID: 3342336}
   - 23: {fileID: 2314384}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: bigfins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   - 4: {fileID: 409112}
   - 33: {fileID: 3355128}
   - 23: {fileID: 2388428}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: smallfins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - 4: {fileID: 474118}
   - 33: {fileID: 3327380}
   - 23: {fileID: 2376834}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Cone_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 440196}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: fin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - 4: {fileID: 432222}
   - 33: {fileID: 3333674}
   - 23: {fileID: 2322108}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Cone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 438976}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: teeth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   - 4: {fileID: 401780}
   - 33: {fileID: 3375606}
   - 23: {fileID: 2315498}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -941,6 +941,14 @@ Prefab:
       propertyPath: RepelVolume
       value: 
       objectReference: {fileID: 13597834}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: LightEater
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 124374}
