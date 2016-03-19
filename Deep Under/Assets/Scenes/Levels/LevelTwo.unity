@@ -2533,8 +2533,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 818969598}
+<<<<<<< HEAD
   m_LocalRotation: {x: 0.10959442, y: -0.014961625, z: 0.0032877326, w: 0.99385834}
   m_LocalPosition: {x: -0.7, y: 61.4, z: -63.1}
+=======
+  m_LocalRotation: {x: 0.026761761, y: -0.01518281, z: 0.0020351165, w: 0.9995245}
+  m_LocalPosition: {x: -0.15, y: 56.64, z: -63.85}
+>>>>>>> origin/master
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 926819599}
@@ -2554,6 +2559,11 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   offsetLength: 0
   player: {fileID: 1796915426}
+<<<<<<< HEAD
+=======
+  cameraSpeed: 120
+  defaultSmoothing: 15
+>>>>>>> origin/master
   smoothing: 15
   isMoving: 0
   startLook: 0

@@ -90,7 +90,6 @@ public class Player : SmallBoidsFish {
         Debug.Log(speed);
         if (shoot) createLightOrb();
 		if (isMoving) Move(h,v,a);
-		else if (!camera.isMoving) camera.swing(Time.deltaTime);
 
 		if (makingSound) timer += Time.deltaTime;
 		if (timer > soundDuration) {
@@ -127,13 +126,16 @@ public class Player : SmallBoidsFish {
 	}
 
 	private void addBoost () { 
-		if (speed < maxSpeed) speed = speed + (acceleration*Time.deltaTime);
-		camera.smoothing = 40f;
+		if (speed < maxSpeed) {
+			speed = speed + (acceleration*Time.deltaTime);
+		}
 	}
 
 	private void removeBoost () { 
-		if (speed >= normalSpeed) speed = speed - (acceleration*Time.deltaTime);
-		camera.smoothing = 15f;
+		if (speed > normalSpeed){
+			speed = normalSpeed;
+			camera.swingToPosition(defaultCameraPosition.transform);
+		}
 	}
 
 	protected override void RandomizeDirection(){

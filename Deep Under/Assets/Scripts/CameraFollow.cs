@@ -9,7 +9,8 @@ public class CameraFollow : MonoBehaviour {
 
 
 	public Player player;  
-	private float cameraSpeed = 120f;
+	public float cameraSpeed = 120f;
+	public float defaultSmoothing = 15f;
 	public float smoothing = 15f;
     public bool isMoving = false; 
 
