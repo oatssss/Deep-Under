@@ -263,7 +263,7 @@ public abstract class BoidsFish : MonoBehaviour
             }
             else
             {
-                this.CreateIsolatedSoftBoundary();
+                //this.CreateIsolatedSoftBoundary();
             }
         }
 		// TODO

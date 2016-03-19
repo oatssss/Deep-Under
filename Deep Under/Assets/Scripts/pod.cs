@@ -45,7 +45,7 @@ public class pod : MonoBehaviour {
 		if (other.CompareTag("Player") && auliv != null) {
 			auliv.charging = false;
 			// Debug.Log ("Auliv has left the building");
-			fLight.color = Color.blue;
+			fLight.color = Color.green;
 		}
 	}
 }

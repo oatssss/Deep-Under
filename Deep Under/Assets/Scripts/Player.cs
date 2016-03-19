@@ -3,8 +3,13 @@ using System.Collections;
 
 public class Player : SmallBoidsFish {
 
-	public float speed = 30f;
+	public float speed = 25f;
+	public float normalSpeed = 25f;
+	public float acceleration= 20f;
+	public float maxSpeed = 100f;
 	private float autoTurnSpeed = 10f;
+	bool isMoving = false;
+
 	new private Rigidbody rigidbody;
 
 	new public CameraFollow camera;
@@ -24,10 +29,12 @@ public class Player : SmallBoidsFish {
 	private float h;
 	private float v;
 	private float a;
+	private float l2; 
+	private float r2; 
 
 	public float energy;
 	private float maxEnergy = 100f;
-	public float energyDrainRate;
+	public float energyDrainRate = 3f;
 	public bool charging = false;
 
 	LineRenderer lineRenderer;
@@ -56,7 +63,6 @@ public class Player : SmallBoidsFish {
 		camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
 		defaultCameraPosition.transform.position = camera.transform.position;
 		defaultCameraPosition.transform.rotation = camera.transform.rotation;
-		energyDrainRate = 3f;
         base.Start();
         soundCollider.radius = 0f;
 		startPosition = this.transform.position;
@@ -68,53 +74,66 @@ public class Player : SmallBoidsFish {
 
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
-		if (Input.GetKey(KeyCode.Joystick1Button4)) a = 1;
-		else if (Input.GetKey(KeyCode.Joystick1Button5)) a = -1;
+		l2 = Input.GetAxis("Fire2");
+		r2 = Input.GetAxis("Fire3");
+		if (Input.GetKey(KeyCode.JoystickButton4)) a = 1;
+		else if (Input.GetKey(KeyCode.JoystickButton5)) a = -1;
         else {
        		a = Input.GetAxis("Altitude");
         }
-		if (Input.GetKey(KeyCode.Joystick1Button6) || Input.GetKey(KeyCode.LeftShift)) {
+        isMoving = !(h == 0f && v == 0f && a == 0f);
+		if (l2 > 0f || Input.GetKey(KeyCode.LeftShift)) {
         	autoTurn();
+        	addBoost();
         }
+        else removeBoost();
+        Debug.Log(speed);
         if (shoot) createLightOrb();
-		Move(h,v,a);
+		if (isMoving) Move(h,v,a);
+		else if (!camera.isMoving) camera.swing(Time.deltaTime);
+
 		if (makingSound) timer += Time.deltaTime;
 		if (timer > soundDuration) {
 			timer = 0f;
 			makingSound = false;
 			soundCollider.radius = 0f;
 		}
-		//autoTurn();
-		//bob();
+
+
 
 	}
 
 	protected override void Update() {
-		if (Input.GetKeyUp(KeyCode.Joystick1Button11) || Input.GetKeyUp(KeyCode.F)) lightToggle();
-		if (Input.GetKeyUp(KeyCode.Joystick1Button7) || Input.GetKeyUp(KeyCode.Mouse0)) callCreateLightOrb();
-		if (Input.GetKeyUp(KeyCode.Joystick1Button2)) makeSound();
+		if (Input.GetKeyUp(KeyCode.JoystickButton9) || Input.GetKeyUp(KeyCode.F)) lightToggle();
+		if (r2 > 0 || Input.GetKeyUp(KeyCode.Mouse0)) callCreateLightOrb();
+		if (Input.GetKeyUp(KeyCode.JoystickButton1)) makeSound();
 		//controllerButtonTest();
+		//xboxControllerButtonTest();
 		if(this.energy > 0) removeEnergy(energyDrainRate);
 		else Die();
 
-		if (Input.GetKeyDown(KeyCode.Joystick1Button6) || Input.GetKeyDown(KeyCode.LeftShift)) {
-        	aim(aimZoomAmount, aimShiftAmount);
-        }
-		if (Input.GetKeyUp(KeyCode.Joystick1Button6) || Input.GetKeyUp(KeyCode.LeftShift)) {
-        	exitAim(aimZoomAmount, aimShiftAmount);
-        }
         base.Update();
 	}
 
 	private void Move (float h, float v, float u) {
 
+		
 		Vector3 movementHorizontal = (camera.transform.right * h) * speed * Time.deltaTime;
 		Vector3 movementForward = (camera.transform.forward * v) * speed * Time.deltaTime;
         Vector3 movementVertical = (Vector3.up * u) * speed/2f * Time.deltaTime;
 		Vector3 dir = movementHorizontal + movementForward;
 		if ((Mathf.Abs(h) >= 0.2f || Mathf.Abs(v) >= 0.2f) && !isAiming) turn(dir);
 		rigidbody.MovePosition(transform.position + movementHorizontal + movementForward +  movementVertical);
+	}
 
+	private void addBoost () { 
+		if (speed < maxSpeed) speed = speed + (acceleration*Time.deltaTime);
+		camera.smoothing = 40f;
+	}
+
+	private void removeBoost () { 
+		if (speed >= normalSpeed) speed = speed - (acceleration*Time.deltaTime);
+		camera.smoothing = 15f;
 	}
 
 	protected override void RandomizeDirection(){
@@ -128,7 +147,8 @@ public class Player : SmallBoidsFish {
 
 	private void turn (Vector3 dir) {
 		Quaternion lookDirection = Quaternion.LookRotation(dir);
-		float turnSpeed = Mathf.Sqrt(Mathf.Pow(h,2) + Mathf.Pow(v,2)) * 4f;
+		float turnSpeed = Mathf.Sqrt(Mathf.Pow(h,2) + Mathf.Pow(v,2)) * 32f;
+		//if (angle > -15f && angle < 15f)
 		transform.rotation = Quaternion.Lerp(transform.rotation, lookDirection, turnSpeed * Time.deltaTime);
 	}
 
@@ -150,7 +170,7 @@ public class Player : SmallBoidsFish {
 	}
 
 	private void callCreateLightOrb (){
-		if (isAiming) shoot = true;
+		shoot = true;
 	}
 
 	private void makeSound () {
@@ -242,5 +262,20 @@ public class Player : SmallBoidsFish {
 		if (Input.GetKeyDown (KeyCode.Joystick1Button7)) Debug.Log("R2");
 		if (Input.GetKeyDown (KeyCode.Joystick1Button10)) Debug.Log("L3");
 		if (Input.GetKeyDown (KeyCode.Joystick1Button11)) Debug.Log("R3");
+	}
+
+	private void xboxControllerButtonTest() { 
+		if (Input.GetKeyDown (KeyCode.JoystickButton0)) Debug.Log("A pressed");
+		if (Input.GetKeyDown (KeyCode.JoystickButton1)) Debug.Log("B pressed");
+		if (Input.GetKeyDown (KeyCode.JoystickButton2)) Debug.Log("X pressed");
+		if (Input.GetKeyDown (KeyCode.JoystickButton3)) Debug.Log("Y pressed");
+		if (Input.GetKeyDown (KeyCode.JoystickButton4)) Debug.Log("LB");
+		if (Input.GetKeyDown (KeyCode.JoystickButton5)) Debug.Log("RB");
+		//if (Input.GetKeyDown (KeyCode.JoystickButton11)) Debug.Log("L2");
+		//if (Input.GetKeyDown (KeyCode.JoystickButton10)) Debug.Log("R2");
+		if (l2 != 0) Debug.Log("LT");
+		if (r2 != 0) Debug.Log("RT");
+		if (Input.GetKeyDown (KeyCode.JoystickButton9)) Debug.Log("R3");
+		if (Input.GetKeyDown (KeyCode.JoystickButton8)) Debug.Log("L3");
 	}
 }

@@ -111,7 +111,7 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.6
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -691,8 +691,24 @@ Prefab:
       value: 0.29883623
       objectReference: {fileID: 0}
     - target: {fileID: 11406262, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: speed
+      propertyPath: maxSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406262, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: addSpeed
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406262, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: speed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406262, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: normalSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406262, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: acceleration
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0542ce48aa9ba74291171c256824204, type: 2}
