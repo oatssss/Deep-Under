@@ -14,37 +14,38 @@ public class cameraSense : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = cF.player;
-		Debug.Log (cF.offsetLength);
+		//Debug.Log (cF.offsetLength);
 	}
 	
 	// becasue physics; raycast in the direction of the camera's movement 
 
 	void FixedUpdate () {
 		Vector3 dir = cF.getMovementDir();
-
-		if (dir.magnitude > 0.05f)detect();  //amount updated here. 
+		Vector3 ray = dir; 
+		ray.Scale(new Vector3(10f, 10f, 10f));
+		Debug.DrawRay(transform.position, ray);
+		detect(dir);   
 	}
 
-	private void detect () { 
-		Ray ray = new Ray(transform.position, -1*transform.forward);
-		Debug.DrawRay(transform.position, -rayDistance*transform.forward);
+	private void detect (Vector3 dir) { 
+		Ray ray = new Ray(cF.player.transform.position, -1*transform.forward);
 		if (Physics.Raycast(ray, out hitInfo, rayDistance)) { 
-			if (hitInfo.collider.tag.Equals("Environment")) { 
-				//amount = hitInfo.distance/rayDistance;  
-				//Debug.Log(amount);
-				if (!scaled) { 
-					cF.offset = cF.offset * 0.33333f;
+			if (hitInfo.collider.tag.Equals("Environment") && hitInfo.distance > cF.offsetLength) { 
+				if (!scaled){
+					amount = hitInfo.distance/rayDistance;
+					cF.scaleOffsetLength(0.333f);
 					scaled = true;
 				}
 			}
-		}
-		else { 
-			if (scaled) { 
-				cF.offset = cF.offset * 3f;
-				scaled = false; 
-			}
-		}
 
+		}
+		else {
+			if (scaled) { 
+					amount = 1f/amount;
+				 	cF.scaleOffsetLength(3f);
+					scaled = false;
+				}
+			}
 	}
 
 
