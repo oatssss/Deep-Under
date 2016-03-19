@@ -1,0 +1,356 @@
+fileFormatVersion: 2
+guid: e18c276fc548e475c9ccb0e7c00a88dd
+timeCreated: 1458426886
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: BackFinCTLR
+    100002: BD_C_face_01
+    100004: BD_C_pelvis_01
+    100006: BD_C_tail_01
+    100008: BD_L_elbow_01
+    100010: BD_L_finger_01_01
+    100012: BD_L_finger_01_02
+    100014: BD_L_finger_02_01
+    100016: BD_L_finger_02_02
+    100018: BD_L_finger_03_01
+    100020: BD_L_finger_03_02
+    100022: BD_L_hand_01
+    100024: BD_L_hand_01_Goal
+    100026: BD_L_propeller_01
+    100028: BD_L_shouldeL_01
+    100030: BD_L_wing_01
+    100032: BD_L_wing_02
+    100034: BD_L_wing_fin_01
+    100036: BD_R_elbow_01
+    100038: BD_R_finger_01_01
+    100040: BD_R_finger_01_02
+    100042: BD_R_finger_02_01
+    100044: BD_R_finger_02_02
+    100046: BD_R_finger_03_01
+    100048: BD_R_finger_03_02
+    100050: BD_R_hand_01
+    100052: BD_R_hand_01_Goal
+    100054: BD_R_propeller_01
+    100056: BD_R_shoulder_01
+    100058: BD_R_wing_01
+    100060: BD_R_wing_02
+    100062: BD_R_wing_fin_01
+    100064: Controllers
+    100066: JT_C_face_split
+    100068: JT_C_tail_split
+    100070: JT_L_finger_01_split
+    100072: JT_L_finger_02_split
+    100074: JT_L_finger_03_split
+    100076: JT_L_propeller_split
+    100078: JT_L_topBar_split
+    100080: JT_L_wing_fin_split
+    100082: JT_R_finger_01_split
+    100084: JT_R_finger_02_split
+    100086: JT_R_finger_03_split
+    100088: JT_R_propeller_split
+    100090: JT_R_topBar_split
+    100092: JT_R_wing_fin_split
+    100094: L_claw_CTRL
+    100096: L_elbow
+    100098: L_hand_ICON_01
+    100100: L_propeller_CTRL
+    100102: R_claw_CTRL
+    100104: R_elbow
+    100106: R_hand_ICON_01
+    100108: R_propeller_CTRL
+    100110: SCARY_SPOOKY_SKELETON
+    100112: //RootNode
+    400000: BackFinCTLR
+    400002: BD_C_face_01
+    400004: BD_C_pelvis_01
+    400006: BD_C_tail_01
+    400008: BD_L_elbow_01
+    400010: BD_L_finger_01_01
+    400012: BD_L_finger_01_02
+    400014: BD_L_finger_02_01
+    400016: BD_L_finger_02_02
+    400018: BD_L_finger_03_01
+    400020: BD_L_finger_03_02
+    400022: BD_L_hand_01
+    400024: BD_L_hand_01_Goal
+    400026: BD_L_propeller_01
+    400028: BD_L_shouldeL_01
+    400030: BD_L_wing_01
+    400032: BD_L_wing_02
+    400034: BD_L_wing_fin_01
+    400036: BD_R_elbow_01
+    400038: BD_R_finger_01_01
+    400040: BD_R_finger_01_02
+    400042: BD_R_finger_02_01
+    400044: BD_R_finger_02_02
+    400046: BD_R_finger_03_01
+    400048: BD_R_finger_03_02
+    400050: BD_R_hand_01
+    400052: BD_R_hand_01_Goal
+    400054: BD_R_propeller_01
+    400056: BD_R_shoulder_01
+    400058: BD_R_wing_01
+    400060: BD_R_wing_02
+    400062: BD_R_wing_fin_01
+    400064: Controllers
+    400066: JT_C_face_split
+    400068: JT_C_tail_split
+    400070: JT_L_finger_01_split
+    400072: JT_L_finger_02_split
+    400074: JT_L_finger_03_split
+    400076: JT_L_propeller_split
+    400078: JT_L_topBar_split
+    400080: JT_L_wing_fin_split
+    400082: JT_R_finger_01_split
+    400084: JT_R_finger_02_split
+    400086: JT_R_finger_03_split
+    400088: JT_R_propeller_split
+    400090: JT_R_topBar_split
+    400092: JT_R_wing_fin_split
+    400094: L_claw_CTRL
+    400096: L_elbow
+    400098: L_hand_ICON_01
+    400100: L_propeller_CTRL
+    400102: R_claw_CTRL
+    400104: R_elbow
+    400106: R_hand_ICON_01
+    400108: R_propeller_CTRL
+    400110: SCARY_SPOOKY_SKELETON
+    400112: //RootNode
+    2300000: BackFinCTLR
+    2300002: L_claw_CTRL
+    2300004: L_elbow
+    2300006: L_hand_ICON_01
+    2300008: L_propeller_CTRL
+    2300010: R_claw_CTRL
+    2300012: R_elbow
+    2300014: R_hand_ICON_01
+    2300016: R_propeller_CTRL
+    3300000: BackFinCTLR
+    3300002: L_claw_CTRL
+    3300004: L_elbow
+    3300006: L_hand_ICON_01
+    3300008: L_propeller_CTRL
+    3300010: R_claw_CTRL
+    3300012: R_elbow
+    3300014: R_hand_ICON_01
+    3300016: R_propeller_CTRL
+    4300000: R_elbow
+    4300002: L_elbow
+    4300004: R_hand_ICON_01
+    4300006: R_claw_CTRL
+    4300008: L_hand_ICON_01
+    4300010: L_claw_CTRL
+    4300012: R_propeller_CTRL
+    4300014: L_propeller_CTRL
+    4300016: BackFinCTLR
+    7400000: C4D Animation Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: C4D Animation Take
+      takeName: C4D Animation Take
+      firstFrame: 0
+      lastFrame: 119
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Controllers
+        weight: 1
+      - path: Controllers/BackFinCTLR
+        weight: 1
+      - path: Controllers/L_elbow
+        weight: 1
+      - path: Controllers/L_hand_ICON_01
+        weight: 1
+      - path: Controllers/L_hand_ICON_01/BD_L_hand_01_Goal
+        weight: 1
+      - path: Controllers/L_hand_ICON_01/L_claw_CTRL
+        weight: 1
+      - path: Controllers/L_propeller_CTRL
+        weight: 1
+      - path: Controllers/R_elbow
+        weight: 1
+      - path: Controllers/R_hand_ICON_01
+        weight: 1
+      - path: Controllers/R_hand_ICON_01/BD_R_hand_01_Goal
+        weight: 1
+      - path: Controllers/R_hand_ICON_01/R_claw_CTRL
+        weight: 1
+      - path: Controllers/R_propeller_CTRL
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_C_face_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_C_face_01/JT_C_face_split
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_C_tail_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_C_tail_01/JT_C_tail_split
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_shouldeL_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_shouldeL_01/BD_L_elbow_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_shouldeL_01/BD_L_elbow_01/BD_L_hand_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_shouldeL_01/BD_L_elbow_01/BD_L_hand_01/BD_L_finger_01_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_shouldeL_01/BD_L_elbow_01/BD_L_hand_01/BD_L_finger_01_01/BD_L_finger_01_02
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_shouldeL_01/BD_L_elbow_01/BD_L_hand_01/BD_L_finger_01_01/BD_L_finger_01_02/JT_L_finger_01_split
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_shouldeL_01/BD_L_elbow_01/BD_L_hand_01/BD_L_finger_02_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_shouldeL_01/BD_L_elbow_01/BD_L_hand_01/BD_L_finger_02_01/BD_L_finger_02_02
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_shouldeL_01/BD_L_elbow_01/BD_L_hand_01/BD_L_finger_02_01/BD_L_finger_02_02/JT_L_finger_02_split
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_shouldeL_01/BD_L_elbow_01/BD_L_hand_01/BD_L_finger_03_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_shouldeL_01/BD_L_elbow_01/BD_L_hand_01/BD_L_finger_03_01/BD_L_finger_03_02
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_shouldeL_01/BD_L_elbow_01/BD_L_hand_01/BD_L_finger_03_01/BD_L_finger_03_02/JT_L_finger_03_split
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_wing_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_wing_01/BD_L_wing_02
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_wing_01/BD_L_wing_02/BD_L_propeller_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_wing_01/BD_L_wing_02/BD_L_propeller_01/JT_L_propeller_split
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_wing_01/BD_L_wing_02/BD_L_wing_fin_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_wing_01/BD_L_wing_02/BD_L_wing_fin_01/JT_L_wing_fin_split
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_L_wing_01/BD_L_wing_02/JT_L_topBar_split
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_shoulder_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_shoulder_01/BD_R_elbow_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_shoulder_01/BD_R_elbow_01/BD_R_hand_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_shoulder_01/BD_R_elbow_01/BD_R_hand_01/BD_R_finger_01_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_shoulder_01/BD_R_elbow_01/BD_R_hand_01/BD_R_finger_01_01/BD_R_finger_01_02
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_shoulder_01/BD_R_elbow_01/BD_R_hand_01/BD_R_finger_01_01/BD_R_finger_01_02/JT_R_finger_01_split
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_shoulder_01/BD_R_elbow_01/BD_R_hand_01/BD_R_finger_02_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_shoulder_01/BD_R_elbow_01/BD_R_hand_01/BD_R_finger_02_01/BD_R_finger_02_02
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_shoulder_01/BD_R_elbow_01/BD_R_hand_01/BD_R_finger_02_01/BD_R_finger_02_02/JT_R_finger_02_split
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_shoulder_01/BD_R_elbow_01/BD_R_hand_01/BD_R_finger_03_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_shoulder_01/BD_R_elbow_01/BD_R_hand_01/BD_R_finger_03_01/BD_R_finger_03_02
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_shoulder_01/BD_R_elbow_01/BD_R_hand_01/BD_R_finger_03_01/BD_R_finger_03_02/JT_R_finger_03_split
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_wing_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_wing_01/BD_R_wing_02
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_wing_01/BD_R_wing_02/BD_R_propeller_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_wing_01/BD_R_wing_02/BD_R_propeller_01/JT_R_propeller_split
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_wing_01/BD_R_wing_02/BD_R_wing_fin_01
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_wing_01/BD_R_wing_02/BD_R_wing_fin_01/JT_R_wing_fin_split
+        weight: 1
+      - path: SCARY_SPOOKY_SKELETON/BD_C_pelvis_01/BD_R_wing_01/BD_R_wing_02/JT_R_topBar_split
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
