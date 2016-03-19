@@ -27,7 +27,7 @@ public class Player : SmallBoidsFish {
 
 	public float energy;
 	private float maxEnergy = 100f;
-	public float energyDrainRate;
+	public float energyDrainRate = 3f;
 	public bool charging = false;
 
 	LineRenderer lineRenderer;
@@ -56,7 +56,6 @@ public class Player : SmallBoidsFish {
 		camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
 		defaultCameraPosition.transform.position = camera.transform.position;
 		defaultCameraPosition.transform.rotation = camera.transform.rotation;
-		energyDrainRate = 3f;
         base.Start();
         soundCollider.radius = 0f;
 		startPosition = this.transform.position;
