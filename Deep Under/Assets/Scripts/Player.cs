@@ -29,8 +29,8 @@ public class Player : SmallBoidsFish {
 	private float h;
 	private float v;
 	private float a;
-	private float l2; 
-	private float r2; 
+	private float l2;
+	private float r2;
 
 	public float energy;
 	private float maxEnergy = 100f;
@@ -50,6 +50,7 @@ public class Player : SmallBoidsFish {
 	private Vector3 startPosition;
 //	public SceneLight generalLight;
 	public Alert guiAlert;
+    [SerializeField] private Animator Animator;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -115,8 +116,8 @@ public class Player : SmallBoidsFish {
 	}
 
 	private void Move (float h, float v, float u) {
-
-		
+        this.Animator.SetFloat("Horizontal", h);
+        this.Animator.SetFloat("Vertical", v);
 		Vector3 movementHorizontal = (camera.transform.right * h) * speed * Time.deltaTime;
 		Vector3 movementForward = (camera.transform.forward * v) * speed * Time.deltaTime;
         Vector3 movementVertical = (Vector3.up * u) * speed/2f * Time.deltaTime;
@@ -125,13 +126,13 @@ public class Player : SmallBoidsFish {
 		rigidbody.MovePosition(transform.position + movementHorizontal + movementForward +  movementVertical);
 	}
 
-	private void addBoost () { 
+	private void addBoost () {
 		if (speed < maxSpeed) {
 			speed = speed + (acceleration*Time.deltaTime);
 		}
 	}
 
-	private void removeBoost () { 
+	private void removeBoost () {
 		if (speed > normalSpeed){
 			speed = normalSpeed;
 			camera.swingToPosition(defaultCameraPosition.transform);
@@ -266,7 +267,7 @@ public class Player : SmallBoidsFish {
 		if (Input.GetKeyDown (KeyCode.Joystick1Button11)) Debug.Log("R3");
 	}
 
-	private void xboxControllerButtonTest() { 
+	private void xboxControllerButtonTest() {
 		if (Input.GetKeyDown (KeyCode.JoystickButton0)) Debug.Log("A pressed");
 		if (Input.GetKeyDown (KeyCode.JoystickButton1)) Debug.Log("B pressed");
 		if (Input.GetKeyDown (KeyCode.JoystickButton2)) Debug.Log("X pressed");
