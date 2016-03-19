@@ -7,9 +7,13 @@ public class FishManager : UnitySingletonPersistent<FishManager> {
 	public List<BoidsFish> MediumFishList = new List<BoidsFish>();
 	public List<BoidsFish> SmallFishList = new List<BoidsFish>();
 
+	public List<BoidsFish> LightEatersList = new List<BoidsFish>();
+
 	public LargeBoidsFish LargeFish;
 	public MediumBoidsFish MediumFish;
 	public SmallBoidsFish SmallFish;
+	public LightEaterBoids LightEaterFish;
+
     public GameObject EnergyBall;
     public SoftBoundary IsolatedSoftBoundaryPrefab;
 
@@ -21,8 +25,11 @@ public class FishManager : UnitySingletonPersistent<FishManager> {
         else if (fish.Size == BoidsFish.SIZE.MEDIUM)
             { this.MediumFishList.Add(fish); }
 
-        else
-            { this.LargeFishList.Add(fish); }
+		else if (fish.Size == BoidsFish.SIZE.GOD)
+            { this.LightEatersList.Add(fish); }
+		else 
+		{ this.LargeFishList.Add(fish); }
+
     }
 
 	public void DestroyFish(BoidsFish fishToDestroy)
@@ -39,9 +46,14 @@ public class FishManager : UnitySingletonPersistent<FishManager> {
 		{
 			aFish.RemoveFishReferences (fishToDestroy);
 		}
+		foreach (BoidsFish aFish in LightEatersList)
+		{
+			aFish.RemoveFishReferences (fishToDestroy);
+		}
 		LargeFishList.Remove (fishToDestroy);
 		MediumFishList.Remove (fishToDestroy);
 		SmallFishList.Remove (fishToDestroy);
+		LightEatersList.Remove (fishToDestroy);
 		Destroy (fishToDestroy.gameObject);
 	}
 

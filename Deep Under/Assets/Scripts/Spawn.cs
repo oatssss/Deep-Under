@@ -52,6 +52,15 @@ public class Spawn : MonoBehaviour {
             }
         }
 
+		else if (typeOfFish == BoidsFish.SIZE.GOD && FishManager.Instance.LightEatersList.Count < maxFish)
+		{
+			for (int i = 0; i < spawnQuantity; i++)
+			{
+				// Spawn large
+				spawned = Instantiate<LightEaterBoids>(FishManager.Instance.LightEaterFish);
+			}
+		}
+
 		if (spawned) 
 		{
 			spawned.RigidBody.MovePosition(this.transform.position + new Vector3(0, 4, 0));

@@ -27,7 +27,7 @@ public class Player : SmallBoidsFish {
 
 	public float energy;
 	private float maxEnergy = 100f;
-	public float energyDrainRate = 3f;
+	public float energyDrainRate = 8f;
 	public bool charging = false;
 
 	LineRenderer lineRenderer;

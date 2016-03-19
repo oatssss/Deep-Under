@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(Rigidbody))]
 public abstract class BoidsFish : MonoBehaviour
 {
-	public enum SIZE { SMALL, MEDIUM, LARGE }
+	public enum SIZE { SMALL, MEDIUM, LARGE, GOD }
 	public enum STATE { IDLE, SWIMMING, FLEEING, HUNTING, EATING, EATEN }
 	public Light fLight;
 
@@ -21,7 +21,7 @@ public abstract class BoidsFish : MonoBehaviour
             {
                 return BoidsSettings.Instance.MediumPredatorRadius;
             }
-            else
+            else 
             {
                 return BoidsSettings.Instance.LargePredatorRadius;
             }
@@ -46,6 +46,7 @@ public abstract class BoidsFish : MonoBehaviour
 
 	[SerializeField] private List<BoidsFish> Repellants = new List<BoidsFish>();
 	[SerializeField] private List<BoidsFish> Predators = new List<BoidsFish>();
+	[SerializeField] private List<BoidsFish> LightEaters = new List<BoidsFish>();
     public int PredatorCount { get { return this.Predators.Count; } }
     /*[HideInInspector]*/ public List<BoidsFish> Predatees = new List<BoidsFish>();
 
@@ -504,7 +505,7 @@ public abstract class BoidsFish : MonoBehaviour
                 if (potentialSwitch == predatee || potentialSwitch.Size < predatee.Size)
                     { continue; }
 
-                if (this.Size >= SIZE.LARGE)
+                if (this.Size >= SIZE.LARGE && this.Size != SIZE.GOD)
                 {
                     // Skip small fish that aren't in a big enough flock
                     SmallBoidsFish potentialSmall = potentialSwitch as SmallBoidsFish;
@@ -541,7 +542,7 @@ public abstract class BoidsFish : MonoBehaviour
                 }
 
                 // Large fish skip small fish that aren't in a big enough flock
-                if (this.Size >= SIZE.LARGE)
+				if (this.Size >= SIZE.LARGE && this.Size != SIZE.GOD)
                 {
                     SmallBoidsFish small = fish as SmallBoidsFish;
                     if (fish == GameManager.Instance.Player && (small != null) && (small.FlockSize < BoidsSettings.Instance.MinFlockSizeToAttractLargeFish))
@@ -626,13 +627,15 @@ public abstract class BoidsFish : MonoBehaviour
 	void OnCollisionEnter(Collision collision)
     {
 		BoidsFish collidedFish = collision.gameObject.GetComponent<BoidsFish> ();
-		if (collision.gameObject.tag=="Fish" && collidedFish.Size < this.Size)
+
+		if (collision.gameObject.tag=="Fish" && collidedFish.Size < this.Size 
+		    && this.Size != SIZE.GOD && collidedFish.Size != SIZE.GOD)
 		{
             // collided with prey, eat it
             this.State = STATE.EATING;
             collidedFish.Eaten(this);
 		}
-		else if (collision.gameObject.tag=="Player" && collidedFish.Size < this.Size)
+		else if (collision.gameObject.tag=="Player" && collidedFish.Size < this.Size && collidedFish.Size != SIZE.GOD)
 		{
 			// collided with Auliv, kill?
 			Player auliv = collision.gameObject.GetComponent<Player>();
