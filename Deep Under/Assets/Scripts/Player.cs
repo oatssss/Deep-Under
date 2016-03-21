@@ -8,6 +8,7 @@ public class Player : SmallBoidsFish {
 	public float acceleration= 20f;
 	public float maxSpeed = 100f;
 	private float autoTurnSpeed = 10f;
+	bool boosting = false;
 	bool isMoving = false;
 
 	new private Rigidbody rigidbody;
@@ -35,6 +36,9 @@ public class Player : SmallBoidsFish {
 	public float energy;
 	private float maxEnergy = 100f;
 	public float energyDrainRate = 8f;
+	private float minEnergyDrainRate = 8f;
+	public float maxEnergyDrainRate = 24f;
+	public float energyDrainRateAcceleration = 2f; 
 	public bool charging = false;
 
 	LineRenderer lineRenderer;
@@ -66,6 +70,7 @@ public class Player : SmallBoidsFish {
         base.Start();
         soundCollider.radius = 0f;
 		startPosition = this.transform.position;
+		minEnergyDrainRate = energyDrainRate;
 //		generalLight = GameObject.Find("Caustics Effect").GetComponent<SceneLight>();
 		guiAlert = GameObject.Find("Alert").GetComponent<Alert>();
 	}
@@ -82,23 +87,16 @@ public class Player : SmallBoidsFish {
        		a = Input.GetAxis("Altitude");
         }
         isMoving = !(h == 0f && v == 0f && a == 0f);
-		if (l2 > 0f || Input.GetKey(KeyCode.LeftShift)) {
-        	autoTurn();
-        	addBoost();
-        }
-        else removeBoost();
-        Debug.Log(speed);
-        if (shoot) createLightOrb();
+		if (shoot) createLightOrb();
 		if (isMoving) Move(h,v,a);
-
+		boostAndDrain();
+		//put sound stuff in a new method
 		if (makingSound) timer += Time.deltaTime;
 		if (timer > soundDuration) {
 			timer = 0f;
 			makingSound = false;
 			soundCollider.radius = 0f;
 		}
-
-
 
 	}
 
@@ -116,26 +114,12 @@ public class Player : SmallBoidsFish {
 
 	private void Move (float h, float v, float u) {
 
-		
 		Vector3 movementHorizontal = (camera.transform.right * h) * speed * Time.deltaTime;
 		Vector3 movementForward = (camera.transform.forward * v) * speed * Time.deltaTime;
         Vector3 movementVertical = (Vector3.up * u) * speed/2f * Time.deltaTime;
 		Vector3 dir = movementHorizontal + movementForward;
 		if ((Mathf.Abs(h) >= 0.2f || Mathf.Abs(v) >= 0.2f) && !isAiming) turn(dir);
 		rigidbody.MovePosition(transform.position + movementHorizontal + movementForward +  movementVertical);
-	}
-
-	private void addBoost () { 
-		if (speed < maxSpeed) {
-			speed = speed + (acceleration*Time.deltaTime);
-		}
-	}
-
-	private void removeBoost () { 
-		if (speed > normalSpeed){
-			speed = normalSpeed;
-			camera.swingToPosition(defaultCameraPosition.transform);
-		}
 	}
 
 	protected override void RandomizeDirection(){
@@ -162,6 +146,10 @@ public class Player : SmallBoidsFish {
 		spotlight.gameObject.SetActive(lightOn);
 	}
 
+	private void callCreateLightOrb (){
+		shoot = true;
+	}
+
 	private void createLightOrb () {
 		lightOrb clone = GameObject.Instantiate(lightOrb);
 		clone.transform.position = lightOrbPosition.position;
@@ -171,9 +159,6 @@ public class Player : SmallBoidsFish {
 		shoot = false;
 	}
 
-	private void callCreateLightOrb (){
-		shoot = true;
-	}
 
 	private void makeSound () {
 		makingSound = true;
@@ -184,7 +169,6 @@ public class Player : SmallBoidsFish {
 	public void addEnergy (float orbStrength) {
 		if (energy < maxEnergy ){
 			energy += orbStrength * Time.deltaTime;
-//			Debug.Log(energy);
 		}
 	}
 	public void addEnergyBall (float extra) {
@@ -209,25 +193,32 @@ public class Player : SmallBoidsFish {
 		}
 	}
 
-	private void aim (float zoomAmount, float shiftAmount) {
-		isAiming = true;
-		camera.translateHorizontal(shiftAmount);	//translate before offset length is altered
-		camera.scaleOffsetLength(1f/zoomAmount); //zoom in
-		//TODO: show throwing line
-		drawAim();
+	private void boostAndDrain () {
 
-	}
+		if (l2 > 0) autoTurn();
+		if ((l2 > 0f || Input.GetKey(KeyCode.LeftShift)) && isMoving) {
+			// add boost
+			if (speed < maxSpeed) {
+			speed = speed + (acceleration*Time.deltaTime);
+		}
+		boosting = true;
+        }
 
-	private void exitAim (float zoomAmount, float shiftAmount) {
-		isAiming = false;
-		camera.scaleOffsetLength(zoomAmount); //zoom out
-		camera.translateHorizontal(-shiftAmount); //translate after offset is put back to orig length
-		camera.swingToPosition(defaultCameraPosition.transform);
-	}
-
-	private void drawAim () {
-
-
+        else {
+        	//remove boost
+			if (speed > normalSpeed){
+			speed = normalSpeed;
+			//camera.swingToPosition(defaultCameraPosition.transform);
+		}
+		boosting = false; 
+        }
+        //manage energy drain rate
+		if (boosting && isMoving) {
+			if (energyDrainRate < maxEnergyDrainRate) energyDrainRate += energyDrainRateAcceleration*Time.deltaTime;
+		}
+		else {
+			if (energyDrainRate > minEnergyDrainRate) energyDrainRate -= energyDrainRateAcceleration*Time.deltaTime;
+		}
 	}
 
 	public void Die() {

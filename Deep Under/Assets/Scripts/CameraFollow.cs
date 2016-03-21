@@ -93,7 +93,7 @@ public class CameraFollow : MonoBehaviour {
     	offset = change * offset; 
     	//Vector3 newOffset = change * offset;
     	//transform.position = Vector3.Lerp(offset, newOffset, 0.3f);
-    	transform.rotation = Quaternion.Lerp(transform.rotation, t.rotation, 0.3f);
+    	transform.rotation = Quaternion.Lerp(transform.rotation, t.rotation, 1f);
     	startLook = 0f;
     }
 
@@ -102,11 +102,6 @@ public class CameraFollow : MonoBehaviour {
 		scaledOffset.Scale(new Vector3(amount, amount, amount));
 		offset = Vector3.Lerp(offset, scaledOffset, cameraSpeed*Time.deltaTime); 
     }
-
-    public void translateHorizontal (float amount) { 
-    	offset = offset + transform.right*amount;
-    }
-
 
 	public Vector3 getMovementDir () { 
 		Vector3 updatedPosition = transform.position; 
