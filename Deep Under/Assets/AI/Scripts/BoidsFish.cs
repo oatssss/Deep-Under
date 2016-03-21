@@ -201,6 +201,10 @@ public abstract class BoidsFish : MonoBehaviour
 		{
 			fLight.color = Color.red;
 		}
+		else if (this.Size == SIZE.GOD)
+		{
+			SetTarget(checkForEnergy().transform.position);
+		}
 	}
 
 	public void Idle()
@@ -448,6 +452,18 @@ public abstract class BoidsFish : MonoBehaviour
 		}
         // Else this fish is going to be eaten and is about to be destroyed
     }
+	protected EnergyBall checkForEnergy()
+	{
+		List<EnergyBall> balls = OrbManager.Instance.EnergyList;
+
+		balls.Sort(delegate(EnergyBall a, EnergyBall b)
+		          {return Vector2.Distance(this.transform.position,a.transform.position)
+			.CompareTo(
+				Vector2.Distance(this.transform.position,b.transform.position) );
+		});
+
+		return balls[0];
+	}
 
 	protected bool checkIfVisible(BoidsFish target)
 	{

@@ -9,6 +9,7 @@ public class BoidsSettings : UnitySingletonPersistent<BoidsSettings> {
     [Range(1,80f)] public float MediumHuntRadius = 30f;
     [Range(1,80f)] public float LargePredatorRadius = 80f;
     [Range(1,80f)] public float LargeHuntRadius = 55f;
+	[Range(1,80f)] public float EnergyEaterRadius = 55f;
     [Space(10)]
 
     [Header("Calculated Stages")]

@@ -8,6 +8,7 @@ TagManager:
   - Auliv
   - Obstacle
   - Environment
+  - LightEater
   layers:
   - Default
   - TransparentFX

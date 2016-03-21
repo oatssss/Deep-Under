@@ -28,16 +28,29 @@ public class HuntVolume : MonoBehaviour {
 
         else if (this.ParentFish.Size == BoidsFish.SIZE.LARGE)
             { this.Volume.radius = BoidsSettings.Instance.LargeHuntRadius; }
+
+		else if (this.ParentFish.Size == BoidsFish.SIZE.GOD)
+		{ this.Volume.radius = BoidsSettings.Instance.EnergyEaterRadius; }
     }
 
     void OnTriggerEnter(Collider other)
     {
         // Get the triggering BoidsFish
         BoidsFish predatee = other.gameObject.GetComponent<BoidsFish>();
+//		EnergyBall b;
+
         if (predatee != null && (predatee.Size < this.ParentFish.Size))
         {
             this.ParentFish.AddPredatee(predatee);
         }
+//		else
+//		{
+//			b = other.gameObject.GetComponent<EnergyBall>();
+//			if (b != null && (this.ParentFish.Size == BoidsFish.SIZE.GOD))
+//			{
+//				this.ParentFish.A(b);
+//			}
+//		}
     }
 
     void OnTriggerExit(Collider other)

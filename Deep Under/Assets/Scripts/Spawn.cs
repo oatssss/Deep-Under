@@ -22,14 +22,15 @@ public class Spawn : MonoBehaviour {
 		if (Random.value > spawnChance)
 		    { return; }
 
-        BoidsFish spawned = null;
+        GameObject spawned = null;
 
         if (typeOfFish == BoidsFish.SIZE.SMALL && FishManager.Instance.SmallFishList.Count < maxFish)
         {
             for (int i = 0; i < spawnQuantity; i++)
             {
                 // Spawn small fish
-                spawned = Instantiate<SmallBoidsFish>(FishManager.Instance.SmallFish);
+                spawned = (GameObject)Instantiate(FishManager.Instance.SmallFish.gameObject, this.transform.position + new Vector3(0, 4, 0), Quaternion.Euler(0.0f, (float)Random.Range(0, 360), 0.0f));
+                spawned.GetComponent<BoidsFish>().SetSoftBoundary(this.AssociatedSoftBoundary);
                 // , this.transform.position + new Vector3(0, 4, 0), Quaternion.Euler(0.0f, (float)Random.Range(0, 360), 0.0f)
             }
         }
@@ -39,7 +40,8 @@ public class Spawn : MonoBehaviour {
             for (int i = 0; i < spawnQuantity; i++)
             {
                 // Spawn medium
-                spawned = Instantiate<MediumBoidsFish>(FishManager.Instance.MediumFish);
+                spawned = (GameObject)Instantiate(FishManager.Instance.MediumFish.gameObject, this.transform.position + new Vector3(0, 4, 0), Quaternion.Euler(0.0f, (float)Random.Range(0, 360), 0.0f));
+                spawned.GetComponent<BoidsFish>().SetSoftBoundary(this.AssociatedSoftBoundary);
             }
         }
 
@@ -48,7 +50,8 @@ public class Spawn : MonoBehaviour {
             for (int i = 0; i < spawnQuantity; i++)
             {
                 // Spawn large
-                spawned = Instantiate<LargeBoidsFish>(FishManager.Instance.LargeFish);
+                spawned = (GameObject)Instantiate(FishManager.Instance.LargeFish.gameObject, this.transform.position + new Vector3(0, 4, 0), Quaternion.Euler(0.0f, (float)Random.Range(0, 360), 0.0f));
+                spawned.GetComponent<BoidsFish>().SetSoftBoundary(this.AssociatedSoftBoundary);
             }
         }
 
@@ -57,15 +60,17 @@ public class Spawn : MonoBehaviour {
 			for (int i = 0; i < spawnQuantity; i++)
 			{
 				// Spawn large
-				spawned = Instantiate<LightEaterBoids>(FishManager.Instance.LightEaterFish);
-			}
+				spawned = (GameObject)Instantiate(FishManager.Instance.LightEaterFish.gameObject, this.transform.position + new Vector3(0, 4, 0), Quaternion.Euler(0.0f, (float)Random.Range(0, 360), 0.0f));
+                spawned.GetComponent<BoidsFish>().SetSoftBoundary(this.AssociatedSoftBoundary);
+            }
 		}
 
-		if (spawned) 
-		{
-			spawned.RigidBody.MovePosition(this.transform.position + new Vector3(0, 4, 0));
-			spawned.RigidBody.MoveRotation(Quaternion.Euler(0.0f, (float)Random.Range(0, 360), 0.0f));
-			spawned.SetSoftBoundary(this.AssociatedSoftBoundary);
-		}
-	}
+        
+
+        //if (spawned) 
+        //{
+        //	spawned.transform.position = this.transform.position + new Vector3(0, 4, 0);
+        //	spawned.RigidBody.MoveRotation(Quaternion.Euler(0.0f, (float)Random.Range(0, 360), 0.0f));
+        //}
+    }
 }
