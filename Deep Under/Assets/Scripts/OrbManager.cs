@@ -30,8 +30,16 @@ public class OrbManager : UnitySingletonPersistent<OrbManager> {
 		OrbList.Remove(o);
 		GameObject.Destroy(o.gameObject);
 	}
+
+	public void destroyEnergy(EnergyBall ball)
+	{
+		EnergyList.Remove(ball);
+		GameObject.Destroy(ball.gameObject);
+	}
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+
 }

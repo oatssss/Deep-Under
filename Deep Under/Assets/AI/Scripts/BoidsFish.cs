@@ -201,10 +201,6 @@ public abstract class BoidsFish : MonoBehaviour
 		{
 			fLight.color = Color.red;
 		}
-		else if (this.Size == SIZE.GOD)
-		{
-			SetTarget(checkForEnergy().transform.position);
-		}
 	}
 
 	public void Idle()
@@ -456,12 +452,14 @@ public abstract class BoidsFish : MonoBehaviour
 	{
 		List<EnergyBall> balls = OrbManager.Instance.EnergyList;
 
+		if (balls.Count == 0)
+			return null;
+
 		balls.Sort(delegate(EnergyBall a, EnergyBall b)
-		          {return Vector2.Distance(this.transform.position,a.transform.position)
+		          {return Vector3.Distance(this.transform.position,a.transform.position)
 			.CompareTo(
-				Vector2.Distance(this.transform.position,b.transform.position) );
+				Vector3.Distance(this.transform.position,b.transform.position) );
 		});
-        Debug.Log(balls[0]);
 		return balls[0];
 	}
 
@@ -492,6 +490,30 @@ public abstract class BoidsFish : MonoBehaviour
         // when eating, dont try to hunt anyone
 		if (this.State == STATE.EATING)
 			return;
+
+		if (size == SIZE.GOD) 
+		{
+			// God fish has special logic, it will sense energies and chase them no matter how far away
+			EnergyBall eBall = checkForEnergy();
+			if (eBall)
+			{
+				this.PhysicalTarget = eBall;
+				Hunt ();
+			} 
+			else
+			{
+				Idle ();
+			}
+
+			return;
+		}
+
+		FishTarget orbTarget = this.PhysicalTarget as FishTarget;
+		if (orbTarget) 
+		{
+			// light orb presents, ignore all else
+			return;
+		}
 
         BoidsFish predatee = this.PhysicalTarget as BoidsFish;
 
@@ -617,7 +639,7 @@ public abstract class BoidsFish : MonoBehaviour
 		if (targetFish != null)
 			return Vector3.Distance(targetFish.transform.position, transform.position);
 		else
-			return 0;
+			return 200;
 	}
 
 	protected virtual void RandomizeDirection(){
@@ -676,9 +698,13 @@ public abstract class BoidsFish : MonoBehaviour
 
 	public virtual void RemoveFishReferences(BoidsFish referencedFish)
 	{
-		Repellants.Remove(referencedFish);
+		if (this.PhysicalTarget == referencedFish)
+		{
+			this.Idle ();
+		}
+		Repellants.RemoveAll(fish => fish == referencedFish);
 		Predators.RemoveAll(fish => fish == referencedFish);
-        Predatees.Remove(referencedFish);
+		Predatees.RemoveAll(fish => fish == referencedFish);
 		// do something if predators are gone
 	}
 

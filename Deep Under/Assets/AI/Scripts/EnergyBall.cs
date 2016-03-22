@@ -22,11 +22,11 @@ public class EnergyBall : MonoBehaviour {
 			energy = Random.Range(15f, 25f);
 			GameManager.Instance.Player.addEnergyBall(this.energy);
 //			Debug.Log ("Orb picked up! +"+energy);
-			Destroy(this.gameObject);
+			OrbManager.Instance.destroyEnergy(this);
 		}
 		else if (other.gameObject.CompareTag("LightEater"))
 		{
-			Destroy(this.gameObject);
+			OrbManager.Instance.destroyEnergy(this);
 		}
 	}
 }
