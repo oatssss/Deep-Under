@@ -244,6 +244,14 @@ public class Player : SmallBoidsFish {
 
 	public void Die() {
 		guiAlert.Display("You died.",1.5f);
+
+        FishManager fm = GameObject.Find("FishManager").GetComponent<FishManager>();
+
+        fm.SmallFishList.Clear();
+        fm.MediumFishList.Clear();
+        fm.LargeFishList.Clear();
+        fm.LightEatersList.Clear();
+
 		if (this.lastPod == null)
 		{
 			Application.LoadLevel(Application.loadedLevel);
