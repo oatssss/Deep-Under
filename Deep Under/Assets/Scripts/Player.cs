@@ -54,7 +54,7 @@ public class Player : SmallBoidsFish {
 	private Vector3 startPosition;
 //	public SceneLight generalLight;
 	public Alert guiAlert;
-    [SerializeField] private Animator Animator;
+   //[SerializeField] private Animator Animator;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -109,7 +109,7 @@ public class Player : SmallBoidsFish {
 
 	protected override void Update() {
 		if (Input.GetKeyUp(KeyCode.JoystickButton9) || Input.GetKeyUp(KeyCode.F)) lightToggle();
-		if (r2 > 0 || Input.GetKeyUp(KeyCode.Mouse0)) callCreateLightOrb();
+		if (Input.GetKeyUp(KeyCode.JoystickButton0)|| Input.GetKeyUp(KeyCode.Mouse0)) callCreateLightOrb();
 		if (Input.GetKeyUp(KeyCode.JoystickButton1)) makeSound();
 		//controllerButtonTest();
 		//xboxControllerButtonTest();
@@ -120,8 +120,8 @@ public class Player : SmallBoidsFish {
 	}
 
 	private void Move (float h, float v, float u) {
-        this.Animator.SetFloat("Horizontal", h);
-        this.Animator.SetFloat("Vertical", v);
+        //this.Animator.SetFloat("Horizontal", h);
+        //this.Animator.SetFloat("Vertical", v);
 		Vector3 movementHorizontal = (camera.transform.right * h) * speed * Time.deltaTime;
 		Vector3 movementForward = (camera.transform.forward * v) * speed * Time.deltaTime;
         Vector3 movementVertical = (Vector3.up * u) * speed/2f * Time.deltaTime;
@@ -139,7 +139,7 @@ public class Player : SmallBoidsFish {
 	private void removeBoost () {
 		if (speed > normalSpeed){
 			speed = normalSpeed;
-			camera.swingToPosition(defaultCameraPosition.transform);
+			//camera.swingToPosition(defaultCameraPosition.transform);
 		}
 	}
 
