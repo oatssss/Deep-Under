@@ -58,7 +58,7 @@ public class Player : SmallBoidsFish {
 
 	// Use this for initialization
 	protected override void Start () {
-		energy = 80f;
+		
 		rigidbody = GetComponent<Rigidbody>();
 		spotlight.gameObject.SetActive(lightOn);
 		Cursor.lockState = CursorLockMode.Locked;
@@ -114,8 +114,9 @@ public class Player : SmallBoidsFish {
 		//controllerButtonTest();
 		//xboxControllerButtonTest();
 		if(this.energy > 0) removeEnergy(energyDrainRate);
+        
 		else Die();
-
+        
         base.Update();
 	}
 
