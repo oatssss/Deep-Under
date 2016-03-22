@@ -175,7 +175,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 38
+  m_RootOrder: 36
 --- !u!1001 &16533659
 Prefab:
   m_ObjectHideFlags: 0
@@ -337,7 +337,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 55ac03278440a76459970ba5b68e54c9, type: 3}
       propertyPath: m_Name
-      value: coral 2 (big) 1
+      value: MedSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 55ac03278440a76459970ba5b68e54c9, type: 3}
       propertyPath: m_TagString
@@ -436,7 +436,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 51333597}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 391, y: -510, z: -40}
+  m_LocalPosition: {x: 391, y: -686, z: -40}
   m_LocalScale: {x: 44.5352287, y: 1.52244139, z: 1.52244139}
   m_Children: []
   m_Father: {fileID: 1712548852}
@@ -729,7 +729,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
       propertyPath: m_Name
-      value: coral 1 (big) 4
+      value: SmallSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
       propertyPath: m_TagString
@@ -979,7 +979,7 @@ Transform:
   - {fileID: 668677956}
   - {fileID: 1973403047}
   m_Father: {fileID: 0}
-  m_RootOrder: 43
+  m_RootOrder: 39
 --- !u!1 &153265053
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,7 +1360,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
       propertyPath: m_Name
-      value: coral 1 (big) 6
+      value: SmallSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
       propertyPath: m_TagString
@@ -1442,7 +1442,7 @@ Transform:
   m_Children:
   - {fileID: 650057730}
   m_Father: {fileID: 0}
-  m_RootOrder: 35
+  m_RootOrder: 33
 --- !u!1001 &227203231
 Prefab:
   m_ObjectHideFlags: 0
@@ -1484,7 +1484,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 55ac03278440a76459970ba5b68e54c9, type: 3}
       propertyPath: m_Name
-      value: coral 2 (big) 2
+      value: MedSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 55ac03278440a76459970ba5b68e54c9, type: 3}
       propertyPath: m_TagString
@@ -2203,8 +2203,8 @@ Transform:
   m_Children:
   - {fileID: 1111218212}
   - {fileID: 191483497}
-  m_Father: {fileID: 0}
-  m_RootOrder: 41
+  m_Father: {fileID: 2108446728}
+  m_RootOrder: 2
 --- !u!1001 &434657234
 Prefab:
   m_ObjectHideFlags: 0
@@ -2345,7 +2345,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
       propertyPath: m_Name
-      value: coral 1 (big) 1
+      value: SmallSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
       propertyPath: m_TagString
@@ -2397,8 +2397,8 @@ Transform:
   m_Children:
   - {fileID: 153265054}
   - {fileID: 718514110}
-  m_Father: {fileID: 0}
-  m_RootOrder: 34
+  m_Father: {fileID: 2108446728}
+  m_RootOrder: 1
 --- !u!1 &551410202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2555,7 +2555,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 579583632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -46, y: -382.899994, z: 230}
+  m_LocalPosition: {x: -46, y: -465, z: 230}
   m_LocalScale: {x: 32.6236458, y: 1.52244139, z: 1.52244139}
   m_Children: []
   m_Father: {fileID: 1712548852}
@@ -3847,7 +3847,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
       propertyPath: m_Name
-      value: coral 1 (big) 5
+      value: SmallSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
       propertyPath: m_TagString
@@ -4318,8 +4318,8 @@ Transform:
   m_LocalPosition: {x: 92, y: 33, z: 247}
   m_LocalScale: {x: 1190.77051, y: 481.611694, z: 974.502869}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 42
+  m_Father: {fileID: 2108446728}
+  m_RootOrder: 3
 --- !u!1 &842495071
 GameObject:
   m_ObjectHideFlags: 0
@@ -4448,7 +4448,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 39
+  m_RootOrder: 37
 --- !u!4 &855236068
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: f2f603071b102b646a99ebdf815955b7, type: 3}
@@ -5519,7 +5519,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
       propertyPath: m_Name
-      value: coral 1 (big) 3
+      value: SmallSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
       propertyPath: m_TagString
@@ -6094,7 +6094,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
       propertyPath: m_Name
-      value: coral 1 (big) 2
+      value: SmallSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
       propertyPath: m_TagString
@@ -6210,7 +6210,7 @@ Transform:
   - {fileID: 842495073}
   - {fileID: 610482703}
   m_Father: {fileID: 0}
-  m_RootOrder: 37
+  m_RootOrder: 35
 --- !u!1 &1162352802
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
@@ -6747,7 +6747,7 @@ Transform:
   - {fileID: 1448517092}
   - {fileID: 1816911642}
   m_Father: {fileID: 0}
-  m_RootOrder: 40
+  m_RootOrder: 38
 --- !u!1 &1272765758
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: b1bf3222b3aa75647b3afedb163d2743, type: 3}
@@ -6859,7 +6859,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 55ac03278440a76459970ba5b68e54c9, type: 3}
       propertyPath: m_Name
-      value: coral 2 (big) 5
+      value: MedSpawn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55ac03278440a76459970ba5b68e54c9, type: 3}
@@ -7952,8 +7952,8 @@ Transform:
   m_Children:
   - {fileID: 1158705700}
   - {fileID: 106454862}
-  m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_Father: {fileID: 2108446728}
+  m_RootOrder: 0
 --- !u!1 &1565971605
 GameObject:
   m_ObjectHideFlags: 0
@@ -8700,8 +8700,8 @@ Transform:
   - {fileID: 579583635}
   - {fileID: 466945869}
   - {fileID: 51333598}
-  m_Father: {fileID: 0}
-  m_RootOrder: 45
+  m_Father: {fileID: 2108446728}
+  m_RootOrder: 4
 --- !u!1001 &1713303208
 Prefab:
   m_ObjectHideFlags: 0
@@ -8883,7 +8883,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 55ac03278440a76459970ba5b68e54c9, type: 3}
       propertyPath: m_Name
-      value: coral 2 (big) 4
+      value: MedSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 55ac03278440a76459970ba5b68e54c9, type: 3}
       propertyPath: m_TagString
@@ -9262,7 +9262,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 55ac03278440a76459970ba5b68e54c9, type: 3}
       propertyPath: m_Name
-      value: coral 2 (big) 3
+      value: MedSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 55ac03278440a76459970ba5b68e54c9, type: 3}
       propertyPath: m_TagString
@@ -9512,7 +9512,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 36
+  m_RootOrder: 34
 --- !u!1001 &1902366103
 Prefab:
   m_ObjectHideFlags: 0
@@ -9851,6 +9851,10 @@ Prefab:
     - target: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
       propertyPath: m_TagString
       value: Environment
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
+      propertyPath: m_Name
+      value: SmallSpawn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
@@ -10430,7 +10434,7 @@ Transform:
   - {fileID: 1801797879}
   - {fileID: 184611499}
   m_Father: {fileID: 0}
-  m_RootOrder: 44
+  m_RootOrder: 40
 --- !u!1001 &2102168152
 Prefab:
   m_ObjectHideFlags: 0
@@ -10493,6 +10497,38 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4393a8441f8af0a4ca37fc9e74917f1d, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &2108446727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2108446728}
+  m_Layer: 0
+  m_Name: Boundaries
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2108446728
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2108446727}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1565339969}
+  - {fileID: 530340530}
+  - {fileID: 419122255}
+  - {fileID: 840902140}
+  - {fileID: 1712548852}
+  m_Father: {fileID: 0}
+  m_RootOrder: 44
 --- !u!1001 &2110550433
 Prefab:
   m_ObjectHideFlags: 0
