@@ -467,6 +467,7 @@ public abstract class BoidsFish : MonoBehaviour
 
 	protected bool checkIfVisible(BoidsFish target)
 	{
+		// if target is too close, it is always visible
 		if (Vector3.Distance (target.transform.position, transform.position) < 20)
 			return true;
 
@@ -647,15 +648,23 @@ public abstract class BoidsFish : MonoBehaviour
 		if (collision.gameObject.tag=="Fish" && collidedFish.Size < this.Size 
 		    && this.Size != SIZE.GOD && collidedFish.Size != SIZE.GOD)
 		{
-            // collided with prey, eat it
-            this.State = STATE.EATING;
-            collidedFish.Eaten(this);
+			// check if contact point is near the mouth
+			if (Vector3.Angle (transform.forward, collision.contacts[0].point - transform.position) < 60) 
+			{
+				// collided with prey, eat it
+				this.State = STATE.EATING;
+				collidedFish.Eaten(this);
+			}
 		}
 		else if (collision.gameObject.tag=="Player" && collidedFish.Size < this.Size && collidedFish.Size != SIZE.GOD)
 		{
-			// collided with Auliv, kill?
-			Player auliv = collision.gameObject.GetComponent<Player>();
-			auliv.Die ();
+			// check if contact point is near the mouth
+			if (Vector3.Angle (transform.forward, collision.contacts [0].point - transform.position) < 60)
+			{
+				// collided with Auliv, kill?
+				Player auliv = collision.gameObject.GetComponent<Player> ();
+				auliv.Die ();
+			}
 		}
     }
 
