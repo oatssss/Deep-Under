@@ -78,7 +78,7 @@ public class SmallBoidsFish : BoidsFish
 		Vector3 centerOfMass = Vector3.zero;
 		foreach (BoidsFish peer in this.Flock)
 		{
-			centerOfMass += peer.transform.position;
+			if (peer != null)centerOfMass += peer.transform.position;
 		}
 		centerOfMass /= this.Flock.Count;
 
