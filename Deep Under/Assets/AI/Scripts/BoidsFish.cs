@@ -11,6 +11,7 @@ public abstract class BoidsFish : MonoBehaviour
 
 	[SerializeField] public Rigidbody RigidBody;
 	[SerializeField] private SphereCollider RepelVolume;
+	private AudioSource audioSource;
 
 	public float RepelRadius { get { return this.transform.localScale.magnitude * this.RepelVolume.radius; } }
     protected float EvadeRadius
@@ -107,6 +108,7 @@ public abstract class BoidsFish : MonoBehaviour
         // Each boids fish is responsible for registering itself to the fish manager
         FishManager.Instance.RegisterFish(this);
 		InvokeRepeating("RandomizeDestination",5.0f,3.0f);
+		if (this.size == SIZE.SMALL)audioSource = GetComponent<AudioSource>();
 	}
 
 	public void OutsideHardBounds(HardBoundary boundary)
@@ -705,6 +707,7 @@ public abstract class BoidsFish : MonoBehaviour
     private void Eaten(BoidsFish eater)
     {
         /*GameObject energyBall = (GameObject) */Instantiate(FishManager.Instance.EnergyBall, this.transform.position, FishManager.Instance.EnergyBall.transform.rotation);
+		//if (size == SIZE.SMALL) audioSource.Play();
         FishManager.Instance.DestroyFish(this);
     }
 
