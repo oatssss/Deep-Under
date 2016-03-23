@@ -46,7 +46,7 @@ public class LightEaterBoids : BoidsFish {
 		this.IdleMax = BoidsSettings.Instance.MediumFish_IdleMax;
 		// this.SwimMin = BoidsSettings.Instance.MediumFish_SwimMin;
 		// this.SwimMax = BoidsSettings.Instance.MediumFish_SwimMax;
-		this.AbsoluteMax = 40;//BoidsSettings.Instance.MediumFish_AbsoluteMax;
+		this.AbsoluteMax = 35;//BoidsSettings.Instance.MediumFish_AbsoluteMax;
 		base.Update();
 	}
 	#endif

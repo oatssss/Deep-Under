@@ -361,7 +361,7 @@ public abstract class BoidsFish : MonoBehaviour
 #if UNITY_EDITOR
         updatedVelocity *= BoidsSettings.Instance.FishSpeedMultiplier;
 #endif
-		updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 2*Time.fixedDeltaTime);
+		updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 3*Time.fixedDeltaTime);
 		//calvinz: Add bob to the velocity, so the fish turns naturally, also bobs on x axis is more realistic
 		updatedVelocity += Vector3.left * (Mathf.Sin (Time.time * 2f)) * 0.03f;
 #if UNITY_EDITOR
