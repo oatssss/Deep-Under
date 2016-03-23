@@ -293,7 +293,12 @@ public class Player : SmallBoidsFish {
 	public void Die() {
 //		guiAlert.Display("You died.",1.5f);
 		// some fancy fade out, then
+		FishManager fm = GameObject.Find("FishManager").GetComponent<FishManager>();
 
+		fm.SmallFishList.Clear();
+		fm.MediumFishList.Clear();
+		fm.LargeFishList.Clear();
+		fm.LightEatersList.Clear();
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}
 
