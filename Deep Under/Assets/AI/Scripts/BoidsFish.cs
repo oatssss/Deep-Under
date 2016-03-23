@@ -98,6 +98,8 @@ public abstract class BoidsFish : MonoBehaviour
     private SoftBoundary IsolatedSoftBoundary;
     [SerializeField] protected bool IsOutsideSoftBounds = true;
 
+	protected bool GodBeingRepelled = false;
+
     protected virtual void Awake()
     {
 		this.State = STATE.SWIMMING;
@@ -364,7 +366,7 @@ public abstract class BoidsFish : MonoBehaviour
 #if UNITY_EDITOR
         updatedVelocity *= BoidsSettings.Instance.FishSpeedMultiplier;
 #endif
-		updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 2*Time.fixedDeltaTime);
+		updatedVelocity = Vector3.Slerp(this.RigidBody.velocity, updatedVelocity, 3*Time.fixedDeltaTime);
 		//calvinz: Add bob to the velocity, so the fish turns naturally, also bobs on x axis is more realistic
 		updatedVelocity += Vector3.left * (Mathf.Sin (Time.time * 2f)) * 0.03f;
 #if UNITY_EDITOR
@@ -640,6 +642,18 @@ public abstract class BoidsFish : MonoBehaviour
         //     }
         // }
     }
+
+	protected bool hasRealDanger()
+	{
+		if (this.PredatorCount < 0)
+			return false;
+		foreach (BoidsFish predator in Predators) 
+		{
+			if (predator.PhysicalTarget == this)
+				return true;
+		}
+		return false;
+	}
 
 	public float CalculateDistance(MonoBehaviour obj)
 	{

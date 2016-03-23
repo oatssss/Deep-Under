@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 476902}
   - 33: {fileID: 3348060}
   - 23: {fileID: 2390486}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 456178}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: arm_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - 4: {fileID: 489782}
   - 33: {fileID: 3367706}
   - 23: {fileID: 2314454}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_30
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - 4: {fileID: 446190}
   - 33: {fileID: 3320094}
   - 23: {fileID: 2328720}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_35
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - 4: {fileID: 487942}
   - 33: {fileID: 3362208}
   - 23: {fileID: 2362096}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,8 +93,24 @@ GameObject:
   - 4: {fileID: 403548}
   - 33: {fileID: 3397494}
   - 23: {fileID: 2363770}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_1_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &108272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 437790}
+  - 108: {fileID: 10802220}
+  m_Layer: 0
+  m_Name: DangerLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +126,7 @@ GameObject:
   - 4: {fileID: 457042}
   - 33: {fileID: 3304098}
   - 23: {fileID: 2364956}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Sphere_1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +141,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 410640}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Sphere_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +158,7 @@ GameObject:
   - 4: {fileID: 452514}
   - 33: {fileID: 3339472}
   - 23: {fileID: 2334944}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +175,7 @@ GameObject:
   - 4: {fileID: 482572}
   - 33: {fileID: 3327206}
   - 23: {fileID: 2308348}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +192,7 @@ GameObject:
   - 4: {fileID: 406554}
   - 33: {fileID: 3358354}
   - 23: {fileID: 2324818}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Cylinder_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +209,7 @@ GameObject:
   - 4: {fileID: 450540}
   - 33: {fileID: 3398704}
   - 23: {fileID: 2383328}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: eyes_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +226,7 @@ GameObject:
   - 4: {fileID: 459388}
   - 33: {fileID: 3349818}
   - 23: {fileID: 2318974}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +241,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 453206}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +258,7 @@ GameObject:
   - 4: {fileID: 404060}
   - 33: {fileID: 3307250}
   - 23: {fileID: 2375288}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_44
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +273,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 435448}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +288,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 430354}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: helice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +305,7 @@ GameObject:
   - 4: {fileID: 414640}
   - 33: {fileID: 3377740}
   - 23: {fileID: 2335714}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_41
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +322,7 @@ GameObject:
   - 4: {fileID: 449026}
   - 33: {fileID: 3312532}
   - 23: {fileID: 2346568}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: helice_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +339,7 @@ GameObject:
   - 4: {fileID: 405534}
   - 33: {fileID: 3378850}
   - 23: {fileID: 2348576}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_38
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,7 +356,7 @@ GameObject:
   - 4: {fileID: 434574}
   - 33: {fileID: 3329022}
   - 23: {fileID: 2347626}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Cube_2_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +373,7 @@ GameObject:
   - 4: {fileID: 491192}
   - 33: {fileID: 3305994}
   - 23: {fileID: 2322244}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +390,7 @@ GameObject:
   - 4: {fileID: 473028}
   - 33: {fileID: 3325748}
   - 23: {fileID: 2349042}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Cube_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,7 +405,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 469218}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,7 +422,7 @@ GameObject:
   - 4: {fileID: 473122}
   - 33: {fileID: 3353394}
   - 23: {fileID: 2397176}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: aile_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +439,7 @@ GameObject:
   - 4: {fileID: 427686}
   - 33: {fileID: 3346126}
   - 23: {fileID: 2338376}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +456,7 @@ GameObject:
   - 4: {fileID: 438128}
   - 33: {fileID: 3350120}
   - 23: {fileID: 2386184}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_39
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +489,7 @@ GameObject:
   - 4: {fileID: 430624}
   - 33: {fileID: 3338160}
   - 23: {fileID: 2325318}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: helice_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +506,7 @@ GameObject:
   - 4: {fileID: 431892}
   - 33: {fileID: 3336786}
   - 23: {fileID: 2362982}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_33
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,7 +523,7 @@ GameObject:
   - 4: {fileID: 468828}
   - 33: {fileID: 3356024}
   - 23: {fileID: 2386552}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Cylinder_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,7 +540,7 @@ GameObject:
   - 4: {fileID: 462998}
   - 33: {fileID: 3333030}
   - 23: {fileID: 2367938}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: CLAW_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -541,7 +557,7 @@ GameObject:
   - 4: {fileID: 498384}
   - 33: {fileID: 3330460}
   - 23: {fileID: 2332710}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_26
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -558,7 +574,7 @@ GameObject:
   - 4: {fileID: 474142}
   - 33: {fileID: 3334392}
   - 23: {fileID: 2341464}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,7 +591,7 @@ GameObject:
   - 4: {fileID: 443858}
   - 33: {fileID: 3395044}
   - 23: {fileID: 2316972}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: face_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -592,7 +608,7 @@ GameObject:
   - 4: {fileID: 497068}
   - 33: {fileID: 3318100}
   - 23: {fileID: 2301708}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_29
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +623,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 492256}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -622,7 +638,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 421012}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: bar_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -639,7 +655,7 @@ GameObject:
   - 4: {fileID: 479078}
   - 33: {fileID: 3328622}
   - 23: {fileID: 2302068}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_36
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -671,7 +687,7 @@ GameObject:
   - 4: {fileID: 402572}
   - 33: {fileID: 3385968}
   - 23: {fileID: 2343946}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -688,7 +704,7 @@ GameObject:
   - 4: {fileID: 460436}
   - 33: {fileID: 3349384}
   - 23: {fileID: 2352066}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -705,7 +721,7 @@ GameObject:
   - 4: {fileID: 465894}
   - 33: {fileID: 3392000}
   - 23: {fileID: 2343802}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Cube_2_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -722,7 +738,7 @@ GameObject:
   - 4: {fileID: 454562}
   - 33: {fileID: 3344930}
   - 23: {fileID: 2352752}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -737,7 +753,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 412992}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -754,7 +770,7 @@ GameObject:
   - 4: {fileID: 459198}
   - 33: {fileID: 3354742}
   - 23: {fileID: 2307332}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_25
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -769,7 +785,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 425684}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: TURBINEgauche
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -784,7 +800,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 477244}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,7 +815,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 478264}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: aile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +832,7 @@ GameObject:
   - 4: {fileID: 427094}
   - 33: {fileID: 3368262}
   - 23: {fileID: 2375500}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Cube_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -833,7 +849,7 @@ GameObject:
   - 4: {fileID: 432062}
   - 33: {fileID: 3399720}
   - 23: {fileID: 2383904}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_28
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -848,7 +864,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 432304}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Cylinder_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -863,7 +879,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 492656}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: LED
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -880,7 +896,7 @@ GameObject:
   - 4: {fileID: 412200}
   - 33: {fileID: 3363650}
   - 23: {fileID: 2339662}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -897,7 +913,7 @@ GameObject:
   - 4: {fileID: 432514}
   - 33: {fileID: 3332666}
   - 23: {fileID: 2392068}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Boole_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -914,7 +930,7 @@ GameObject:
   - 4: {fileID: 426252}
   - 33: {fileID: 3334324}
   - 23: {fileID: 2344886}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Cube_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -931,7 +947,7 @@ GameObject:
   - 4: {fileID: 406764}
   - 33: {fileID: 3397958}
   - 23: {fileID: 2396484}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: body_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -948,7 +964,7 @@ GameObject:
   - 4: {fileID: 498888}
   - 33: {fileID: 3310798}
   - 23: {fileID: 2357036}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -963,7 +979,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 437518}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -980,7 +996,7 @@ GameObject:
   - 4: {fileID: 452106}
   - 33: {fileID: 3396254}
   - 23: {fileID: 2324524}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_37
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -997,7 +1013,7 @@ GameObject:
   - 4: {fileID: 425718}
   - 33: {fileID: 3300450}
   - 23: {fileID: 2309020}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1014,7 +1030,7 @@ GameObject:
   - 4: {fileID: 485184}
   - 33: {fileID: 3305216}
   - 23: {fileID: 2370990}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1029,7 +1045,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 446654}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Boole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1044,7 +1060,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 410834}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: claw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1061,7 +1077,7 @@ GameObject:
   - 4: {fileID: 403602}
   - 33: {fileID: 3361172}
   - 23: {fileID: 2315498}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_40
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1078,7 +1094,7 @@ GameObject:
   - 4: {fileID: 431052}
   - 33: {fileID: 3375180}
   - 23: {fileID: 2364294}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_43
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1095,7 +1111,7 @@ GameObject:
   - 4: {fileID: 424744}
   - 33: {fileID: 3382820}
   - 23: {fileID: 2310596}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: aileron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1112,7 +1128,7 @@ GameObject:
   - 4: {fileID: 491096}
   - 33: {fileID: 3302380}
   - 23: {fileID: 2319730}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: gouverneil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1129,7 +1145,7 @@ GameObject:
   - 4: {fileID: 438548}
   - 33: {fileID: 3337060}
   - 23: {fileID: 2351470}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_27
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1146,7 +1162,7 @@ GameObject:
   - 4: {fileID: 472646}
   - 33: {fileID: 3315600}
   - 23: {fileID: 2314550}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_24
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1163,7 +1179,7 @@ GameObject:
   - 4: {fileID: 469136}
   - 33: {fileID: 3351836}
   - 23: {fileID: 2350956}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1180,7 +1196,7 @@ GameObject:
   - 4: {fileID: 489390}
   - 33: {fileID: 3399162}
   - 23: {fileID: 2365906}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Cylinder_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1195,7 +1211,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 459554}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Boole_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1212,7 +1228,7 @@ GameObject:
   - 4: {fileID: 453014}
   - 33: {fileID: 3305752}
   - 23: {fileID: 2382286}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1229,7 +1245,7 @@ GameObject:
   - 4: {fileID: 432958}
   - 33: {fileID: 3335008}
   - 23: {fileID: 2378262}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1246,7 +1262,7 @@ GameObject:
   - 4: {fileID: 491166}
   - 33: {fileID: 3366910}
   - 23: {fileID: 2329098}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1263,7 +1279,7 @@ GameObject:
   - 4: {fileID: 494336}
   - 33: {fileID: 3305188}
   - 23: {fileID: 2362386}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1280,7 +1296,7 @@ GameObject:
   - 4: {fileID: 410960}
   - 33: {fileID: 3368156}
   - 23: {fileID: 2336826}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Cube_1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1297,7 +1313,7 @@ GameObject:
   - 4: {fileID: 429550}
   - 33: {fileID: 3313888}
   - 23: {fileID: 2385712}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1314,7 +1330,7 @@ GameObject:
   - 4: {fileID: 486800}
   - 33: {fileID: 3326686}
   - 23: {fileID: 2309314}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1329,7 +1345,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 435494}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: turbine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1346,7 +1362,7 @@ GameObject:
   - 4: {fileID: 436322}
   - 33: {fileID: 3357836}
   - 23: {fileID: 2392826}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1363,7 +1379,7 @@ GameObject:
   - 4: {fileID: 459562}
   - 33: {fileID: 3338414}
   - 23: {fileID: 2383466}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1378,7 +1394,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 488466}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: LED_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1393,7 +1409,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 401574}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1408,7 +1424,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 435752}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: arm_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1425,7 +1441,7 @@ GameObject:
   - 4: {fileID: 479376}
   - 33: {fileID: 3367420}
   - 23: {fileID: 2338004}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1440,7 +1456,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 448862}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1457,7 +1473,7 @@ GameObject:
   - 4: {fileID: 495556}
   - 33: {fileID: 3330108}
   - 23: {fileID: 2306212}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1509,7 +1525,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 485238}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: CLAW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1526,7 +1542,7 @@ GameObject:
   - 4: {fileID: 461596}
   - 33: {fileID: 3337732}
   - 23: {fileID: 2317894}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1543,7 +1559,7 @@ GameObject:
   - 4: {fileID: 458086}
   - 33: {fileID: 3380006}
   - 23: {fileID: 2336332}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1560,7 +1576,7 @@ GameObject:
   - 4: {fileID: 466094}
   - 33: {fileID: 3372548}
   - 23: {fileID: 2395394}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1577,7 +1593,7 @@ GameObject:
   - 4: {fileID: 407992}
   - 33: {fileID: 3380584}
   - 23: {fileID: 2347536}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Oil_Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1592,7 +1608,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 421222}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: winglow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1607,7 +1623,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 462674}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: AULIV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1624,7 +1640,7 @@ GameObject:
   - 4: {fileID: 411666}
   - 33: {fileID: 3344312}
   - 23: {fileID: 2383920}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_34
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1641,7 +1657,7 @@ GameObject:
   - 4: {fileID: 411184}
   - 33: {fileID: 3334944}
   - 23: {fileID: 2389938}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: winglow_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1656,7 +1672,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 465044}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: WING
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1673,7 +1689,7 @@ GameObject:
   - 4: {fileID: 401592}
   - 33: {fileID: 3344164}
   - 23: {fileID: 2381554}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Capsule_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2222,6 +2238,18 @@ Transform:
   - {fileID: 443858}
   m_Father: {fileID: 462674}
   m_RootOrder: 3
+--- !u!4 &437790
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108272}
+  m_LocalRotation: {x: 0, y: -0.9999504, z: 0, w: 0.009961071}
+  m_LocalPosition: {x: 0, y: 1.35, z: -7}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 497402}
+  m_RootOrder: 0
 --- !u!4 &438128
 Transform:
   m_ObjectHideFlags: 1
@@ -2525,7 +2553,7 @@ Transform:
   - {fileID: 430354}
   - {fileID: 465044}
   m_Father: {fileID: 497402}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!4 &462998
 Transform:
   m_ObjectHideFlags: 1
@@ -2790,7 +2818,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 497402}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &486800
 Transform:
   m_ObjectHideFlags: 1
@@ -2952,7 +2980,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 497402}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!4 &497068
 Transform:
   m_ObjectHideFlags: 1
@@ -2975,8 +3003,9 @@ Transform:
   m_LocalPosition: {x: 71.2, y: 94.9, z: 512.8}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
-  - {fileID: 495900}
+  - {fileID: 437790}
   - {fileID: 400338}
+  - {fileID: 495900}
   - {fileID: 485510}
   - {fileID: 462674}
   m_Father: {fileID: 0}
@@ -5456,9 +5485,9 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190356}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: aa52d77ac59203e4f87fc12d75236100, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f91350c7546f84b56a7eecd9031577cd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5466,6 +5495,39 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!108 &10802220
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108272}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 2
+  m_Color: {r: 0.61764705, g: 0.66774845, b: 1, a: 1}
+  m_Intensity: 2.5
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 524288
+  m_Lightmapping: 4
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
 --- !u!108 &10851268
 Light:
   m_ObjectHideFlags: 1
@@ -5536,8 +5598,8 @@ MonoBehaviour:
   spotlight: {fileID: 10851268}
   lightOrb: {fileID: 11429732, guid: e937efbabc308493387d74f00e21e034, type: 2}
   lightOrbPosition: {fileID: 400338}
-  energy: 0
-  energyDrainRate: 0
+  energy: 100
+  energyDrainRate: 1
   maxEnergyDrainRate: 24
   energyDrainRateAcceleration: 2
   charging: 0
@@ -5546,6 +5608,7 @@ MonoBehaviour:
   soundDuration: 10
   lastPod: {fileID: 0}
   guiAlert: {fileID: 0}
+  dangerLight: {fileID: 10802220}
 --- !u!120 &12035932
 LineRenderer:
   m_ObjectHideFlags: 1

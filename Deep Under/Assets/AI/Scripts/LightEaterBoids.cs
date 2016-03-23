@@ -46,9 +46,36 @@ public class LightEaterBoids : BoidsFish {
 		this.IdleMax = BoidsSettings.Instance.MediumFish_IdleMax;
 		// this.SwimMin = BoidsSettings.Instance.MediumFish_SwimMin;
 		// this.SwimMax = BoidsSettings.Instance.MediumFish_SwimMax;
-		this.AbsoluteMax = 40;//BoidsSettings.Instance.MediumFish_AbsoluteMax;
+		this.AbsoluteMax = 35;//BoidsSettings.Instance.MediumFish_AbsoluteMax;
 		base.Update();
 	}
 	#endif
-	
+
+	protected void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.tag == "Player")
+		{
+			this.GodBeingRepelled = true;
+		}
+	}
+
+	protected void OnTriggerExit(Collider other)
+	{
+		if (other.gameObject.tag == "Player")
+		{
+			this.GodBeingRepelled = false;
+		}
+	}
+
+	protected virtual Vector3 CalculateVelocity()
+	{
+		if (this.GodBeingRepelled) 
+		{
+			return (this.transform.position - GameManager.Instance.Player.transform.position).normalized*this.MaxSpeed;
+		}
+		else
+		{
+			return base.CalculateVelocity ();
+		}
+	}
 }

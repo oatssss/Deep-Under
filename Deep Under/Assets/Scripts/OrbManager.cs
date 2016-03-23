@@ -27,13 +27,13 @@ public class OrbManager : UnitySingletonPersistent<OrbManager> {
 
 	public void destroyOrb(lightOrb o)
 	{
-		OrbList.Remove(o);
+		OrbList.RemoveAll(orb => orb == o);
 		GameObject.Destroy(o.gameObject);
 	}
 
 	public void destroyEnergy(EnergyBall ball)
 	{
-		EnergyList.Remove(ball);
+		EnergyList.RemoveAll(orb => orb == ball);
 		GameObject.Destroy(ball.gameObject);
 	}
 	// Update is called once per frame
