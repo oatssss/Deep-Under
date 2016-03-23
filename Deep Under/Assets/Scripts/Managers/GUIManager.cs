@@ -27,7 +27,7 @@ public class GUIManager : UnitySingleton<GUIManager> {
     void Start()
     {
         GUIManager.Instance.FadeToClear(null);
-        GUIManager.Instance.ShowTooltip("Test Tooltip");
+        GUIManager.Instance.ShowTooltip("Collect the fish souls to complete the level. Recharge energy at the pods.");
     }
 
     private void OpenMenu(Menu menu, TRANSITION transition)

@@ -15,7 +15,7 @@ public class EnergyBall : MonoBehaviour {
 	void OnCollisionEnter(Collision other) {
 		if (other.gameObject.CompareTag("Player") && GameManager.Instance.Player != null) {
 //			energy = Random.Range(15f, 25f);
-			ghostvalue = Random.Range(5f, 10f);
+			ghostvalue = Random.Range(10f, 15f);
 //			GameManager.Instance.Player.addEnergyBall(this.energy);
 			GameManager.Instance.Player.addGhost(this.ghostvalue);
 			OrbManager.Instance.destroyEnergy(this);

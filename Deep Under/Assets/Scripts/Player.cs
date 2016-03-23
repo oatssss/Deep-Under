@@ -59,10 +59,10 @@ public class Player : SmallBoidsFish {
 	public pod lastPod = null;
 	private Vector3 startPosition;
 //	public SceneLight generalLight;
-	public Alert guiAlert;
+//	public Alert guiAlert;
 	public Light dangerLight;
 
-   //[SerializeField] private Animator Animator;
+   [SerializeField] private Animator Animator;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -81,7 +81,7 @@ public class Player : SmallBoidsFish {
 		startPosition = this.transform.position;
 		minEnergyDrainRate = energyDrainRate;
 //		generalLight = GameObject.Find("Caustics Effect").GetComponent<SceneLight>();
-		guiAlert = GameObject.Find("Alert").GetComponent<Alert>();
+//		guiAlert = GameObject.Find("Alert").GetComponent<Alert>();
 		audioSource = GetComponent<AudioSource>();
 
 		this.ghostbar = 0.0f; 	// start have none
@@ -151,8 +151,9 @@ public class Player : SmallBoidsFish {
 	}
 
 	private void Move (float h, float v, float u) {
-        //this.Animator.SetFloat("Horizontal", h);
-        //this.Animator.SetFloat("Vertical", v);
+        this.Animator.SetFloat("Horizontal", h);
+        this.Animator.SetFloat("Vertical", v);
+
 		Vector3 movementHorizontal = (camera.transform.right * h) * speed * Time.deltaTime;
 		Vector3 movementForward = (camera.transform.forward * v) * speed * Time.deltaTime;
         Vector3 movementVertical = (Vector3.up * u) * speed/2f * Time.deltaTime;
@@ -225,7 +226,7 @@ public class Player : SmallBoidsFish {
 	}
 	public void addEnergyBall (float extra) {
 		float newEnergy = 0f;
-		guiAlert.Display("Picked up energy",0.5f);
+//		guiAlert.Display("Picked up energy",0.5f);
 		if (energy < maxEnergy ){
 			newEnergy = energy + extra;
 			if (newEnergy >= maxEnergy) {
@@ -290,8 +291,7 @@ public class Player : SmallBoidsFish {
 	}
 
 	public void Die() {
-		guiAlert.Display("You died.",1.5f);
-
+//		guiAlert.Display("You died.",1.5f);
 		// some fancy fade out, then
 
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
