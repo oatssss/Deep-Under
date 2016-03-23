@@ -678,7 +678,7 @@ public abstract class BoidsFish : MonoBehaviour
 				collidedFish.Eaten(this);
 			}
 		}
-		else if (collision.gameObject.tag=="Player" && collidedFish.Size < this.Size && collidedFish.Size != SIZE.GOD)
+		else if (collision.gameObject.tag=="Player" && collidedFish.Size < this.Size && collidedFish.Size != SIZE.GOD && this.Size != SIZE.GOD)
 		{
 			// check if contact point is near the mouth
 			if (Vector3.Angle (transform.forward, collision.contacts [0].point - transform.position) < 60)

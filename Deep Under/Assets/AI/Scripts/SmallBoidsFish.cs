@@ -161,6 +161,6 @@ public class SmallBoidsFish : BoidsFish
 	public override void RemoveFishReferences(BoidsFish referencedFish)
 	{
 		base.RemoveFishReferences(referencedFish);
-		Flock.Remove(referencedFish);
+		Flock.RemoveAll(fish => fish == referencedFish);
 	}
 }

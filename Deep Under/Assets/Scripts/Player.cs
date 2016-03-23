@@ -252,6 +252,8 @@ public class Player : SmallBoidsFish {
         fm.MediumFishList.Clear();
         fm.LargeFishList.Clear();
         fm.LightEatersList.Clear();
+		OrbManager.Instance.EnergyList.Clear ();
+		OrbManager.Instance.OrbList.Clear ();
 
 		if (this.lastPod == null)
 		{

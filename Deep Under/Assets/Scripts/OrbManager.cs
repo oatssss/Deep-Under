@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class OrbManager : UnitySingletonPersistent<OrbManager> {
 
-	protected List<lightOrb> OrbList = new List<lightOrb>();
+	public List<lightOrb> OrbList = new List<lightOrb>();
 	public List<EnergyBall> EnergyList = new List<EnergyBall>();
 	public int MaxOrbNumber = 2;
 	public int AttractNumber = 5;
