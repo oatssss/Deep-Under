@@ -12,6 +12,9 @@ public abstract class BoidsFish : MonoBehaviour
 	[SerializeField] public Rigidbody RigidBody;
 	[SerializeField] private SphereCollider RepelVolume;
 	private AudioSource audioSource;
+	private float soundTimer = 0f; 
+	public AudioClip eatSound; 
+	public AudioClip mediumFishSound; 
 
 	public float RepelRadius { get { return this.transform.localScale.magnitude * this.RepelVolume.radius; } }
     protected float EvadeRadius
@@ -110,7 +113,7 @@ public abstract class BoidsFish : MonoBehaviour
         // Each boids fish is responsible for registering itself to the fish manager
         FishManager.Instance.RegisterFish(this);
 		InvokeRepeating("RandomizeDestination",5.0f,3.0f);
-		if (this.size == SIZE.SMALL)audioSource = GetComponent<AudioSource>();
+		if (this.size == SIZE.MEDIUM) audioSource = GetComponent<AudioSource>();
 	}
 
 	public void OutsideHardBounds(HardBoundary boundary)
@@ -383,6 +386,9 @@ public abstract class BoidsFish : MonoBehaviour
 		this.RigidBody.MoveRotation(slerp);
 
 		this.StateTimer += Time.fixedDeltaTime;
+		this.soundTimer += Time.fixedDeltaTime;
+		makeSoundRandom();
+
 	}
 
     protected virtual void Update()
@@ -709,7 +715,11 @@ public abstract class BoidsFish : MonoBehaviour
     private void Eaten(BoidsFish eater)
     {
         /*GameObject energyBall = (GameObject) */Instantiate(FishManager.Instance.EnergyBall, this.transform.position, FishManager.Instance.EnergyBall.transform.rotation);
-		//if (size == SIZE.SMALL) audioSource.Play();
+		if (eater.audioSource == null) eater.audioSource = GetComponent<AudioSource>();
+		eater.audioSource.clip = eatSound;
+		eater.audioSource.pitch = Random.Range(1f, 2f);
+		eater.audioSource.Play();
+		
         FishManager.Instance.DestroyFish(this);
     }
 
@@ -735,6 +745,28 @@ public abstract class BoidsFish : MonoBehaviour
         Vector3 avoid = this.VectorAwayFromPredators();
 
 		return minimum + target + bounds + separation + avoid;
+    }
+
+   	public void makeSoundRandom () { 
+    	if (soundTimer > 5f) { 
+    		if (this.size == SIZE.MEDIUM) { 
+    			float r = Random.Range(1f, 10f);
+    			//if (r > 5f) { 
+    				//Debug.Log("Play medium Fish Sound");
+					audioSource.clip = mediumFishSound;
+					audioSource.Play();
+    			//}
+    			soundTimer = 0f; 
+    		}
+    		else if (this.size == SIZE.LARGE) { 
+
+    		}
+
+    		else if (this.size == SIZE.SMALL) { 
+				
+    		}
+			soundTimer = 0f; //reset soundTimer regardless
+    	}
     }
 }
 

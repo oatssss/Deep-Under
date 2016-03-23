@@ -116,13 +116,13 @@ public class Player : SmallBoidsFish {
 			soundCollider.radius = 0f;
 		}
 		if (isMoving) { 
-			if (audioSource.volume <= 0.2f) audioSource.volume += 0.05f * Time.deltaTime;
+			if (audioSource.volume <= 1f) audioSource.volume += 0.5f * Time.deltaTime;
 		}
 		else { 
-			if (audioSource.volume >= 0f) audioSource.volume -= 0.05f * Time.deltaTime;	
+			if (audioSource.volume >= 0.3f) audioSource.volume -= 0.5f * Time.deltaTime;	
 		}
 		if (boosting){
-			if (audioSource.pitch < 2) audioSource.pitch += 0.2f * Time.deltaTime;
+			if (audioSource.pitch < 2) audioSource.pitch += 0.6f * Time.deltaTime;
 		}
 		else { 
 			if (audioSource.pitch >= 1) audioSource.pitch -= 0.6f * Time.deltaTime;
