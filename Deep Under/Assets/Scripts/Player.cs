@@ -12,6 +12,8 @@ public class Player : SmallBoidsFish {
 	bool isMoving = false;
 
 	new private Rigidbody rigidbody;
+	new private AudioSource audioSource;
+
 
 	new public CameraFollow camera;
 	public GameObject defaultCameraPosition; //is constantly updated by player, so is situated here
@@ -74,6 +76,7 @@ public class Player : SmallBoidsFish {
 		minEnergyDrainRate = energyDrainRate;
 //		generalLight = GameObject.Find("Caustics Effect").GetComponent<SceneLight>();
 		guiAlert = GameObject.Find("Alert").GetComponent<Alert>();
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	protected override void FixedUpdate () {
@@ -104,13 +107,27 @@ public class Player : SmallBoidsFish {
 			makingSound = false;
 			soundCollider.radius = 0f;
 		}
-
+		if (isMoving) { 
+			if (audioSource.volume <= 0.2f) audioSource.volume += 0.05f * Time.deltaTime;
+		}
+		else { 
+			if (audioSource.volume >= 0f) audioSource.volume -= 0.05f * Time.deltaTime;	
+		}
+		if (boosting){
+			if (audioSource.pitch < 2) audioSource.pitch += 0.2f * Time.deltaTime;
+		}
+		else { 
+			if (audioSource.pitch >= 1) audioSource.pitch -= 0.6f * Time.deltaTime;
+		}
 	}
 
 	protected override void Update() {
-		if (Input.GetKeyUp(KeyCode.JoystickButton9) || Input.GetKeyUp(KeyCode.F)) lightToggle();
-		if (Input.GetKeyUp(KeyCode.JoystickButton0)|| Input.GetKeyUp(KeyCode.Mouse0)) callCreateLightOrb();
-		if (Input.GetKeyUp(KeyCode.JoystickButton1)) makeSound();
+		if (Input.GetKeyUp(KeyCode.JoystickButton9) || Input.GetKeyUp(KeyCode.F)
+			|| Input.GetKeyUp(KeyCode.JoystickButton11)) lightToggle();
+		if (Input.GetKeyUp(KeyCode.JoystickButton0)|| Input.GetKeyUp(KeyCode.Mouse0)
+			|| Input.GetKeyUp(KeyCode.JoystickButton16)) callCreateLightOrb();
+		if (Input.GetKeyUp(KeyCode.JoystickButton1) || Input.GetKeyUp(KeyCode.G) 
+		|| Input.GetKeyUp(KeyCode.JoystickButton17)) makeSound();
 		//controllerButtonTest();
 		//xboxControllerButtonTest();
 		if(this.energy > 0) removeEnergy(energyDrainRate);
@@ -217,10 +234,12 @@ public class Player : SmallBoidsFish {
 	private void boostAndDrain () {
 
 		if (l2 > 0) autoTurn();
-		if ((l2 > 0f || Input.GetKey(KeyCode.LeftShift)) && isMoving) {
+		if ((l2 == 1f || Input.GetKey(KeyCode.LeftShift)) && isMoving) {
 			// add boost
 			if (speed < maxSpeed) {
 			speed = speed + (acceleration*Time.deltaTime);
+
+
 		}
 		boosting = true;
         }
@@ -229,8 +248,8 @@ public class Player : SmallBoidsFish {
         	//remove boost
 			if (speed > normalSpeed){
 			speed = normalSpeed;
-			//camera.swingToPosition(defaultCameraPosition.transform);
 		}
+
 		boosting = false; 
         }
         //manage energy drain rate
@@ -291,5 +310,20 @@ public class Player : SmallBoidsFish {
 		if (r2 != 0) Debug.Log("RT");
 		if (Input.GetKeyDown (KeyCode.JoystickButton9)) Debug.Log("R3");
 		if (Input.GetKeyDown (KeyCode.JoystickButton8)) Debug.Log("L3");
+	}
+
+	private void xboxControllerButtonTestMAC() {
+		if (Input.GetKeyDown (KeyCode.JoystickButton16)) Debug.Log("A pressed");
+		if (Input.GetKeyDown (KeyCode.JoystickButton17)) Debug.Log("B pressed");
+		if (Input.GetKeyDown (KeyCode.JoystickButton18)) Debug.Log("X pressed");
+		if (Input.GetKeyDown (KeyCode.JoystickButton19)) Debug.Log("Y pressed");
+		if (Input.GetKeyDown (KeyCode.JoystickButton13)) Debug.Log("LB");
+		if (Input.GetKeyDown (KeyCode.JoystickButton14)) Debug.Log("RB");
+		//if (Input.GetKeyDown (KeyCode.JoystickButton11)) Debug.Log("L2");
+		//if (Input.GetKeyDown (KeyCode.JoystickButton10)) Debug.Log("R2");
+		if (l2 != 0) Debug.Log("LT");
+		if (r2 != 0) Debug.Log("RT");
+		if (Input.GetKeyDown (KeyCode.JoystickButton11)) Debug.Log("R3");
+		if (Input.GetKeyDown (KeyCode.JoystickButton12)) Debug.Log("L3");
 	}
 }
