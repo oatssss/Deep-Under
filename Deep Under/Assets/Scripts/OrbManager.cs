@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class OrbManager : UnitySingletonPersistent<OrbManager> {
 
-	protected List<lightOrb> OrbList = new List<lightOrb>();
+	public List<lightOrb> OrbList = new List<lightOrb>();
 	public List<EnergyBall> EnergyList = new List<EnergyBall>();
 	public int MaxOrbNumber = 2;
 	public int AttractNumber = 5;
@@ -30,8 +30,16 @@ public class OrbManager : UnitySingletonPersistent<OrbManager> {
 		OrbList.Remove(o);
 		GameObject.Destroy(o.gameObject);
 	}
+
+	public void destroyEnergy(EnergyBall ball)
+	{
+		EnergyList.Remove(ball);
+		GameObject.Destroy(ball.gameObject);
+	}
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+
 }

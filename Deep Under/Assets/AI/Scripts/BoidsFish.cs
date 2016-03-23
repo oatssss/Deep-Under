@@ -203,10 +203,6 @@ public abstract class BoidsFish : MonoBehaviour
 		{
 			fLight.color = Color.red;
 		}
-		else if (this.Size == SIZE.GOD)
-		{
-			SetTarget(checkForEnergy().transform.position);
-		}
 	}
 
 	public void Idle()
@@ -458,17 +454,20 @@ public abstract class BoidsFish : MonoBehaviour
 	{
 		List<EnergyBall> balls = OrbManager.Instance.EnergyList;
 
-		balls.Sort(delegate(EnergyBall a, EnergyBall b)
-		          {return Vector2.Distance(this.transform.position,a.transform.position)
-			.CompareTo(
-				Vector2.Distance(this.transform.position,b.transform.position) );
-		});
+		if (balls.Count == 0)
+			return null;
 
+		balls.Sort(delegate(EnergyBall a, EnergyBall b)
+		          {return Vector3.Distance(this.transform.position,a.transform.position)
+			.CompareTo(
+				Vector3.Distance(this.transform.position,b.transform.position) );
+		});
 		return balls[0];
 	}
 
 	protected bool checkIfVisible(BoidsFish target)
 	{
+		// if target is too close, it is always visible
 		if (Vector3.Distance (target.transform.position, transform.position) < 20)
 			return true;
 
@@ -493,6 +492,30 @@ public abstract class BoidsFish : MonoBehaviour
         // when eating, dont try to hunt anyone
 		if (this.State == STATE.EATING)
 			return;
+
+		if (size == SIZE.GOD) 
+		{
+			// God fish has special logic, it will sense energies and chase them no matter how far away
+			EnergyBall eBall = checkForEnergy();
+			if (eBall)
+			{
+				this.PhysicalTarget = eBall;
+				Hunt ();
+			} 
+			else
+			{
+				Idle ();
+			}
+
+			return;
+		}
+
+		FishTarget orbTarget = this.PhysicalTarget as FishTarget;
+		if (orbTarget) 
+		{
+			// light orb presents, ignore all else
+			return;
+		}
 
         BoidsFish predatee = this.PhysicalTarget as BoidsFish;
 
@@ -618,7 +641,7 @@ public abstract class BoidsFish : MonoBehaviour
 		if (targetFish != null)
 			return Vector3.Distance(targetFish.transform.position, transform.position);
 		else
-			return 0;
+			return 200;
 	}
 
 	protected virtual void RandomizeDirection(){
@@ -649,15 +672,23 @@ public abstract class BoidsFish : MonoBehaviour
 		if (collision.gameObject.tag=="Fish" && collidedFish.Size < this.Size 
 		    && this.Size != SIZE.GOD && collidedFish.Size != SIZE.GOD)
 		{
-            // collided with prey, eat it
-            this.State = STATE.EATING;
-            collidedFish.Eaten(this);
+			// check if contact point is near the mouth
+			if (Vector3.Angle (transform.forward, collision.contacts[0].point - transform.position) < 60) 
+			{
+				// collided with prey, eat it
+				this.State = STATE.EATING;
+				collidedFish.Eaten(this);
+			}
 		}
-		else if (collision.gameObject.tag=="Player" && collidedFish.Size < this.Size && collidedFish.Size != SIZE.GOD)
+		else if (collision.gameObject.tag=="Player" && collidedFish.Size < this.Size && collidedFish.Size != SIZE.GOD && this.Size != SIZE.GOD)
 		{
-			// collided with Auliv, kill?
-			Player auliv = collision.gameObject.GetComponent<Player>();
-			auliv.Die ();
+			// check if contact point is near the mouth
+			if (Vector3.Angle (transform.forward, collision.contacts [0].point - transform.position) < 60)
+			{
+				// collided with Auliv, kill?
+				Player auliv = collision.gameObject.GetComponent<Player> ();
+				auliv.Die ();
+			}
 		}
     }
 
@@ -670,9 +701,13 @@ public abstract class BoidsFish : MonoBehaviour
 
 	public virtual void RemoveFishReferences(BoidsFish referencedFish)
 	{
-		Repellants.Remove(referencedFish);
+		if (this.PhysicalTarget == referencedFish)
+		{
+			this.Idle ();
+		}
+		Repellants.RemoveAll(fish => fish == referencedFish);
 		Predators.RemoveAll(fish => fish == referencedFish);
-        Predatees.Remove(referencedFish);
+		Predatees.RemoveAll(fish => fish == referencedFish);
 		// do something if predators are gone
 	}
 
