@@ -61,6 +61,8 @@ public class Player : SmallBoidsFish {
 //	public SceneLight generalLight;
 //	public Alert guiAlert;
 	public Light dangerLight;
+	[SerializeField] private Color normalcolor;
+	[SerializeField] private Color dangercolor;
 
    [SerializeField] private Animator Animator;
 
@@ -140,14 +142,16 @@ public class Player : SmallBoidsFish {
 		//xboxControllerButtonTest();
 		if(this.energy > 0) removeEnergy(energyDrainRate);
         
-		else Die();
+		else{
+			Die();
+		}
         
         base.Update();
 
 		if (this.hasRealDanger())
-			dangerLight.color = Color.red;
+			dangerLight.color = dangercolor;
 		else
-			dangerLight.color = Color.blue;
+			dangerLight.color = normalcolor;
 	}
 
 	private void Move (float h, float v, float u) {

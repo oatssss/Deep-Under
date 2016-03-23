@@ -16,7 +16,7 @@ public class HealthGUI : MonoBehaviour {
 	private bool blink;
 
 	void Awake() {
-		InvokeRepeating("Switch", 0.0f, 0.5f);
+		InvokeRepeating("Switch", 0.0f, 0.2f);
 	}
 
 	void Start(){
