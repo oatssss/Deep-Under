@@ -3,45 +3,49 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class HealthGUI : MonoBehaviour {
-	public float bar;
-	public Vector2 pos = new Vector2(20,40);
-	public Vector2 size = new Vector2(200,20);
-	public Texture2D empty;
-	public Texture2D full;
+	public float ebar;
+	public float gbar;
 	public Player auliv;
 
     [SerializeField] private Image EnergyBar;
     [SerializeField] private Image GhostBar;
 
+	[SerializeField] private Color ebarColor;
+	[SerializeField] private Color gbarColor;
+
+	private bool blink;
+
+	void Awake() {
+		InvokeRepeating("Switch", 0.0f, 0.5f);
+	}
+
 	void Start(){
 		auliv = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+		GhostBar.color = gbarColor;
+		blink = false;
 	}
 
 	void OnGUI() {
 
-        EnergyBar.transform.localScale = new Vector3(bar, 1, 1);
-        GhostBar.transform.localScale = new Vector3(bar, 1, 1);
+        EnergyBar.transform.localScale = new Vector3(ebar, 1, 1);
+		GhostBar.transform.localScale = new Vector3(gbar, 1, 1);
 
-        if (bar < 0.5)
+        if (ebar < 0.3 && blink)
         {
-            EnergyBar.color = new Color(1,0,0,0.5f);
+            EnergyBar.color = new Color(0.5f,0f,0f,0.5f);
         }
-
-		// GUI.contentColor = (auliv.energy < 20f)? Color.red : Color.white;
-
-		// GUI.Label(new Rect(pos.x+size.x+5f, pos.y, 100f, 20f), (int)auliv.energy+"%");
-		// //draw the bar background:
-		// GUI.BeginGroup(new Rect(pos.x, pos.y, size.x, size.y));
-		// GUI.Box(new Rect(0,0, size.x, size.y), empty);
-
-		// //draw the filled-in part:
-		// GUI.BeginGroup(new Rect(0,0, size.x * bar, size.y));
-		// GUI.Box(new Rect(0,0, size.x, size.y), full);
-		// GUI.EndGroup();
-		// GUI.EndGroup();
+		else
+		{
+			EnergyBar.color = ebarColor;
+		}
 	}
 
 	void Update() {
-		bar = auliv.energy*0.01f;
+		ebar = auliv.energy*0.01f;
+		gbar = auliv.ghostbar*0.01f;
+				
+	}
+	void Switch() {
+		blink = !blink;
 	}
 }

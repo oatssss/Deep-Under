@@ -44,6 +44,9 @@ public class Player : SmallBoidsFish {
 	public float energyDrainRateAcceleration = 2f; 
 	public bool charging = false;
 
+	public float ghostbar;
+	private float maxGhost = 100f;
+
 	LineRenderer lineRenderer;
 	private int lineSmoothness = 10;
 
@@ -80,6 +83,8 @@ public class Player : SmallBoidsFish {
 //		generalLight = GameObject.Find("Caustics Effect").GetComponent<SceneLight>();
 		guiAlert = GameObject.Find("Alert").GetComponent<Alert>();
 		audioSource = GetComponent<AudioSource>();
+
+		this.ghostbar = 0.0f; 	// start have none
 	}
 
 	protected override void FixedUpdate () {
@@ -228,6 +233,20 @@ public class Player : SmallBoidsFish {
 			}
 			else {
 				energy = newEnergy;
+			}
+		}
+	}
+	public void addGhost(float ghostamount) {
+		float newG = 0f;
+		if (ghostbar < maxGhost){
+			newG = ghostbar + ghostamount;
+			if (newG >= maxGhost){
+				ghostbar = maxGhost;
+				// reload scene for now
+				SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+			}
+			else {
+				ghostbar = newG;
 			}
 		}
 	}
