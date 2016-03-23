@@ -53,7 +53,7 @@ public class LightEaterBoids : BoidsFish {
 
 	protected void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.tag == "Player")
+		if (other.gameObject.tag == "Player" && other.isTrigger == true)
 		{
 			this.GodBeingRepelled = true;
 		}
@@ -61,13 +61,13 @@ public class LightEaterBoids : BoidsFish {
 
 	protected void OnTriggerExit(Collider other)
 	{
-		if (other.gameObject.tag == "Player")
+		if (other.gameObject.tag == "Player" && other.isTrigger == true)
 		{
 			this.GodBeingRepelled = false;
 		}
 	}
 
-	protected virtual Vector3 CalculateVelocity()
+	protected override Vector3 CalculateVelocity()
 	{
 		if (this.GodBeingRepelled) 
 		{

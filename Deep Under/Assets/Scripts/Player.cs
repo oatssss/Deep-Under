@@ -66,6 +66,8 @@ public class Player : SmallBoidsFish {
 
    [SerializeField] private Animator Animator;
 
+	public GameObject soundSphere;
+
 	// Use this for initialization
 	protected override void Start () {
 		
@@ -110,13 +112,24 @@ public class Player : SmallBoidsFish {
         if (shoot) createLightOrb();
 		if (isMoving) Move(h,v,a);
 		boostAndDrain();
+
 		//put sound stuff in a new method
-		if (makingSound) timer += Time.deltaTime;
-		if (timer > soundDuration) {
-			timer = 0f;
-			makingSound = false;
-			soundCollider.radius = 0f;
+		if (makingSound) 
+		{
+			soundSphere.transform.localScale *= 1.1f;
+			
+			timer += Time.deltaTime;
+			if (timer > soundDuration)
+			{
+				timer = 0f;
+				makingSound = false;
+				soundCollider.radius = 0f;
+				soundCollider.enabled = false;
+				soundSphere.SetActive (false);
+				soundSphere.transform.localScale = new Vector3 (5, 5, 5);
+			}
 		}
+
 		if (isMoving) { 
 			if (audioSource.volume <= 1f) audioSource.volume += 0.5f * Time.deltaTime;
 		}
@@ -218,9 +231,12 @@ public class Player : SmallBoidsFish {
 
 
 	private void makeSound () {
+		soundSphere.transform.localScale = new Vector3 (5, 5, 5);
 		makingSound = true;
 		timer = 0f;
+		soundCollider.enabled = true;
 		soundCollider.radius = soundRadius;
+		soundSphere.SetActive (true);
 	}
 
 	public void addEnergy (float orbStrength) {
@@ -303,6 +319,8 @@ public class Player : SmallBoidsFish {
 		fm.MediumFishList.Clear();
 		fm.LargeFishList.Clear();
 		fm.LightEatersList.Clear();
+		OrbManager.Instance.OrbList.Clear ();
+		OrbManager.Instance.EnergyList.Clear ();
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}
 
