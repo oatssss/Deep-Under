@@ -13,6 +13,9 @@ public class GUIManager : UnitySingleton<GUIManager> {
     [Header("Fading")]
     private Coroutine Fading = null;
     [SerializeField] private CanvasRenderer MajorFadeRenderer;
+	[SerializeField] private CanvasRenderer EatenRenderer;
+	[SerializeField] private CanvasRenderer BatteryRenderer;
+
     public static readonly float FadeDuration = 1f;
     [Space(10)]
 
@@ -141,6 +144,33 @@ public class GUIManager : UnitySingleton<GUIManager> {
                     { callback(); }
             }));
     }
+
+
+	public void FadeToEaten(Action callback)
+	{
+		if (Instance.Fading != null)
+		{ Instance.StopCoroutine(Instance.Fading); }
+
+		Instance.Fading = Instance.StartCoroutine(FadeUtility.UIAlphaFade(Instance.EatenRenderer, Instance.EatenRenderer.GetAlpha(), 1f, FadeDuration, FadeUtility.EaseType.InOut, () => {
+			Instance.Fading = null;
+			if (callback != null)
+			{ callback(); }
+		}));
+	}
+
+	/// <summary>Cause the screen to fade to clear, the fade covers everything including UI elements.</summary>
+	/// <param name="callback">A callback method to run after the fade.</param>
+	public void FadeToClearEaten(Action callback)
+	{
+		if (Instance.Fading != null)
+		{ Instance.StopCoroutine(Instance.Fading); }
+
+		Instance.Fading = Instance.StartCoroutine(FadeUtility.UIAlphaFade(Instance.EatenRenderer, Instance.EatenRenderer.GetAlpha(), 0f, FadeDuration, FadeUtility.EaseType.InOut, () => {
+			Instance.Fading = null;
+			if (callback != null)
+			{ callback(); }
+		}));
+	}
 
     public void ShowTooltip(string tooltip, float duration)
     {
