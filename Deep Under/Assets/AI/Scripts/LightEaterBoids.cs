@@ -50,5 +50,32 @@ public class LightEaterBoids : BoidsFish {
 		base.Update();
 	}
 	#endif
-	
+
+	protected void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.tag == "Player")
+		{
+			this.GodBeingRepelled = true;
+		}
+	}
+
+	protected void OnTriggerExit(Collider other)
+	{
+		if (other.gameObject.tag == "Player")
+		{
+			this.GodBeingRepelled = false;
+		}
+	}
+
+	protected virtual Vector3 CalculateVelocity()
+	{
+		if (this.GodBeingRepelled) 
+		{
+			return (this.transform.position - GameManager.Instance.Player.transform.position).normalized*this.MaxSpeed;
+		}
+		else
+		{
+			return base.CalculateVelocity ();
+		}
+	}
 }

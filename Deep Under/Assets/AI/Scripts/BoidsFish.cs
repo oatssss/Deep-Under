@@ -95,6 +95,8 @@ public abstract class BoidsFish : MonoBehaviour
     private SoftBoundary IsolatedSoftBoundary;
     [SerializeField] protected bool IsOutsideSoftBounds = true;
 
+	protected bool GodBeingRepelled = false;
+
     protected virtual void Awake()
     {
 		this.State = STATE.SWIMMING;
