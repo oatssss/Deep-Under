@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Player : SmallBoidsFish {
 
@@ -54,6 +55,8 @@ public class Player : SmallBoidsFish {
 	private Vector3 startPosition;
 //	public SceneLight generalLight;
 	public Alert guiAlert;
+	public Light dangerLight;
+
    //[SerializeField] private Animator Animator;
 
 	// Use this for initialization
@@ -118,6 +121,11 @@ public class Player : SmallBoidsFish {
 		else Die();
         
         base.Update();
+
+		if (this.hasRealDanger())
+			dangerLight.color = Color.red;
+		else
+			dangerLight.color = Color.blue;
 	}
 
 	private void Move (float h, float v, float u) {
@@ -246,22 +254,9 @@ public class Player : SmallBoidsFish {
 	public void Die() {
 		guiAlert.Display("You died.",1.5f);
 
-        FishManager fm = GameObject.Find("FishManager").GetComponent<FishManager>();
+		// some fancy fade out, then
 
-        fm.SmallFishList.Clear();
-        fm.MediumFishList.Clear();
-        fm.LargeFishList.Clear();
-        fm.LightEatersList.Clear();
-		OrbManager.Instance.EnergyList.Clear ();
-		OrbManager.Instance.OrbList.Clear ();
-
-		if (this.lastPod == null)
-		{
-			Application.LoadLevel(Application.loadedLevel);
-		}
-		else
-			Teleport(this.lastPod.transform.position);
-		this.energy = maxEnergy;
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}
 
 	private void Teleport(Vector3 p){

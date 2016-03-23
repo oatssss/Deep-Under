@@ -633,6 +633,18 @@ public abstract class BoidsFish : MonoBehaviour
         // }
     }
 
+	protected bool hasRealDanger()
+	{
+		if (this.PredatorCount < 0)
+			return false;
+		foreach (BoidsFish predator in Predators) 
+		{
+			if (predator.PhysicalTarget == this)
+				return true;
+		}
+		return false;
+	}
+
 	public float CalculateDistance(MonoBehaviour obj)
 	{
 		BoidsFish targetFish = obj as BoidsFish;
