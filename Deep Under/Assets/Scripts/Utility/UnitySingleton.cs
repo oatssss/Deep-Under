@@ -10,12 +10,22 @@ public class UnitySingleton<T> : MonoBehaviour
 				instance = FindObjectOfType<T> ();
 				if (instance == null) {
 					GameObject obj = new GameObject ();
-                    obj.name = typeof(T).ToString();
+					obj.name = typeof(T).ToString();
 					// obj.hideFlags = HideFlags.HideAndDontSave;
 					instance = obj.AddComponent<T> ();
 				}
 			}
 			return instance;
+		}
+	}
+
+	protected virtual void Awake ()
+	{
+		// DontDestroyOnLoad (this.gameObject);
+		if (instance == null) {
+			instance = this as T;
+		} else {
+			Destroy (gameObject);
 		}
 	}
 }

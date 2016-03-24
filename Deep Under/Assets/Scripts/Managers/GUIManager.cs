@@ -6,11 +6,6 @@ using System.Linq;
 
 public class GUIManager : UnitySingletonPersistent<GUIManager> {
 
-    public class Ref<T> where T : struct
-    {
-        public T Value {get; set;}
-    }
-
     private enum TRANSITION { STACK, NOSTACK, CLOSE }
     public bool GamePaused = false;
     [SerializeField] private Menu PauseMenu;

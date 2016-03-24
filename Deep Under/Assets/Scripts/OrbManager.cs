@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class OrbManager : UnitySingletonPersistent<OrbManager> {
+public class OrbManager : UnitySingleton<OrbManager> {
 
 	public List<lightOrb> OrbList = new List<lightOrb>();
 	public List<EnergyBall> EnergyList = new List<EnergyBall>();
@@ -38,8 +38,18 @@ public class OrbManager : UnitySingletonPersistent<OrbManager> {
 	}
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
+    public void Reset()
+    {
+        foreach (lightOrb orb in this.OrbList)
+            { Destroy(orb.gameObject); }
 
+        foreach (EnergyBall ball in this.EnergyList)
+            { Destroy(ball.gameObject); }
+
+        this.EnergyList.Clear();
+        this.OrbList.Clear();
+    }
 }

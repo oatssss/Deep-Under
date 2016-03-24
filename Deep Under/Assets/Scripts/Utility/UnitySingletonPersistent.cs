@@ -21,7 +21,7 @@ public class UnitySingletonPersistent<T> : MonoBehaviour
 
 	protected virtual void Awake ()
 	{
-		// DontDestroyOnLoad (this.gameObject);
+		DontDestroyOnLoad (this.gameObject);
 		if (instance == null) {
 			instance = this as T;
 		} else {

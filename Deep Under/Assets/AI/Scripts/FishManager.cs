@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class FishManager : UnitySingletonPersistent<FishManager> {
+public class FishManager : UnitySingleton<FishManager> {
 
     public List<Spawn> Spawners = new List<Spawn>();
 	public List<BoidsFish> LargeFishList = new List<BoidsFish>();

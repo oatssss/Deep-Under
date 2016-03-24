@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
 
-public class GameManager : UnitySingletonPersistent<GameManager> {
+public class GameManager : UnitySingleton<GameManager> {
 
     private Coroutine WaitingToReload;
     private Player player = null;
@@ -63,5 +63,10 @@ public class GameManager : UnitySingletonPersistent<GameManager> {
             else
                 { GUIManager.Instance.PauseGame(); }
         }
+    }
+
+    void Start()
+    {
+        GUIManager.Instance.FadeToClear(null);
     }
 }
