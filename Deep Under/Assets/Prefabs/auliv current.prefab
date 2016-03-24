@@ -19777,10 +19777,10 @@ MonoBehaviour:
   IsOutsideSoftBounds: 1
   FlockVolume: {fileID: 0}
   Flock: []
-  speed: 30
-  normalSpeed: 30
+  speed: 20
+  normalSpeed: 20
   acceleration: 50
-  maxSpeed: 150
+  maxSpeed: 50
   isMoving: 0
   camera: {fileID: 11473292, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
   defaultCameraPosition: {fileID: 136920}

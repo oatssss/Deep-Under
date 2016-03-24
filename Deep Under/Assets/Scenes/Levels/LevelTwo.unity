@@ -5218,10 +5218,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 836514732}
---- !u!1 &837179662 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 150846, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-  m_PrefabInternal: {fileID: 1958657212}
 --- !u!1 &840902135
 GameObject:
   m_ObjectHideFlags: 0
@@ -9481,10 +9477,10 @@ MonoBehaviour:
   MediumFish_AbsoluteMax: 30
   LargeFish_IdleMin: 6
   LargeFish_IdleMax: 12
-  LargeFish_AbsoluteMax: 18
+  LargeFish_AbsoluteMax: 25
   FishSpeedMultiplier: 1
   MaxFlockSize: 5
-  MinFlockSizeToScareMediumFish: 15
+  MinFlockSizeToScareMediumFish: 10
   MinFlockSizeToAttractLargeFish: 5
   DrawTargetRays: 0
   MedFishVisualAngle: 60
@@ -11964,24 +11960,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 485238, guid: b0542ce48aa9ba74291171c256824204, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.29883623
+      value: -0.29883626
       objectReference: {fileID: 0}
     - target: {fileID: 485238, guid: b0542ce48aa9ba74291171c256824204, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.6408564
+      value: -0.64085644
       objectReference: {fileID: 0}
     - target: {fileID: 485238, guid: b0542ce48aa9ba74291171c256824204, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.6408564
+      value: 0.64085644
       objectReference: {fileID: 0}
     - target: {fileID: 485238, guid: b0542ce48aa9ba74291171c256824204, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.29883623
+      value: 0.29883626
       objectReference: {fileID: 0}
-    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: soundSphere
-      value: 
-      objectReference: {fileID: 837179662}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0542ce48aa9ba74291171c256824204, type: 2}
   m_IsPrefabParent: 0

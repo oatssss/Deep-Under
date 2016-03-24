@@ -42,11 +42,11 @@ public class LightEaterBoids : BoidsFish {
 	protected override void Update()
 	{
 		// this.State = this.State;
-		this.IdleMin = BoidsSettings.Instance.MediumFish_IdleMin;
-		this.IdleMax = BoidsSettings.Instance.MediumFish_IdleMax;
+		this.IdleMin = BoidsSettings.Instance.LargeFish_IdleMin;
+		this.IdleMax = BoidsSettings.Instance.LargeFish_IdleMax;
 		// this.SwimMin = BoidsSettings.Instance.MediumFish_SwimMin;
 		// this.SwimMax = BoidsSettings.Instance.MediumFish_SwimMax;
-		this.AbsoluteMax = 35;//BoidsSettings.Instance.MediumFish_AbsoluteMax;
+		this.AbsoluteMax = BoidsSettings.Instance.LargeFish_AbsoluteMax;
 		base.Update();
 	}
 	#endif
