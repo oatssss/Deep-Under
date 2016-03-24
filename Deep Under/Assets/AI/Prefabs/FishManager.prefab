@@ -65,7 +65,7 @@ MonoBehaviour:
   LargeFish_AbsoluteMax: 25
   FishSpeedMultiplier: 1
   MaxFlockSize: 10
-  MinFlockSizeToScareMediumFish: 6
+  MinFlockSizeToScareMediumFish: 10
   MinFlockSizeToAttractLargeFish: 6
   DrawTargetRays: 1
   MedFishVisualAngle: 60
@@ -123,6 +123,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: MediumFish_AbsoluteMax
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: MinFlockSizeToScareMediumFish
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
