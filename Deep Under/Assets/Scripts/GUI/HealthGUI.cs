@@ -5,14 +5,7 @@ using System.Collections;
 public class HealthGUI : MonoBehaviour {
 	public float ebar;
 	public float gbar;
-    private Player _auliv;
-	private Player auliv {
-        get {
-            if (_auliv == null)
-                { _auliv = GameObject.FindWithTag("Player").GetComponent<Player>(); }
-            return _auliv;
-        }
-    }
+	public Player auliv;
 
     [SerializeField] private Image EnergyBar;
     [SerializeField] private Image GhostBar;
@@ -27,7 +20,6 @@ public class HealthGUI : MonoBehaviour {
 	}
 
 	void Start(){
-		// auliv = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		GhostBar.color = gbarColor;
 		blink = false;
 	}
@@ -48,9 +40,9 @@ public class HealthGUI : MonoBehaviour {
 	}
 
 	void Update() {
-		ebar = auliv.energy*0.01f;
-		gbar = auliv.ghostbar*0.01f;
-
+		ebar = GameManager.Instance.Player.energy*0.01f;
+		gbar = GameManager.Instance.Player.ghostbar*0.01f;
+				
 	}
 	void Switch() {
 		blink = !blink;
