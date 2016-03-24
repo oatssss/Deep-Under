@@ -1,0 +1,203 @@
+fileFormatVersion: 2
+guid: afa68bb52c9146d4d8531f80aa514e2e
+timeCreated: 1458804394
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Cube
+    100002: Cube_1
+    100004: Cube_1_2
+    100006: Cube_2
+    100008: Cube_3
+    100010: Cube_4
+    100012: Cube_5
+    100014: Cube_6
+    100016: door
+    100018: door_1
+    100020: door_2
+    100022: door_3
+    100024: door_frame
+    100026: door_frame_2
+    100028: door_frame_3
+    100030: doorknob
+    100032: doorknob_1
+    100034: doorknob_2
+    100036: doorknob_3
+    100038: doors
+    100040: doors_1
+    100042: doors_2
+    100044: hause
+    100046: hause_2
+    100048: //RootNode
+    100050: pedestale
+    100052: pedestale_2
+    100054: pedestale_3
+    100056: roof
+    100058: squarewindow
+    400000: Cube
+    400002: Cube_1
+    400004: Cube_1_2
+    400006: Cube_2
+    400008: Cube_3
+    400010: Cube_4
+    400012: Cube_5
+    400014: Cube_6
+    400016: door
+    400018: door_1
+    400020: door_2
+    400022: door_3
+    400024: door_frame
+    400026: door_frame_2
+    400028: door_frame_3
+    400030: doorknob
+    400032: doorknob_1
+    400034: doorknob_2
+    400036: doorknob_3
+    400038: doors
+    400040: doors_1
+    400042: doors_2
+    400044: hause
+    400046: hause_2
+    400048: //RootNode
+    400050: pedestale
+    400052: pedestale_2
+    400054: pedestale_3
+    400056: roof
+    400058: squarewindow
+    2300000: Cube
+    2300002: Cube_1
+    2300004: Cube_1_2
+    2300006: Cube_2
+    2300008: Cube_3
+    2300010: Cube_4
+    2300012: Cube_5
+    2300014: Cube_6
+    2300016: door
+    2300018: door_1
+    2300020: door_2
+    2300022: door_3
+    2300024: door_frame
+    2300026: door_frame_2
+    2300028: door_frame_3
+    2300030: doorknob
+    2300032: doorknob_1
+    2300034: doorknob_2
+    2300036: doorknob_3
+    2300038: hause_2
+    2300040: pedestale
+    2300042: pedestale_2
+    2300044: pedestale_3
+    2300046: roof
+    3300000: Cube
+    3300002: Cube_1
+    3300004: Cube_1_2
+    3300006: Cube_2
+    3300008: Cube_3
+    3300010: Cube_4
+    3300012: Cube_5
+    3300014: Cube_6
+    3300016: door
+    3300018: door_1
+    3300020: door_2
+    3300022: door_3
+    3300024: door_frame
+    3300026: door_frame_2
+    3300028: door_frame_3
+    3300030: doorknob
+    3300032: doorknob_1
+    3300034: doorknob_2
+    3300036: doorknob_3
+    3300038: hause_2
+    3300040: pedestale
+    3300042: pedestale_2
+    3300044: pedestale_3
+    3300046: roof
+    4300000: Cube_1
+    4300002: doorknob
+    4300004: door
+    4300006: pedestale
+    4300008: door_frame
+    4300010: doorknob_2
+    4300012: door_2
+    4300014: pedestale_2
+    4300016: door_frame_2
+    4300018: doorknob_1
+    4300020: door_1
+    4300022: doorknob_3
+    4300024: door_3
+    4300026: pedestale_3
+    4300028: door_frame_3
+    4300030: Cube_5
+    4300032: Cube_3
+    4300034: Cube
+    4300036: Cube_1_2
+    4300038: Cube_2
+    4300040: Cube_4
+    4300042: Cube_6
+    4300044: hause_2
+    4300046: roof
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

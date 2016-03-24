@@ -1,0 +1,164 @@
+fileFormatVersion: 2
+guid: f6166d924cb2bc345b01d9696ac42fe8
+timeCreated: 1458804384
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: chimney
+    100002: Cube
+    100004: Cube_1
+    100006: Cube_2
+    100008: Cube_3
+    100010: Cube_4
+    100012: Cube_5
+    100014: door
+    100016: door_frame
+    100018: doorknob
+    100020: doors
+    100022: haus
+    100024: haus_4
+    100026: //RootNode
+    100028: pedestale
+    100030: roof_3
+    100032: squarewindow
+    100034: window
+    100036: window_1
+    100038: window_2
+    100040: window_2_2
+    400000: chimney
+    400002: Cube
+    400004: Cube_1
+    400006: Cube_2
+    400008: Cube_3
+    400010: Cube_4
+    400012: Cube_5
+    400014: door
+    400016: door_frame
+    400018: doorknob
+    400020: doors
+    400022: haus
+    400024: haus_4
+    400026: //RootNode
+    400028: pedestale
+    400030: roof_3
+    400032: squarewindow
+    400034: window
+    400036: window_1
+    400038: window_2
+    400040: window_2_2
+    2300000: chimney
+    2300002: Cube
+    2300004: Cube_1
+    2300006: Cube_2
+    2300008: Cube_3
+    2300010: Cube_4
+    2300012: Cube_5
+    2300014: door
+    2300016: door_frame
+    2300018: doorknob
+    2300020: haus
+    2300022: haus_4
+    2300024: pedestale
+    2300026: roof_3
+    2300028: window_1
+    2300030: window_2
+    2300032: window_2_2
+    3300000: chimney
+    3300002: Cube
+    3300004: Cube_1
+    3300006: Cube_2
+    3300008: Cube_3
+    3300010: Cube_4
+    3300012: Cube_5
+    3300014: door
+    3300016: door_frame
+    3300018: doorknob
+    3300020: haus
+    3300022: haus_4
+    3300024: pedestale
+    3300026: roof_3
+    3300028: window_1
+    3300030: window_2
+    3300032: window_2_2
+    4300000: doorknob
+    4300002: door
+    4300004: pedestale
+    4300006: door_frame
+    4300008: Cube_5
+    4300010: Cube_4
+    4300012: Cube_3
+    4300014: Cube_2
+    4300016: Cube_1
+    4300018: Cube
+    4300020: window_2
+    4300022: window_2_2
+    4300024: window_1
+    4300026: haus_4
+    4300028: roof_3
+    4300030: chimney
+    4300032: haus
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
