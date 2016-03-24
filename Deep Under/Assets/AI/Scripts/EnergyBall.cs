@@ -4,7 +4,7 @@ using System.Collections;
 public class EnergyBall : MonoBehaviour {
 
 	public float energy;
-	public float ghostvalue;
+	
 
 //	private float timer;
 
@@ -15,9 +15,9 @@ public class EnergyBall : MonoBehaviour {
 	void OnCollisionEnter(Collision other) {
 		if (other.gameObject.CompareTag("Player") && GameManager.Instance.Player != null) {
 //			energy = Random.Range(15f, 25f);
-			ghostvalue = Random.Range(10f, 15f);
+			//ghostvalue = Random.Range(10f, 15f);
 //			GameManager.Instance.Player.addEnergyBall(this.energy);
-			GameManager.Instance.Player.addGhost(this.ghostvalue);
+			GameManager.Instance.Player.addGhost();
 			OrbManager.Instance.destroyEnergy(this);
 		}
 		else if (other.gameObject.CompareTag("LightEater"))
