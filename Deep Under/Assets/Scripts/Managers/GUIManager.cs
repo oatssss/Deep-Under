@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,6 +20,7 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
     public CanvasGroup FadeOverlay;
 	[SerializeField] private CanvasGroup EatenOverlay;
 	[SerializeField] private CanvasGroup BatteryOverlay;
+    [SerializeField] private CanvasGroup LoadingOverlay;
 
     public static readonly float FadeDuration = 1f;
     [Space(10)]
@@ -29,6 +32,24 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
     [SerializeField] private float TooltipDuration = 5f;
     public Tooltip TooltipPrefab;
     public enum TOOL_TIP_DURATION { DEFAULT, INSTANTANEOUS }
+    [Space(10)]
+
+    [Header("Health GUI")]
+    [SerializeField] private HealthGUI HealthBars;
+    [Space(10)]
+
+    [Header("Tutorials")]
+    [SerializeField] private Menu Tutorial1;
+    [SerializeField] bool Tutorial1Shown;
+    [SerializeField] private Menu Tutorial2;
+    [SerializeField] bool Tutorial2Shown;
+    [SerializeField] private Menu Tutorial3;
+    [SerializeField] bool Tutorial3Shown;
+    [SerializeField] private Menu Tutorial4;
+    [SerializeField] bool Tutorial4Shown;
+    [SerializeField] private Menu Tutorial5;
+    [SerializeField] bool Tutorial5Shown;
+    public enum TUTORIAL { ONE, TWO, THREE, FOUR, FIVE }
 
     void Start()
     {
@@ -95,7 +116,10 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
     public void ResumeGame()
     {
         Instance.SetGameFocus();
-        Instance.CurrentMenu.Close();
+
+        if (CurrentMenu != null)
+            { Instance.CurrentMenu.Close(); }
+
         Instance.CurrentMenu = null;
         foreach (Menu menu in Instance.History)
             { menu.Reset(); }
@@ -124,12 +148,22 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
     /// <param name="callback">A callback method to run after the fade.</param>
     public void FadeToBlack(Action callback)
     {
-        FadeToRenderer(Instance.FadeOverlay, callback);
+        // No need to fade to black if it's already black
+        if (Instance.CurrentOverlays.Contains(Instance.FadeOverlay))
+        {
+            // But if there's a callback, make sure we do the callback
+            if (callback != null)
+                { callback(); }
+            else
+                { return; }
+        }
+
+        FadeCanvasGroupIn(Instance.FadeOverlay, callback);
     }
 
     public void FadeToEaten(Action callback)
     {
-        FadeToRenderer(Instance.EatenOverlay, callback);
+        FadeCanvasGroupIn(Instance.EatenOverlay, callback);
         this.FadeToBlack(null);
     }
 
@@ -140,7 +174,7 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
 
     public void FadeToBattery(Action callback)
     {
-        FadeToRenderer(Instance.BatteryOverlay, callback);
+        FadeCanvasGroupIn(Instance.BatteryOverlay, callback);
         this.FadeToBlack(null);
     }
 
@@ -154,7 +188,7 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
     public void FadeToClear(Action callback)
     {
         foreach (CanvasGroup overlay in Instance.CurrentOverlays)
-            { FadeRendererToClear(overlay, callback); }
+            { FadeCanvasGroupOut(overlay, callback); }
     }
 
     public void FadeToClearExclusive(CanvasGroup[] excludedGroups, Action callback)
@@ -168,13 +202,13 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
         IEnumerator<CanvasGroup> enumerator = removing.GetEnumerator();
         CanvasGroup last = removing.Last();
         while (enumerator.MoveNext() && enumerator.Current != last)
-            { FadeRendererToClear(enumerator.Current, null); }
+            { FadeCanvasGroupOut(enumerator.Current, null); }
 
         // The last one will do the callback
-        FadeRendererToClear(enumerator.Current, callback);
+        FadeCanvasGroupOut(enumerator.Current, callback);
     }
 
-    public void FadeToRenderer(CanvasGroup canvasGroup, Action callback)
+    public void FadeCanvasGroupIn(CanvasGroup canvasGroup, Action callback)
     {
         // Find out if the renderer we want to fade is already fading
         KeyValuePair<CanvasGroup,Coroutine> existingFade = Instance.FadingRenderers.Find(renderCoroutinePair => renderCoroutinePair.Key == canvasGroup);
@@ -200,7 +234,7 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
         Instance.CurrentOverlays.Add(canvasGroup);      // Store the renderer in a list of renderers that are the current overlays
     }
 
-    public void FadeRendererToClear(CanvasGroup canvasGroup, Action callback)
+    public void FadeCanvasGroupOut(CanvasGroup canvasGroup, Action callback)
     {
         // Find out if the renderer we want to fade is already fading
         KeyValuePair<CanvasGroup,Coroutine> existingFade = Instance.FadingRenderers.Find(renderCoroutinePair => renderCoroutinePair.Key == canvasGroup);
@@ -252,5 +286,88 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
             case TOOL_TIP_DURATION.DEFAULT:         this.ShowTooltip(tooltip, this.TooltipDuration); break;
             case TOOL_TIP_DURATION.INSTANTANEOUS:   this.ShowTooltip(tooltip, 0.25f); break;
         }
+    }
+
+    public void LoadScreen(AsyncOperation load, float minSeconds)
+    {
+        Action loadComplete = () => {
+            Instance.FadeToClear( () => this.ShowTutorial(SceneManager.GetActiveScene().name) );
+        };
+
+        Action waitForLoad = () => {
+            StartCoroutine(WaitForLoad(load, loadComplete, minSeconds));
+        };
+
+        Instance.FadeCanvasGroupIn(Instance.LoadingOverlay, waitForLoad);
+    }
+
+    public void ShowTutorial(string levelName)
+    {
+        switch (levelName)
+        {
+            case "Tutorial1":
+                if (!this.Tutorial1Shown) {
+                    this.OpenMenu(Tutorial1);
+                    this.Tutorial1Shown = true;
+                    Instance.GamePaused = true;
+                    GameManager.Instance.PauseTime();
+                    GameManager.Instance.WaitForInput( () => Instance.ResumeGame() );
+                }
+                break;
+            case "Tutorial2":
+                if (!this.Tutorial2Shown) {
+                    this.OpenMenu(Tutorial2);
+                    this.Tutorial2Shown = true;
+                    Instance.GamePaused = true;
+                    GameManager.Instance.PauseTime();
+                    GameManager.Instance.WaitForInput( () => Instance.ResumeGame() );
+                }
+                break;
+            case "Tutorial3":
+                if (!this.Tutorial3Shown) {
+                    this.OpenMenu(Tutorial3);
+                    this.Tutorial3Shown = true;
+                    Instance.GamePaused = true;
+                    GameManager.Instance.PauseTime();
+                    GameManager.Instance.WaitForInput( () => Instance.ResumeGame() );
+                }
+                break;
+            case "Tutorial4":
+                if (!this.Tutorial4Shown) {
+                    this.OpenMenu(Tutorial4);
+                    this.Tutorial4Shown = true;
+                    Instance.GamePaused = true;
+                    GameManager.Instance.PauseTime();
+                    GameManager.Instance.WaitForInput( () => Instance.ResumeGame() );
+                }
+                break;
+            case "Tutorial5":
+                if (!this.Tutorial5Shown) {
+                    this.OpenMenu(Tutorial5);
+                    this.Tutorial5Shown = true;
+                    Instance.GamePaused = true;
+                    GameManager.Instance.PauseTime();
+                    GameManager.Instance.WaitForInput( () => Instance.ResumeGame() );
+                }
+                break;
+        }
+    }
+
+    IEnumerator WaitForLoad(AsyncOperation load, Action callback, float minSeconds)
+    {
+        float elapsedTime = 0;
+        while (!load.isDone || elapsedTime <= minSeconds)
+        {
+            elapsedTime += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        if (callback != null)
+            { callback(); }
+    }
+
+    IEnumerator WaitForLoad(AsyncOperation load, float minSeconds)
+    {
+        yield return WaitForLoad(load, null, minSeconds);
     }
 }

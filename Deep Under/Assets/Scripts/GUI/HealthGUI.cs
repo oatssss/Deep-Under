@@ -1,11 +1,18 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class HealthGUI : MonoBehaviour {
 	public float ebar;
 	public float gbar;
-	public Player auliv;
+    private Player _auliv;
+	private Player auliv {
+        get {
+            if (_auliv == null)
+                { _auliv = GameObject.FindWithTag("Player").GetComponent<Player>(); }
+            return _auliv;
+        }
+    }
 
     [SerializeField] private Image EnergyBar;
     [SerializeField] private Image GhostBar;
@@ -42,7 +49,6 @@ public class HealthGUI : MonoBehaviour {
 	void Update() {
 		ebar = GameManager.Instance.Player.energy*0.01f;
 		gbar = GameManager.Instance.Player.ghostbar*0.01f;
-				
 	}
 	void Switch() {
 		blink = !blink;
