@@ -13,17 +13,19 @@ public class cameraSense : MonoBehaviour {
 	private bool isHit = false;
 	// Use this for initialization
 	void Start () {
-		player = cF.player;
+		if (cF.player != null) player = cF.player;
 		//Debug.Log (cF.offsetLength);
 	}
 	
 	// becasue physics; raycast in the direction of the camera's movement 
 
 	void FixedUpdate () {
-		Vector3 dir = cF.getMovementDir();
-		Vector3 ray = dir; 
-		ray.Scale(new Vector3(10f, 10f, 10f));
-		detect();   
+		if (cF.player != null) { 
+			Vector3 dir = cF.getMovementDir();
+			Vector3 ray = dir; 
+			ray.Scale(new Vector3(10f, 10f, 10f));
+			detect();   
+		}
 	}
 
 	private void detect () {

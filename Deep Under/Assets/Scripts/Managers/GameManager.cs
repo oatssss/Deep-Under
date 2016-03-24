@@ -52,7 +52,7 @@ public class GameManager : UnitySingletonPersistent<GameManager> {
 
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && Instance.WaitingToReload == null)
+		if ((Input.GetKeyUp(KeyCode.JoystickButton7) || Input.GetKeyUp(KeyCode.JoystickButton7)) && Instance.WaitingToReload == null)
         {
             if (GUIManager.Instance.GamePaused)
                 { GUIManager.Instance.ResumeGame(); }
