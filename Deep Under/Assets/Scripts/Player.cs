@@ -43,7 +43,7 @@ public class Player : SmallBoidsFish {
 	public float energyDrainRate = 8f;
 	private float minEnergyDrainRate = 8f;
 	public float maxEnergyDrainRate = 24f;
-	public float energyDrainRateAcceleration = 2f; 
+	public float energyDrainRateAcceleration = 2f;
 	public bool charging = false;
 
 	public float ghostbar;
@@ -73,7 +73,7 @@ public class Player : SmallBoidsFish {
 
 	// Use this for initialization
 	protected override void Start () {
-		
+
 		rigidbody = GetComponent<Rigidbody>();
 		spotlight.gameObject.SetActive(lightOn);
 		Cursor.lockState = CursorLockMode.Locked;
@@ -132,13 +132,13 @@ public class Player : SmallBoidsFish {
 		if (isMoving) {
 			if (audioSource.volume <= 1f) audioSource.volume += 0.5f * Time.deltaTime;
 		}
-		else { 
-			if (audioSource.volume >= 0.3f) audioSource.volume -= 0.5f * Time.deltaTime;	
+		else {
+			if (audioSource.volume >= 0.3f) audioSource.volume -= 0.5f * Time.deltaTime;
 		}
 		if (boosting){
 			if (audioSource.pitch < 2) audioSource.pitch += 0.6f * Time.deltaTime;
 		}
-		else { 
+		else {
 			if (audioSource.pitch >= 1) audioSource.pitch -= 0.6f * Time.deltaTime;
 		}
 	}
@@ -148,15 +148,15 @@ public class Player : SmallBoidsFish {
 			|| Input.GetKeyUp(KeyCode.JoystickButton11)) lightToggle();
 		if (Input.GetKeyUp(KeyCode.JoystickButton0)|| Input.GetKeyUp(KeyCode.Mouse0)
 			|| Input.GetKeyUp(KeyCode.JoystickButton16)) callCreateLightOrb();
-		if (Input.GetKeyUp(KeyCode.JoystickButton1) || Input.GetKeyUp(KeyCode.G) 
+		if (Input.GetKeyUp(KeyCode.JoystickButton1) || Input.GetKeyUp(KeyCode.G)
 		|| Input.GetKeyUp(KeyCode.JoystickButton17)) makeSound();
 		//controllerButtonTest();
 		//xboxControllerButtonTest();
-		if(this.energy > 0) removeEnergy(energyDrainRate);  
+		if(this.energy > 0) removeEnergy(energyDrainRate);
 		else{
 			Die();
 		}
-        
+
         base.Update();
 
 		if (this.hasRealDanger())
@@ -292,7 +292,7 @@ public class Player : SmallBoidsFish {
 			speed = normalSpeed;
 		}
 
-		boosting = false; 
+		boosting = false;
         }
         //manage energy drain rate
 		if (boosting && isMoving) {
@@ -307,6 +307,7 @@ public class Player : SmallBoidsFish {
     {
         Action reload = () => {
             FishManager.Instance.Reset();
+            OrbManager.Instance.Reset();
             GameManager.Instance.WaitForInputToReload();
         };
 
@@ -317,6 +318,7 @@ public class Player : SmallBoidsFish {
     {
         Action reload = () => {
             FishManager.Instance.Reset();
+            OrbManager.Instance.Reset();
             GameManager.Instance.WaitForInputToReload();
         };
 
