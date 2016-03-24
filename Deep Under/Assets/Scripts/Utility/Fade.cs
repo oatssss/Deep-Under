@@ -47,14 +47,14 @@ public class FadeUtility {
 		yield return UIColorFade(renderer, start, end, duration, easeType, null);
 	}
 
-	public static IEnumerator UIAlphaFade (CanvasRenderer renderer, float start, float end, float duration, EaseType easeType, Action callback) {
+	public static IEnumerator UIAlphaFade (CanvasGroup group, float start, float end, float duration, EaseType easeType, Action callback) {
 
 		float t = 0f;
 		while (t < 1f) {
 			t += Time.deltaTime * (1f / duration);
 			float newAlpha = Mathf.Lerp (start, end, Ease(t, easeType));
 			// renderer.SetColor ( new Color (renderer.GetColor().r, renderer.GetColor().g, renderer.GetColor().b, newAlpha));
-            renderer.SetAlpha(newAlpha);
+            group.alpha = newAlpha;
 			yield return null;
 		}
 
@@ -64,9 +64,9 @@ public class FadeUtility {
         }
 	}
 
-    public static IEnumerator UIAlphaFade (CanvasRenderer renderer, float start, float end, float duration, EaseType easeType) {
+    public static IEnumerator UIAlphaFade (CanvasGroup group, float start, float end, float duration, EaseType easeType) {
 
-		yield return UIAlphaFade(renderer, start, end, duration, easeType, null);
+		yield return UIAlphaFade(group, start, end, duration, easeType, null);
 	}
 
 	public static float Ease (float t, EaseType easeType) {

@@ -1,20 +1,27 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
 
-public class GUIManager : UnitySingleton<GUIManager> {
+public class GUIManager : UnitySingletonPersistent<GUIManager> {
+
+    public class Ref<T> where T : struct
+    {
+        public T Value {get; set;}
+    }
 
     private enum TRANSITION { STACK, NOSTACK, CLOSE }
-    private bool GamePaused = false;
+    public bool GamePaused = false;
     [SerializeField] private Menu PauseMenu;
     private Menu CurrentMenu;
     private Stack<Menu> History = new Stack<Menu>();
 
     [Header("Fading")]
-    private Coroutine Fading = null;
-    [SerializeField] private CanvasRenderer MajorFadeRenderer;
-	[SerializeField] private CanvasRenderer EatenRenderer;
-	[SerializeField] private CanvasRenderer BatteryRenderer;
+    private List<KeyValuePair<CanvasGroup,Coroutine>> FadingRenderers = new List<KeyValuePair<CanvasGroup,Coroutine>>();
+    [SerializeField] private List<CanvasGroup> CurrentOverlays = new List<CanvasGroup>();
+    [SerializeField] private CanvasGroup FadeOverlay;
+	[SerializeField] private CanvasGroup EatenOverlay;
+	[SerializeField] private CanvasGroup BatteryOverlay;
 
     public static readonly float FadeDuration = 1f;
     [Space(10)]
@@ -121,56 +128,72 @@ public class GUIManager : UnitySingleton<GUIManager> {
     /// <param name="callback">A callback method to run after the fade.</param>
     public void FadeToBlack(Action callback)
     {
-        if (Instance.Fading != null)
-            { Instance.StopCoroutine(Instance.Fading); }
+        FadeToRenderer(Instance.FadeOverlay, callback);
+    }
 
-        Instance.Fading = Instance.StartCoroutine(FadeUtility.UIAlphaFade(Instance.MajorFadeRenderer, Instance.MajorFadeRenderer.GetAlpha(), 1f, FadeDuration, FadeUtility.EaseType.InOut, () => {
-                Instance.Fading = null;
-                if (callback != null)
-                    { callback(); }
-            }));
+    public void FadeToEaten(Action callback)
+    {
+        FadeToRenderer(Instance.EatenOverlay, callback);
+
     }
 
     /// <summary>Cause the screen to fade to clear, the fade covers everything including UI elements.</summary>
     /// <param name="callback">A callback method to run after the fade.</param>
     public void FadeToClear(Action callback)
     {
-        if (Instance.Fading != null)
-            { Instance.StopCoroutine(Instance.Fading); }
-
-        Instance.Fading = Instance.StartCoroutine(FadeUtility.UIAlphaFade(Instance.MajorFadeRenderer, Instance.MajorFadeRenderer.GetAlpha(), 0f, FadeDuration, FadeUtility.EaseType.InOut, () => {
-                Instance.Fading = null;
-                if (callback != null)
-                    { callback(); }
-            }));
+        foreach (CanvasGroup overlay in Instance.CurrentOverlays)
+            { FadeRendererToClear(overlay); }
     }
 
+    public void FadeToRenderer(CanvasGroup canvasGroup, Action callback)
+    {
+        // Find out if the renderer we want to fade is already fading
+        KeyValuePair<CanvasGroup,Coroutine> existingFade = Instance.FadingRenderers.Find(renderCoroutinePair => renderCoroutinePair.Key == canvasGroup);
 
-	public void FadeToEaten(Action callback)
-	{
-		if (Instance.Fading != null)
-		{ Instance.StopCoroutine(Instance.Fading); }
+        // If it's already fading, stop the fade
+        if (existingFade.Equals(default(KeyValuePair<CanvasRenderer,Coroutine>)) && existingFade.Value != null)
+            { Instance.StopCoroutine(existingFade.Value); }
 
-		Instance.Fading = Instance.StartCoroutine(FadeUtility.UIAlphaFade(Instance.EatenRenderer, Instance.EatenRenderer.GetAlpha(), 1f, FadeDuration, FadeUtility.EaseType.InOut, () => {
-			Instance.Fading = null;
-			if (callback != null)
-			{ callback(); }
-		}));
-	}
+        // Setup a new fade routine for the renderer
+        Coroutine fade = null;
+        KeyValuePair<CanvasGroup,Coroutine> replacementFade = new KeyValuePair<CanvasGroup,Coroutine>(canvasGroup, fade);
 
-	/// <summary>Cause the screen to fade to clear, the fade covers everything including UI elements.</summary>
-	/// <param name="callback">A callback method to run after the fade.</param>
-	public void FadeToClearEaten(Action callback)
-	{
-		if (Instance.Fading != null)
-		{ Instance.StopCoroutine(Instance.Fading); }
+        Action completionAction = () => {
+            Instance.FadingRenderers.Remove(replacementFade);
+            if (callback != null)
+                { callback(); }
+        };
 
-		Instance.Fading = Instance.StartCoroutine(FadeUtility.UIAlphaFade(Instance.EatenRenderer, Instance.EatenRenderer.GetAlpha(), 0f, FadeDuration, FadeUtility.EaseType.InOut, () => {
-			Instance.Fading = null;
-			if (callback != null)
-			{ callback(); }
-		}));
-	}
+        fade = Instance.StartCoroutine(FadeUtility.UIAlphaFade(canvasGroup, canvasGroup.alpha, 1f, FadeDuration, FadeUtility.EaseType.InOut, completionAction));
+
+        Instance.FadingRenderers.Remove(existingFade);  // Remove the previous fade
+        Instance.FadingRenderers.Add(replacementFade);  // Add the new fade
+        Instance.CurrentOverlays.Add(canvasGroup);      // Store the renderer in a list of renderers that are the current overlays
+    }
+
+    private void FadeRendererToClear(CanvasGroup canvasGroup)
+    {
+        // Find out if the renderer we want to fade is already fading
+        KeyValuePair<CanvasGroup,Coroutine> existingFade = Instance.FadingRenderers.Find(renderCoroutinePair => renderCoroutinePair.Key == canvasGroup);
+
+        // If it's already fading, stop the fade
+        if (existingFade.Equals(default(KeyValuePair<CanvasRenderer,Coroutine>)) && existingFade.Value != null)
+            { Instance.StopCoroutine(existingFade.Value); }
+
+        // Setup a new fade routine for the renderer
+        Coroutine fade = null;
+        KeyValuePair<CanvasGroup,Coroutine> replacementFade = new KeyValuePair<CanvasGroup,Coroutine>(canvasGroup, fade);
+
+        Action completionAction = () => {
+            Instance.FadingRenderers.Remove(replacementFade);
+            Instance.CurrentOverlays.Remove(canvasGroup);
+        };
+
+        fade = Instance.StartCoroutine(FadeUtility.UIAlphaFade(canvasGroup, canvasGroup.alpha, 0f, FadeDuration, FadeUtility.EaseType.InOut, completionAction));
+
+        Instance.FadingRenderers.Remove(existingFade);  // Remove the previous fade
+        Instance.FadingRenderers.Add(replacementFade);  // Add the new fade
+    }
 
     public void ShowTooltip(string tooltip, float duration)
     {
@@ -197,17 +220,6 @@ public class GUIManager : UnitySingleton<GUIManager> {
         {
             case TOOL_TIP_DURATION.DEFAULT:         this.ShowTooltip(tooltip, this.TooltipDuration); break;
             case TOOL_TIP_DURATION.INSTANTANEOUS:   this.ShowTooltip(tooltip, 0.25f); break;
-        }
-    }
-
-    void Update()
-    {
-        if (Input.GetButtonDown("Cancel"))
-        {
-            if (Instance.GamePaused)
-                { Instance.ResumeGame(); }
-            else
-                { Instance.PauseGame(); }
         }
     }
 }

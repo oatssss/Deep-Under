@@ -10,16 +10,19 @@ public class Spawn : MonoBehaviour {
 	[Range(0,1f)] [SerializeField] private float spawnChance;
 	[SerializeField] private BoidsFish.SIZE typeOfFish;
 	[SerializeField] private int maxFish;
+    public bool Spawning;
 
 	void Start ()
     {
+        this.Spawning = true;
+        FishManager.Instance.RegisterSpawner(this);
 		InvokeRepeating("spawnCreature", spawnRate, spawnRate);
 	}
 
 	void spawnCreature()
 	{
         // Spawn based on a probability
-		if (Random.value > spawnChance)
+		if (!this.Spawning || Random.value > spawnChance)
 		    { return; }
 
         GameObject spawned = null;
@@ -65,9 +68,9 @@ public class Spawn : MonoBehaviour {
             }
 		}
 
-        
 
-        //if (spawned) 
+
+        //if (spawned)
         //{
         //	spawned.transform.position = this.transform.position + new Vector3(0, 4, 0);
         //	spawned.RigidBody.MoveRotation(Quaternion.Euler(0.0f, (float)Random.Range(0, 360), 0.0f));

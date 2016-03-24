@@ -12,9 +12,9 @@ public abstract class BoidsFish : MonoBehaviour
 	[SerializeField] public Rigidbody RigidBody;
 	[SerializeField] private SphereCollider RepelVolume;
 	private AudioSource audioSource;
-	private float soundTimer = 0f; 
-	public AudioClip eatSound; 
-	public AudioClip mediumFishSound; 
+	private float soundTimer = 0f;
+	public AudioClip eatSound;
+	public AudioClip mediumFishSound;
 
 	public float RepelRadius { get { return this.transform.localScale.magnitude * this.RepelVolume.radius; } }
     protected float EvadeRadius
@@ -25,7 +25,7 @@ public abstract class BoidsFish : MonoBehaviour
             {
                 return BoidsSettings.Instance.MediumPredatorRadius;
             }
-            else 
+            else
             {
                 return BoidsSettings.Instance.LargePredatorRadius;
             }
@@ -480,7 +480,7 @@ public abstract class BoidsFish : MonoBehaviour
 			return true;
 
 		// if target is out of sight
-		if (Vector3.Angle (transform.forward, target.transform.position - transform.position) > 60)
+		if (Vector3.Angle (transform.forward, target.transform.position - transform.position) > BoidsSettings.Instance.MedFishVisualAngle)
 			return false;
 
 		// if target is obscured
@@ -501,7 +501,7 @@ public abstract class BoidsFish : MonoBehaviour
 		if (this.State == STATE.EATING)
 			return;
 
-		if (size == SIZE.GOD) 
+		if (size == SIZE.GOD)
 		{
 			// God fish has special logic, it will sense energies and chase them no matter how far away
 			EnergyBall eBall = checkForEnergy();
@@ -509,7 +509,7 @@ public abstract class BoidsFish : MonoBehaviour
 			{
 				this.PhysicalTarget = eBall;
 				Hunt ();
-			} 
+			}
 			else
 			{
 				Idle ();
@@ -519,7 +519,7 @@ public abstract class BoidsFish : MonoBehaviour
 		}
 
 		FishTarget orbTarget = this.PhysicalTarget as FishTarget;
-		if (orbTarget) 
+		if (orbTarget)
 		{
 			// light orb presents, ignore all else
 			return;
@@ -539,16 +539,19 @@ public abstract class BoidsFish : MonoBehaviour
 				if (!checkIfVisible (potentialSwitch))
 					continue;
 
-                // Don't switch if the predatee is A.U.L.I.V.
-                if (predatee == GameManager.Instance.Player)
-                    { break; }
+				if (BoidsSettings.Instance.AulivTheBestPrey)
+				{
+					// Don't switch if the predatee is A.U.L.I.V.
+					if (predatee == GameManager.Instance.Player) {
+						break;
+					}
 
-                // Switch to A.U.L.I.V. if within prey
-                if (potentialSwitch == GameManager.Instance.Player)
-                {
-                    predatee = potentialSwitch;
-                    break;
-                }
+					// Switch to A.U.L.I.V. if within prey
+					if (potentialSwitch == GameManager.Instance.Player) {
+						predatee = potentialSwitch;
+						break;
+					}
+				}
 
                 // Skip if potential switch is smaller in size or the same fish as already being hunted
                 if (potentialSwitch == predatee || potentialSwitch.Size < predatee.Size)
@@ -583,12 +586,15 @@ public abstract class BoidsFish : MonoBehaviour
 				if (!checkIfVisible (fish))
 					continue;
 
-                // Set A.U.L.I.V. as prey immediately if present
-                if (fish == GameManager.Instance.Player)
-                {
-                    closestFish = fish;
-                    break;
-                }
+				if (BoidsSettings.Instance.AulivTheBestPrey)
+				{
+					// Set A.U.L.I.V. as prey immediately if present
+					if (fish == GameManager.Instance.Player)
+					{
+						closestFish = fish;
+						break;
+					}
+				}
 
                 // Large fish skip small fish that aren't in a big enough flock
 				if (this.Size >= SIZE.LARGE && this.Size != SIZE.GOD)
@@ -611,7 +617,7 @@ public abstract class BoidsFish : MonoBehaviour
                 this.PhysicalTarget = predatee = closestFish;
                 this.Hunt();
 			}
-			else 
+			else
 			{
 				this.PhysicalTarget = null;
 				this.Idle ();
@@ -647,7 +653,7 @@ public abstract class BoidsFish : MonoBehaviour
 	{
 		if (this.PredatorCount < 0)
 			return false;
-		foreach (BoidsFish predator in Predators) 
+		foreach (BoidsFish predator in Predators)
 		{
 			if (predator.PhysicalTarget == this)
 				return true;
@@ -689,11 +695,11 @@ public abstract class BoidsFish : MonoBehaviour
     {
 		BoidsFish collidedFish = collision.gameObject.GetComponent<BoidsFish> ();
 
-		if (collision.gameObject.tag=="Fish" && collidedFish.Size < this.Size 
+		if (collision.gameObject.tag=="Fish" && collidedFish.Size < this.Size
 		    && this.Size != SIZE.GOD && collidedFish.Size != SIZE.GOD)
 		{
 			// check if contact point is near the mouth
-			if (Vector3.Angle (transform.forward, collision.contacts[0].point - transform.position) < 60) 
+			if (Vector3.Angle (transform.forward, collision.contacts[0].point - transform.position) < 60)
 			{
 				// collided with prey, eat it
 				this.State = STATE.EATING;
@@ -707,19 +713,19 @@ public abstract class BoidsFish : MonoBehaviour
 			{
 				// collided with Auliv, kill?
 				Player auliv = collision.gameObject.GetComponent<Player> ();
-				auliv.Die ();
+				auliv.Eaten (this);
 			}
 		}
     }
 
-    private void Eaten(BoidsFish eater)
+    public virtual void Eaten(BoidsFish eater)
     {
         /*GameObject energyBall = (GameObject) */Instantiate(FishManager.Instance.EnergyBall, this.transform.position, FishManager.Instance.EnergyBall.transform.rotation);
 		if (eater.audioSource == null) eater.audioSource = GetComponent<AudioSource>();
 		eater.audioSource.clip = eatSound;
 		eater.audioSource.pitch = Random.Range(1f, 2f);
 		eater.audioSource.Play();
-		
+
         FishManager.Instance.DestroyFish(this);
     }
 
@@ -747,23 +753,23 @@ public abstract class BoidsFish : MonoBehaviour
 		return minimum + target + bounds + separation + avoid;
     }
 
-   	public void makeSoundRandom () { 
-    	if (soundTimer > 5f) { 
-    		if (this.size == SIZE.MEDIUM) { 
+   	public void makeSoundRandom () {
+    	if (soundTimer > 5f) {
+    		if (this.size == SIZE.MEDIUM) {
     			float r = Random.Range(1f, 10f);
-    			//if (r > 5f) { 
+    			//if (r > 5f) {
     				//Debug.Log("Play medium Fish Sound");
 					audioSource.clip = mediumFishSound;
 					audioSource.Play();
     			//}
-    			soundTimer = 0f; 
+    			soundTimer = 0f;
     		}
-    		else if (this.size == SIZE.LARGE) { 
+    		else if (this.size == SIZE.LARGE) {
 
     		}
 
-    		else if (this.size == SIZE.SMALL) { 
-				
+    		else if (this.size == SIZE.SMALL) {
+
     		}
 			soundTimer = 0f; //reset soundTimer regardless
     	}
