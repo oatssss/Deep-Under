@@ -4,7 +4,7 @@ using System.Collections;
 public class EnergyBall : MonoBehaviour {
 
 	public float energy;
-	
+	public float ghostvalue;
 
 //	private float timer;
 

@@ -563,6 +563,7 @@ MonoBehaviour:
   spawnChance: 0.65
   typeOfFish: 1
   maxFish: 30
+  Spawning: 0
 --- !u!1001 &180289610
 Prefab:
   m_ObjectHideFlags: 0
@@ -2983,37 +2984,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 495466, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
       propertyPath: m_RootOrder
-      value: 24
+      value: 23
       objectReference: {fileID: 0}
-    - target: {fileID: 199064, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
-      propertyPath: LargeFish
-      value: 
-      objectReference: {fileID: 11418556, guid: 5ecf47a3803cd40db806e9102ab8959d,
-        type: 2}
-    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
-      propertyPath: MediumFish
-      value: 
-      objectReference: {fileID: 11443820, guid: 02f50e268033845bda12e36cd33977ed,
-        type: 2}
-    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
-      propertyPath: SmallFish
-      value: 
-      objectReference: {fileID: 11431052, guid: 7c423edc1a2b54e6ab860f5a4d83f3b7,
-        type: 2}
-    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
-      propertyPath: IsolatedSoftBoundaryPrefab
-      value: 
-      objectReference: {fileID: 11442668, guid: 3f420a87fd27e40698c64af0ac4fb2f5,
-        type: 2}
-    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
-      propertyPath: LightEaterFish
-      value: 
-      objectReference: {fileID: 11456256, guid: 48ed5d67ee2a7499cad59a1cb5faf49c,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
   m_IsPrefabParent: 0
@@ -3406,6 +3378,7 @@ MonoBehaviour:
   spawnChance: 0.55
   typeOfFish: 1
   maxFish: 30
+  Spawning: 0
 --- !u!4 &1212116989 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: c61e5687efb59a74e9dd00b92fe3aa35, type: 3}
@@ -3508,10 +3481,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39bb331a68d740b6a8a3059240a1da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GamePaused: 0
   PauseMenu: {fileID: 1655156809}
-  MajorFadeRenderer: {fileID: 0}
-  EatenRenderer: {fileID: 0}
-  BatteryRenderer: {fileID: 0}
+  CurrentOverlays: []
+  FadeOverlay: {fileID: 0}
+  EatenOverlay: {fileID: 0}
+  BatteryOverlay: {fileID: 0}
   Tooltips: []
   Canvas: {fileID: 0}
   TooltipDuration: 5
@@ -4079,49 +4054,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1455561846}
---- !u!1 &1475477093 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 199064, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
-  m_PrefabInternal: {fileID: 1059509391}
---- !u!114 &1475477096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1475477093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58b370cf3221a47ef9f6b456b71c7bc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FlockRadius: 20
-  RepelRadius: 5
-  MediumPredatorRadius: 45
-  MediumHuntRadius: 30
-  LargePredatorRadius: 80
-  LargeHuntRadius: 55
-  EnergyEaterRadius: 55
-  Cohesion: 0.7
-  Alignment: 1
-  Target: 5
-  Bounds: 1
-  Evade: 1
-  SmallFish_IdleMin: 2
-  SmallFish_IdleMax: 6
-  SmallFish_SwimMin: 4
-  SmallFish_SwimMax: 8
-  SmallFish_AbsoluteMax: 10
-  MediumFish_IdleMin: 4
-  MediumFish_IdleMax: 8
-  MediumFish_AbsoluteMax: 30
-  LargeFish_IdleMin: 6
-  LargeFish_IdleMax: 12
-  LargeFish_AbsoluteMax: 18
-  FishSpeedMultiplier: 1
-  MaxFlockSize: 10
-  MinFlockSizeToScareMediumFish: 6
-  MinFlockSizeToAttractLargeFish: 6
-  DrawTargetRays: 0
 --- !u!1001 &1507081170
 Prefab:
   m_ObjectHideFlags: 0
