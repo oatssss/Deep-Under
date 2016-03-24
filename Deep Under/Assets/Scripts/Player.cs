@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Player : SmallBoidsFish {
 
@@ -138,9 +139,7 @@ public class Player : SmallBoidsFish {
 		|| Input.GetKeyUp(KeyCode.JoystickButton17)) makeSound();
 		//controllerButtonTest();
 		//xboxControllerButtonTest();
-		if(this.energy > 0) removeEnergy(energyDrainRate);
-		if (Input.GetKeyUp(KeyCode.L)) reloadScene();
-        
+		if(this.energy > 0) removeEnergy(energyDrainRate);  
 		else{
 			Die();
 		}
@@ -288,31 +287,27 @@ public class Player : SmallBoidsFish {
 		}
 	}
 
-	public void Die() {
-//		guiAlert.Display("You died.",1.5f);
-		// some fancy fade out, then
-		FishManager fm = GameObject.Find("FishManager").GetComponent<FishManager>();
+	public void Die()
+    {
+        Action reload = () => {
+            FishManager.Instance.Reset();
+            GameManager.Instance.WaitForInputToReload();
+        };
 
-		//fm.SmallFishList.Clear();
-		//fm.MediumFishList.Clear();
-		//fm.LargeFishList.Clear();
-		//fm.LightEatersList.Clear();
-		//SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
-	}
+        GUIManager.Instance.FadeToEaten(reload);
+    }
 
-	public void reloadScene() {
-//		guiAlert.Display("You died.",1.5f);
-		// some fancy fade out, then
-		FishManager fm = GameObject.Find("FishManager").GetComponent<FishManager>();
+    public override void Eaten(BoidsFish eater)
+    {
+        Action reload = () => {
+            FishManager.Instance.Reset();
+            GameManager.Instance.WaitForInputToReload();
+        };
 
-		fm.SmallFishList.Clear();
-		fm.MediumFishList.Clear();
-		fm.LargeFishList.Clear();
-		fm.LightEatersList.Clear();
-		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
-	}
+        GUIManager.Instance.FadeToEaten(reload);
 
-
+        base.Eaten(eater);
+    }
 
 	private void Teleport(Vector3 p){
 //		generalLight.lights(false);
