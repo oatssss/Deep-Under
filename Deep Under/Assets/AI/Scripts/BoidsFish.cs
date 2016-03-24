@@ -327,6 +327,14 @@ public abstract class BoidsFish : MonoBehaviour
         if (this.Predators.Count <= 0)
             { return Vector3.zero; }
 
+
+		FishTarget orbTarget = this.PhysicalTarget as FishTarget;
+		if (orbTarget)
+		{
+			// light orb presents, ignore all else
+			return Vector3.zero;
+		}
+
         // Get a velocity vector that will move this fish away from nearby predators
 		Vector3 avoid = Vector3.zero;
 		foreach (BoidsFish predator in this.Predators)

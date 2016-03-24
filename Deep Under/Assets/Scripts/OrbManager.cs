@@ -5,7 +5,7 @@ public class OrbManager : UnitySingletonPersistent<OrbManager> {
 
 	public List<lightOrb> OrbList = new List<lightOrb>();
 	public List<EnergyBall> EnergyList = new List<EnergyBall>();
-	public int MaxOrbNumber = 2;
+	public int MaxOrbNumber = 1;
 	public int AttractNumber = 5;
 
 	private lightOrb _orb;
