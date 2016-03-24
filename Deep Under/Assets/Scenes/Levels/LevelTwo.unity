@@ -9474,7 +9474,7 @@ MonoBehaviour:
   SmallFish_AbsoluteMax: 20
   MediumFish_IdleMin: 8
   MediumFish_IdleMax: 16
-  MediumFish_AbsoluteMax: 30
+  MediumFish_AbsoluteMax: 20
   LargeFish_IdleMin: 6
   LargeFish_IdleMax: 12
   LargeFish_AbsoluteMax: 25
