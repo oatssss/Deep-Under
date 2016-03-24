@@ -3509,6 +3509,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenu: {fileID: 1655156809}
+  MajorFadeRenderer: {fileID: 0}
+  EatenRenderer: {fileID: 0}
+  BatteryRenderer: {fileID: 0}
+  Tooltips: []
+  Canvas: {fileID: 0}
+  TooltipDuration: 5
+  TooltipPrefab: {fileID: 0}
 --- !u!4 &1272634683
 Transform:
   m_ObjectHideFlags: 0
@@ -3855,12 +3862,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6e6a4216ec684ddb98cd3c5459755e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bar: 0
-  pos: {x: 20, y: 40}
-  size: {x: 200, y: 20}
-  empty: {fileID: 0}
-  full: {fileID: 0}
+  ebar: 0
+  gbar: 0
   auliv: {fileID: 0}
+  EnergyBar: {fileID: 0}
+  GhostBar: {fileID: 0}
+  ebarColor: {r: 0, g: 0, b: 0, a: 0}
+  gbarColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &1435004491
 Prefab:
   m_ObjectHideFlags: 0
@@ -4257,6 +4265,10 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1593246068}
+    - target: {fileID: 8283300, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
   m_IsPrefabParent: 0

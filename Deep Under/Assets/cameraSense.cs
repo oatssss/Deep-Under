@@ -23,11 +23,10 @@ public class cameraSense : MonoBehaviour {
 		Vector3 dir = cF.getMovementDir();
 		Vector3 ray = dir; 
 		ray.Scale(new Vector3(10f, 10f, 10f));
-		Debug.DrawRay(transform.position, ray);
-		detect(dir);   
+		detect();   
 	}
 
-	private void detect (Vector3 dir) { 
+	private void detect () {
 		Ray ray = new Ray(cF.player.transform.position, -1*transform.forward); //make the ray go toward the camera instead of camera.backwards
 		if (Physics.Raycast(ray, out hitInfo, rayDistance)) { 
 			if (hitInfo.collider.tag.Equals("Environment") && hitInfo.distance > cF.offsetLength) { 
