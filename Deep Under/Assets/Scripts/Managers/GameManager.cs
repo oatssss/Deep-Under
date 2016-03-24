@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
@@ -86,8 +86,7 @@ public class GameManager : UnitySingleton<GameManager> {
 
     void Update()
     {
-		// if ((Input.GetKeyUp(KeyCode.JoystickButton7) || Input.GetKeyUp(KeyCode.JoystickButton7)) && Instance.WaitingToReload == null)
-        if (Input.GetButtonDown("Cancel"))
+		if ((Input.GetKeyUp(KeyCode.JoystickButton7) || Input.GetKeyUp(KeyCode.JoystickButton9) || Input.GetKeyUp(KeyCode.Space)) && Instance.WaitingToReload == null)
         {
             if (GUIManager.Instance.GamePaused)
                 { GUIManager.Instance.ResumeGame(); }
