@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,6 +36,20 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
 
     [Header("Health GUI")]
     [SerializeField] private HealthGUI HealthBars;
+    [Space(10)]
+
+    [Header("Tutorials")]
+    [SerializeField] private Menu Tutorial1;
+    [SerializeField] bool Tutorial1Shown;
+    [SerializeField] private Menu Tutorial2;
+    [SerializeField] bool Tutorial2Shown;
+    [SerializeField] private Menu Tutorial3;
+    [SerializeField] bool Tutorial3Shown;
+    [SerializeField] private Menu Tutorial4;
+    [SerializeField] bool Tutorial4Shown;
+    [SerializeField] private Menu Tutorial5;
+    [SerializeField] bool Tutorial5Shown;
+    public enum TUTORIAL { ONE, TWO, THREE, FOUR, FIVE }
 
     void Start()
     {
@@ -101,7 +116,10 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
     public void ResumeGame()
     {
         Instance.SetGameFocus();
-        Instance.CurrentMenu.Close();
+
+        if (CurrentMenu != null)
+            { Instance.CurrentMenu.Close(); }
+
         Instance.CurrentMenu = null;
         foreach (Menu menu in Instance.History)
             { menu.Reset(); }
@@ -272,23 +290,84 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
 
     public void LoadScreen(AsyncOperation load, float minSeconds)
     {
-        // DON'T DELETE THESE 2 LINES
-        // Action waitForLoad = () => StartCoroutine(WaitForLoad(load, () => Instance.FadeToClear(null) ));
-        // Instance.FadeCanvasGroupIn(Instance.LoadingOverlay, waitForLoad);
-        StartCoroutine(WaitForLoad(load, () => Instance.FadeToClear(null) ));
+        Action loadComplete = () => {
+            Instance.FadeToClear( () => this.ShowTutorial(SceneManager.GetActiveScene().name) );
+        };
+
+        Action waitForLoad = () => {
+            StartCoroutine(WaitForLoad(load, loadComplete, minSeconds));
+        };
+
+        Instance.FadeCanvasGroupIn(Instance.LoadingOverlay, waitForLoad);
     }
 
-    IEnumerator WaitForLoad(AsyncOperation load, Action callback)
+    public void ShowTutorial(string levelName)
     {
-        while (!load.isDone)
-            { yield return null; }
+        switch (levelName)
+        {
+            case "Tutorial1":
+                if (!this.Tutorial1Shown) {
+                    this.OpenMenu(Tutorial1);
+                    this.Tutorial1Shown = true;
+                    Instance.GamePaused = true;
+                    GameManager.Instance.PauseTime();
+                    GameManager.Instance.WaitForInput( () => Instance.ResumeGame() );
+                }
+                break;
+            case "Tutorial2":
+                if (!this.Tutorial2Shown) {
+                    this.OpenMenu(Tutorial2);
+                    this.Tutorial2Shown = true;
+                    Instance.GamePaused = true;
+                    GameManager.Instance.PauseTime();
+                    GameManager.Instance.WaitForInput( () => Instance.ResumeGame() );
+                }
+                break;
+            case "Tutorial3":
+                if (!this.Tutorial3Shown) {
+                    this.OpenMenu(Tutorial3);
+                    this.Tutorial3Shown = true;
+                    Instance.GamePaused = true;
+                    GameManager.Instance.PauseTime();
+                    GameManager.Instance.WaitForInput( () => Instance.ResumeGame() );
+                }
+                break;
+            case "Tutorial4":
+                if (!this.Tutorial4Shown) {
+                    this.OpenMenu(Tutorial4);
+                    this.Tutorial4Shown = true;
+                    Instance.GamePaused = true;
+                    GameManager.Instance.PauseTime();
+                    GameManager.Instance.WaitForInput( () => Instance.ResumeGame() );
+                }
+                break;
+            case "Tutorial5":
+                if (!this.Tutorial5Shown) {
+                    this.OpenMenu(Tutorial5);
+                    this.Tutorial5Shown = true;
+                    Instance.GamePaused = true;
+                    GameManager.Instance.PauseTime();
+                    GameManager.Instance.WaitForInput( () => Instance.ResumeGame() );
+                }
+                break;
+        }
+    }
+
+    IEnumerator WaitForLoad(AsyncOperation load, Action callback, float minSeconds)
+    {
+        float elapsedTime = 0;
+        while (!load.isDone || elapsedTime <= minSeconds)
+        {
+            elapsedTime += Time.unscaledDeltaTime;
+            yield return null;
+        }
 
         if (callback != null)
             { callback(); }
     }
 
-    IEnumerator WaitForLoad(AsyncOperation load)
+    IEnumerator WaitForLoad(AsyncOperation load, float minSeconds)
     {
-        yield return WaitForLoad(load, null);
+        yield return WaitForLoad(load, null, minSeconds);
     }
 }

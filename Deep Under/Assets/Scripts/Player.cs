@@ -256,8 +256,9 @@ public class Player : SmallBoidsFish {
 			newG = ghostbar + ghostValue;
 			if (newG >= maxGhost){
 				ghostbar = maxGhost;
-				// reload scene for now
-				SceneManager.LoadScene (nextLevel);
+				// reload next scene
+				// SceneManager.LoadScene (nextLevel);
+                GameManager.LoadLevel(nextLevel);
 			}
 			else {
 				ghostbar = newG;

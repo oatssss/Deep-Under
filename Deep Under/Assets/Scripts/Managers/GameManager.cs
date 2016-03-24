@@ -6,6 +6,7 @@ using System;
 public class GameManager : UnitySingleton<GameManager> {
 
     private Coroutine WaitingToReload;
+    private Coroutine WaitingOnInput;
     private Player player = null;
     public Player Player
     {
@@ -39,12 +40,22 @@ public class GameManager : UnitySingleton<GameManager> {
         WaitingToReload = StartCoroutine(ReloadOnInput());
     }
 
+    public void WaitForInput(Action callbackOnInput)
+    {
+        WaitingOnInput = StartCoroutine(ActionOnInput(callbackOnInput));
+    }
+
     public static void LoadLevel(string sceneName)
     {
+        Instance.PauseTime();
         AsyncOperation loadOp = null;
-        Action load = () => { loadOp = SceneManager.LoadSceneAsync(sceneName); };
+        Action load = () => {
+            loadOp = SceneManager.LoadSceneAsync(sceneName);
+            GUIManager.Instance.LoadScreen(loadOp, 1);
+            Instance.ResumeTime();
+        };
         GUIManager.Instance.FadeToBlack(load);
-        GUIManager.Instance.LoadScreen(loadOp, 1);
+        // GUIManager.Instance.LoadScreen(loadOp, 1);
         Instance.WaitingToReload = null;
     }
 
@@ -63,9 +74,20 @@ public class GameManager : UnitySingleton<GameManager> {
         GUIManager.Instance.FadeToClearExclusive(keep, () => LoadLevel(SceneManager.GetActiveScene()) );
     }
 
+    private IEnumerator ActionOnInput(Action callbackOnInput)
+    {
+        // Wait for input
+        while (!Input.anyKeyDown)
+            { yield return null; }
+
+        if (callbackOnInput != null)
+            { callbackOnInput(); }
+    }
+
     void Update()
     {
-		if ((Input.GetKeyUp(KeyCode.JoystickButton7) || Input.GetKeyUp(KeyCode.JoystickButton7)) && Instance.WaitingToReload == null)
+		// if ((Input.GetKeyUp(KeyCode.JoystickButton7) || Input.GetKeyUp(KeyCode.JoystickButton7)) && Instance.WaitingToReload == null)
+        if (Input.GetButtonDown("Cancel"))
         {
             if (GUIManager.Instance.GamePaused)
                 { GUIManager.Instance.ResumeGame(); }
@@ -76,6 +98,7 @@ public class GameManager : UnitySingleton<GameManager> {
 
     void Start()
     {
-        GUIManager.Instance.FadeToClear(null);
+        // GUIManager.Instance.FadeToClear(null);
+        GUIManager.Instance.ShowTutorial(SceneManager.GetActiveScene().name);
     }
 }
