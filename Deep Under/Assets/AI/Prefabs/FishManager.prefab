@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 495466}
   - 114: {fileID: 11491942}
+  - 114: {fileID: 11411312}
   m_Layer: 0
   m_Name: FishManager
   m_TagString: Untagged
@@ -23,11 +24,52 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 199064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 90.5788345, y: 88.0999603, z: 407.967529}
+  m_LocalPosition: {x: 90.578835, y: 88.09996, z: 407.96753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11411312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b370cf3221a47ef9f6b456b71c7bc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlockRadius: 20
+  RepelRadius: 5
+  MediumPredatorRadius: 45
+  MediumHuntRadius: 30
+  LargePredatorRadius: 80
+  LargeHuntRadius: 55
+  EnergyEaterRadius: 55
+  Cohesion: 0.7
+  Alignment: 1
+  Target: 5
+  Bounds: 1
+  Evade: 1
+  SmallFish_IdleMin: 2
+  SmallFish_IdleMax: 6
+  SmallFish_SwimMin: 4
+  SmallFish_SwimMax: 8
+  SmallFish_AbsoluteMax: 10
+  MediumFish_IdleMin: 4
+  MediumFish_IdleMax: 8
+  MediumFish_AbsoluteMax: 20
+  LargeFish_IdleMin: 6
+  LargeFish_IdleMax: 12
+  LargeFish_AbsoluteMax: 25
+  FishSpeedMultiplier: 1
+  MaxFlockSize: 10
+  MinFlockSizeToScareMediumFish: 6
+  MinFlockSizeToAttractLargeFish: 6
+  DrawTargetRays: 1
+  MedFishVisualAngle: 60
+  AulivTheBestPrey: 1
 --- !u!114 &11491942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39,16 +81,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c00023fa87e041f8a0ab8b329a919b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Spawners: []
   LargeFishList: []
   MediumFishList: []
   SmallFishList: []
-  numberOfLFish: 2
-  numberOfMFish: 18
-  numberOfSFish: 210
-  LargeFish: {fileID: 190734, guid: 5ecf47a3803cd40db806e9102ab8959d, type: 2}
-  MediumFish: {fileID: 179524, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
-  SmallFish: {fileID: 131040, guid: c01bcf15591ef45e68b06733ca562463, type: 2}
+  LightEatersList: []
+  LargeFish: {fileID: 11418556, guid: 5ecf47a3803cd40db806e9102ab8959d, type: 2}
+  MediumFish: {fileID: 11443820, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
+  SmallFish: {fileID: 11431052, guid: 7c423edc1a2b54e6ab860f5a4d83f3b7, type: 2}
+  LightEaterFish: {fileID: 11456256, guid: 48ed5d67ee2a7499cad59a1cb5faf49c, type: 2}
   EnergyBall: {fileID: 165694, guid: 89728e4994ba29249b407a5ffa5eee8a, type: 2}
+  IsolatedSoftBoundaryPrefab: {fileID: 11442668, guid: 3f420a87fd27e40698c64af0ac4fb2f5,
+    type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -71,6 +115,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: numberOfLFish
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: LargeFish_AbsoluteMax
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: MediumFish_AbsoluteMax
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

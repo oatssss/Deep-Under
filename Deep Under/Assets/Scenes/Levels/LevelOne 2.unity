@@ -518,6 +518,7 @@ MonoBehaviour:
   spawnChance: 1
   typeOfFish: 0
   maxFish: 150
+  Spawning: 0
 --- !u!4 &119017709 stripped
 Transform:
   m_PrefabParentObject: {fileID: 447442, guid: 422cf8ffb8ca8de4aa73437c40570317, type: 2}
@@ -781,6 +782,7 @@ MonoBehaviour:
   spawnChance: 0.65
   typeOfFish: 1
   maxFish: 60
+  Spawning: 0
 --- !u!4 &184026935 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 55ac03278440a76459970ba5b68e54c9, type: 3}
@@ -883,10 +885,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39bb331a68d740b6a8a3059240a1da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GamePaused: 0
   PauseMenu: {fileID: 1361182270}
-  MajorFadeRenderer: {fileID: 0}
-  EatenRenderer: {fileID: 0}
-  BatteryRenderer: {fileID: 0}
+  CurrentOverlays: []
+  FadeOverlay: {fileID: 0}
+  EatenOverlay: {fileID: 0}
+  BatteryOverlay: {fileID: 0}
   Tooltips: []
   Canvas: {fileID: 0}
   TooltipDuration: 5
@@ -982,6 +986,7 @@ MonoBehaviour:
   spawnChance: 1
   typeOfFish: 0
   maxFish: 150
+  Spawning: 0
 --- !u!4 &206230753 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
@@ -2434,6 +2439,7 @@ MonoBehaviour:
   spawnChance: 0.55
   typeOfFish: 1
   maxFish: 60
+  Spawning: 0
 --- !u!4 &479041448 stripped
 Transform:
   m_PrefabParentObject: {fileID: 447442, guid: 422cf8ffb8ca8de4aa73437c40570317, type: 2}
@@ -3390,6 +3396,7 @@ MonoBehaviour:
   spawnChance: 1
   typeOfFish: 0
   maxFish: 150
+  Spawning: 0
 --- !u!1 &759679680
 GameObject:
   m_ObjectHideFlags: 0
@@ -5237,6 +5244,7 @@ MonoBehaviour:
   spawnChance: 1
   typeOfFish: 0
   maxFish: 150
+  Spawning: 0
 --- !u!4 &1356449722 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
@@ -5619,49 +5627,6 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: f2f603071b102b646a99ebdf815955b7, type: 3}
   m_PrefabInternal: {fileID: 1869580031}
---- !u!1 &1396522391 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 199064, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
-  m_PrefabInternal: {fileID: 1982228202}
---- !u!114 &1396522392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1396522391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58b370cf3221a47ef9f6b456b71c7bc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FlockRadius: 20
-  RepelRadius: 5
-  MediumPredatorRadius: 45
-  MediumHuntRadius: 30
-  LargePredatorRadius: 80
-  LargeHuntRadius: 55
-  EnergyEaterRadius: 55
-  Cohesion: 0.7
-  Alignment: 1
-  Target: 5
-  Bounds: 1
-  Evade: 1
-  SmallFish_IdleMin: 4
-  SmallFish_IdleMax: 12
-  SmallFish_SwimMin: 8
-  SmallFish_SwimMax: 16
-  SmallFish_AbsoluteMax: 20
-  MediumFish_IdleMin: 8
-  MediumFish_IdleMax: 16
-  MediumFish_AbsoluteMax: 30
-  LargeFish_IdleMin: 6
-  LargeFish_IdleMax: 12
-  LargeFish_AbsoluteMax: 18
-  FishSpeedMultiplier: 1
-  MaxFlockSize: 10
-  MinFlockSizeToScareMediumFish: 6
-  MinFlockSizeToAttractLargeFish: 6
-  DrawTargetRays: 0
 --- !u!4 &1438436548 stripped
 Transform:
   m_PrefabParentObject: {fileID: 447442, guid: 422cf8ffb8ca8de4aa73437c40570317, type: 2}
@@ -7667,6 +7632,7 @@ MonoBehaviour:
   spawnChance: 0.55
   typeOfFish: 1
   maxFish: 60
+  Spawning: 0
 --- !u!4 &1886323950 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 55ac03278440a76459970ba5b68e54c9, type: 3}
@@ -8135,6 +8101,7 @@ MonoBehaviour:
   spawnChance: 0.65
   typeOfFish: 1
   maxFish: 60
+  Spawning: 0
 --- !u!1 &1979549268
 GameObject:
   m_ObjectHideFlags: 0
@@ -8351,15 +8318,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 495466, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 90.5788345
+      value: 90.578835
       objectReference: {fileID: 0}
     - target: {fileID: 495466, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 88.0999603
+      value: 88.09996
       objectReference: {fileID: 0}
     - target: {fileID: 495466, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 407.967529
+      value: 407.96753
       objectReference: {fileID: 0}
     - target: {fileID: 495466, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
       propertyPath: m_LocalRotation.x
@@ -8379,37 +8346,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 495466, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
       propertyPath: m_RootOrder
-      value: 24
+      value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 199064, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
-      propertyPath: LargeFish
-      value: 
-      objectReference: {fileID: 11418556, guid: 5ecf47a3803cd40db806e9102ab8959d,
-        type: 2}
-    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
-      propertyPath: MediumFish
-      value: 
-      objectReference: {fileID: 11443820, guid: 02f50e268033845bda12e36cd33977ed,
-        type: 2}
-    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
-      propertyPath: SmallFish
-      value: 
-      objectReference: {fileID: 11431052, guid: 7c423edc1a2b54e6ab860f5a4d83f3b7,
-        type: 2}
-    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
-      propertyPath: IsolatedSoftBoundaryPrefab
-      value: 
-      objectReference: {fileID: 11442668, guid: 3f420a87fd27e40698c64af0ac4fb2f5,
-        type: 2}
-    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
-      propertyPath: LightEaterFish
-      value: 
-      objectReference: {fileID: 11456256, guid: 48ed5d67ee2a7499cad59a1cb5faf49c,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
   m_IsPrefabParent: 0
