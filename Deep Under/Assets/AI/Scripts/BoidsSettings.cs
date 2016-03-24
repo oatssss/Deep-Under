@@ -47,8 +47,10 @@ public class BoidsSettings : UnitySingletonPersistent<BoidsSettings> {
     [Range(1f,5f)] public float FishSpeedMultiplier = 1f;
     [Range(0,100)] public int MaxFlockSize = 10;
     [Range(2,15)] public int MinFlockSizeToScareMediumFish = 6;
-    [Range(2,15)] public int MinFlockSizeToAttractLargeFish = 6;
-    public bool DrawTargetRays = true;
+	[Range(2,15)] public int MinFlockSizeToAttractLargeFish = 6;
+	public bool DrawTargetRays = true;
+	[Range(30f, 90f)] public float MedFishVisualAngle = 60f;
+	public bool AulivTheBestPrey = true;
 
 #if UNITY_EDITOR
     void Update()

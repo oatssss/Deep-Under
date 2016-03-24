@@ -480,7 +480,7 @@ public abstract class BoidsFish : MonoBehaviour
 			return true;
 
 		// if target is out of sight
-		if (Vector3.Angle (transform.forward, target.transform.position - transform.position) > 60)
+		if (Vector3.Angle (transform.forward, target.transform.position - transform.position) > BoidsSettings.Instance.MedFishVisualAngle)
 			return false;
 
 		// if target is obscured
@@ -539,16 +539,19 @@ public abstract class BoidsFish : MonoBehaviour
 				if (!checkIfVisible (potentialSwitch))
 					continue;
 
-                // Don't switch if the predatee is A.U.L.I.V.
-                if (predatee == GameManager.Instance.Player)
-                    { break; }
+				if (BoidsSettings.Instance.AulivTheBestPrey)
+				{
+					// Don't switch if the predatee is A.U.L.I.V.
+					if (predatee == GameManager.Instance.Player) {
+						break;
+					}
 
-                // Switch to A.U.L.I.V. if within prey
-                if (potentialSwitch == GameManager.Instance.Player)
-                {
-                    predatee = potentialSwitch;
-                    break;
-                }
+					// Switch to A.U.L.I.V. if within prey
+					if (potentialSwitch == GameManager.Instance.Player) {
+						predatee = potentialSwitch;
+						break;
+					}
+				}
 
                 // Skip if potential switch is smaller in size or the same fish as already being hunted
                 if (potentialSwitch == predatee || potentialSwitch.Size < predatee.Size)
@@ -583,12 +586,15 @@ public abstract class BoidsFish : MonoBehaviour
 				if (!checkIfVisible (fish))
 					continue;
 
-                // Set A.U.L.I.V. as prey immediately if present
-                if (fish == GameManager.Instance.Player)
-                {
-                    closestFish = fish;
-                    break;
-                }
+				if (BoidsSettings.Instance.AulivTheBestPrey)
+				{
+					// Set A.U.L.I.V. as prey immediately if present
+					if (fish == GameManager.Instance.Player)
+					{
+						closestFish = fish;
+						break;
+					}
+				}
 
                 // Large fish skip small fish that aren't in a big enough flock
 				if (this.Size >= SIZE.LARGE && this.Size != SIZE.GOD)

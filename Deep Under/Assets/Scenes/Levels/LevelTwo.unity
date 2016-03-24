@@ -9487,6 +9487,8 @@ MonoBehaviour:
   MinFlockSizeToScareMediumFish: 15
   MinFlockSizeToAttractLargeFish: 5
   DrawTargetRays: 0
+  MedFishVisualAngle: 60
+  AulivTheBestPrey: 1
 --- !u!4 &1488721048 stripped
 Transform:
   m_PrefabParentObject: {fileID: 416626, guid: 7c423edc1a2b54e6ab860f5a4d83f3b7, type: 2}
@@ -9582,6 +9584,7 @@ MonoBehaviour:
   spawnChance: 0.5
   typeOfFish: 1
   maxFish: 10
+  Spawning: 0
 --- !u!1 &1518130339
 GameObject:
   m_ObjectHideFlags: 0
