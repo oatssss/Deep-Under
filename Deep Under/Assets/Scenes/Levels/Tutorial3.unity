@@ -1771,7 +1771,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 586398516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.893, y: 235.14, z: -462.34}
+  m_LocalPosition: {x: 63.2, y: 212.9, z: -359.3}
   m_LocalScale: {x: 0.66759586, y: 0.6675956, z: 0.6675956}
   m_Children:
   - {fileID: 1211235932}
@@ -2053,7 +2053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &689015421
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2432,6 +2432,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -2549,7 +2550,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
       propertyPath: nextLevel
-      value: Tutorial3
+      value: LevelTwo
       objectReference: {fileID: 0}
     - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
       propertyPath: ghostValue
@@ -3028,6 +3029,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -3133,7 +3135,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 995975397}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 94, y: 247.74, z: -322}
+  m_LocalPosition: {x: 134, y: 234.4, z: -455.3}
   m_LocalScale: {x: 0.5028033, y: 0.502803, z: 0.502803}
   m_Children:
   - {fileID: 326572353}
@@ -3884,6 +3886,51 @@ Transform:
   - {fileID: 1153877778}
   m_Father: {fileID: 1927933414}
   m_RootOrder: 4
+--- !u!1 &1396522391 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 199064, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+  m_PrefabInternal: {fileID: 1982228202}
+--- !u!114 &1396522392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1396522391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b370cf3221a47ef9f6b456b71c7bc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlockRadius: 20
+  RepelRadius: 5
+  MediumPredatorRadius: 45
+  MediumHuntRadius: 30
+  LargePredatorRadius: 80
+  LargeHuntRadius: 55
+  EnergyEaterRadius: 55
+  Cohesion: 0.7
+  Alignment: 1
+  Target: 5
+  Bounds: 1
+  Evade: 1
+  SmallFish_IdleMin: 4
+  SmallFish_IdleMax: 12
+  SmallFish_SwimMin: 8
+  SmallFish_SwimMax: 16
+  SmallFish_AbsoluteMax: 20
+  MediumFish_IdleMin: 8
+  MediumFish_IdleMax: 16
+  MediumFish_AbsoluteMax: 30
+  LargeFish_IdleMin: 6
+  LargeFish_IdleMax: 12
+  LargeFish_AbsoluteMax: 18
+  FishSpeedMultiplier: 1
+  MaxFlockSize: 10
+  MinFlockSizeToScareMediumFish: 6
+  MinFlockSizeToAttractLargeFish: 6
+  DrawTargetRays: 0
+  MedFishVisualAngle: 60
+  AulivTheBestPrey: 0
 --- !u!1001 &1407172460
 Prefab:
   m_ObjectHideFlags: 0
@@ -4830,10 +4877,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 689015421}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 15, y: -21.5}
-  m_SizeDelta: {x: 30, y: 43}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1754114066
 MonoBehaviour:
@@ -5177,10 +5224,10 @@ RectTransform:
   - {fileID: 623137204}
   m_Father: {fileID: 689015421}
   m_RootOrder: 2
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 380, y: -21.5}
-  m_SizeDelta: {x: 500, y: 43}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1851946943
 MonoBehaviour:
@@ -5643,10 +5690,10 @@ RectTransform:
   - {fileID: 621098891}
   m_Father: {fileID: 689015421}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 80, y: -21.5}
-  m_SizeDelta: {x: 100, y: 43}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1968665327
 MonoBehaviour:
@@ -5918,6 +5965,35 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 199064, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: LargeFish
+      value: 
+      objectReference: {fileID: 11418556, guid: 5ecf47a3803cd40db806e9102ab8959d,
+        type: 2}
+    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: MediumFish
+      value: 
+      objectReference: {fileID: 11443820, guid: 02f50e268033845bda12e36cd33977ed,
+        type: 2}
+    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: SmallFish
+      value: 
+      objectReference: {fileID: 11431052, guid: 7c423edc1a2b54e6ab860f5a4d83f3b7,
+        type: 2}
+    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: IsolatedSoftBoundaryPrefab
+      value: 
+      objectReference: {fileID: 11442668, guid: 3f420a87fd27e40698c64af0ac4fb2f5,
+        type: 2}
+    - target: {fileID: 11491942, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+      propertyPath: LightEaterFish
+      value: 
+      objectReference: {fileID: 11456256, guid: 48ed5d67ee2a7499cad59a1cb5faf49c,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
   m_IsPrefabParent: 0
