@@ -47,7 +47,8 @@ public class CameraFollow : MonoBehaviour {
 
 	public void follow () { 
 		Vector3 oldRot = transform.rotation * Vector3.forward; //get current/old rotation in vector form
-		cameraRotate(x, y + player.h);
+		if (y + player.h == 0f) cameraRotate(x,y);
+		else cameraRotate(x, y + player.h);
 		Vector3 newRot = transform.rotation * Vector3.forward; // save new rotation in vector form 
 		Quaternion change = Quaternion.FromToRotation(oldRot, newRot); //record change in rotation using the 2 vectors
 		offset = change * offset; //apply change in rotation to offset
