@@ -290,11 +290,15 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
 
     public void LoadScreen(AsyncOperation load, float minSeconds)
     {
-        // DON'T DELETE THESE 2 LINES
-        // Action waitForLoad = () => StartCoroutine(WaitForLoad(load, () => Instance.FadeToClear(null) ));
-        // Instance.FadeCanvasGroupIn(Instance.LoadingOverlay, waitForLoad);
+        Action loadComplete = () => {
+            Instance.FadeToClear( () => this.ShowTutorial(SceneManager.GetActiveScene().name) );
+        };
 
-        StartCoroutine(WaitForLoad(load, () => { this.FadeToClear(null); this.ShowTutorial(SceneManager.GetActiveScene().name); } ));
+        Action waitForLoad = () => {
+            StartCoroutine(WaitForLoad(load, loadComplete, minSeconds));
+        };
+
+        Instance.FadeCanvasGroupIn(Instance.LoadingOverlay, waitForLoad);
     }
 
     public void ShowTutorial(string levelName)
@@ -349,17 +353,21 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
         }
     }
 
-    IEnumerator WaitForLoad(AsyncOperation load, Action callback)
+    IEnumerator WaitForLoad(AsyncOperation load, Action callback, float minSeconds)
     {
-        while (!load.isDone)
-            { yield return null; }
+        float elapsedTime = 0;
+        while (!load.isDone || elapsedTime <= minSeconds)
+        {
+            elapsedTime += Time.unscaledDeltaTime;
+            yield return null;
+        }
 
         if (callback != null)
             { callback(); }
     }
 
-    IEnumerator WaitForLoad(AsyncOperation load)
+    IEnumerator WaitForLoad(AsyncOperation load, float minSeconds)
     {
-        yield return WaitForLoad(load, null);
+        yield return WaitForLoad(load, null, minSeconds);
     }
 }

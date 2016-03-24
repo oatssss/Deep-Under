@@ -47,10 +47,15 @@ public class GameManager : UnitySingleton<GameManager> {
 
     public static void LoadLevel(string sceneName)
     {
+        Instance.PauseTime();
         AsyncOperation loadOp = null;
-        Action load = () => { loadOp = SceneManager.LoadSceneAsync(sceneName); };
+        Action load = () => {
+            loadOp = SceneManager.LoadSceneAsync(sceneName);
+            GUIManager.Instance.LoadScreen(loadOp, 1);
+            Instance.ResumeTime();
+        };
         GUIManager.Instance.FadeToBlack(load);
-        GUIManager.Instance.LoadScreen(loadOp, 1);
+        // GUIManager.Instance.LoadScreen(loadOp, 1);
         Instance.WaitingToReload = null;
     }
 
@@ -93,7 +98,7 @@ public class GameManager : UnitySingleton<GameManager> {
 
     void Start()
     {
-        GUIManager.Instance.FadeToClear(null);
+        // GUIManager.Instance.FadeToClear(null);
         GUIManager.Instance.ShowTutorial(SceneManager.GetActiveScene().name);
     }
 }
