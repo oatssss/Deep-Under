@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Player : SmallBoidsFish {
 
@@ -41,7 +42,7 @@ public class Player : SmallBoidsFish {
 	public float energyDrainRate = 8f;
 	private float minEnergyDrainRate = 8f;
 	public float maxEnergyDrainRate = 24f;
-	public float energyDrainRateAcceleration = 2f; 
+	public float energyDrainRateAcceleration = 2f;
 	public bool charging = false;
 
 	public float ghostbar;
@@ -70,7 +71,7 @@ public class Player : SmallBoidsFish {
 
 	// Use this for initialization
 	protected override void Start () {
-		
+
 		rigidbody = GetComponent<Rigidbody>();
 		spotlight.gameObject.SetActive(lightOn);
 		Cursor.lockState = CursorLockMode.Locked;
@@ -133,13 +134,13 @@ public class Player : SmallBoidsFish {
 		if (isMoving) { 
 			if (audioSource.volume <= 1f) audioSource.volume += 0.5f * Time.deltaTime;
 		}
-		else { 
-			if (audioSource.volume >= 0.3f) audioSource.volume -= 0.5f * Time.deltaTime;	
+		else {
+			if (audioSource.volume >= 0.3f) audioSource.volume -= 0.5f * Time.deltaTime;
 		}
 		if (boosting){
 			if (audioSource.pitch < 2) audioSource.pitch += 0.6f * Time.deltaTime;
 		}
-		else { 
+		else {
 			if (audioSource.pitch >= 1) audioSource.pitch -= 0.6f * Time.deltaTime;
 		}
 	}
@@ -149,16 +150,16 @@ public class Player : SmallBoidsFish {
 			|| Input.GetKeyUp(KeyCode.JoystickButton11)) lightToggle();
 		if (Input.GetKeyUp(KeyCode.JoystickButton0)|| Input.GetKeyUp(KeyCode.Mouse0)
 			|| Input.GetKeyUp(KeyCode.JoystickButton16)) callCreateLightOrb();
-		if (Input.GetKeyUp(KeyCode.JoystickButton1) || Input.GetKeyUp(KeyCode.G) 
+		if (Input.GetKeyUp(KeyCode.JoystickButton1) || Input.GetKeyUp(KeyCode.G)
 		|| Input.GetKeyUp(KeyCode.JoystickButton17)) makeSound();
 		//controllerButtonTest();
 		//xboxControllerButtonTest();
 		if(this.energy > 0) removeEnergy(energyDrainRate);
-        
+
 		else{
 			Die();
 		}
-        
+
         base.Update();
 
 		if (this.hasRealDanger())
@@ -299,7 +300,7 @@ public class Player : SmallBoidsFish {
 			speed = normalSpeed;
 		}
 
-		boosting = false; 
+		boosting = false;
         }
         //manage energy drain rate
 		if (boosting && isMoving) {
@@ -310,19 +311,27 @@ public class Player : SmallBoidsFish {
 		}
 	}
 
-	public void Die() {
-//		guiAlert.Display("You died.",1.5f);
-		// some fancy fade out, then
-		FishManager fm = GameObject.Find("FishManager").GetComponent<FishManager>();
+	public void Die()
+    {
+        Action reload = () => {
+            FishManager.Instance.Reset();
+            GameManager.Instance.WaitForInputToReload();
+        };
 
-		fm.SmallFishList.Clear();
-		fm.MediumFishList.Clear();
-		fm.LargeFishList.Clear();
-		fm.LightEatersList.Clear();
-		OrbManager.Instance.OrbList.Clear ();
-		OrbManager.Instance.EnergyList.Clear ();
-		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+        GUIManager.Instance.FadeToEaten(reload);
 	}
+
+    public override void Eaten(BoidsFish eater)
+    {
+        Action reload = () => {
+            FishManager.Instance.Reset();
+            GameManager.Instance.WaitForInputToReload();
+        };
+
+        GUIManager.Instance.FadeToEaten(reload);
+
+        base.Eaten(eater);
+    }
 
 	private void Teleport(Vector3 p){
 //		generalLight.lights(false);

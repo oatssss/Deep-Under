@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 22429772}
   - 114: {fileID: 11429634}
+  - 225: {fileID: 22592996}
   m_Layer: 5
   m_Name: Tooltip
   m_TagString: Untagged
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: {fileID: 11470768}
-  Renderer: {fileID: 22223418}
+  CanvasGroup: {fileID: 22592996}
   Duration: 0
 --- !u!114 &11441196
 MonoBehaviour:
@@ -136,6 +137,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.00002670288}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &22592996
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166536}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

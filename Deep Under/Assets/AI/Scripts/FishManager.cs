@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class FishManager : UnitySingletonPersistent<FishManager> {
 
+    public List<Spawn> Spawners = new List<Spawn>();
 	public List<BoidsFish> LargeFishList = new List<BoidsFish>();
 	public List<BoidsFish> MediumFishList = new List<BoidsFish>();
 	public List<BoidsFish> SmallFishList = new List<BoidsFish>();
@@ -17,6 +18,14 @@ public class FishManager : UnitySingletonPersistent<FishManager> {
     public GameObject EnergyBall;
     public SoftBoundary IsolatedSoftBoundaryPrefab;
 
+    public void RegisterSpawner(Spawn spawner)
+    {
+        if (this.Spawners.Contains(spawner))
+            { return; }
+
+        this.Spawners.Add(spawner);
+    }
+
     public void RegisterFish(BoidsFish fish)
     {
         if (fish.Size == BoidsFish.SIZE.SMALL)
@@ -27,7 +36,7 @@ public class FishManager : UnitySingletonPersistent<FishManager> {
 
 		else if (fish.Size == BoidsFish.SIZE.GOD)
             { this.LightEatersList.Add(fish); }
-		else 
+		else
 		{ this.LargeFishList.Add(fish); }
 
     }
@@ -56,6 +65,43 @@ public class FishManager : UnitySingletonPersistent<FishManager> {
 		LightEatersList.Remove (fishToDestroy);
 		Destroy (fishToDestroy.gameObject);
 	}
+
+    public void DisableSpawners()
+    {
+        foreach (Spawn spawner in this.Spawners)
+            { spawner.Spawning = false; }
+    }
+
+    public void EnableSpawners()
+    {
+        foreach (Spawn spawner in this.Spawners)
+            { spawner.Spawning = true; }
+    }
+
+    public void Reset()
+    {
+        this.DisableSpawners();
+        foreach (BoidsFish aFish in LargeFishList)
+		{
+			Destroy(aFish.gameObject);
+		}
+		foreach (BoidsFish aFish in MediumFishList)
+		{
+			Destroy(aFish.gameObject);
+		}
+		foreach (BoidsFish aFish in SmallFishList)
+		{
+			Destroy(aFish.gameObject);
+		}
+		foreach (BoidsFish aFish in LightEatersList)
+		{
+			Destroy(aFish.gameObject);
+		}
+        this.LargeFishList.Clear();
+        this.MediumFishList.Clear();
+        this.SmallFishList.Clear();
+        this.LightEatersList.Clear();
+    }
 
 	// Helper methods
 	protected Vector3 GetRandomPos() {
