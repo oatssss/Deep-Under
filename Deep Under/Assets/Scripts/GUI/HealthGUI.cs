@@ -20,7 +20,6 @@ public class HealthGUI : MonoBehaviour {
 	}
 
 	void Start(){
-		auliv = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		GhostBar.color = gbarColor;
 		blink = false;
 	}
@@ -41,8 +40,8 @@ public class HealthGUI : MonoBehaviour {
 	}
 
 	void Update() {
-		ebar = auliv.energy*0.01f;
-		gbar = auliv.ghostbar*0.01f;
+		ebar = GameManager.Instance.Player.energy*0.01f;
+		gbar = GameManager.Instance.Player.ghostbar*0.01f;
 				
 	}
 	void Switch() {
