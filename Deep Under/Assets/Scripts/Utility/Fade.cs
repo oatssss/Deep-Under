@@ -31,7 +31,7 @@ public class FadeUtility {
 
 		float t = 0f;
 		while (t < 1f) {
-			t += Time.deltaTime * (1f / duration);
+			t += Time.unscaledDeltaTime * (1f / duration);
 			renderer.SetColor (Color.Lerp (start, end, Ease (t, easeType)));
 			yield return null;
 		}
@@ -51,7 +51,7 @@ public class FadeUtility {
 
 		float t = 0f;
 		while (t < 1f) {
-			t += Time.deltaTime * (1f / duration);
+			t += Time.unscaledDeltaTime * (1f / duration);
 			float newAlpha = Mathf.Lerp (start, end, Ease(t, easeType));
 			// renderer.SetColor ( new Color (renderer.GetColor().r, renderer.GetColor().g, renderer.GetColor().b, newAlpha));
             group.alpha = newAlpha;

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System;
 
 public class GameManager : UnitySingletonPersistent<GameManager> {
 
@@ -44,10 +45,13 @@ public class GameManager : UnitySingletonPersistent<GameManager> {
         while (!Input.anyKeyDown)
             { yield return null; }
 
-        // Reload!
-        SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
-        WaitingToReload = null;
-        GUIManager.Instance.FadeToClear(null);
+        Action reload = () => {
+            SceneManager.LoadScene (SceneManager.GetActiveScene().name);
+            WaitingToReload = null;
+        };
+
+        CanvasGroup[] keep = new CanvasGroup[] { GUIManager.Instance.FadeOverlay };
+        GUIManager.Instance.FadeToClearExclusive(keep, reload);
     }
 
     void Update()
