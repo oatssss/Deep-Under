@@ -26,21 +26,25 @@ public class CameraFollow : MonoBehaviour {
 
 
 	void Start () {
-		//dplayer = GetComponent<Player>();
-		offset = transform.position - player.transform.position;
-		offsetLength = offset.magnitude;
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false; 
+		if (player != null)  {
+			//dplayer = GetComponent<Player>();
+			offset = transform.position - player.transform.position;
+			offsetLength = offset.magnitude;
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		} 
 	}
 
 	void FixedUpdate () {
-		y = Input.GetAxis("Mouse X"); //rotation on y axis
-		x = Input.GetAxis("Mouse Y"); //rotation on x axis
-		oldPosition = transform.position; 
-		follow();
-		getMovementDir();
-		Vector3 camToDefault = player.defaultCameraPosition.transform.position - transform.position; 
+		if (player!=null) { 
+			y = Input.GetAxis("Mouse X"); //rotation on y axis
+			x = Input.GetAxis("Mouse Y"); //rotation on x axis
+			oldPosition = transform.position; 
+			follow();
+			getMovementDir();
+			Vector3 camToDefault = player.defaultCameraPosition.transform.position - transform.position; 
 		//time += Time.deltaTime;
+		}
 	}
 
 

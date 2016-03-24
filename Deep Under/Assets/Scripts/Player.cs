@@ -12,6 +12,7 @@ public class Player : SmallBoidsFish {
 	private float autoTurnSpeed = 10f;
 	bool boosting = false;
 	public bool isMoving = false;
+    public String nextLevel;
 
 	new private Rigidbody rigidbody;
 	new private AudioSource audioSource;
@@ -47,6 +48,7 @@ public class Player : SmallBoidsFish {
 
 	public float ghostbar;
 	private float maxGhost = 100f;
+    public float ghostValue;
 
 	LineRenderer lineRenderer;
 	private int lineSmoothness = 10;
@@ -111,7 +113,7 @@ public class Player : SmallBoidsFish {
 		boostAndDrain();
 
 		//put sound stuff in a new method
-		if (makingSound) 
+		if (makingSound)
 		{
 			soundSphere.transform.localScale *= 1.1f;
 
@@ -126,8 +128,8 @@ public class Player : SmallBoidsFish {
 				soundSphere.transform.localScale = new Vector3 (5, 5, 5);
 			}
 		}
-		if (isMoving) { 
-			
+
+		if (isMoving) {
 			if (audioSource.volume <= 1f) audioSource.volume += 0.5f * Time.deltaTime;
 		}
 		else { 
@@ -248,14 +250,14 @@ public class Player : SmallBoidsFish {
 			}
 		}
 	}
-	public void addGhost(float ghostamount) {
+	public void addGhost() {
 		float newG = 0f;
 		if (ghostbar < maxGhost){
-			newG = ghostbar + ghostamount;
+			newG = ghostbar + ghostValue;
 			if (newG >= maxGhost){
 				ghostbar = maxGhost;
 				// reload scene for now
-				SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+				SceneManager.LoadScene (nextLevel);
 			}
 			else {
 				ghostbar = newG;
@@ -308,8 +310,8 @@ public class Player : SmallBoidsFish {
             GameManager.Instance.WaitForInputToReload();
         };
 
-        GUIManager.Instance.FadeToEaten(reload);
-    }
+        GUIManager.Instance.FadeToBattery(reload);
+	}
 
     public override void Eaten(BoidsFish eater)
     {
