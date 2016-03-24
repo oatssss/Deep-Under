@@ -39,19 +39,28 @@ public class GameManager : UnitySingleton<GameManager> {
         WaitingToReload = StartCoroutine(ReloadOnInput());
     }
 
+    public static void LoadLevel(string sceneName)
+    {
+        AsyncOperation loadOp = null;
+        Action load = () => { loadOp = SceneManager.LoadSceneAsync(sceneName); };
+        GUIManager.Instance.FadeToBlack(load);
+        GUIManager.Instance.LoadScreen(loadOp, 1);
+        Instance.WaitingToReload = null;
+    }
+
+    public static void LoadLevel(Scene scene)
+    {
+        LoadLevel(scene.name);
+    }
+
     private IEnumerator ReloadOnInput()
     {
         // Wait for input
         while (!Input.anyKeyDown)
             { yield return null; }
 
-        Action reload = () => {
-            SceneManager.LoadScene (SceneManager.GetActiveScene().name);
-            WaitingToReload = null;
-        };
-
         CanvasGroup[] keep = new CanvasGroup[] { GUIManager.Instance.FadeOverlay };
-        GUIManager.Instance.FadeToClearExclusive(keep, reload);
+        GUIManager.Instance.FadeToClearExclusive(keep, () => LoadLevel(SceneManager.GetActiveScene()) );
     }
 
     void Update()
