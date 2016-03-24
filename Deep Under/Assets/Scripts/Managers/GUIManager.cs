@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class GUIManager : UnitySingletonPersistent<GUIManager> {
 
@@ -19,7 +20,7 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
     [Header("Fading")]
     private List<KeyValuePair<CanvasGroup,Coroutine>> FadingRenderers = new List<KeyValuePair<CanvasGroup,Coroutine>>();
     [SerializeField] private List<CanvasGroup> CurrentOverlays = new List<CanvasGroup>();
-    [SerializeField] private CanvasGroup FadeOverlay;
+    public CanvasGroup FadeOverlay;
 	[SerializeField] private CanvasGroup EatenOverlay;
 	[SerializeField] private CanvasGroup BatteryOverlay;
 
@@ -134,15 +135,48 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
     public void FadeToEaten(Action callback)
     {
         FadeToRenderer(Instance.EatenOverlay, callback);
-
+        this.FadeToBlack(null);
     }
+
+    // public void FadeFromEaten(Action callback)
+    // {
+    //     FadeRendererToClear(Instance.EatenOverlay, callback);
+    // }
+
+    public void FadeToBattery(Action callback)
+    {
+        FadeToRenderer(Instance.BatteryOverlay, callback);
+        this.FadeToBlack(null);
+    }
+
+    // public void FadeFromBattery(Action callback)
+    // {
+    //     FadeRendererToClear(Instance.BatteryOverlay, callback);
+    // }
 
     /// <summary>Cause the screen to fade to clear, the fade covers everything including UI elements.</summary>
     /// <param name="callback">A callback method to run after the fade.</param>
     public void FadeToClear(Action callback)
     {
         foreach (CanvasGroup overlay in Instance.CurrentOverlays)
-            { FadeRendererToClear(overlay); }
+            { FadeRendererToClear(overlay, callback); }
+    }
+
+    public void FadeToClearExclusive(CanvasGroup[] excludedGroups, Action callback)
+    {
+        IEnumerable<CanvasGroup> removing =
+            from active in Instance.CurrentOverlays
+            from keep in excludedGroups
+            where active != keep
+            select active;
+
+        IEnumerator<CanvasGroup> enumerator = removing.GetEnumerator();
+        CanvasGroup last = removing.Last();
+        while (enumerator.MoveNext() && enumerator.Current != last)
+            { FadeRendererToClear(enumerator.Current, null); }
+
+        // The last one will do the callback
+        FadeRendererToClear(enumerator.Current, callback);
     }
 
     public void FadeToRenderer(CanvasGroup canvasGroup, Action callback)
@@ -171,7 +205,7 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
         Instance.CurrentOverlays.Add(canvasGroup);      // Store the renderer in a list of renderers that are the current overlays
     }
 
-    private void FadeRendererToClear(CanvasGroup canvasGroup)
+    public void FadeRendererToClear(CanvasGroup canvasGroup, Action callback)
     {
         // Find out if the renderer we want to fade is already fading
         KeyValuePair<CanvasGroup,Coroutine> existingFade = Instance.FadingRenderers.Find(renderCoroutinePair => renderCoroutinePair.Key == canvasGroup);
@@ -187,6 +221,8 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
         Action completionAction = () => {
             Instance.FadingRenderers.Remove(replacementFade);
             Instance.CurrentOverlays.Remove(canvasGroup);
+            if (callback != null)
+                { callback(); }
         };
 
         fade = Instance.StartCoroutine(FadeUtility.UIAlphaFade(canvasGroup, canvasGroup.alpha, 0f, FadeDuration, FadeUtility.EaseType.InOut, completionAction));
