@@ -10,7 +10,7 @@ public class Player : SmallBoidsFish {
 	public float maxSpeed = 100f;
 	private float autoTurnSpeed = 10f;
 	bool boosting = false;
-	bool isMoving = false;
+	public bool isMoving = false;
 
 	new private Rigidbody rigidbody;
 	new private AudioSource audioSource;
@@ -30,8 +30,8 @@ public class Player : SmallBoidsFish {
 	private bool shoot = false;
 	private float throwForce = 1600f;
 
-	private float h;
-	private float v;
+	public float h;
+	public float v;
 	private float a;
 	private float l2;
 	private float r2;
@@ -72,9 +72,6 @@ public class Player : SmallBoidsFish {
 		rigidbody = GetComponent<Rigidbody>();
 		spotlight.gameObject.SetActive(lightOn);
 		Cursor.lockState = CursorLockMode.Locked;
-		//lineRenderer = GetComponent<LineRenderer>();
-		//lineRenderer.SetVertexCount(lineSmoothness); // set according to how smooth we want line to be
-		//lineRenderer.useWorldSpace = true;
 		camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
 		defaultCameraPosition.transform.position = camera.transform.position;
 		defaultCameraPosition.transform.rotation = camera.transform.rotation;
@@ -102,14 +99,14 @@ public class Player : SmallBoidsFish {
         }
         isMoving = !(h == 0f && v == 0f && a == 0f);
 		if (l2 > 0f || Input.GetKey(KeyCode.LeftShift)) {
-        	autoTurn();
+        	//autoTurn();
         	addBoost();
         }
         else removeBoost();
-//        Debug.Log(speed);
         if (shoot) createLightOrb();
 		if (isMoving) Move(h,v,a);
 		boostAndDrain();
+
 		//put sound stuff in a new method
 		if (makingSound) timer += Time.deltaTime;
 		if (timer > soundDuration) {
@@ -118,6 +115,7 @@ public class Player : SmallBoidsFish {
 			soundCollider.radius = 0f;
 		}
 		if (isMoving) { 
+			
 			if (audioSource.volume <= 1f) audioSource.volume += 0.5f * Time.deltaTime;
 		}
 		else { 
@@ -141,6 +139,7 @@ public class Player : SmallBoidsFish {
 		//controllerButtonTest();
 		//xboxControllerButtonTest();
 		if(this.energy > 0) removeEnergy(energyDrainRate);
+		if (Input.GetKeyUp(KeyCode.L)) reloadScene();
         
 		else{
 			Die();
@@ -157,12 +156,11 @@ public class Player : SmallBoidsFish {
 	private void Move (float h, float v, float u) {
         this.Animator.SetFloat("Horizontal", h);
         this.Animator.SetFloat("Vertical", v);
-
 		Vector3 movementHorizontal = (camera.transform.right * h) * speed * Time.deltaTime;
 		Vector3 movementForward = (camera.transform.forward * v) * speed * Time.deltaTime;
         Vector3 movementVertical = (Vector3.up * u) * speed/2f * Time.deltaTime;
 		Vector3 dir = movementHorizontal + movementForward;
-		if ((Mathf.Abs(h) >= 0.2f || Mathf.Abs(v) >= 0.2f) && !isAiming) turn(dir);
+		if ((Mathf.Abs(h) >= 0.2f || Mathf.Abs(v) >= 0.2f)) turn(dir);
 		rigidbody.MovePosition(transform.position + movementHorizontal + movementForward +  movementVertical);
 	}
 
@@ -175,7 +173,6 @@ public class Player : SmallBoidsFish {
 	private void removeBoost () {
 		if (speed > normalSpeed){
 			speed = normalSpeed;
-			//camera.swingToPosition(defaultCameraPosition.transform);
 		}
 	}
 
@@ -191,11 +188,8 @@ public class Player : SmallBoidsFish {
 	private void turn (Vector3 dir) {
 		Quaternion lookDirection = Quaternion.LookRotation(dir);
 		float turnSpeed = Mathf.Sqrt(Mathf.Pow(h,2) + Mathf.Pow(v,2)) * 32f;
-		//if (angle > -15f && angle < 15f)
 		transform.rotation = Quaternion.Lerp(transform.rotation, lookDirection, turnSpeed * Time.deltaTime);
 	}
-
-
 
 	private void lightToggle () {
 		if (lightOn) lightOn = false;
@@ -270,7 +264,7 @@ public class Player : SmallBoidsFish {
 		if ((l2 == 1f || Input.GetKey(KeyCode.LeftShift)) && isMoving) {
 			// add boost
 			if (speed < maxSpeed) {
-			speed = speed + (acceleration*Time.deltaTime);
+			speed = speed + (acceleration*Time.fixedDeltaTime);
 
 
 		}
@@ -299,12 +293,26 @@ public class Player : SmallBoidsFish {
 		// some fancy fade out, then
 		FishManager fm = GameObject.Find("FishManager").GetComponent<FishManager>();
 
+		//fm.SmallFishList.Clear();
+		//fm.MediumFishList.Clear();
+		//fm.LargeFishList.Clear();
+		//fm.LightEatersList.Clear();
+		//SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+	}
+
+	public void reloadScene() {
+//		guiAlert.Display("You died.",1.5f);
+		// some fancy fade out, then
+		FishManager fm = GameObject.Find("FishManager").GetComponent<FishManager>();
+
 		fm.SmallFishList.Clear();
 		fm.MediumFishList.Clear();
 		fm.LargeFishList.Clear();
 		fm.LightEatersList.Clear();
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}
+
+
 
 	private void Teleport(Vector3 p){
 //		generalLight.lights(false);
