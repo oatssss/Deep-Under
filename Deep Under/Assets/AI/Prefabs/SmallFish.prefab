@@ -708,8 +708,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fLight: {fileID: 0}
+  medLight: {fileID: 0}
   RigidBody: {fileID: 5460020}
   RepelVolume: {fileID: 13581880}
+  audioSource: {fileID: 0}
   eatSound: {fileID: 0}
   mediumFishSound: {fileID: 0}
   size: 0
@@ -724,6 +726,8 @@ MonoBehaviour:
   LastSoftBoundaryComponent: {fileID: 0}
   currentSoftBoundary: {fileID: 0}
   IsOutsideSoftBounds: 1
+  Animator: {fileID: 0}
+  BeingEaten: {fileID: 0}
   FlockVolume: {fileID: 13505320}
   Flock: []
 --- !u!114 &11447696

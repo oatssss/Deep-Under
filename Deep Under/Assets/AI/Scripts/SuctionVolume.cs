@@ -1,29 +1,69 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SuctionVolume : MonoBehaviour {
+public class SuctionVolume : MonoBehaviour
+{
 
-    [SerializeField] private Player Player;
+    [SerializeField]
+    private Player Player;
     private float SuckStrength = 0;
     private bool Sucking;
+    public Light light1;
+    public Light light2;
+    public Color green;
+    public Color yellow;
 
-	void OnTriggerStay(Collider other)
+    public LightShafts lightShaft;
+    public LightShafts lightShaft1;
+    public Light light3;
+    public Light light4;
+
+    void Start() {
+        light3 = lightShaft.GetComponentInParent<Light>();
+        light4 = lightShaft1.GetComponentInParent<Light>();
+    }
+
+    void OnTriggerStay(Collider other)
     {
-        if (Input.GetButton("Suck"))
+        if (Input.GetAxis("Suck") > 0)
         {
             if (!this.Sucking)
-                { this.SuckStrength = 1.1f; this.Sucking = true; }
+            { this.SuckStrength = 1.1f; this.Sucking = true; }
 
-            this.Player.removeEnergy(SuckStrength/4);
+
             this.SuckStrength = Mathf.Clamp(this.SuckStrength * 1.1f, 1, 50);
             Vector3 towardsPlayer = (transform.parent.position - other.transform.position).normalized;
             other.GetComponent<Rigidbody>().velocity = towardsPlayer * SuckStrength;
+
+            
+
         }
 
         else
         {
             this.Sucking = false;
             this.SuckStrength *= 0.5f;
+
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetAxis("Suck") > 0)
+        {
+            this.Player.removeEnergy(SuckStrength / 4);
+            light1.color = green;
+            light2.color = green;
+            light3.color = green;
+            light4.color = green;
+        }
+
+        else
+        {
+            light1.color = yellow;
+            light2.color = yellow;
+            light3.color = yellow;
+            light4.color = yellow;
         }
     }
 }
