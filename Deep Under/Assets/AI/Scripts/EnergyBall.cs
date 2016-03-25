@@ -5,6 +5,9 @@ public class EnergyBall : MonoBehaviour {
 
 	public float energy;
 	public float ghostvalue;
+    [SerializeField] private Material Normal;
+    [SerializeField] private Material Sucking;
+    [SerializeField] private Renderer Renderer;
 
 //	private float timer;
 
@@ -25,4 +28,9 @@ public class EnergyBall : MonoBehaviour {
 			OrbManager.Instance.destroyEnergy(this);
 		}
 	}
+
+    public void SetSucking(bool sucking)
+    {
+        this.Renderer.material = sucking ? this.Sucking : this.Normal;
+    }
 }

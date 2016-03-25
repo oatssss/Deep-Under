@@ -4,8 +4,7 @@ using System.Collections;
 public class SuctionVolume : MonoBehaviour
 {
 
-    [SerializeField]
-    private Player Player;
+    [SerializeField] private Player Player;
     private float SuckStrength = 25;
     private bool Sucking;
     public Light light1;
@@ -27,27 +26,33 @@ public class SuctionVolume : MonoBehaviour
     {
         if (Player.lightOn)
         {
+            EnergyBall energyBall = other.GetComponent<EnergyBall>();
             if (Input.GetAxis("Suck") > 0)
             {
                 if (!this.Sucking)
                 { this.SuckStrength = 1.1f; this.Sucking = true; }
 
-
                 this.SuckStrength = Mathf.Clamp(this.SuckStrength * 1.1f, 1, 50);
                 Vector3 towardsPlayer = (transform.parent.position - other.transform.position).normalized;
-                other.GetComponent<Rigidbody>().velocity = towardsPlayer * SuckStrength;
-
-
-
+                energyBall.GetComponent<Rigidbody>().velocity = towardsPlayer * SuckStrength;
+                energyBall.SetSucking(true);
             }
 
             else
             {
                 this.Sucking = false;
                 this.SuckStrength *= 0.5f;
-
+                energyBall.SetSucking(false);
             }
         }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        this.Sucking = false;
+        EnergyBall energyBall = other.GetComponent<EnergyBall>();
+        if (energyBall)
+            { energyBall.SetSucking(false); }
     }
 
     void Update()

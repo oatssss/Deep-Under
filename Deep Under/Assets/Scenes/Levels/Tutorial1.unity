@@ -693,6 +693,58 @@ Prefab:
       propertyPath: m_CurrentCamera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 11435116, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_ShadowmapRes
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435116, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_EpipolarSamples
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435116, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_EpipolarLines
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435116, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_InterpolationStep
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 11401076, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_InterpolationStep
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406864, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_ShadowmapRes
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406864, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_EpipolarSamples
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406864, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_EpipolarLines
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406864, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_InterpolationStep
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436320, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436320, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_CurrentCamera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11401076, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11401076, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_CurrentCamera
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0542ce48aa9ba74291171c256824204, type: 2}
   m_IsPrefabParent: 0
@@ -700,6 +752,12 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 163090, guid: b0542ce48aa9ba74291171c256824204, type: 2}
   m_PrefabInternal: {fileID: 79501402}
+--- !u!114 &79501404 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204,
+    type: 2}
+  m_PrefabInternal: {fileID: 79501402}
+  m_Script: {fileID: 11500000, guid: 0b930a52899695a4583a1ca515da605e, type: 3}
 --- !u!1 &142508147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,6 +1099,7 @@ MonoBehaviour:
   animator: {fileID: 234668150}
   CanvasGroup: {fileID: 234668152}
   RectTransform: {fileID: 234668149}
+  FirstSelected: {fileID: 0}
 --- !u!225 &234668152
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1544,6 +1603,7 @@ MonoBehaviour:
   animator: {fileID: 322475258}
   CanvasGroup: {fileID: 322475260}
   RectTransform: {fileID: 322475257}
+  FirstSelected: {fileID: 0}
 --- !u!225 &322475260
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1749,6 +1809,7 @@ MonoBehaviour:
   animator: {fileID: 365868173}
   CanvasGroup: {fileID: 365868175}
   RectTransform: {fileID: 365868172}
+  FirstSelected: {fileID: 0}
 --- !u!225 &365868175
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1787,6 +1848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 944f1baf8d2ac4f539b47223ffb6f2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DisallowPauseMenu: 0
 --- !u!4 &366347107
 Transform:
   m_ObjectHideFlags: 0
@@ -1799,6 +1861,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
+--- !u!4 &380699445 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 497402, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+  m_PrefabInternal: {fileID: 79501402}
 --- !u!1 &399988777
 GameObject:
   m_ObjectHideFlags: 0
@@ -2381,6 +2447,46 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 79501403}
+    - target: {fileID: 11451930, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 79501404}
+    - target: {fileID: 8283300, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: BypassEffects
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462742, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: bloomThreshold
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462742, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: lensflareMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462742, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: hollyStretchWidth
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462742, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: lensflareIntensity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11463544, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11463544, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: visualizeFocus
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11463544, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: aperture
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 11463544, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: focalTransform
+      value: 
+      objectReference: {fileID: 380699445}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
   m_IsPrefabParent: 0
@@ -3053,6 +3159,7 @@ MonoBehaviour:
   animator: {fileID: 712932228}
   CanvasGroup: {fileID: 712932229}
   RectTransform: {fileID: 712932227}
+  FirstSelected: {fileID: 0}
 --- !u!1 &718904615
 GameObject:
   m_ObjectHideFlags: 0
@@ -3274,7 +3381,7 @@ GameObject:
   - 4: {fileID: 759679681}
   m_Layer: 0
   m_Name: Environment
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3747,6 +3854,7 @@ MonoBehaviour:
   animator: {fileID: 935615851}
   CanvasGroup: {fileID: 935615853}
   RectTransform: {fileID: 935615850}
+  FirstSelected: {fileID: 0}
 --- !u!225 &935615853
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4632,6 +4740,13 @@ MonoBehaviour:
   Tutorial4Shown: 0
   Tutorial5: {fileID: 935615852}
   Tutorial5Shown: 0
+  EventSystem: {fileID: 0}
+  EnergyBar: {fileID: 0}
+  GhostBar: {fileID: 0}
+  AlternateControls: {fileID: 0}
+  InvertCamera: {fileID: 0}
+  DepthOfField: {fileID: 0}
+  FlashQuality: {fileID: 0}
 --- !u!4 &1311018228
 Transform:
   m_ObjectHideFlags: 0
@@ -4951,6 +5066,7 @@ MonoBehaviour:
   animator: {fileID: 1475815000}
   CanvasGroup: {fileID: 1475815002}
   RectTransform: {fileID: 1475814999}
+  FirstSelected: {fileID: 0}
 --- !u!225 &1475815002
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -6366,6 +6482,7 @@ MonoBehaviour:
   animator: {fileID: 1872022302}
   CanvasGroup: {fileID: 1872022304}
   RectTransform: {fileID: 1872022301}
+  FirstSelected: {fileID: 0}
 --- !u!225 &1872022304
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -7144,6 +7261,7 @@ MonoBehaviour:
   animator: {fileID: 2000768432}
   CanvasGroup: {fileID: 2000768434}
   RectTransform: {fileID: 2000768431}
+  FirstSelected: {fileID: 0}
 --- !u!225 &2000768434
 CanvasGroup:
   m_ObjectHideFlags: 0

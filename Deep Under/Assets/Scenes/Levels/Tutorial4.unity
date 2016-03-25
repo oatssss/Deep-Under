@@ -677,7 +677,7 @@ Transform:
   - {fileID: 272886389}
   - {fileID: 1979549269}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!1001 &170332945
 Prefab:
   m_ObjectHideFlags: 0
@@ -3422,9 +3422,23 @@ Prefab:
       propertyPath: ghostValue
       value: 34
       objectReference: {fileID: 0}
+    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: nextLevel
+      value: Tutorial5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0542ce48aa9ba74291171c256824204, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &762331458 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204,
+    type: 2}
+  m_PrefabInternal: {fileID: 762331457}
+  m_Script: {fileID: 11500000, guid: 0b930a52899695a4583a1ca515da605e, type: 3}
+--- !u!4 &762331459 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 497402, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+  m_PrefabInternal: {fileID: 762331457}
 --- !u!1001 &771115780
 Prefab:
   m_ObjectHideFlags: 0
@@ -4092,6 +4106,9 @@ MonoBehaviour:
   EventSystem: {fileID: 0}
   EnergyBar: {fileID: 0}
   GhostBar: {fileID: 0}
+  AlternateControls: {fileID: 0}
+  InvertCamera: {fileID: 0}
+  FlashQuality: {fileID: 0}
 --- !u!4 &969658546
 Transform:
   m_ObjectHideFlags: 0
@@ -4105,7 +4122,7 @@ Transform:
   - {fileID: 966076786}
   - {fileID: 1235832772}
   m_Father: {fileID: 0}
-  m_RootOrder: 40
+  m_RootOrder: 46
 --- !u!1001 &978706070
 Prefab:
   m_ObjectHideFlags: 0
@@ -5921,6 +5938,38 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1310598149}
+    - target: {fileID: 11451930, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 762331458}
+    - target: {fileID: 11462742, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: bloomThreshold
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462742, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: lensflareMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462742, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: hollyStretchWidth
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462742, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: lensflareIntensity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11463544, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11463544, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: aperture
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 11463544, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: focalTransform
+      value: 
+      objectReference: {fileID: 762331459}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
   m_IsPrefabParent: 0
@@ -7918,7 +7967,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 23
 --- !u!1001 &1958055352
 Prefab:
   m_ObjectHideFlags: 0

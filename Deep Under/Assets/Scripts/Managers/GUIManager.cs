@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.ImageEffects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,15 +42,15 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
 
     [Header("Tutorials")]
     [SerializeField] private Menu Tutorial1;
-    [SerializeField] bool Tutorial1Shown;
+    public bool Tutorial1Shown;
     [SerializeField] private Menu Tutorial2;
-    [SerializeField] bool Tutorial2Shown;
+    public bool Tutorial2Shown;
     [SerializeField] private Menu Tutorial3;
-    [SerializeField] bool Tutorial3Shown;
+    public bool Tutorial3Shown;
     [SerializeField] private Menu Tutorial4;
-    [SerializeField] bool Tutorial4Shown;
+    public bool Tutorial4Shown;
     [SerializeField] private Menu Tutorial5;
-    [SerializeField] bool Tutorial5Shown;
+    public bool Tutorial5Shown;
     public enum TUTORIAL { ONE, TWO, THREE, FOUR, FIVE }
     [Space(10)]
 
@@ -56,11 +58,27 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
     public EventSystem EventSystem;
     public CanvasGroup EnergyBar;
     public CanvasGroup GhostBar;
+    public Toggle AlternateControls;
+    public Toggle InvertCamera;
+    public Toggle DepthOfField;
+    public Dropdown FlashQuality;
     private Player Player {
-        get { return GameObject.FindWithTag("Player").GetComponent<Player>(); }
+        get {
+            GameObject playerObject = GameObject.FindWithTag("Player");
+            if (playerObject)
+                { return playerObject.GetComponent<Player>(); }
+            else
+                { return null; }
+        }
     }
     private CameraFollow CameraFollow {
-        get { return GameObject.FindWithTag("MainCamera").GetComponent<CameraFollow>(); }
+        get {
+            GameObject camObject = GameObject.FindWithTag("MainCamera");
+            if (camObject)
+                { return camObject.GetComponent<CameraFollow>(); }
+            else
+                { return null; }
+        }
     }
 
     void Start()
@@ -410,9 +428,36 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
         GameManager.LoadLevel(GUIManager.Instance.Player.nextLevel);
     }
 
-    public void LoadSelectedLevel(string levelName)
+    public void LoadSelectedLevel(string sceneName)
     {
         ResumeGame();
-        GameManager.LoadLevel(levelName);
+        GameManager.LoadLevel(sceneName);
+    }
+
+    void Update()
+    {
+        Player player = this.Player;
+        CameraFollow camFollow = this.CameraFollow;
+
+        if (player)
+        {
+            player.otherControls = this.AlternateControls.isOn;
+            player.nearBeamL.enabled = (this.FlashQuality.value == 1 || this.FlashQuality.value == 3) ? true : false;
+            player.nearBeamR.enabled = (this.FlashQuality.value == 1 || this.FlashQuality.value == 3) ? true : false;
+            player.farBeamL.enabled = (this.FlashQuality.value == 2 || this.FlashQuality.value == 3) ? true : false;
+            player.farBeamL.enabled = (this.FlashQuality.value == 2 || this.FlashQuality.value == 3) ? true : false;
+        }
+
+        GameObject cameraObject = GameObject.FindWithTag("MainCamera");
+
+        if (cameraObject)
+        {
+            DepthOfField dof = cameraObject.GetComponent<DepthOfField>();
+            dof.enabled = this.DepthOfField.isOn;
+            dof.focalTransform = player.transform;
+            cameraObject.GetComponent<CameraFollow>().invert = this.InvertCamera.isOn;
+        }
+
+
     }
 }

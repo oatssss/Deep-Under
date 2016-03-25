@@ -51,6 +51,8 @@ public class GameManager : UnitySingleton<GameManager> {
         Instance.PauseTime();
         AsyncOperation loadOp = null;
         Action load = () => {
+            FishManager.Instance.Reset();
+            OrbManager.Instance.Reset();
             loadOp = SceneManager.LoadSceneAsync(sceneName);
             GUIManager.Instance.LoadScreen(loadOp, 1);
             GUIManager.Instance.EnergyBar.alpha = 1;

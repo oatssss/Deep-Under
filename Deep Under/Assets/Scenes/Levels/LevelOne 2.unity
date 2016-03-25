@@ -402,6 +402,7 @@ MonoBehaviour:
   animator: {fileID: 29870582}
   CanvasGroup: {fileID: 29870584}
   RectTransform: {fileID: 29870581}
+  FirstSelected: {fileID: 0}
 --- !u!225 &29870584
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -735,6 +736,12 @@ MonoBehaviour:
   Tutorial4Shown: 0
   Tutorial5: {fileID: 1528744895}
   Tutorial5Shown: 0
+  EventSystem: {fileID: 0}
+  EnergyBar: {fileID: 0}
+  GhostBar: {fileID: 0}
+  AlternateControls: {fileID: 0}
+  InvertCamera: {fileID: 0}
+  FlashQuality: {fileID: 0}
 --- !u!4 &75244085
 Transform:
   m_ObjectHideFlags: 0
@@ -1231,6 +1238,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0542ce48aa9ba74291171c256824204, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &115248738 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204,
+    type: 2}
+  m_PrefabInternal: {fileID: 115248737}
+  m_Script: {fileID: 11500000, guid: 0b930a52899695a4583a1ca515da605e, type: 3}
 --- !u!1 &142508147
 GameObject:
   m_ObjectHideFlags: 0
@@ -3228,6 +3241,7 @@ MonoBehaviour:
   animator: {fileID: 450941779}
   CanvasGroup: {fileID: 450941780}
   RectTransform: {fileID: 450941778}
+  FirstSelected: {fileID: 0}
 --- !u!1001 &461368434
 Prefab:
   m_ObjectHideFlags: 0
@@ -3705,6 +3719,7 @@ MonoBehaviour:
   animator: {fileID: 506977661}
   CanvasGroup: {fileID: 506977662}
   RectTransform: {fileID: 506977660}
+  FirstSelected: {fileID: 0}
 --- !u!1 &512405258
 GameObject:
   m_ObjectHideFlags: 0
@@ -8069,6 +8084,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &1286051267 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 497402, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+  m_PrefabInternal: {fileID: 115248737}
 --- !u!1 &1296303561
 GameObject:
   m_ObjectHideFlags: 0
@@ -8657,6 +8676,7 @@ MonoBehaviour:
   animator: {fileID: 1362016065}
   CanvasGroup: {fileID: 1362016067}
   RectTransform: {fileID: 1362016064}
+  FirstSelected: {fileID: 0}
 --- !u!225 &1362016067
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9080,6 +9100,7 @@ MonoBehaviour:
   animator: {fileID: 1397316854}
   CanvasGroup: {fileID: 1397316855}
   RectTransform: {fileID: 1397316853}
+  FirstSelected: {fileID: 0}
 --- !u!1 &1403439255 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 1abeb3f8b9ca29c449b533b39fdc7995, type: 3}
@@ -10037,6 +10058,7 @@ MonoBehaviour:
   animator: {fileID: 1528744898}
   CanvasGroup: {fileID: 1528744897}
   RectTransform: {fileID: 1528744896}
+  FirstSelected: {fileID: 0}
 --- !u!224 &1528744896
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12968,6 +12990,7 @@ MonoBehaviour:
   animator: {fileID: 1876292336}
   CanvasGroup: {fileID: 1876292337}
   RectTransform: {fileID: 1876292335}
+  FirstSelected: {fileID: 0}
 --- !u!1001 &1901497995
 Prefab:
   m_ObjectHideFlags: 0
@@ -13216,6 +13239,7 @@ MonoBehaviour:
   animator: {fileID: 1925944143}
   CanvasGroup: {fileID: 1925944144}
   RectTransform: {fileID: 1925944142}
+  FirstSelected: {fileID: 0}
 --- !u!1 &1927302010
 GameObject:
   m_ObjectHideFlags: 0
@@ -14613,6 +14637,42 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 0858c1b69db31c84198d2f5ab64a61f6, type: 3}
+    - target: {fileID: 11451930, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 115248738}
+    - target: {fileID: 11462742, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: bloomThreshold
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462742, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: lensflareMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462742, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: hollyStretchWidth
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462742, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: lensflareIntensity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11463544, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11463544, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: visualizeFocus
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11463544, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: aperture
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 11463544, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: focalTransform
+      value: 
+      objectReference: {fileID: 1286051267}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
   m_IsPrefabParent: 0

@@ -41,7 +41,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FlockRadius: 20
-  RepelRadius: 5
+  RepelRadius: 8
   MediumPredatorRadius: 45
   MediumHuntRadius: 30
   LargePredatorRadius: 80
@@ -52,11 +52,11 @@ MonoBehaviour:
   Target: 5
   Bounds: 1
   Evade: 1
-  SmallFish_IdleMin: 2
-  SmallFish_IdleMax: 6
-  SmallFish_SwimMin: 4
-  SmallFish_SwimMax: 8
-  SmallFish_AbsoluteMax: 10
+  SmallFish_IdleMin: 4
+  SmallFish_IdleMax: 12
+  SmallFish_SwimMin: 8
+  SmallFish_SwimMax: 16
+  SmallFish_AbsoluteMax: 20
   MediumFish_IdleMin: 4
   MediumFish_IdleMax: 8
   MediumFish_AbsoluteMax: 20
@@ -64,12 +64,12 @@ MonoBehaviour:
   LargeFish_IdleMax: 12
   LargeFish_AbsoluteMax: 25
   FishSpeedMultiplier: 1
-  MaxFlockSize: 10
+  MaxFlockSize: 8
   MinFlockSizeToScareMediumFish: 10
   MinFlockSizeToAttractLargeFish: 6
-  DrawTargetRays: 1
-  MedFishVisualAngle: 60
-  AulivTheBestPrey: 1
+  DrawTargetRays: 0
+  MedFishVisualAngle: 70
+  AulivTheBestPrey: 0
 --- !u!114 &11491942
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1530,7 +1530,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.4, y: 0, z: 0}
+  m_LocalPosition: {x: -191.20026, y: 57.1, z: -524.80725}
   m_LocalScale: {x: 13, y: 13, z: 13}
   m_Children:
   - {fileID: 496394}
@@ -3100,7 +3100,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   eatSound: {fileID: 0}
   mediumFishSound: {fileID: 0}
-  size: 0
+  size: 3
   state: 0
   Repellants: []
   Predators: []
@@ -3112,6 +3112,7 @@ MonoBehaviour:
   LastSoftBoundaryComponent: {fileID: 0}
   currentSoftBoundary: {fileID: 0}
   IsOutsideSoftBounds: 1
+  beingRepelled: 0
   Animator: {fileID: 9536988}
   BeingEaten: {fileID: 0}
 --- !u!135 &13578898

@@ -10,7 +10,7 @@ public class Player : SmallBoidsFish {
 	public float acceleration= 20f;
 	public float maxSpeed = 100f;
 	private float autoTurnSpeed = 10f;
-	public bool otherControls = true; 
+	public bool otherControls = true;
 	bool boosting = false;
 	public bool isMoving = false;
     public String nextLevel;
@@ -18,12 +18,12 @@ public class Player : SmallBoidsFish {
 	new private Rigidbody rigidbody;
 	new private AudioSource audioSource;
 
-	public AudioClip moveSound; 
-	public AudioClip screamSound; 
+	public AudioClip moveSound;
+	public AudioClip screamSound;
 	public AudioClip aulivEatSound;
-	private float eatVolume = 0.35f; 
-	private float volumeSave; 
-	private float pitchSave; 
+	private float eatVolume = 0.35f;
+	private float volumeSave;
+	private float pitchSave;
 
 	new public CameraFollow camera;
 	public GameObject defaultCameraPosition; //is constantly updated by player, so is situated here
@@ -33,6 +33,10 @@ public class Player : SmallBoidsFish {
 
 	public Light spotlight;
 	public bool lightOn = true;
+    public LightShafts nearBeamL;
+    public LightShafts nearBeamR;
+    public LightShafts farBeamL;
+    public LightShafts farBeamR;
 
 	public lightOrb lightOrb;
 	public Transform lightOrbPosition;
@@ -114,10 +118,10 @@ public class Player : SmallBoidsFish {
         if (shoot) createLightOrb();
 		if (isMoving) Move(h,v,a);
 		boostAndDrain();
-		if (!audioSource.isPlaying || timer > soundDuration) { 
+		if (!audioSource.isPlaying || timer > soundDuration) {
 				audioSource.volume = volumeSave;
 				audioSource.pitch = pitchSave;
-				audioSource.loop = true; 
+				audioSource.loop = true;
 				audioSource.clip = moveSound;
 				audioSource.Play();
 			}
@@ -154,13 +158,13 @@ public class Player : SmallBoidsFish {
 	}
 
 	protected override void Update() {
-		if (Input.GetKeyUp(KeyCode.JoystickButton9) || Input.GetKeyUp(KeyCode.F)
-			|| Input.GetKeyUp(KeyCode.JoystickButton11)) lightToggle();
+		if ((Input.GetKeyUp(KeyCode.JoystickButton9) || Input.GetKeyUp(KeyCode.F)
+			|| Input.GetKeyUp(KeyCode.JoystickButton11) && !GUIManager.Instance.GamePaused)) lightToggle();
 		if ((Input.GetKeyDown(KeyCode.JoystickButton0)|| Input.GetKeyDown(KeyCode.Mouse0)
 			|| Input.GetKeyDown(KeyCode.JoystickButton16)) && !GUIManager.Instance.GamePaused) callCreateLightOrb();
-		if (Input.GetKeyUp(KeyCode.JoystickButton1) || Input.GetKeyUp(KeyCode.G)
-		|| Input.GetKeyUp(KeyCode.JoystickButton17)) makeSound();
-		if (Input.GetKey(KeyCode.JoystickButton8) || Input.GetKey(KeyCode.JoystickButton12)) camera.swingToPosition(defaultCameraPosition.transform);
+		if ((Input.GetKeyUp(KeyCode.JoystickButton1) || Input.GetKeyUp(KeyCode.G)
+		|| Input.GetKeyUp(KeyCode.JoystickButton17) && !GUIManager.Instance.GamePaused)) makeSound();
+		if ((Input.GetKey(KeyCode.JoystickButton8) || Input.GetKey(KeyCode.JoystickButton12) && !GUIManager.Instance.GamePaused)) camera.swingToPosition(defaultCameraPosition.transform);
 		//controllerButtonTest();
 		//xboxControllerButtonTest();
 		if(this.energy > 0) removeEnergy(energyDrainRate);
@@ -188,9 +192,9 @@ public class Player : SmallBoidsFish {
 			v = Math.Abs(v);
 		}
 		Vector3 dir = (camera.transform.forward * v) * speed * Time.deltaTime + (camera.transform.right * h) * speed * Time.deltaTime;
-		if (otherControls) { 
+		if (otherControls) {
 			if (v >= 0.2f) turn(dir);
-		} 
+		}
 		else {
 			if (Mathf.Abs(h) >= 0.2f && Mathf.Abs(v) >= 0.2f) turn(dir);
 		}
@@ -246,7 +250,7 @@ public class Player : SmallBoidsFish {
         soundSphere.transform.localScale = new Vector3 (5, 5, 5);
 		volumeSave = audioSource.volume;
 		pitchSave = audioSource.pitch;
-		audioSource.loop = false; 
+		audioSource.loop = false;
 		audioSource.clip = screamSound;
 		audioSource.Play();
 		makingSound = true;
@@ -280,7 +284,7 @@ public class Player : SmallBoidsFish {
 			newG = ghostbar + ghostValue;
 			audioSource.clip = aulivEatSound;
 			audioSource.volume = eatVolume;
-			audioSource.loop = false; 
+			audioSource.loop = false;
 			audioSource.Play();
 			if (newG >= maxGhost){
 				ghostbar = maxGhost;

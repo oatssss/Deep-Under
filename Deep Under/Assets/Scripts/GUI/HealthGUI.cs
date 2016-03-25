@@ -53,9 +53,12 @@ public class HealthGUI : MonoBehaviour {
 	}
 
 	void Update() {
-		ebar = GameManager.Instance.Player.energy*0.01f;
-		gbar = GameManager.Instance.Player.ghostbar*0.01f;
-				
+        Player player = GameManager.Instance.Player;
+        if (player)
+        {
+            ebar = GameManager.Instance.Player.energy*0.01f;
+            gbar = GameManager.Instance.Player.ghostbar*0.01f;
+        }
 	}
 	void Switch() {
 		blink = !blink;

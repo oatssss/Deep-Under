@@ -269,6 +269,7 @@ MonoBehaviour:
   animator: {fileID: 17693039}
   CanvasGroup: {fileID: 17693041}
   RectTransform: {fileID: 17693038}
+  FirstSelected: {fileID: 0}
 --- !u!225 &17693041
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1061,6 +1062,7 @@ MonoBehaviour:
   animator: {fileID: 62744552}
   CanvasGroup: {fileID: 62744554}
   RectTransform: {fileID: 62744551}
+  FirstSelected: {fileID: 0}
 --- !u!225 &62744554
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1926,6 +1928,7 @@ MonoBehaviour:
   animator: {fileID: 220901862}
   CanvasGroup: {fileID: 220901863}
   RectTransform: {fileID: 220901861}
+  FirstSelected: {fileID: 0}
 --- !u!1001 &229018594
 Prefab:
   m_ObjectHideFlags: 0
@@ -2116,6 +2119,7 @@ MonoBehaviour:
   animator: {fileID: 281491236}
   CanvasGroup: {fileID: 281491237}
   RectTransform: {fileID: 281491235}
+  FirstSelected: {fileID: 0}
 --- !u!1001 &286965649
 Prefab:
   m_ObjectHideFlags: 0
@@ -3653,7 +3657,7 @@ Transform:
   - {fileID: 1967685229}
   - {fileID: 2002594671}
   m_Father: {fileID: 0}
-  m_RootOrder: 60
+  m_RootOrder: 63
 --- !u!1 &551937946
 GameObject:
   m_ObjectHideFlags: 0
@@ -4196,6 +4200,7 @@ MonoBehaviour:
   animator: {fileID: 623141509}
   CanvasGroup: {fileID: 623141510}
   RectTransform: {fileID: 623141508}
+  FirstSelected: {fileID: 0}
 --- !u!1001 &628482118
 Prefab:
   m_ObjectHideFlags: 0
@@ -4657,6 +4662,7 @@ MonoBehaviour:
   animator: {fileID: 680507933}
   CanvasGroup: {fileID: 680507934}
   RectTransform: {fileID: 680507932}
+  FirstSelected: {fileID: 0}
 --- !u!1 &680630240
 GameObject:
   m_ObjectHideFlags: 0
@@ -5237,6 +5243,16 @@ Prefab:
 --- !u!1 &752911864 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 163090, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+  m_PrefabInternal: {fileID: 752911863}
+--- !u!114 &752911865 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204,
+    type: 2}
+  m_PrefabInternal: {fileID: 752911863}
+  m_Script: {fileID: 11500000, guid: 0b930a52899695a4583a1ca515da605e, type: 3}
+--- !u!4 &752911866 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 497402, guid: b0542ce48aa9ba74291171c256824204, type: 2}
   m_PrefabInternal: {fileID: 752911863}
 --- !u!1001 &755561026
 Prefab:
@@ -6345,6 +6361,7 @@ MonoBehaviour:
   animator: {fileID: 914191852}
   CanvasGroup: {fileID: 914191853}
   RectTransform: {fileID: 914191851}
+  FirstSelected: {fileID: 0}
 --- !u!1 &917097924
 GameObject:
   m_ObjectHideFlags: 0
@@ -8848,6 +8865,22 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 0858c1b69db31c84198d2f5ab64a61f6, type: 3}
+    - target: {fileID: 11451930, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 752911865}
+    - target: {fileID: 11463544, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11463544, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: aperture
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 11463544, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: focalTransform
+      value: 
+      objectReference: {fileID: 752911866}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
   m_IsPrefabParent: 0
@@ -10771,14 +10804,14 @@ MonoBehaviour:
   sepBlurSpread: 2.5
   quality: 1
   bloomIntensity: 1
-  bloomThreshold: 0.5
+  bloomThreshold: 0.35
   bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
   bloomBlurIterations: 2
   hollywoodFlareBlurIterations: 2
   flareRotation: 0
-  lensflareMode: 1
-  hollyStretchWidth: 2.5
-  lensflareIntensity: 0
+  lensflareMode: 2
+  hollyStretchWidth: 0.75
+  lensflareIntensity: 2
   lensflareThreshold: 0.3
   lensFlareSaturation: 0.75
   flareColorA: {r: 0.4, g: 0.4, b: 0.8, a: 0.75}
@@ -11431,6 +11464,7 @@ MonoBehaviour:
   animator: {fileID: 1779886309}
   CanvasGroup: {fileID: 1779886308}
   RectTransform: {fileID: 1779886307}
+  FirstSelected: {fileID: 0}
 --- !u!224 &1779886307
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11527,6 +11561,12 @@ MonoBehaviour:
   Tutorial4Shown: 0
   Tutorial5: {fileID: 1779886306}
   Tutorial5Shown: 0
+  EventSystem: {fileID: 0}
+  EnergyBar: {fileID: 0}
+  GhostBar: {fileID: 0}
+  AlternateControls: {fileID: 0}
+  InvertCamera: {fileID: 0}
+  FlashQuality: {fileID: 0}
 --- !u!4 &1781365220
 Transform:
   m_ObjectHideFlags: 0

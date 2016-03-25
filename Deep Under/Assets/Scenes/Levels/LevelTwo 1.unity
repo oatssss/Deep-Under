@@ -2859,6 +2859,11 @@ MonoBehaviour:
   Tutorial4Shown: 0
   Tutorial5: {fileID: 736575317}
   Tutorial5Shown: 0
+  EventSystem: {fileID: 0}
+  EnergyBar: {fileID: 0}
+  GhostBar: {fileID: 0}
+  AlternateControls: {fileID: 0}
+  InvertCamera: {fileID: 0}
 --- !u!4 &444644647
 Transform:
   m_ObjectHideFlags: 0
@@ -4450,6 +4455,7 @@ MonoBehaviour:
   animator: {fileID: 736575320}
   CanvasGroup: {fileID: 736575319}
   RectTransform: {fileID: 736575318}
+  FirstSelected: {fileID: 0}
 --- !u!224 &736575318
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4527,6 +4533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 944f1baf8d2ac4f539b47223ffb6f2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DisallowPauseMenu: 0
 --- !u!4 &777580841
 Transform:
   m_ObjectHideFlags: 0
@@ -4730,6 +4737,7 @@ MonoBehaviour:
   animator: {fileID: 799644065}
   CanvasGroup: {fileID: 799644066}
   RectTransform: {fileID: 799644064}
+  FirstSelected: {fileID: 0}
 --- !u!1 &822625125
 GameObject:
   m_ObjectHideFlags: 0
@@ -5657,6 +5665,7 @@ MonoBehaviour:
   animator: {fileID: 949699009}
   CanvasGroup: {fileID: 949699010}
   RectTransform: {fileID: 949699008}
+  FirstSelected: {fileID: 0}
 --- !u!1001 &962173401
 Prefab:
   m_ObjectHideFlags: 0
@@ -7068,6 +7077,7 @@ MonoBehaviour:
   animator: {fileID: 1163308498}
   CanvasGroup: {fileID: 1163308499}
   RectTransform: {fileID: 1163308497}
+  FirstSelected: {fileID: 0}
 --- !u!1 &1163463763 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: abe8aaedba255f347bd9c67accf8f4d3, type: 3}
@@ -7590,6 +7600,7 @@ MonoBehaviour:
   animator: {fileID: 1280312617}
   CanvasGroup: {fileID: 1280312619}
   RectTransform: {fileID: 1280312616}
+  FirstSelected: {fileID: 0}
 --- !u!225 &1280312619
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -7715,6 +7726,14 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 0858c1b69db31c84198d2f5ab64a61f6, type: 3}
+    - target: {fileID: 11451930, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1662326223}
+    - target: {fileID: 11462742, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: bloomThreshold
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
   m_IsPrefabParent: 0
@@ -8594,6 +8613,7 @@ MonoBehaviour:
   animator: {fileID: 1505675208}
   CanvasGroup: {fileID: 1505675209}
   RectTransform: {fileID: 1505675207}
+  FirstSelected: {fileID: 0}
 --- !u!4 &1509474284 stripped
 Transform:
   m_PrefabParentObject: {fileID: 427098, guid: 02f50e268033845bda12e36cd33977ed, type: 2}
@@ -9638,6 +9658,12 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 163090, guid: b0542ce48aa9ba74291171c256824204, type: 2}
   m_PrefabInternal: {fileID: 1662326221}
+--- !u!114 &1662326223 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204,
+    type: 2}
+  m_PrefabInternal: {fileID: 1662326221}
+  m_Script: {fileID: 11500000, guid: 0b930a52899695a4583a1ca515da605e, type: 3}
 --- !u!4 &1672873142 stripped
 Transform:
   m_PrefabParentObject: {fileID: 416626, guid: 7c423edc1a2b54e6ab860f5a4d83f3b7, type: 2}
@@ -10165,6 +10191,7 @@ MonoBehaviour:
   animator: {fileID: 1749361944}
   CanvasGroup: {fileID: 1749361945}
   RectTransform: {fileID: 1749361943}
+  FirstSelected: {fileID: 0}
 --- !u!1001 &1751749984
 Prefab:
   m_ObjectHideFlags: 0
@@ -12106,6 +12133,7 @@ MonoBehaviour:
   animator: {fileID: 2101151962}
   CanvasGroup: {fileID: 2101151964}
   RectTransform: {fileID: 2101151961}
+  FirstSelected: {fileID: 0}
 --- !u!225 &2101151964
 CanvasGroup:
   m_ObjectHideFlags: 0
