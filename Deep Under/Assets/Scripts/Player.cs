@@ -20,6 +20,7 @@ public class Player : SmallBoidsFish {
 
 	public AudioClip moveSound; 
 	public AudioClip screamSound; 
+	public AudioClip aulivEatSound;
 	private float volumeSave; 
 	private float pitchSave; 
 
@@ -119,9 +120,9 @@ public class Player : SmallBoidsFish {
 			soundSphere.transform.localScale *= 1.1f;
 
 			timer += Time.deltaTime;
-			if (timer > soundDuration || !audioSource.isPlaying) { 
-				audioSource.volume = volumeSave;
-				audioSource.pitch = pitchSave;
+			if (!audioSource.isPlaying || timer > soundDuration) { 
+				//audioSource.volume = volumeSave;
+				//audioSource.pitch = pitchSave;
 				audioSource.loop = true; 
 				audioSource.clip = moveSound;
 				audioSource.Play();
@@ -154,8 +155,8 @@ public class Player : SmallBoidsFish {
 	protected override void Update() {
 		if (Input.GetKeyUp(KeyCode.JoystickButton9) || Input.GetKeyUp(KeyCode.F)
 			|| Input.GetKeyUp(KeyCode.JoystickButton11)) lightToggle();
-		if (Input.GetKeyUp(KeyCode.JoystickButton0)|| Input.GetKeyUp(KeyCode.Mouse0)
-			|| Input.GetKeyUp(KeyCode.JoystickButton16)) callCreateLightOrb();
+		if ((Input.GetKeyDown(KeyCode.JoystickButton0)|| Input.GetKeyDown(KeyCode.Mouse0)
+			|| Input.GetKeyDown(KeyCode.JoystickButton16)) && !GUIManager.Instance.GamePaused) callCreateLightOrb();
 		if (Input.GetKeyUp(KeyCode.JoystickButton1) || Input.GetKeyUp(KeyCode.G)
 		|| Input.GetKeyUp(KeyCode.JoystickButton17)) makeSound();
 		if (Input.GetKey(KeyCode.JoystickButton8) || Input.GetKey(KeyCode.JoystickButton12)) camera.swingToPosition(defaultCameraPosition.transform);
@@ -276,6 +277,9 @@ public class Player : SmallBoidsFish {
 		float newG = 0f;
 		if (ghostbar < maxGhost){
 			newG = ghostbar + ghostValue;
+			audioSource.clip = aulivEatSound;
+			audioSource.loop = false; 
+			audioSource.Play();
 			if (newG >= maxGhost){
 				ghostbar = maxGhost;
 				// reload next scene

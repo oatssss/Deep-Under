@@ -745,6 +745,12 @@ public abstract class BoidsFish : MonoBehaviour
     {
 		eater.BeingEaten = this;
 		eater.Animator.SetTrigger("Eat");
+		if (eater.audioSource == null) eater.audioSource = GetComponent<AudioSource>(); 
+		eater.audioSource.clip = eatSound; 
+		eater.audioSource.pitch = 1.0f; 
+		eater.audioSource.Play(); 
+		eater.audioSource.clip = mediumFishSound;
+		eater.audioSource.Play();
         /*GameObject energyBall = (GameObject) */
     }
 
