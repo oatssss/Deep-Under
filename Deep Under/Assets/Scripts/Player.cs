@@ -17,6 +17,10 @@ public class Player : SmallBoidsFish {
 	new private Rigidbody rigidbody;
 	new private AudioSource audioSource;
 
+	public AudioClip moveSound; 
+	public AudioClip screamSound; 
+	private float volumeSave; 
+	private float pitchSave; 
 
 	new public CameraFollow camera;
 	public GameObject defaultCameraPosition; //is constantly updated by player, so is situated here
@@ -119,6 +123,13 @@ public class Player : SmallBoidsFish {
 			soundSphere.transform.localScale *= 1.1f;
 
 			timer += Time.deltaTime;
+			if (timer > soundDuration || !audioSource.isPlaying) { 
+				audioSource.volume = volumeSave;
+				audioSource.pitch = pitchSave;
+				audioSource.loop = true; 
+				audioSource.clip = moveSound;
+				audioSource.Play();
+			}
 			if (timer > soundDuration)
 			{
 				timer = 0f;
@@ -151,6 +162,7 @@ public class Player : SmallBoidsFish {
 			|| Input.GetKeyUp(KeyCode.JoystickButton16)) callCreateLightOrb();
 		if (Input.GetKeyUp(KeyCode.JoystickButton1) || Input.GetKeyUp(KeyCode.G)
 		|| Input.GetKeyUp(KeyCode.JoystickButton17)) makeSound();
+		if (Input.GetKey(KeyCode.JoystickButton8) || Input.GetKey(KeyCode.JoystickButton12)) camera.swingToPosition(defaultCameraPosition.transform);
 		//controllerButtonTest();
 		//xboxControllerButtonTest();
 		if(this.energy > 0) removeEnergy(energyDrainRate);
@@ -226,6 +238,11 @@ public class Player : SmallBoidsFish {
 
 	private void makeSound () {
 		soundSphere.transform.localScale = new Vector3 (5, 5, 5);
+		volumeSave = audioSource.volume;
+		pitchSave = audioSource.pitch;
+		audioSource.loop = false; 
+		audioSource.clip = screamSound;
+		audioSource.Play();
 		makingSound = true;
 		timer = 0f;
 		soundCollider.enabled = true;

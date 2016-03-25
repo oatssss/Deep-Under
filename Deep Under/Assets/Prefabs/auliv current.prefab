@@ -12133,8 +12133,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190356}
-  m_LocalRotation: {x: 0, y: 0.9999504, z: 0, w: 0.009961071}
-  m_LocalPosition: {x: 71.2, y: 94.9, z: 512.8}
+  m_LocalRotation: {x: 0, y: 0.7119378, z: 0, w: -0.7022426}
+  m_LocalPosition: {x: 305.5, y: 319.2, z: -296.2}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 455280}
@@ -19782,6 +19782,9 @@ MonoBehaviour:
   acceleration: 50
   maxSpeed: 50
   isMoving: 0
+  nextLevel: Tutorial2
+  moveSound: {fileID: 8300000, guid: 93e5c219f9f4cf54c907b6db83a492ae, type: 3}
+  screamSound: {fileID: 8300000, guid: d4fb1c68e29c6e94b81e29d4f4f09956, type: 3}
   camera: {fileID: 11473292, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
   defaultCameraPosition: {fileID: 136920}
   spotlight: {fileID: 10851268}
@@ -19790,11 +19793,12 @@ MonoBehaviour:
   h: 0
   v: 0
   energy: 100
-  energyDrainRate: 1
+  energyDrainRate: 0
   maxEnergyDrainRate: 24
-  energyDrainRateAcceleration: 2
+  energyDrainRateAcceleration: 0
   charging: 0
   ghostbar: 0
+  ghostValue: 25
   soundCollider: {fileID: 13591320}
   soundRadius: 40
   soundDuration: 2
@@ -19803,6 +19807,7 @@ MonoBehaviour:
   normalcolor: {r: 1, g: 0.822, b: 0, a: 1}
   dangercolor: {r: 0.8235294, g: 0, b: 0, a: 0}
   Animator: {fileID: 9594374}
+  Dead: 0
   soundSphere: {fileID: 150846}
 --- !u!120 &12035932
 LineRenderer:
