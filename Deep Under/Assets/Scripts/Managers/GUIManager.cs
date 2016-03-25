@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
@@ -50,6 +50,12 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
     [SerializeField] private Menu Tutorial5;
     [SerializeField] bool Tutorial5Shown;
     public enum TUTORIAL { ONE, TWO, THREE, FOUR, FIVE }
+    [Space(10)]
+
+    [Header("Miscellaneous")]
+    public EventSystem EventSystem;
+    [SerializeField] private Player Player;
+    [SerializeField] private CameraFollow CameraFollow;
 
     void Start()
     {
@@ -375,5 +381,30 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
     IEnumerator WaitForLoad(AsyncOperation load, float minSeconds)
     {
         yield return WaitForLoad(load, null, minSeconds);
+    }
+
+    public void SetInvertYAxis(bool invert)
+    {
+        this.CameraFollow.invert = invert;
+    }
+
+    public void SetAlternateControls(bool alternate)
+    {
+        this.Player.otherControls = alternate;
+    }
+
+    public void SetCameraSpeed(float sensitivity)
+    {
+        this.CameraFollow.cameraSpeed = sensitivity;
+    }
+
+    public void SkipLevel()
+    {
+        GameManager.LoadLevel(GUIManager.Instance.Player.nextLevel);
+    }
+
+    public void LoadSelectedLevel(int levelIndex)
+    {
+        GameManager.LoadLevel(SceneManager.GetSceneAt(levelIndex).name);
     }
 }
