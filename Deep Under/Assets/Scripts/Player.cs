@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
@@ -108,11 +108,6 @@ public class Player : SmallBoidsFish {
        		a = Input.GetAxis("Altitude");
         }
         isMoving = !(h == 0f && v == 0f && a == 0f);
-		if (l2 > 0f || Input.GetKey(KeyCode.LeftShift)) {
-        	//autoTurn();
-        	addBoost();
-        }
-        else removeBoost();
         if (shoot) createLightOrb();
 		if (isMoving) Move(h,v,a);
 		boostAndDrain();
@@ -189,11 +184,6 @@ public class Player : SmallBoidsFish {
 		rigidbody.MovePosition(transform.position + movementHorizontal + movementForward +  movementVertical);
 	}
 
-	private void addBoost () {
-		if (speed < maxSpeed) {
-			speed = speed + (acceleration*Time.deltaTime);
-		}
-	}
 
 	private void removeBoost () {
 		if (speed > normalSpeed){
