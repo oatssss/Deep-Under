@@ -5,6 +5,7 @@ public class CameraFollow : MonoBehaviour {
 
 	public Vector3 offset;  
 	public float offsetLength;
+	public bool invert = true; 
 	Quaternion defaultRotation; 
 
 	private float time = 0f; 
@@ -50,6 +51,7 @@ public class CameraFollow : MonoBehaviour {
 
 	public void follow () { 
 		Vector3 oldRot = transform.rotation * Vector3.forward; //get current/old rotation in vector form
+		if (invert) x = x*-1f ;
 		cameraRotate(x,y);
 		Vector3 newRot = transform.rotation * Vector3.forward; // save new rotation in vector form 
 		Quaternion change = Quaternion.FromToRotation(oldRot, newRot); //record change in rotation using the 2 vectors
@@ -63,7 +65,7 @@ public class CameraFollow : MonoBehaviour {
     private void cameraRotate (float x, float y) { 
 
 		float angle = Vector3.Angle(transform.forward, offset);
-		Debug.Log(angle);
+		
 		transform.RotateAround(transform.position, transform.up, y * cameraSpeed * Time.deltaTime); 
 
 		if (x < 0) { 

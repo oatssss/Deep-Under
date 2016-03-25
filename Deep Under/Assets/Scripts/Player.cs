@@ -10,6 +10,7 @@ public class Player : SmallBoidsFish {
 	public float acceleration= 20f;
 	public float maxSpeed = 100f;
 	private float autoTurnSpeed = 10f;
+	public bool otherControls = true; 
 	bool boosting = false;
 	public bool isMoving = false;
     public String nextLevel;
@@ -179,9 +180,18 @@ public class Player : SmallBoidsFish {
 		Vector3 movementHorizontal = (camera.transform.right * h) * speed * Time.deltaTime;
 		Vector3 movementForward = (camera.transform.forward * v) * speed * Time.deltaTime;
         Vector3 movementVertical = (Vector3.up * u) * speed/2f * Time.deltaTime;
-		Vector3 dir = movementHorizontal + movementForward;
-		if ((Mathf.Abs(h) >= 0.2f || Mathf.Abs(v) >= 0.2f)) turn(dir);
 		rigidbody.MovePosition(transform.position + movementHorizontal + movementForward +  movementVertical);
+		if (otherControls) {
+			h = Mathf.Clamp(h, -0.15f, 0.15f);
+			v = Math.Abs(v);
+		}
+		Vector3 dir = (camera.transform.forward * v) * speed * Time.deltaTime + (camera.transform.right * h) * speed * Time.deltaTime;
+		if (otherControls) { 
+			if (v >= 0.2f) turn(dir);
+		} 
+		else {
+			if (Mathf.Abs(h) >= 0.2f && Mathf.Abs(v) >= 0.2f) turn(dir);
+		}
 	}
 
 
