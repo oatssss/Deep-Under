@@ -51,8 +51,9 @@ public class CameraFollow : MonoBehaviour {
 
 	public void follow () { 
 		Vector3 oldRot = transform.rotation * Vector3.forward; //get current/old rotation in vector form
-		if ((player.h > 0f && y < 0f) || (player.h < 0f && y > 0f)) cameraRotate(x,y);
-		else cameraRotate(x, y + player.h);
+		//if ((player.h > 0f && y < 0f) || (player.h < 0f && y > 0f)) cameraRotate(x,y);
+		//else
+		 cameraRotate(x, y);
 		Vector3 newRot = transform.rotation * Vector3.forward; // save new rotation in vector form 
 		Quaternion change = Quaternion.FromToRotation(oldRot, newRot); //record change in rotation using the 2 vectors
 		offset = change * offset; //apply change in rotation to offset
@@ -93,6 +94,27 @@ public class CameraFollow : MonoBehaviour {
 		return dir;
 
 	}
+
+	public void swingToPosition (Transform position) { 
+		Vector3 playerToPos = position.position - player.transform.position; 
+		Quaternion change = Quaternion.FromToRotation(offset, playerToPos);
+		Vector3 targetPos = change * offset; 
+		offset = Vector3.Lerp (offset, targetPos, 1f);
+		transform.rotation = Quaternion.Lerp(transform.rotation, position.rotation, 1f);
+		startLook = 0f;
+	}
+
+	/*public void swingToPosition (Transform position) { 
+		Vector3 playerToCamera = offset;
+		Vector3 playerToPos = position.position - player.transform.position; 
+		Quaternion change = Quaternion.FromToRotation(offset, playerToPos);
+		float angle = change.eulerAngles.magnitude;
+		if (angle > 5f) {
+			Vector3 target = change * offset;
+			offset = Vector3.Lerp(playerToCamera, target, Time.deltaTime);
+			transform.rotation = Quaternion.Lerp(transform.rotation, position.rotation, Time.deltaTime);
+		}
+	}*/
 
 
 }

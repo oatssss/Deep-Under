@@ -86,8 +86,8 @@ public class GameManager : UnitySingleton<GameManager> {
 
     void Update()
     {
-		// if ((Input.GetKeyUp(KeyCode.JoystickButton7) || Input.GetKeyUp(KeyCode.JoystickButton7)) && Instance.WaitingToReload == null)
-        if (Input.GetButtonDown("Cancel"))
+		if (Input.GetKeyUp(KeyCode.JoystickButton7) && Instance.WaitingToReload == null)
+        //if (Input.GetButtonDown("Cancel"))
         {
             if (GUIManager.Instance.GamePaused)
                 { GUIManager.Instance.ResumeGame(); }

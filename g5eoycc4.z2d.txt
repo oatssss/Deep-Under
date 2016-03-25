@@ -1,0 +1,123 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	deleted:    Deep Under/Assets/Scenes/Levels/LevelTwo.unity.orig.meta
+#	modified:   Deep Under/Assets/Scenes/Levels/Tutorial1.unity
+#	modified:   Deep Under/Assets/Scenes/Levels/Tutorial2.unity
+#	modified:   Deep Under/Assets/Scenes/Levels/Tutorial3.unity
+#	modified:   Deep Under/Assets/Scenes/Levels/Tutorial4.unity
+#	modified:   Deep Under/Assets/Scenes/Levels/Tutorial5.unity
+#	modified:   Deep Under/Assets/Scripts/CameraFollow.cs
+#	modified:   Deep Under/Assets/Scripts/Player.cs
+#	deleted:    Deep Under/Assets/Scripts/Player.cs.orig.meta
+#	deleted:    Deep Under/Assets/Scripts/Spawn.cs.orig.meta
+#	deleted:    Deep Under/Assets/Standard Assets/Environment/Water/Water4/Materials/Water4Advanced.mat.orig.meta
+#	new file:   Deep Under/Deep Under.zip
+#	new file:   Deep Under/DeepUnder_V4.exe
+#	new file:   Deep Under/DeepUnder_V4/Briefcase Database
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4.exe
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Managed/Assembly-CSharp-firstpass.dll
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Managed/Assembly-CSharp.dll
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Managed/Mono.Security.dll
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Managed/System.Core.dll
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Managed/System.dll
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Managed/UnityEngine.Networking.dll
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Managed/UnityEngine.UI.dll
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Managed/UnityEngine.dll
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Managed/UnityEngine.dll.mdb
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Managed/mscorlib.dll
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Mono/etc/mono/1.0/DefaultWsdlHelpGenerator.aspx
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Mono/etc/mono/1.0/machine.config
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Mono/etc/mono/2.0/Browsers/Compat.browser
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Mono/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Mono/etc/mono/2.0/machine.config
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Mono/etc/mono/2.0/settings.map
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Mono/etc/mono/2.0/web.config
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Mono/etc/mono/browscap.ini
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Mono/etc/mono/config
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Mono/etc/mono/mconfig/config.xml
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Mono/mono.dll
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Resources/unity default resources
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/Resources/unity_builtin_extra
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/globalgamemanagers
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/globalgamemanagers.assets
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/level0
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/level1
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/level2
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/level3
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/level4
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/level5
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/level6
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/level7
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/output_log.txt
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/resources.assets
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/resources.assets.resS
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/sharedassets0.assets
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/sharedassets0.assets.resS
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/sharedassets0.resource
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/sharedassets1.assets
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/sharedassets2.assets
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/sharedassets3.assets
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/sharedassets4.assets
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/sharedassets5.assets
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/sharedassets5.resource
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/sharedassets6.assets
+#	new file:   Deep Under/DeepUnder_V4/DeepUnder_V4_Data/sharedassets7.assets
+#	new file:   Deep Under/DeepUnder_V4/desktop.ini
+#	new file:   Deep Under/DeepUnder_V4/player_win_x86.pdb
+#	new file:   Deep Under/DeepUnder_V4/player_win_x86_s.pdb
+#	new file:   Deep Under/DeepUnder_V4_Data/Managed/Assembly-CSharp-firstpass.dll
+#	new file:   Deep Under/DeepUnder_V4_Data/Managed/Assembly-CSharp.dll
+#	new file:   Deep Under/DeepUnder_V4_Data/Managed/Mono.Security.dll
+#	new file:   Deep Under/DeepUnder_V4_Data/Managed/System.Core.dll
+#	new file:   Deep Under/DeepUnder_V4_Data/Managed/System.dll
+#	new file:   Deep Under/DeepUnder_V4_Data/Managed/UnityEngine.Networking.dll
+#	new file:   Deep Under/DeepUnder_V4_Data/Managed/UnityEngine.UI.dll
+#	new file:   Deep Under/DeepUnder_V4_Data/Managed/UnityEngine.dll
+#	new file:   Deep Under/DeepUnder_V4_Data/Managed/UnityEngine.dll.mdb
+#	new file:   Deep Under/DeepUnder_V4_Data/Managed/mscorlib.dll
+#	new file:   Deep Under/DeepUnder_V4_Data/Mono/etc/mono/1.0/DefaultWsdlHelpGenerator.aspx
+#	new file:   Deep Under/DeepUnder_V4_Data/Mono/etc/mono/1.0/machine.config
+#	new file:   Deep Under/DeepUnder_V4_Data/Mono/etc/mono/2.0/Browsers/Compat.browser
+#	new file:   Deep Under/DeepUnder_V4_Data/Mono/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx
+#	new file:   Deep Under/DeepUnder_V4_Data/Mono/etc/mono/2.0/machine.config
+#	new file:   Deep Under/DeepUnder_V4_Data/Mono/etc/mono/2.0/settings.map
+#	new file:   Deep Under/DeepUnder_V4_Data/Mono/etc/mono/2.0/web.config
+#	new file:   Deep Under/DeepUnder_V4_Data/Mono/etc/mono/browscap.ini
+#	new file:   Deep Under/DeepUnder_V4_Data/Mono/etc/mono/config
+#	new file:   Deep Under/DeepUnder_V4_Data/Mono/etc/mono/mconfig/config.xml
+#	new file:   Deep Under/DeepUnder_V4_Data/Mono/mono.dll
+#	new file:   Deep Under/DeepUnder_V4_Data/Resources/unity default resources
+#	new file:   Deep Under/DeepUnder_V4_Data/Resources/unity_builtin_extra
+#	new file:   Deep Under/DeepUnder_V4_Data/globalgamemanagers
+#	new file:   Deep Under/DeepUnder_V4_Data/globalgamemanagers.assets
+#	new file:   Deep Under/DeepUnder_V4_Data/level0
+#	new file:   Deep Under/DeepUnder_V4_Data/level1
+#	new file:   Deep Under/DeepUnder_V4_Data/level2
+#	new file:   Deep Under/DeepUnder_V4_Data/level3
+#	new file:   Deep Under/DeepUnder_V4_Data/level4
+#	new file:   Deep Under/DeepUnder_V4_Data/level5
+#	new file:   Deep Under/DeepUnder_V4_Data/level6
+#	new file:   Deep Under/DeepUnder_V4_Data/level7
+#	new file:   Deep Under/DeepUnder_V4_Data/output_log.txt
+#	new file:   Deep Under/DeepUnder_V4_Data/resources.assets
+#	new file:   Deep Under/DeepUnder_V4_Data/resources.assets.resS
+#	new file:   Deep Under/DeepUnder_V4_Data/sharedassets0.assets
+#	new file:   Deep Under/DeepUnder_V4_Data/sharedassets0.assets.resS
+#	new file:   Deep Under/DeepUnder_V4_Data/sharedassets0.resource
+#	new file:   Deep Under/DeepUnder_V4_Data/sharedassets1.assets
+#	new file:   Deep Under/DeepUnder_V4_Data/sharedassets2.assets
+#	new file:   Deep Under/DeepUnder_V4_Data/sharedassets3.assets
+#	new file:   Deep Under/DeepUnder_V4_Data/sharedassets4.assets
+#	new file:   Deep Under/DeepUnder_V4_Data/sharedassets5.assets
+#	new file:   Deep Under/DeepUnder_V4_Data/sharedassets5.resource
+#	new file:   Deep Under/DeepUnder_V4_Data/sharedassets6.assets
+#	new file:   Deep Under/DeepUnder_V4_Data/sharedassets7.assets
+#	new file:   Deep Under/player_win_x86.pdb
+#	new file:   Deep Under/player_win_x86_s.pdb
+#
+
