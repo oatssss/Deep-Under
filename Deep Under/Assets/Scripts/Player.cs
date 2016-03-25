@@ -227,6 +227,7 @@ public class Player : SmallBoidsFish {
 	}
 
 	private void createLightOrb () {
+		energy -= 3;
 		lightOrb clone = GameObject.Instantiate(lightOrb);
 		clone.transform.position = lightOrbPosition.position;
 		Vector3 force = transform.forward*throwForce;
@@ -237,6 +238,7 @@ public class Player : SmallBoidsFish {
 
 
 	private void makeSound () {
+		energy -= 10;
 		soundSphere.transform.localScale = new Vector3 (5, 5, 5);
 		volumeSave = audioSource.volume;
 		pitchSave = audioSource.pitch;
@@ -314,12 +316,12 @@ public class Player : SmallBoidsFish {
 		boosting = false;
         }
         //manage energy drain rate
-		if (boosting && isMoving) {
-			if (energyDrainRate < maxEnergyDrainRate) energyDrainRate += energyDrainRateAcceleration*Time.deltaTime;
-		}
-		else {
-			if (energyDrainRate > minEnergyDrainRate) energyDrainRate -= energyDrainRateAcceleration*Time.deltaTime;
-		}
+		if (boosting)
+			energyDrainRate = maxEnergyDrainRate;
+		else if (isMoving)
+			energyDrainRate = minEnergyDrainRate;
+		else
+			energyDrainRate = 0;
 	}
 
 	public void Die()
