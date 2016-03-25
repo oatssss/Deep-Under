@@ -712,7 +712,7 @@ Transform:
   - {fileID: 272886389}
   - {fileID: 1979549269}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
 --- !u!1001 &170332945
 Prefab:
   m_ObjectHideFlags: 0
@@ -1303,7 +1303,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1 &326572352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2675,7 +2675,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 497402, guid: b0542ce48aa9ba74291171c256824204, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 485238, guid: b0542ce48aa9ba74291171c256824204, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2694,25 +2694,13 @@ Prefab:
       value: 0.29883626
       objectReference: {fileID: 0}
     - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: energy
-      value: 100
-      objectReference: {fileID: 0}
+      propertyPath: moveSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 93e5c219f9f4cf54c907b6db83a492ae, type: 3}
     - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: energyDrainRate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: energyDrainRateAcceleration
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: nextLevel
-      value: Tutorial2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: ghostValue
-      value: 25
-      objectReference: {fileID: 0}
+      propertyPath: screamSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d4fb1c68e29c6e94b81e29d4f4f09956, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0542ce48aa9ba74291171c256824204, type: 2}
   m_IsPrefabParent: 0
@@ -3824,10 +3812,22 @@ MonoBehaviour:
   FadeOverlay: {fileID: 245431632}
   EatenOverlay: {fileID: 1760978387}
   BatteryOverlay: {fileID: 0}
+  LoadingOverlay: {fileID: 0}
   Tooltips: []
   Canvas: {fileID: 944082719}
   TooltipDuration: 5
   TooltipPrefab: {fileID: 11429634, guid: 17f694d6837184920b5c4b05a3c05a8e, type: 2}
+  HealthBars: {fileID: 0}
+  Tutorial1: {fileID: 0}
+  Tutorial1Shown: 0
+  Tutorial2: {fileID: 0}
+  Tutorial2Shown: 0
+  Tutorial3: {fileID: 0}
+  Tutorial3Shown: 0
+  Tutorial4: {fileID: 0}
+  Tutorial4Shown: 0
+  Tutorial5: {fileID: 0}
+  Tutorial5Shown: 0
 --- !u!4 &1311018228
 Transform:
   m_ObjectHideFlags: 0

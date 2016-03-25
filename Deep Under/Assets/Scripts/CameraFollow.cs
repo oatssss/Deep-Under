@@ -94,5 +94,26 @@ public class CameraFollow : MonoBehaviour {
 
 	}
 
+	public void swingToPosition (Transform position) { 
+		Vector3 playerToPos = position.position - player.transform.position; 
+		Quaternion change = Quaternion.FromToRotation(offset, playerToPos);
+		Vector3 targetPos = change * offset; 
+		offset = Vector3.Lerp (offset, targetPos, 1f);
+		transform.rotation = Quaternion.Lerp(transform.rotation, position.rotation, 1f);
+		startLook = 0f;
+	}
+
+	/*public void swingToPosition (Transform position) { 
+		Vector3 playerToCamera = offset;
+		Vector3 playerToPos = position.position - player.transform.position; 
+		Quaternion change = Quaternion.FromToRotation(offset, playerToPos);
+		float angle = change.eulerAngles.magnitude;
+		if (angle > 5f) {
+			Vector3 target = change * offset;
+			offset = Vector3.Lerp(playerToCamera, target, Time.deltaTime);
+			transform.rotation = Quaternion.Lerp(transform.rotation, position.rotation, Time.deltaTime);
+		}
+	}*/
+
 
 }
