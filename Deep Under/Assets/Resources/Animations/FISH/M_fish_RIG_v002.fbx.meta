@@ -1,0 +1,209 @@
+fileFormatVersion: 2
+guid: c650a37841d9648d7818a7996cbafd22
+timeCreated: 1458863177
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: BD_C_antenna_01
+    100002: BD_C_antenna_02
+    100004: BD_C_antenna_03
+    100006: BD_C_antenna_04
+    100008: BD_C_antenna_05
+    100010: BD_C_antenna_06
+    100012: BD_C_antenna_07
+    100014: BD_C_antenna_07_Goal
+    100016: BD_C_head_01
+    100018: BD_C_invPelvis_01
+    100020: BD_C_invPelvis_02
+    100022: BD_C_invPelvis_03
+    100024: BD_C_jaw_01
+    100026: BD_C_tail_01
+    100028: BD_C_tail_02
+    100030: BD_L_bigFin_01
+    100032: BD_L_bigFin_02
+    100034: BD_L_bigFin_03
+    100036: BD_L_smallFin_01
+    100038: BD_L_smallFin_02
+    100040: BD_L_smallFin_03
+    100042: BD_R_bigFin_01
+    100044: BD_R_bigFin_02
+    100046: BD_R_bigFin_03
+    100048: BD_R_smallFin_01
+    100050: BD_R_smallFin_02
+    100052: BD_R_smallFin_03
+    100054: HR_antenna_01
+    100056: HR_body_01
+    100058: HR_C_bottomTeeth_01
+    100060: HR_C_medFish_GR
+    100062: HR_C_topTeeth_01
+    100064: HR_eyes_01
+    100066: HR_L_bigFin_01
+    100068: HR_L_smallFin_01
+    100070: HR_lamp_01
+    100072: HR_R_bigFin_01
+    100074: HR_R_smallFin_01
+    100076: JT_C_antenna_split
+    100078: JT_C_head_split
+    100080: JT_C_jaw_split
+    100082: JT_C_pelvis_01
+    100084: JT_C_tail_split
+    100086: JT_L_bigFin_split
+    100088: JT_L_bigFin_split_2
+    100090: JT_R_bigFin_split
+    100092: JT_R_bigFin_split_2
+    100094: //RootNode
+    100096: Null
+    100098: Null_10
+    100100: Null_2
+    100102: Null_3
+    100104: Null_4
+    100106: Null_5
+    100108: Null_6
+    100110: Null_7
+    100112: Null_8
+    100114: Null_9
+    400000: BD_C_antenna_01
+    400002: BD_C_antenna_02
+    400004: BD_C_antenna_03
+    400006: BD_C_antenna_04
+    400008: BD_C_antenna_05
+    400010: BD_C_antenna_06
+    400012: BD_C_antenna_07
+    400014: BD_C_antenna_07_Goal
+    400016: BD_C_head_01
+    400018: BD_C_invPelvis_01
+    400020: BD_C_invPelvis_02
+    400022: BD_C_invPelvis_03
+    400024: BD_C_jaw_01
+    400026: BD_C_tail_01
+    400028: BD_C_tail_02
+    400030: BD_L_bigFin_01
+    400032: BD_L_bigFin_02
+    400034: BD_L_bigFin_03
+    400036: BD_L_smallFin_01
+    400038: BD_L_smallFin_02
+    400040: BD_L_smallFin_03
+    400042: BD_R_bigFin_01
+    400044: BD_R_bigFin_02
+    400046: BD_R_bigFin_03
+    400048: BD_R_smallFin_01
+    400050: BD_R_smallFin_02
+    400052: BD_R_smallFin_03
+    400054: HR_antenna_01
+    400056: HR_body_01
+    400058: HR_C_bottomTeeth_01
+    400060: HR_C_medFish_GR
+    400062: HR_C_topTeeth_01
+    400064: HR_eyes_01
+    400066: HR_L_bigFin_01
+    400068: HR_L_smallFin_01
+    400070: HR_lamp_01
+    400072: HR_R_bigFin_01
+    400074: HR_R_smallFin_01
+    400076: JT_C_antenna_split
+    400078: JT_C_head_split
+    400080: JT_C_jaw_split
+    400082: JT_C_pelvis_01
+    400084: JT_C_tail_split
+    400086: JT_L_bigFin_split
+    400088: JT_L_bigFin_split_2
+    400090: JT_R_bigFin_split
+    400092: JT_R_bigFin_split_2
+    400094: //RootNode
+    400096: Null
+    400098: Null_10
+    400100: Null_2
+    400102: Null_3
+    400104: Null_4
+    400106: Null_5
+    400108: Null_6
+    400110: Null_7
+    400112: Null_8
+    400114: Null_9
+    4300000: HR_antenna_01
+    4300002: HR_body_01
+    4300004: HR_L_bigFin_01
+    4300006: HR_R_bigFin_01
+    4300008: HR_L_smallFin_01
+    4300010: HR_R_smallFin_01
+    4300012: HR_eyes_01
+    4300014: HR_lamp_01
+    4300016: HR_C_bottomTeeth_01
+    4300018: HR_C_topTeeth_01
+    7400000: C4D Animation Take
+    9500000: //RootNode
+    13700000: HR_antenna_01
+    13700002: HR_body_01
+    13700004: HR_C_bottomTeeth_01
+    13700006: HR_C_topTeeth_01
+    13700008: HR_eyes_01
+    13700010: HR_L_bigFin_01
+    13700012: HR_L_smallFin_01
+    13700014: HR_lamp_01
+    13700016: HR_R_bigFin_01
+    13700018: HR_R_smallFin_01
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 0
+    normalImportMode: 1
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

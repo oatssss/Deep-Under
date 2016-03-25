@@ -100,6 +100,8 @@ public abstract class BoidsFish : MonoBehaviour
 
 	protected bool GodBeingRepelled = false;
 
+	[SerializeField] private Animator Animator;
+
     protected virtual void Awake()
     {
 		this.State = STATE.SWIMMING;
@@ -397,6 +399,13 @@ public abstract class BoidsFish : MonoBehaviour
 		this.soundTimer += Time.fixedDeltaTime;
 		makeSoundRandom();
 
+		// Apply changes to animator controller
+		if (this.Animator != null)
+		{
+			this.Animator.SetFloat("Horizontal", this.transform.InverseTransformDirection(updatedVelocity).x);
+//			this.Animator.SetFloat("Speed Monitor", updatedVelocity.magnitude);
+//			this.Animator.speed = Mathf.Clamp(updatedVelocity.magnitude, 1, 5);
+		}
 	}
 
     protected virtual void Update()
