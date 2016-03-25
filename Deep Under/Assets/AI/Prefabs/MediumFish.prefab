@@ -4332,11 +4332,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e77546b0de3d5cb4cb18246c2d8eccaa, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 6527612c116d98f4b9f20dbdf7788a4f, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.628
   m_Pitch: 1.57
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   Priority: 128
@@ -4564,7 +4564,7 @@ MonoBehaviour:
   RigidBody: {fileID: 5410864}
   RepelVolume: {fileID: 13579092}
   audioSource: {fileID: 0}
-  eatSound: {fileID: 8300000, guid: e77546b0de3d5cb4cb18246c2d8eccaa, type: 3}
+  eatSound: {fileID: 8300000, guid: 35a7f0ee4d63afd40903f5bf58aeddce, type: 3}
   mediumFishSound: {fileID: 8300000, guid: 5300a2806ae31844cafed0ad8373af19, type: 3}
   size: 1
   state: 1

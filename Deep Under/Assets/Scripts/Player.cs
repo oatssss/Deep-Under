@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
@@ -21,6 +21,7 @@ public class Player : SmallBoidsFish {
 	public AudioClip moveSound; 
 	public AudioClip screamSound; 
 	public AudioClip aulivEatSound;
+	private float eatVolume = 0.35f; 
 	private float volumeSave; 
 	private float pitchSave; 
 
@@ -31,7 +32,7 @@ public class Player : SmallBoidsFish {
 	private bool isAiming = false;
 
 	public Light spotlight;
-	private bool lightOn = false;
+	private bool lightOn = true;
 
 	public lightOrb lightOrb;
 	public Transform lightOrbPosition;
@@ -113,20 +114,20 @@ public class Player : SmallBoidsFish {
         if (shoot) createLightOrb();
 		if (isMoving) Move(h,v,a);
 		boostAndDrain();
-
+		if (!audioSource.isPlaying || timer > soundDuration) { 
+				audioSource.volume = volumeSave;
+				audioSource.pitch = pitchSave;
+				audioSource.loop = true; 
+				audioSource.clip = moveSound;
+				audioSource.Play();
+			}
 		//put sound stuff in a new method
 		if (makingSound)
 		{
 			soundSphere.transform.localScale *= 1.1f;
 
 			timer += Time.deltaTime;
-			if (!audioSource.isPlaying || timer > soundDuration) { 
-				//audioSource.volume = volumeSave;
-				//audioSource.pitch = pitchSave;
-				audioSource.loop = true; 
-				audioSource.clip = moveSound;
-				audioSource.Play();
-			}
+
 			if (timer > soundDuration)
 			{
 				timer = 0f;
@@ -228,7 +229,7 @@ public class Player : SmallBoidsFish {
 	}
 
 	private void createLightOrb () {
-        energy -= 5;
+       energy -= 5;
         GUIManager.Instance.flashEnergy();
 		lightOrb clone = GameObject.Instantiate(lightOrb);
 		clone.transform.position = lightOrbPosition.position;
@@ -278,6 +279,7 @@ public class Player : SmallBoidsFish {
 		if (ghostbar < maxGhost){
 			newG = ghostbar + ghostValue;
 			audioSource.clip = aulivEatSound;
+			audioSource.volume = eatVolume;
 			audioSource.loop = false; 
 			audioSource.Play();
 			if (newG >= maxGhost){

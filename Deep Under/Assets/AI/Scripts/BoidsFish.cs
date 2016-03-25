@@ -99,7 +99,7 @@ public abstract class BoidsFish : MonoBehaviour
     private SoftBoundary IsolatedSoftBoundary;
     [SerializeField] protected bool IsOutsideSoftBounds = true;
 
-	protected bool GodBeingRepelled = false;
+	public bool beingRepelled = false;
 
 	[SerializeField] public Animator Animator;
 	public BoidsFish BeingEaten;
@@ -768,6 +768,11 @@ public abstract class BoidsFish : MonoBehaviour
 
 	protected virtual Vector3 CalculateVelocity()
     {
+		if (this.beingRepelled) 
+		{
+			return (this.transform.position - GameManager.Instance.Player.transform.position).normalized*this.MaxSpeed;
+		}
+
         // Handle rigidbody velocity updates
         Vector3 minimum = this.transform.forward * this.MinSpeed;     // Fish is always moving a minimum speed
 		Vector3 separation = this.VectorAwayFromNeighbours();
@@ -785,19 +790,23 @@ public abstract class BoidsFish : MonoBehaviour
     			//if (r > 5f) {
     				//Debug.Log("Play medium Fish Sound");
 					audioSource.clip = mediumFishSound;
-					audioSource.Play();
+					if (!audioSource.isPlaying)audioSource.Play();
     			//}
     			soundTimer = 0f;
     		}
-    		else if (this.size == SIZE.LARGE) {
 
-    		}
-
-    		else if (this.size == SIZE.SMALL) {
-
-    		}
 			soundTimer = 0f; //reset soundTimer regardless
     	}
     }
+
+	public void delayCancelRepel (float seconds)
+	{
+		Invoke ("cancelRepel", seconds);
+	}
+
+	void cancelRepel()
+	{
+		this.beingRepelled = false;
+	}
 }
 

@@ -2221,6 +2221,26 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61732e2854613496b845c36ed906fade, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &690468499 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 106188, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+  m_PrefabInternal: {fileID: 1400586794}
+--- !u!114 &690468500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 690468499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898a1e7ed961446879b04c1ff02d59cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &690468501 stripped
+SphereCollider:
+  m_PrefabParentObject: {fileID: 13508736, guid: b0542ce48aa9ba74291171c256824204,
+    type: 2}
+  m_PrefabInternal: {fileID: 1400586794}
 --- !u!1 &698970035
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,7 +2553,7 @@ Transform:
   - {fileID: 628814658}
   - {fileID: 1054400971}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!1 &764309198
 GameObject:
   m_ObjectHideFlags: 0
@@ -2597,7 +2617,7 @@ Transform:
   - {fileID: 289291368}
   - {fileID: 1750961948}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 24
 --- !u!1001 &771115780
 Prefab:
   m_ObjectHideFlags: 0
@@ -4555,7 +4575,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -5098,6 +5117,26 @@ Prefab:
       propertyPath: m_CurrentCamera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: soundCollider
+      value: 
+      objectReference: {fileID: 690468501}
+    - target: {fileID: 8234050, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248702, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: screamSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6914745ada5203d459d0c7f6ab49bd37, type: 3}
+    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: aulivEatSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e77546b0de3d5cb4cb18246c2d8eccaa, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0542ce48aa9ba74291171c256824204, type: 2}
   m_IsPrefabParent: 0
@@ -5418,7 +5457,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

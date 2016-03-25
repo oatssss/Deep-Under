@@ -422,6 +422,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &106188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 466574}
+  - 33: {fileID: 3380166}
+  - 135: {fileID: 13508736}
+  - 114: {fileID: 11446962}
+  m_Layer: 24
+  m_Name: SoundRepelCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &106484
 GameObject:
   m_ObjectHideFlags: 1
@@ -6139,7 +6157,6 @@ GameObject:
   - 65: {fileID: 6547518}
   - 114: {fileID: 11496412}
   - 120: {fileID: 12035932}
-  - 135: {fileID: 13591320}
   - 82: {fileID: 8234050}
   - 82: {fileID: 8248702}
   m_Layer: 0
@@ -10685,6 +10702,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 443324}
   m_RootOrder: 0
+--- !u!4 &466574
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106188}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 497402}
+  m_RootOrder: 8
 --- !u!4 &466624
 Transform:
   m_ObjectHideFlags: 1
@@ -10841,7 +10870,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.49, z: 0}
+  m_LocalPosition: {x: 0, y: 7.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 497402}
@@ -12311,8 +12340,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190356}
-  m_LocalRotation: {x: 0, y: -0.9988365, z: 0, w: -0.0482255}
-  m_LocalPosition: {x: 9.000542, y: 68.5, z: 252.1}
+  m_LocalRotation: {x: 0, y: 0.7119378, z: 0, w: -0.7022426}
+  m_LocalPosition: {x: 305.5, y: 319.2, z: -296.2}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 442492}
@@ -12323,6 +12352,7 @@ Transform:
   - {fileID: 422804}
   - {fileID: 451126}
   - {fileID: 470438}
+  - {fileID: 466574}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &497410
@@ -19462,6 +19492,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192860}
   m_Mesh: {fileID: 4300140, guid: c5cca9e973fbf4db98c7c9eebad6fca8, type: 3}
+--- !u!33 &3380166
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106188}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3380460
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -19850,7 +19887,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -19924,7 +19961,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -20382,6 +20419,17 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &11446962
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898a1e7ed961446879b04c1ff02d59cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11483090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20394,14 +20442,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 11496412}
-  light1: {fileID: 10801902}
-  light2: {fileID: 10851268}
-  green: {r: 0.41176465, g: 1, b: 0.2647059, a: 0}
-  yellow: {r: 1, g: 0.9772058, b: 0.31617647, a: 1}
-  lightShaft: {fileID: 11435116}
-  lightShaft1: {fileID: 11406864}
-  light3: {fileID: 10835022}
-  light4: {fileID: 10887310}
+  light1: {fileID: 0}
+  light2: {fileID: 0}
+  green: {r: 0, g: 0, b: 0, a: 0}
+  yellow: {r: 0, g: 0, b: 0, a: 0}
+  lightShaft: {fileID: 0}
+  lightShaft1: {fileID: 0}
+  light3: {fileID: 0}
+  light4: {fileID: 0}
 --- !u!114 &11496412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20432,6 +20480,7 @@ MonoBehaviour:
   LastSoftBoundaryComponent: {fileID: 0}
   currentSoftBoundary: {fileID: 0}
   IsOutsideSoftBounds: 1
+  beingRepelled: 0
   Animator: {fileID: 9594374}
   BeingEaten: {fileID: 0}
   FlockVolume: {fileID: 0}
@@ -20442,9 +20491,10 @@ MonoBehaviour:
   maxSpeed: 50
   otherControls: 1
   isMoving: 0
-  nextLevel: LevelTwo
+  nextLevel: Tutorial5
   moveSound: {fileID: 8300000, guid: 93e5c219f9f4cf54c907b6db83a492ae, type: 3}
-  screamSound: {fileID: 8300000, guid: d4fb1c68e29c6e94b81e29d4f4f09956, type: 3}
+  screamSound: {fileID: 8300000, guid: 6914745ada5203d459d0c7f6ab49bd37, type: 3}
+  aulivEatSound: {fileID: 8300000, guid: e77546b0de3d5cb4cb18246c2d8eccaa, type: 3}
   camera: {fileID: 11473292, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
   defaultCameraPosition: {fileID: 136920}
   spotlight: {fileID: 10801902}
@@ -20453,13 +20503,13 @@ MonoBehaviour:
   h: 0
   v: 0
   energy: 100
-  energyDrainRate: 1
+  energyDrainRate: 0.5
   maxEnergyDrainRate: 5
-  energyDrainRateAcceleration: 2
+  energyDrainRateAcceleration: 0
   charging: 0
   ghostbar: 0
-  ghostValue: 34
-  soundCollider: {fileID: 13591320}
+  ghostValue: 50
+  soundCollider: {fileID: 13508736}
   soundRadius: 40
   soundDuration: 2
   lastPod: {fileID: 0}
@@ -20508,15 +20558,15 @@ LineRenderer:
       serializedVersion: 2
       rgba: 4294967295
   m_UseWorldSpace: 1
---- !u!135 &13591320
+--- !u!135 &13508736
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 190356}
+  m_GameObject: {fileID: 106188}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.00001
   m_Center: {x: 0, y: 0, z: 0}
@@ -20532,6 +20582,10 @@ Prefab:
       value: 
       objectReference: {fileID: 11473292, guid: 9acb3b50b4510564cafc4ab9baf87bfa,
         type: 2}
+    - target: {fileID: 0}
+      propertyPath: soundCollider
+      value: 
+      objectReference: {fileID: 13508736}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 190356}
