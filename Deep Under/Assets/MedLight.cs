@@ -14,7 +14,7 @@ public class MedLight : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Parent.State == BoidsFish.STATE.HUNTING)
+		if (Parent.State == BoidsFish.STATE.HUNTING || Parent.State == BoidsFish.STATE.EATING)
 		{
 			this.gameObject.GetComponent<Renderer>().material = red;
 		} else 

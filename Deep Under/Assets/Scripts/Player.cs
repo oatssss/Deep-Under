@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
@@ -229,7 +229,7 @@ public class Player : SmallBoidsFish {
 	}
 
 	private void createLightOrb () {
-        energy -= 5;
+       energy -= 5;
         GUIManager.Instance.flashEnergy();
 		lightOrb clone = GameObject.Instantiate(lightOrb);
 		clone.transform.position = lightOrbPosition.position;
