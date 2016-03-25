@@ -76,7 +76,7 @@ GameObject:
   - 114: {fileID: 11497060}
   - 54: {fileID: 5437410}
   - 136: {fileID: 13602722}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: EnergyBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

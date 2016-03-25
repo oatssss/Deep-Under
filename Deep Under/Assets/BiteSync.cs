@@ -7,15 +7,17 @@ public class BiteSync : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
 	void Bite() {
+        if (!ParentFish.BeingEaten)
+            { return; }
 		Instantiate(FishManager.Instance.EnergyBall, ParentFish.BeingEaten.transform.position, FishManager.Instance.EnergyBall.transform.rotation);
 		if (ParentFish.audioSource == null) ParentFish.audioSource = GetComponent<AudioSource>();
 		ParentFish.audioSource.clip = ParentFish.eatSound;
@@ -23,6 +25,5 @@ public class BiteSync : MonoBehaviour {
 		ParentFish.audioSource.Play();
 
 		FishManager.Instance.DestroyFish(ParentFish.BeingEaten);
-		ParentFish.BeingEaten = null;
 	}
 }

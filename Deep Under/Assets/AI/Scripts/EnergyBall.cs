@@ -11,7 +11,7 @@ public class EnergyBall : MonoBehaviour {
 	void Awake () {
 		OrbManager.Instance.addEnergy(this);
 	}
-		
+
 	void OnCollisionEnter(Collision other) {
 		if (other.gameObject.CompareTag("Player") && GameManager.Instance.Player != null) {
 //			energy = Random.Range(15f, 25f);
