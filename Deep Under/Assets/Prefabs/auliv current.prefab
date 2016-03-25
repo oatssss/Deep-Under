@@ -10841,7 +10841,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.49, z: 0}
+  m_LocalPosition: {x: 0, y: 7.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 497402}
@@ -11614,7 +11614,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190854}
-  m_LocalRotation: {x: -0.29883623, y: -0.6408564, z: 0.6408564, w: 0.29883623}
+  m_LocalRotation: {x: -0.29883626, y: -0.64085644, z: 0.64085644, w: 0.29883626}
   m_LocalPosition: {x: -2.1727464, y: -3.230951, z: -1.3135169}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12311,8 +12311,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190356}
-  m_LocalRotation: {x: 0, y: -0.9988365, z: 0, w: -0.0482255}
-  m_LocalPosition: {x: 9.000542, y: 68.5, z: 252.1}
+  m_LocalRotation: {x: 0, y: 0.7119378, z: 0, w: -0.7022426}
+  m_LocalPosition: {x: 305.5, y: 319.2, z: -296.2}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 442492}
@@ -19850,7 +19850,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -19924,7 +19924,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -20442,9 +20442,10 @@ MonoBehaviour:
   maxSpeed: 50
   otherControls: 1
   isMoving: 0
-  nextLevel: LevelTwo
+  nextLevel: Tutorial5
   moveSound: {fileID: 8300000, guid: 93e5c219f9f4cf54c907b6db83a492ae, type: 3}
-  screamSound: {fileID: 8300000, guid: d4fb1c68e29c6e94b81e29d4f4f09956, type: 3}
+  screamSound: {fileID: 8300000, guid: 6914745ada5203d459d0c7f6ab49bd37, type: 3}
+  aulivEatSound: {fileID: 8300000, guid: e77546b0de3d5cb4cb18246c2d8eccaa, type: 3}
   camera: {fileID: 11473292, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
   defaultCameraPosition: {fileID: 136920}
   spotlight: {fileID: 10801902}
@@ -20453,12 +20454,12 @@ MonoBehaviour:
   h: 0
   v: 0
   energy: 100
-  energyDrainRate: 1
+  energyDrainRate: 0.5
   maxEnergyDrainRate: 5
-  energyDrainRateAcceleration: 2
+  energyDrainRateAcceleration: 0
   charging: 0
   ghostbar: 0
-  ghostValue: 34
+  ghostValue: 50
   soundCollider: {fileID: 13591320}
   soundRadius: 40
   soundDuration: 2

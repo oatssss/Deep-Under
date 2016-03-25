@@ -18,7 +18,7 @@ public class SuctionVolume : MonoBehaviour
     public Light light3;
     public Light light4;
 
-    void Start() {
+    void Awake() {
         light3 = lightShaft.GetComponentInParent<Light>();
         light4 = lightShaft1.GetComponentInParent<Light>();
     }
