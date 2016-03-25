@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
 
 public class SuctionVolume : MonoBehaviour {
 
@@ -18,6 +19,7 @@ public class SuctionVolume : MonoBehaviour {
             this.SuckStrength = Mathf.Clamp(this.SuckStrength * 1.1f, 1, 50);
             Vector3 towardsPlayer = (transform.parent.position - other.transform.position).normalized;
             other.GetComponent<Rigidbody>().velocity = towardsPlayer * SuckStrength;
+			GamePad.SetVibration (PlayerIndex.One, 100, 100);
         }
 
         else

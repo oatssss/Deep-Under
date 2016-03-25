@@ -63,7 +63,6 @@ public class CameraFollow : MonoBehaviour {
     private void cameraRotate (float x, float y) { 
 
 		float angle = Vector3.Angle(transform.forward, offset);
-		Debug.Log(angle);
 		transform.RotateAround(transform.position, transform.up, y * cameraSpeed * Time.deltaTime); 
 
 		if (x < 0) { 
