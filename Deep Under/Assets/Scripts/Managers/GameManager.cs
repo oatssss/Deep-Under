@@ -53,6 +53,8 @@ public class GameManager : UnitySingleton<GameManager> {
         Action load = () => {
             loadOp = SceneManager.LoadSceneAsync(sceneName);
             GUIManager.Instance.LoadScreen(loadOp, 1);
+            GUIManager.Instance.EnergyBar.alpha = 1;
+            GUIManager.Instance.GhostBar.alpha = 1;
             Instance.ResumeTime();
         };
         GUIManager.Instance.FadeToBlack(load);

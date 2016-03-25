@@ -54,6 +54,8 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
 
     [Header("Miscellaneous")]
     public EventSystem EventSystem;
+    public CanvasGroup EnergyBar;
+    public CanvasGroup GhostBar;
     private Player Player {
         get { return GameObject.FindWithTag("Player").GetComponent<Player>(); }
     }
