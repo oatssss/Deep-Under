@@ -422,6 +422,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &106188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 466574}
+  - 33: {fileID: 3380166}
+  - 135: {fileID: 13508736}
+  - 114: {fileID: 11453604}
+  m_Layer: 24
+  m_Name: SoundRepelCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &106484
 GameObject:
   m_ObjectHideFlags: 1
@@ -6105,7 +6123,6 @@ GameObject:
   - 65: {fileID: 6547518}
   - 114: {fileID: 11496412}
   - 120: {fileID: 12035932}
-  - 135: {fileID: 13591320}
   - 82: {fileID: 8234050}
   - 82: {fileID: 8248702}
   m_Layer: 0
@@ -10648,6 +10665,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 443324}
   m_RootOrder: 0
+--- !u!4 &466574
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106188}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 497402}
+  m_RootOrder: 9
 --- !u!4 &466624
 Transform:
   m_ObjectHideFlags: 1
@@ -11553,7 +11582,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190854}
-  m_LocalRotation: {x: -0.29883626, y: -0.64085644, z: 0.64085644, w: 0.29883626}
+  m_LocalRotation: {x: -0.29883623, y: -0.6408564, z: 0.6408564, w: 0.29883623}
   m_LocalPosition: {x: -2.1727464, y: -3.230951, z: -1.3135169}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12250,8 +12279,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190356}
-  m_LocalRotation: {x: 0, y: 0.9999504, z: 0, w: 0.009961071}
-  m_LocalPosition: {x: 15.1, y: 55.6, z: 273.4}
+  m_LocalRotation: {x: 0, y: 0.7119378, z: 0, w: -0.7022426}
+  m_LocalPosition: {x: 305.5, y: 319.2, z: -296.2}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 455280}
@@ -12263,6 +12292,7 @@ Transform:
   - {fileID: 451126}
   - {fileID: 414274}
   - {fileID: 442492}
+  - {fileID: 466574}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &497410
@@ -19402,6 +19432,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192860}
   m_Mesh: {fileID: 4300140, guid: c5cca9e973fbf4db98c7c9eebad6fca8, type: 3}
+--- !u!33 &3380166
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106188}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3380460
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -20124,6 +20161,17 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &11453604
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898a1e7ed961446879b04c1ff02d59cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11483090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20166,6 +20214,7 @@ MonoBehaviour:
   LastSoftBoundaryComponent: {fileID: 0}
   currentSoftBoundary: {fileID: 0}
   IsOutsideSoftBounds: 1
+  beingRepelled: 0
   Animator: {fileID: 9594374}
   BeingEaten: {fileID: 0}
   FlockVolume: {fileID: 0}
@@ -20192,7 +20241,7 @@ MonoBehaviour:
   charging: 0
   ghostbar: 0
   ghostValue: 10
-  soundCollider: {fileID: 13591320}
+  soundCollider: {fileID: 13508736}
   soundRadius: 40
   soundDuration: 2
   lastPod: {fileID: 0}
@@ -20202,6 +20251,7 @@ MonoBehaviour:
   Animator: {fileID: 9594374}
   Dead: 0
   soundSphere: {fileID: 150846}
+  soundRepelCollider: {fileID: 13508736}
 --- !u!120 &12035932
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -20241,15 +20291,15 @@ LineRenderer:
       serializedVersion: 2
       rgba: 4294967295
   m_UseWorldSpace: 1
---- !u!135 &13591320
+--- !u!135 &13508736
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 190356}
+  m_GameObject: {fileID: 106188}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.00001
   m_Center: {x: 0, y: 0, z: 0}
