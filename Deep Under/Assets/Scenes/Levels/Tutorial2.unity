@@ -2221,6 +2221,26 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61732e2854613496b845c36ed906fade, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &690468499 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 106188, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+  m_PrefabInternal: {fileID: 1400586794}
+--- !u!114 &690468500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 690468499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898a1e7ed961446879b04c1ff02d59cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &690468501 stripped
+SphereCollider:
+  m_PrefabParentObject: {fileID: 13508736, guid: b0542ce48aa9ba74291171c256824204,
+    type: 2}
+  m_PrefabInternal: {fileID: 1400586794}
 --- !u!1 &698970035
 GameObject:
   m_ObjectHideFlags: 0
@@ -5097,6 +5117,10 @@ Prefab:
       propertyPath: m_CurrentCamera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: soundCollider
+      value: 
+      objectReference: {fileID: 690468501}
     - target: {fileID: 8234050, guid: b0542ce48aa9ba74291171c256824204, type: 2}
       propertyPath: spreadCustomCurve.m_RotationOrder
       value: 0
