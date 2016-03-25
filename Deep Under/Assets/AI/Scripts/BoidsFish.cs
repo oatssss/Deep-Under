@@ -11,7 +11,7 @@ public abstract class BoidsFish : MonoBehaviour
 
 	[SerializeField] public Rigidbody RigidBody;
 	[SerializeField] private SphereCollider RepelVolume;
-	private AudioSource audioSource;
+	public AudioSource audioSource;
 	private float soundTimer = 0f;
 	public AudioClip eatSound;
 	public AudioClip mediumFishSound;
@@ -101,6 +101,7 @@ public abstract class BoidsFish : MonoBehaviour
 	protected bool GodBeingRepelled = false;
 
 	[SerializeField] private Animator Animator;
+	public BoidsFish BeingEaten;
 
     protected virtual void Awake()
     {
@@ -737,13 +738,9 @@ public abstract class BoidsFish : MonoBehaviour
 
     public virtual void Eaten(BoidsFish eater)
     {
-        /*GameObject energyBall = (GameObject) */Instantiate(FishManager.Instance.EnergyBall, this.transform.position, FishManager.Instance.EnergyBall.transform.rotation);
-		if (eater.audioSource == null) eater.audioSource = GetComponent<AudioSource>();
-		eater.audioSource.clip = eatSound;
-		eater.audioSource.pitch = Random.Range(1f, 2f);
-		eater.audioSource.Play();
-
-        FishManager.Instance.DestroyFish(this);
+		eater.BeingEaten = this;
+		eater.Animator.SetTrigger("Eat");
+        /*GameObject energyBall = (GameObject) */
     }
 
 	public virtual void RemoveFishReferences(BoidsFish referencedFish)
