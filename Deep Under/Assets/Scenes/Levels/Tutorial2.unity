@@ -2617,7 +2617,7 @@ Transform:
   - {fileID: 289291368}
   - {fileID: 1750961948}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 24
 --- !u!1001 &771115780
 Prefab:
   m_ObjectHideFlags: 0
@@ -5121,6 +5121,22 @@ Prefab:
       propertyPath: soundCollider
       value: 
       objectReference: {fileID: 690468501}
+    - target: {fileID: 8234050, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248702, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: screamSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6914745ada5203d459d0c7f6ab49bd37, type: 3}
+    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: aulivEatSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e77546b0de3d5cb4cb18246c2d8eccaa, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0542ce48aa9ba74291171c256824204, type: 2}
   m_IsPrefabParent: 0
