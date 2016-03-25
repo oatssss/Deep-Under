@@ -1,0 +1,221 @@
+fileFormatVersion: 2
+guid: 20ebf19262be04b64afa9e6ab0a5ff35
+timeCreated: 1458897391
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: BD_C_head_01
+    100002: BD_C_invPelvis_01
+    100004: BD_C_invPelvis_02
+    100006: BD_C_invPelvis_03
+    100008: BD_C_invPelvis_04
+    100010: BD_C_jaw_01
+    100012: BD_C_tail_01
+    100014: BD_C_tail_02
+    100016: BD_C_tail_03
+    100018: BD_C_tail_04
+    100020: BD_L_bigWing_01
+    100022: BD_L_bigWing_02
+    100024: BD_L_bigWing_03
+    100026: BD_L_smallWing_01
+    100028: BD_L_smallWing_02
+    100030: BD_L_smallWing_03
+    100032: BD_R_bigWing_01
+    100034: BD_R_bigWing_02
+    100036: BD_R_bigWing_03
+    100038: BD_R_smallWing_01
+    100040: BD_R_smallWing_02
+    100042: BD_R_smallWing_03
+    100044: dents
+    100046: Displacer
+    100048: Displacer_2
+    100050: Displacer_3
+    100052: Displacer_4
+    100054: HR_body_01
+    100056: HR_bottomGum_01
+    100058: HR_bottomJaw_GR
+    100060: HR_bottomTeeth_01
+    100062: HR_horn_01
+    100064: HR_L_bigWing_01
+    100066: HR_L_fish_01
+    100068: HR_L_smallWing_01
+    100070: HR_R_bigWing_01
+    100072: HR_R_smallWing_01
+    100074: HR_topGum_01
+    100076: HR_topJaw_GR
+    100078: HR_topTeeth_01
+    100080: HR_topTeeth_GR
+    100082: JT_C_head_split
+    100084: JT_C_jaw_split
+    100086: JT_C_PELVIS_01
+    100088: JT_C_tail_split
+    100090: JT_L_bigWing_split
+    100092: JT_L_smallWing_split
+    100094: JT_R_bigWing_split
+    100096: JT_R_smallWing_split
+    100098: //RootNode
+    100100: Null
+    100102: Null_2
+    100104: Null_3
+    100106: Null_4
+    100108: Null_5
+    100110: Null_6
+    100112: Null_7
+    100114: Null_8
+    100116: Polygon_Reduction
+    100118: Polygon_Reduction_2
+    100120: Polygon_Reduction_3
+    100122: Polygon_Reduction_4
+    100124: Skin
+    100126: Skin_2
+    400000: BD_C_head_01
+    400002: BD_C_invPelvis_01
+    400004: BD_C_invPelvis_02
+    400006: BD_C_invPelvis_03
+    400008: BD_C_invPelvis_04
+    400010: BD_C_jaw_01
+    400012: BD_C_tail_01
+    400014: BD_C_tail_02
+    400016: BD_C_tail_03
+    400018: BD_C_tail_04
+    400020: BD_L_bigWing_01
+    400022: BD_L_bigWing_02
+    400024: BD_L_bigWing_03
+    400026: BD_L_smallWing_01
+    400028: BD_L_smallWing_02
+    400030: BD_L_smallWing_03
+    400032: BD_R_bigWing_01
+    400034: BD_R_bigWing_02
+    400036: BD_R_bigWing_03
+    400038: BD_R_smallWing_01
+    400040: BD_R_smallWing_02
+    400042: BD_R_smallWing_03
+    400044: dents
+    400046: Displacer
+    400048: Displacer_2
+    400050: Displacer_3
+    400052: Displacer_4
+    400054: HR_body_01
+    400056: HR_bottomGum_01
+    400058: HR_bottomJaw_GR
+    400060: HR_bottomTeeth_01
+    400062: HR_horn_01
+    400064: HR_L_bigWing_01
+    400066: HR_L_fish_01
+    400068: HR_L_smallWing_01
+    400070: HR_R_bigWing_01
+    400072: HR_R_smallWing_01
+    400074: HR_topGum_01
+    400076: HR_topJaw_GR
+    400078: HR_topTeeth_01
+    400080: HR_topTeeth_GR
+    400082: JT_C_head_split
+    400084: JT_C_jaw_split
+    400086: JT_C_PELVIS_01
+    400088: JT_C_tail_split
+    400090: JT_L_bigWing_split
+    400092: JT_L_smallWing_split
+    400094: JT_R_bigWing_split
+    400096: JT_R_smallWing_split
+    400098: //RootNode
+    400100: Null
+    400102: Null_2
+    400104: Null_3
+    400106: Null_4
+    400108: Null_5
+    400110: Null_6
+    400112: Null_7
+    400114: Null_8
+    400116: Polygon_Reduction
+    400118: Polygon_Reduction_2
+    400120: Polygon_Reduction_3
+    400122: Polygon_Reduction_4
+    400124: Skin
+    400126: Skin_2
+    4300000: HR_body_01
+    4300002: HR_R_smallWing_01
+    4300004: HR_L_smallWing_01
+    4300006: HR_R_bigWing_01
+    4300008: HR_L_bigWing_01
+    4300010: HR_bottomGum_01
+    4300012: HR_bottomTeeth_01
+    4300014: HR_topTeeth_01
+    4300016: HR_topGum_01
+    4300018: HR_horn_01
+    7400000: C4D Animation Take
+    9500000: //RootNode
+    13700000: HR_body_01
+    13700002: HR_bottomGum_01
+    13700004: HR_bottomTeeth_01
+    13700006: HR_horn_01
+    13700008: HR_L_bigWing_01
+    13700010: HR_L_smallWing_01
+    13700012: HR_R_bigWing_01
+    13700014: HR_R_smallWing_01
+    13700016: HR_topGum_01
+    13700018: HR_topTeeth_01
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 0
+    normalImportMode: 1
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
