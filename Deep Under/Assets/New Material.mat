@@ -10,7 +10,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 054a31a99d11e49d110086ba44295342, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -150,7 +150,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 0.76876265, b: 0.16176468, a: 1}
+        second: {r: 0.99264705, g: 0.7684458, b: 0.036494352, a: 1}
       data:
         first:
           name: _EmissionColorUI
