@@ -785,17 +785,11 @@ public abstract class BoidsFish : MonoBehaviour
     			//if (r > 5f) {
     				//Debug.Log("Play medium Fish Sound");
 					audioSource.clip = mediumFishSound;
-					audioSource.Play();
+					if (!audioSource.isPlaying)audioSource.Play();
     			//}
     			soundTimer = 0f;
     		}
-    		else if (this.size == SIZE.LARGE) {
 
-    		}
-
-    		else if (this.size == SIZE.SMALL) {
-
-    		}
 			soundTimer = 0f; //reset soundTimer regardless
     	}
     }
