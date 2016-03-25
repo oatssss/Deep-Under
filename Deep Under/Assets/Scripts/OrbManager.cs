@@ -44,10 +44,10 @@ public class OrbManager : UnitySingleton<OrbManager> {
     public void Reset()
     {
         foreach (lightOrb orb in this.OrbList)
-            { Destroy(orb.gameObject); }
+            { if (orb) Destroy(orb.gameObject); }
 
         foreach (EnergyBall ball in this.EnergyList)
-            { Destroy(ball.gameObject); }
+            { if (ball) Destroy(ball.gameObject); }
 
         this.EnergyList.Clear();
         this.OrbList.Clear();

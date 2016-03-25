@@ -594,6 +594,7 @@ MonoBehaviour:
   animator: {fileID: 120895984}
   CanvasGroup: {fileID: 120895985}
   RectTransform: {fileID: 120895983}
+  FirstSelected: {fileID: 0}
 --- !u!1 &142508147
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,7 +677,7 @@ Transform:
   - {fileID: 272886389}
   - {fileID: 1979549269}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!1001 &170332945
 Prefab:
   m_ObjectHideFlags: 0
@@ -875,6 +876,7 @@ MonoBehaviour:
   animator: {fileID: 203745271}
   CanvasGroup: {fileID: 203745272}
   RectTransform: {fileID: 203745270}
+  FirstSelected: {fileID: 0}
 --- !u!4 &216286746 stripped
 Transform:
   m_PrefabParentObject: {fileID: 447442, guid: 422cf8ffb8ca8de4aa73437c40570317, type: 2}
@@ -1297,7 +1299,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!1 &326572352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2647,7 +2649,7 @@ Transform:
   m_Children:
   - {fileID: 1211235932}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
 --- !u!1 &596292170
 GameObject:
   m_ObjectHideFlags: 0
@@ -2889,6 +2891,7 @@ MonoBehaviour:
   animator: {fileID: 640406739}
   CanvasGroup: {fileID: 640406740}
   RectTransform: {fileID: 640406738}
+  FirstSelected: {fileID: 0}
 --- !u!1 &660508041
 GameObject:
   m_ObjectHideFlags: 0
@@ -2957,6 +2960,7 @@ MonoBehaviour:
   animator: {fileID: 660508043}
   CanvasGroup: {fileID: 660508045}
   RectTransform: {fileID: 660508042}
+  FirstSelected: {fileID: 0}
 --- !u!225 &660508045
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3000,6 +3004,7 @@ MonoBehaviour:
   animator: {fileID: 679762505}
   CanvasGroup: {fileID: 679762504}
   RectTransform: {fileID: 679762503}
+  FirstSelected: {fileID: 0}
 --- !u!224 &679762503
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3131,7 +3136,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
 --- !u!1 &738997956
 GameObject:
   m_ObjectHideFlags: 0
@@ -3345,7 +3350,7 @@ Transform:
   - {fileID: 628814658}
   - {fileID: 1054400971}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!1001 &762331457
 Prefab:
   m_ObjectHideFlags: 0
@@ -3933,6 +3938,7 @@ MonoBehaviour:
   animator: {fileID: 900373724}
   CanvasGroup: {fileID: 900373725}
   RectTransform: {fileID: 900373723}
+  FirstSelected: {fileID: 0}
 --- !u!1 &902198131
 GameObject:
   m_ObjectHideFlags: 0
@@ -4083,6 +4089,9 @@ MonoBehaviour:
   Tutorial4Shown: 0
   Tutorial5: {fileID: 679762502}
   Tutorial5Shown: 0
+  EventSystem: {fileID: 0}
+  EnergyBar: {fileID: 0}
+  GhostBar: {fileID: 0}
 --- !u!4 &969658546
 Transform:
   m_ObjectHideFlags: 0
@@ -4096,7 +4105,7 @@ Transform:
   - {fileID: 966076786}
   - {fileID: 1235832772}
   m_Father: {fileID: 0}
-  m_RootOrder: 39
+  m_RootOrder: 40
 --- !u!1001 &978706070
 Prefab:
   m_ObjectHideFlags: 0
@@ -4167,7 +4176,7 @@ Transform:
   m_Children:
   - {fileID: 326572353}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
 --- !u!114 &995975399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5155,6 +5164,52 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1338721643}
+--- !u!1001 &1342343086
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 499734, guid: 55d643289c97bae49b0d65923b6e09b7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 277.5836
+      objectReference: {fileID: 0}
+    - target: {fileID: 499734, guid: 55d643289c97bae49b0d65923b6e09b7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 282.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 499734, guid: 55d643289c97bae49b0d65923b6e09b7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -271.72638
+      objectReference: {fileID: 0}
+    - target: {fileID: 499734, guid: 55d643289c97bae49b0d65923b6e09b7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499734, guid: 55d643289c97bae49b0d65923b6e09b7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499734, guid: 55d643289c97bae49b0d65923b6e09b7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499734, guid: 55d643289c97bae49b0d65923b6e09b7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 499734, guid: 55d643289c97bae49b0d65923b6e09b7, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 106204, guid: 55d643289c97bae49b0d65923b6e09b7, type: 2}
+      propertyPath: m_Name
+      value: pod (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 55d643289c97bae49b0d65923b6e09b7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1344851780
 Prefab:
   m_ObjectHideFlags: 0
@@ -6746,6 +6801,7 @@ MonoBehaviour:
   animator: {fileID: 1694173226}
   CanvasGroup: {fileID: 1694173227}
   RectTransform: {fileID: 1694173225}
+  FirstSelected: {fileID: 0}
 --- !u!1001 &1739982310
 Prefab:
   m_ObjectHideFlags: 0
@@ -7776,7 +7832,7 @@ Transform:
   - {fileID: 1961055872}
   - {fileID: 54429567}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
 --- !u!1001 &1933139524
 Prefab:
   m_ObjectHideFlags: 0
@@ -7850,6 +7906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 944f1baf8d2ac4f539b47223ffb6f2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DisallowPauseMenu: 0
 --- !u!4 &1951530913
 Transform:
   m_ObjectHideFlags: 0
@@ -7861,7 +7918,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
 --- !u!1001 &1958055352
 Prefab:
   m_ObjectHideFlags: 0
@@ -8550,6 +8607,7 @@ MonoBehaviour:
   animator: {fileID: 2068995396}
   CanvasGroup: {fileID: 2068995398}
   RectTransform: {fileID: 2068995395}
+  FirstSelected: {fileID: 0}
 --- !u!225 &2068995398
 CanvasGroup:
   m_ObjectHideFlags: 0

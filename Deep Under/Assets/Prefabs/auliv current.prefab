@@ -11643,7 +11643,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190854}
-  m_LocalRotation: {x: -0.29883623, y: -0.6408564, z: 0.6408564, w: 0.29883623}
+  m_LocalRotation: {x: -0.29883626, y: -0.64085644, z: 0.64085644, w: 0.29883626}
   m_LocalPosition: {x: -2.1727464, y: -3.230951, z: -1.3135169}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -20487,7 +20487,7 @@ MonoBehaviour:
   Flock: []
   speed: 20
   normalSpeed: 20
-  acceleration: 50
+  acceleration: 40
   maxSpeed: 50
   otherControls: 1
   isMoving: 0
