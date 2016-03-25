@@ -3370,7 +3370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.8068962, a: 0.672}
+  m_Color: {r: 0.9960785, g: 0.7019608, b: 0.18823531, a: 0.535}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3845,7 +3845,7 @@ MonoBehaviour:
   auliv: {fileID: 0}
   EnergyBar: {fileID: 764254752}
   GhostBar: {fileID: 598555003}
-  ebarColor: {r: 0.72794116, g: 0.15522276, b: 0.60754025, a: 0.844}
+  ebarColor: {r: 0.9960785, g: 0.7019608, b: 0.18823531, a: 0.535}
   gbarColor: {r: 0.6081663, g: 0.8455882, b: 0.23004974, a: 0.841}
 --- !u!114 &944082721
 MonoBehaviour:
@@ -4534,6 +4534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4507222766b8457da8354e2382b9a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
 --- !u!4 &1243687604 stripped
 Transform:
   m_PrefabParentObject: {fileID: 447442, guid: 422cf8ffb8ca8de4aa73437c40570317, type: 2}
@@ -5827,7 +5828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OrbList: []
   EnergyList: []
-  MaxOrbNumber: 4
+  MaxOrbNumber: 1
   AttractNumber: 5
 --- !u!1001 &1664469422
 Prefab:
@@ -6276,7 +6277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.67058825, g: 0.17254902, b: 0.45882356, a: 0.278}
+  m_Color: {r: 0.6838235, g: 0.4348586, b: 0, a: 0.672}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

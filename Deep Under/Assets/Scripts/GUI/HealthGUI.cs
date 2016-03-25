@@ -33,7 +33,7 @@ public class HealthGUI : MonoBehaviour {
 
         if (ebar < 0.3 && blink || flashing)
         {
-            EnergyBar.color = new Color(0.5f,0f,0f,0.5f);
+            EnergyBar.color = new Color(0.87f,0f,0f,0.5f);
         }
 		else
 		{
