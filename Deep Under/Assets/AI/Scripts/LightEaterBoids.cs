@@ -6,7 +6,7 @@ public class LightEaterBoids : BoidsFish {
 	private float IdleMin = 4f;
 	private float IdleMax = 8f;
 	private float AbsoluteMax = 14f;
-	
+
 	public override STATE State
 	{
 		get				{ return this.state; }
