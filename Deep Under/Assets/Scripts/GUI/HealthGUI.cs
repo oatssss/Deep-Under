@@ -14,6 +14,7 @@ public class HealthGUI : MonoBehaviour {
 	[SerializeField] private Color gbarColor;
 
 	private bool blink;
+	private bool flashing;
 
 	void Awake() {
 		InvokeRepeating("Switch", 0.0f, 0.2f);
@@ -22,6 +23,7 @@ public class HealthGUI : MonoBehaviour {
 	void Start(){
 		GhostBar.color = gbarColor;
 		blink = false;
+		flashing = false;
 	}
 
 	void OnGUI() {
@@ -29,7 +31,7 @@ public class HealthGUI : MonoBehaviour {
         EnergyBar.transform.localScale = new Vector3(ebar, 1, 1);
 		GhostBar.transform.localScale = new Vector3(gbar, 1, 1);
 
-        if (ebar < 0.3 && blink)
+        if (ebar < 0.3 && blink || flashing)
         {
             EnergyBar.color = new Color(0.5f,0f,0f,0.5f);
         }
@@ -37,6 +39,17 @@ public class HealthGUI : MonoBehaviour {
 		{
 			EnergyBar.color = ebarColor;
 		}
+	}
+
+	public void flashEnergyBar()
+	{
+		flashing = true;
+		Invoke("flashBack", .2f);
+	}
+
+	void flashBack()
+	{
+		flashing = false;
 	}
 
 	void Update() {

@@ -224,6 +224,7 @@ public class Player : SmallBoidsFish {
 		//Debug.Log(force.ToString());
 		clone.rb.AddForce(force);
 		shoot = false;
+		GUIManager.Instance.flashEnergy ();
 	}
 
 
@@ -240,6 +241,7 @@ public class Player : SmallBoidsFish {
 		soundCollider.enabled = true;
 		soundCollider.radius = soundRadius;
 		soundSphere.SetActive (true);
+		GUIManager.Instance.flashEnergy ();
 	}
 
 	public void addEnergy (float orbStrength) {
