@@ -685,54 +685,14 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 0.29883623
       objectReference: {fileID: 0}
-    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: energy
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: energyDrainRate
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: energyDrainRateAcceleration
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: nextLevel
-      value: Tutorial2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: ghostValue
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 470438, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 7.49
+    - target: {fileID: 11406864, guid: b0542ce48aa9ba74291171c256824204, type: 2}
+      propertyPath: m_CurrentCamera
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 11435116, guid: b0542ce48aa9ba74291171c256824204, type: 2}
       propertyPath: m_CurrentCamera
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 11406864, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: m_CurrentCamera
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8234050, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: spreadCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8248702, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: spreadCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: screamSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 6914745ada5203d459d0c7f6ab49bd37, type: 3}
-    - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: aulivEatSound
-      value: 
-      objectReference: {fileID: 8300000, guid: e77546b0de3d5cb4cb18246c2d8eccaa, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0542ce48aa9ba74291171c256824204, type: 2}
   m_IsPrefabParent: 0
@@ -1947,7 +1907,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 457916, guid: 89728e4994ba29249b407a5ffa5eee8a, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 165694, guid: 89728e4994ba29249b407a5ffa5eee8a, type: 2}
       propertyPath: m_Name
@@ -2415,7 +2375,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 11473292, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
       propertyPath: player
@@ -2889,7 +2849,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 457916, guid: 89728e4994ba29249b407a5ffa5eee8a, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 165694, guid: 89728e4994ba29249b407a5ffa5eee8a, type: 2}
       propertyPath: m_Name
@@ -3300,6 +3260,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -3832,6 +3793,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -7056,7 +7018,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 495466, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
