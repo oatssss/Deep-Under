@@ -12340,8 +12340,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190356}
-  m_LocalRotation: {x: 0, y: 0.5472188, z: 0, w: -0.83698964}
-  m_LocalPosition: {x: 307.4, y: 296.8, z: -298.4}
+  m_LocalRotation: {x: 0, y: -0.9988365, z: 0, w: -0.0482255}
+  m_LocalPosition: {x: 9.000542, y: 68.5, z: 252.1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 442492}
@@ -20507,8 +20507,8 @@ MonoBehaviour:
   energyDrainRateAcceleration: 2
   charging: 0
   ghostbar: 0
-  ghostValue: 50
-  soundCollider: {fileID: 13508736}
+  ghostValue: 34
+  soundCollider: {fileID: 13591320}
   soundRadius: 40
   soundDuration: 2
   lastPod: {fileID: 0}

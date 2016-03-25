@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
@@ -20,6 +20,7 @@ public class Player : SmallBoidsFish {
 
 	public AudioClip moveSound; 
 	public AudioClip screamSound; 
+	public AudioClip aulivEatSound;
 	private float volumeSave; 
 	private float pitchSave; 
 
@@ -119,9 +120,9 @@ public class Player : SmallBoidsFish {
 			soundSphere.transform.localScale *= 1.1f;
 
 			timer += Time.deltaTime;
-			if (timer > soundDuration || !audioSource.isPlaying) { 
-				audioSource.volume = volumeSave;
-				audioSource.pitch = pitchSave;
+			if (!audioSource.isPlaying || timer > soundDuration) { 
+				//audioSource.volume = volumeSave;
+				//audioSource.pitch = pitchSave;
 				audioSource.loop = true; 
 				audioSource.clip = moveSound;
 				audioSource.Play();
@@ -227,7 +228,8 @@ public class Player : SmallBoidsFish {
 	}
 
 	private void createLightOrb () {
-		energy -= 5;
+       energy -= 5;
+        GUIManager.Instance.flashEnergy();
 		lightOrb clone = GameObject.Instantiate(lightOrb);
 		clone.transform.position = lightOrbPosition.position;
 		Vector3 force = transform.forward*throwForce;
@@ -238,8 +240,9 @@ public class Player : SmallBoidsFish {
 
 
 	private void makeSound () {
-		energy -= 15;
-		soundSphere.transform.localScale = new Vector3 (5, 5, 5);
+        energy -= 15;
+        GUIManager.Instance.flashEnergy();
+        soundSphere.transform.localScale = new Vector3 (5, 5, 5);
 		volumeSave = audioSource.volume;
 		pitchSave = audioSource.pitch;
 		audioSource.loop = false; 
@@ -274,6 +277,9 @@ public class Player : SmallBoidsFish {
 		float newG = 0f;
 		if (ghostbar < maxGhost){
 			newG = ghostbar + ghostValue;
+			audioSource.clip = aulivEatSound;
+			audioSource.loop = false; 
+			audioSource.Play();
 			if (newG >= maxGhost){
 				ghostbar = maxGhost;
 				// reload next scene
