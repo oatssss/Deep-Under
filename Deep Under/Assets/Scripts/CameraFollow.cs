@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour {
 
 	private float time = 0f; 
 
-	public Player player;  
+	public GameObject player;  
 	public float cameraSpeed = 120f;
 	public float defaultSmoothing = 15f;
 	public float smoothing = 15f;
@@ -42,7 +42,6 @@ public class CameraFollow : MonoBehaviour {
 			oldPosition = transform.position; 
 			follow();
 			getMovementDir();
-			Vector3 camToDefault = player.defaultCameraPosition.transform.position - transform.position; 
 		//time += Time.deltaTime;
 		}
 	}
@@ -51,9 +50,7 @@ public class CameraFollow : MonoBehaviour {
 
 	public void follow () { 
 		Vector3 oldRot = transform.rotation * Vector3.forward; //get current/old rotation in vector form
-		//if ((player.h > 0f && y < 0f) || (player.h < 0f && y > 0f)) cameraRotate(x,y);
-		//else
-		 cameraRotate(x, y);
+		cameraRotate(x,y);
 		Vector3 newRot = transform.rotation * Vector3.forward; // save new rotation in vector form 
 		Quaternion change = Quaternion.FromToRotation(oldRot, newRot); //record change in rotation using the 2 vectors
 		offset = change * offset; //apply change in rotation to offset
@@ -64,7 +61,11 @@ public class CameraFollow : MonoBehaviour {
     
 
     private void cameraRotate (float x, float y) { 
+
+		float angle = Vector3.Angle(transform.forward, offset);
+		Debug.Log(angle);
 		transform.RotateAround(transform.position, transform.up, y * cameraSpeed * Time.deltaTime); 
+
 		if (x < 0) { 
 			if (startLook < maxLookUp) { 
 				startLook -= x * cameraSpeed * Time.deltaTime;

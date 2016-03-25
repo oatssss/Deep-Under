@@ -1414,7 +1414,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &157132
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -2219,7 +2219,7 @@ Transform:
   - {fileID: 490184}
   - {fileID: 491642}
   m_Father: {fileID: 427098}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!4 &406240
 Transform:
   m_ObjectHideFlags: 1
@@ -2262,7 +2262,7 @@ Transform:
   - {fileID: 463234}
   - {fileID: 482400}
   m_Father: {fileID: 427098}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!4 &407306
 Transform:
   m_ObjectHideFlags: 1
@@ -2650,14 +2650,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.5, y: 0, z: 0}
+  m_LocalPosition: {x: 177.16183, y: 88.9, z: 489.86768}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 411508}
   - {fileID: 456592}
   - {fileID: 405170}
   - {fileID: 416156}
-  - {fileID: 456968}
   - {fileID: 405664}
   - {fileID: 407180}
   m_Father: {fileID: 0}
@@ -2868,6 +2867,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 434942}
+  - {fileID: 456968}
   m_Father: {fileID: 490184}
   m_RootOrder: 7
 --- !u!4 &442658
@@ -3193,14 +3193,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157132}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.34202015, y: -6.821961e-20, z: -5.8368123e-19, w: 0.9396926}
+  m_LocalPosition: {x: 0.001, y: -1.941, z: -2.373}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 478602}
   - {fileID: 470486}
-  m_Father: {fileID: 427098}
-  m_RootOrder: 4
+  m_Father: {fileID: 440942}
+  m_RootOrder: 1
 --- !u!4 &458130
 Transform:
   m_ObjectHideFlags: 1
@@ -4441,7 +4441,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_Intensity: 8
-  m_Range: 5
+  m_Range: 5.39
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -4559,6 +4559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fLight: {fileID: 10808776}
+  medLight: {fileID: 2100000, guid: cb8ab96a71f11454cbffb99cbd44c4b2, type: 2}
   RigidBody: {fileID: 5410864}
   RepelVolume: {fileID: 13579092}
   audioSource: {fileID: 0}
@@ -5099,7 +5100,7 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cb8ab96a71f11454cbffb99cbd44c4b2, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1

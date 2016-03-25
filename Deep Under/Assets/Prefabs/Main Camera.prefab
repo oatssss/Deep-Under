@@ -41,7 +41,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &453584
 Transform:
   m_ObjectHideFlags: 1
@@ -60,8 +60,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112806}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: 72.55, y: 97.46, z: 525.99}
+  m_LocalRotation: {x: -0.023715053, y: 0.70451283, z: -0.023568176, w: -0.70890325}
+  m_LocalPosition: {x: 320.12082, y: 326.41995, z: -296.30005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 453584}
@@ -155,7 +155,7 @@ AudioSource:
   m_Volume: 0.04
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   Priority: 128
   DopplerLevel: 1
@@ -257,6 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cF: {fileID: 11473292}
+  player: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
 --- !u!114 &11463544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -299,14 +300,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
   offsetLength: 0
-  player: {fileID: 0}
+  player: {fileID: 147968, guid: b0542ce48aa9ba74291171c256824204, type: 2}
   cameraSpeed: 120
   defaultSmoothing: 15
   smoothing: 15
   isMoving: 0
+  buffer: 0
   startLook: 0
   oldPosition: {x: 0, y: 0, z: 0}
-  following: 1
 --- !u!124 &12492296
 Behaviour:
   m_ObjectHideFlags: 1
@@ -324,8 +325,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: player
       value: 
-      objectReference: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204,
-        type: 2}
+      objectReference: {fileID: 147968, guid: b0542ce48aa9ba74291171c256824204, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 112806}

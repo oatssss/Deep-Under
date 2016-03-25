@@ -8,6 +8,7 @@ public abstract class BoidsFish : MonoBehaviour
 	public enum SIZE { SMALL, MEDIUM, LARGE, GOD }
 	public enum STATE { IDLE, SWIMMING, FLEEING, HUNTING, EATING, EATEN }
 	public Light fLight;
+    public Material medLight;
 
 	[SerializeField] public Rigidbody RigidBody;
 	[SerializeField] private SphereCollider RepelVolume;
@@ -209,8 +210,10 @@ public abstract class BoidsFish : MonoBehaviour
 		this.State = STATE.HUNTING;
 		if (this.Size == SIZE.MEDIUM)
 		{
-			fLight.color = Color.red;
-		}
+            medLight.SetColor("_EmissionColor", Color.yellow);
+            fLight.color = Color.red;
+            
+        }
 	}
 
 	public void Idle()
@@ -219,8 +222,10 @@ public abstract class BoidsFish : MonoBehaviour
 		StopFollowingTarget ();
 		if (this.Size == SIZE.MEDIUM)
 		{
-			fLight.color = Color.yellow;
-		}
+            medLight.SetColor("_EmissionColor", Color.red);
+            fLight.color = Color.yellow;
+            
+        }
 	}
 
 	/// <summary> Called by the child RepelVolume gameobject </summary>
