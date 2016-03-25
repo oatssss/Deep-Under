@@ -400,11 +400,13 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
 
     public void SkipLevel()
     {
+        ResumeGame();
         GameManager.LoadLevel(GUIManager.Instance.Player.nextLevel);
     }
 
-    public void LoadSelectedLevel(int levelIndex)
+    public void LoadSelectedLevel(string levelName)
     {
-        GameManager.LoadLevel(SceneManager.GetSceneAt(levelIndex).name);
+        ResumeGame();
+        GameManager.LoadLevel(levelName);
     }
 }
