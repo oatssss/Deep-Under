@@ -155,8 +155,8 @@ public class Player : SmallBoidsFish {
 	protected override void Update() {
 		if (Input.GetKeyUp(KeyCode.JoystickButton9) || Input.GetKeyUp(KeyCode.F)
 			|| Input.GetKeyUp(KeyCode.JoystickButton11)) lightToggle();
-		if (Input.GetKeyUp(KeyCode.JoystickButton0)|| Input.GetKeyUp(KeyCode.Mouse0)
-			|| Input.GetKeyUp(KeyCode.JoystickButton16)) callCreateLightOrb();
+		if ((Input.GetKeyDown(KeyCode.JoystickButton0)|| Input.GetKeyDown(KeyCode.Mouse0)
+			|| Input.GetKeyDown(KeyCode.JoystickButton16)) && !GUIManager.Instance.GamePaused) callCreateLightOrb();
 		if (Input.GetKeyUp(KeyCode.JoystickButton1) || Input.GetKeyUp(KeyCode.G)
 		|| Input.GetKeyUp(KeyCode.JoystickButton17)) makeSound();
 		if (Input.GetKey(KeyCode.JoystickButton8) || Input.GetKey(KeyCode.JoystickButton12)) camera.swingToPosition(defaultCameraPosition.transform);
