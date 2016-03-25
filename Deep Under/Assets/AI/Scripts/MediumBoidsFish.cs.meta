@@ -1,18 +1,22 @@
 fileFormatVersion: 2
 guid: c8976e0331e5840cdb22888b67dcb71f
-timeCreated: 1458710961
+timeCreated: 1458899296
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - fLight: {instanceID: 0}
+  - medLight: {instanceID: 0}
   - RigidBody: {instanceID: 0}
   - RepelVolume: {instanceID: 0}
-  - eatSound: {fileID: 8300000, guid: e77546b0de3d5cb4cb18246c2d8eccaa, type: 3}
+  - audioSource: {instanceID: 0}
+  - eatSound: {fileID: 8300000, guid: 35a7f0ee4d63afd40903f5bf58aeddce, type: 3}
   - mediumFishSound: {fileID: 8300000, guid: 5300a2806ae31844cafed0ad8373af19, type: 3}
   - physicalTarget: {instanceID: 0}
   - LastSoftBoundaryComponent: {instanceID: 0}
   - currentSoftBoundary: {instanceID: 0}
+  - Animator: {instanceID: 0}
+  - BeingEaten: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
