@@ -5,6 +5,7 @@ using System;
 
 public class GameManager : UnitySingleton<GameManager> {
 
+    public bool DisallowPauseMenu;
     private Coroutine WaitingToReload;
     private Coroutine WaitingOnInput;
     private Player player = null;
@@ -52,6 +53,8 @@ public class GameManager : UnitySingleton<GameManager> {
         Action load = () => {
             loadOp = SceneManager.LoadSceneAsync(sceneName);
             GUIManager.Instance.LoadScreen(loadOp, 1);
+            GUIManager.Instance.EnergyBar.alpha = 1;
+            GUIManager.Instance.GhostBar.alpha = 1;
             Instance.ResumeTime();
         };
         GUIManager.Instance.FadeToBlack(load);
@@ -86,7 +89,7 @@ public class GameManager : UnitySingleton<GameManager> {
 
     void Update()
     {
-		if (Input.GetKeyUp(KeyCode.JoystickButton7) && Instance.WaitingToReload == null)
+		if ((Input.GetKeyUp(KeyCode.JoystickButton7) || Input.GetKeyDown("escape")) && Instance.WaitingToReload == null && !this.DisallowPauseMenu)
         //if (Input.GetButtonDown("Cancel"))
         {
             if (GUIManager.Instance.GamePaused)

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
@@ -50,11 +50,23 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
     [SerializeField] private Menu Tutorial5;
     [SerializeField] bool Tutorial5Shown;
     public enum TUTORIAL { ONE, TWO, THREE, FOUR, FIVE }
+    [Space(10)]
+
+    [Header("Miscellaneous")]
+    public EventSystem EventSystem;
+    public CanvasGroup EnergyBar;
+    public CanvasGroup GhostBar;
+    private Player Player {
+        get { return GameObject.FindWithTag("Player").GetComponent<Player>(); }
+    }
+    private CameraFollow CameraFollow {
+        get { return GameObject.FindWithTag("MainCamera").GetComponent<CameraFollow>(); }
+    }
 
     void Start()
     {
         GUIManager.Instance.FadeToClear(null);
-        GUIManager.Instance.ShowTooltip("Collect the fish souls to complete the level. Recharge energy at the pods.");
+        // GUIManager.Instance.ShowTooltip("Collect the fish souls to complete the level. Recharge energy at the pods.");
     }
 
     private void OpenMenu(Menu menu, TRANSITION transition)
@@ -375,5 +387,32 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
     IEnumerator WaitForLoad(AsyncOperation load, float minSeconds)
     {
         yield return WaitForLoad(load, null, minSeconds);
+    }
+
+    public void SetInvertYAxis(bool invert)
+    {
+        this.CameraFollow.invert = invert;
+    }
+
+    public void SetAlternateControls(bool alternate)
+    {
+        this.Player.otherControls = alternate;
+    }
+
+    public void SetCameraSpeed(float sensitivity)
+    {
+        this.CameraFollow.cameraSpeed = sensitivity;
+    }
+
+    public void SkipLevel()
+    {
+        ResumeGame();
+        GameManager.LoadLevel(GUIManager.Instance.Player.nextLevel);
+    }
+
+    public void LoadSelectedLevel(string levelName)
+    {
+        ResumeGame();
+        GameManager.LoadLevel(levelName);
     }
 }
