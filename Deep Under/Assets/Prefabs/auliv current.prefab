@@ -12192,8 +12192,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190356}
-  m_LocalRotation: {x: 0, y: 0.7119378, z: 0, w: -0.7022426}
-  m_LocalPosition: {x: 305.5, y: 319.2, z: -296.2}
+  m_LocalRotation: {x: 0, y: 0.9999504, z: 0, w: 0.009961071}
+  m_LocalPosition: {x: 15.1, y: 55.6, z: 273.4}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 455280}
@@ -20096,9 +20096,9 @@ MonoBehaviour:
   h: 0
   v: 0
   energy: 100
-  energyDrainRate: 0
+  energyDrainRate: 1
   maxEnergyDrainRate: 5
-  energyDrainRateAcceleration: 0
+  energyDrainRateAcceleration: 2
   charging: 0
   ghostbar: 0
   ghostValue: 10

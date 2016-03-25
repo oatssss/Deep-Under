@@ -3257,7 +3257,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 499734, guid: 55d643289c97bae49b0d65923b6e09b7, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55d643289c97bae49b0d65923b6e09b7, type: 2}
@@ -4008,6 +4008,7 @@ Transform:
   - {fileID: 999414526}
   - {fileID: 426035763}
   - {fileID: 912357986}
+  - {fileID: 852527677}
   m_Father: {fileID: 0}
   m_RootOrder: 8
 --- !u!135 &224391767
@@ -7738,7 +7739,7 @@ Transform:
   - {fileID: 1044935963}
   - {fileID: 80235802}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
 --- !u!1 &445629870
 GameObject:
   m_ObjectHideFlags: 0
@@ -8160,48 +8161,6 @@ Transform:
   - {fileID: 1354540156}
   m_Father: {fileID: 1647249952}
   m_RootOrder: 2
---- !u!1 &473541965 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 112806, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
-  m_PrefabInternal: {fileID: 796047159}
---- !u!114 &473541975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 473541965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fceaeb339b971b429c4cc600acabd13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweakMode: 1
-  screenBlendMode: 1
-  hdr: 0
-  sepBlurSpread: 2.5
-  quality: 1
-  bloomIntensity: 1.5
-  bloomThreshold: 0.5
-  bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
-  bloomBlurIterations: 2
-  hollywoodFlareBlurIterations: 2
-  flareRotation: 0
-  lensflareMode: 2
-  hollyStretchWidth: 0.75
-  lensflareIntensity: 1
-  lensflareThreshold: 0.05
-  lensFlareSaturation: 0.75
-  flareColorA: {r: 0.4, g: 0.4, b: 0.8, a: 0.75}
-  flareColorB: {r: 0.4, g: 0.8, b: 0.8, a: 0.75}
-  flareColorC: {r: 0.8, g: 0.4, b: 0.8, a: 0.75}
-  flareColorD: {r: 0.8, g: 0.4, b: 0, a: 0.75}
-  lensFlareVignetteMask: {fileID: 2800000, guid: 95ef4804fe0be4c999ddaa383536cde8,
-    type: 3}
-  lensFlareShader: {fileID: 4800000, guid: 459fe69d2f6d74ddb92f04dbf45a866b, type: 3}
-  screenBlendShader: {fileID: 4800000, guid: 7856cbff0a0ca45c787d5431eb805bb0, type: 3}
-  blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
-  brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
-    type: 3}
 --- !u!1 &475180567
 GameObject:
   m_ObjectHideFlags: 0
@@ -12577,7 +12536,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
 --- !u!1 &779840889
 GameObject:
   m_ObjectHideFlags: 0
@@ -13048,32 +13007,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 11473292, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1796915426}
-    - target: {fileID: 2015710, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
-      propertyPath: field of view
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 8283300, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 0858c1b69db31c84198d2f5ab64a61f6, type: 3}
-    - target: {fileID: 8283300, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
-      propertyPath: m_Volume
-      value: 0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 196420, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8283300, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
-      propertyPath: BypassListenerEffects
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 852527676}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
   m_IsPrefabParent: 0
@@ -13376,7 +13315,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 499734, guid: 55d643289c97bae49b0d65923b6e09b7, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 106204, guid: 55d643289c97bae49b0d65923b6e09b7, type: 2}
       propertyPath: m_Name
@@ -14112,6 +14051,33 @@ CanvasRenderer:
 Transform:
   m_PrefabParentObject: {fileID: 416626, guid: 7c423edc1a2b54e6ab860f5a4d83f3b7, type: 2}
   m_PrefabInternal: {fileID: 588431151}
+--- !u!1 &852527676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 852527677}
+  m_Layer: 0
+  m_Name: FollowThis
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &852527677
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 852527676}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 6.78, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224391766}
+  m_RootOrder: 6
 --- !u!4 &855236068 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: f2f603071b102b646a99ebdf815955b7, type: 3}
@@ -16088,7 +16054,7 @@ Transform:
   - {fileID: 1962541353}
   - {fileID: 1672873142}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!1 &999414525
 GameObject:
   m_ObjectHideFlags: 0
@@ -16785,7 +16751,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 495466, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 11411312, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
       propertyPath: AulivTheBestPrey
@@ -26611,6 +26577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fLight: {fileID: 0}
+  medLight: {fileID: 0}
   RigidBody: {fileID: 0}
   RepelVolume: {fileID: 0}
   audioSource: {fileID: 0}
