@@ -1838,6 +1838,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 440942}
   - 137: {fileID: 13762706}
+  - 114: {fileID: 11497018}
   m_Layer: 0
   m_Name: HR_lamp_01
   m_TagString: Untagged
@@ -2650,7 +2651,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 177.16183, y: 88.9, z: 489.86768}
+  m_LocalPosition: {x: 30.5, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 411508}
@@ -4591,6 +4592,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentFish: {fileID: 0}
+--- !u!114 &11497018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b44cb85a1ac04bb29f80ad7cb344734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 11443820}
+  red: {fileID: 2100000, guid: 3fefab1dd22e7432d8322fe545db1cb0, type: 2}
+  yellow: {fileID: 2100000, guid: cb8ab96a71f11454cbffb99cbd44c4b2, type: 2}
 --- !u!135 &13524842
 SphereCollider:
   m_ObjectHideFlags: 1
