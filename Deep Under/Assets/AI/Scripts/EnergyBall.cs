@@ -16,7 +16,7 @@ public class EnergyBall : MonoBehaviour {
 		if (other.gameObject.CompareTag("Player") && GameManager.Instance.Player != null) {
 //			energy = Random.Range(15f, 25f);
 			//ghostvalue = Random.Range(10f, 15f);
-//			GameManager.Instance.Player.addEnergyBall(this.energy);
+			GameManager.Instance.Player.addEnergyBall(this.energy);
 			GameManager.Instance.Player.addGhost();
 			OrbManager.Instance.destroyEnergy(this);
 		}
