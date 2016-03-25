@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
@@ -217,19 +217,16 @@ public class Player : SmallBoidsFish {
 	}
 
 	private void createLightOrb () {
-		energy -= 3;
 		lightOrb clone = GameObject.Instantiate(lightOrb);
 		clone.transform.position = lightOrbPosition.position;
 		Vector3 force = transform.forward*throwForce;
 		//Debug.Log(force.ToString());
 		clone.rb.AddForce(force);
 		shoot = false;
-		GUIManager.Instance.flashEnergy ();
 	}
 
 
 	private void makeSound () {
-		energy -= 10;
 		soundSphere.transform.localScale = new Vector3 (5, 5, 5);
 		volumeSave = audioSource.volume;
 		pitchSave = audioSource.pitch;
@@ -241,7 +238,6 @@ public class Player : SmallBoidsFish {
 		soundCollider.enabled = true;
 		soundCollider.radius = soundRadius;
 		soundSphere.SetActive (true);
-		GUIManager.Instance.flashEnergy ();
 	}
 
 	public void addEnergy (float orbStrength) {
@@ -308,12 +304,12 @@ public class Player : SmallBoidsFish {
 		boosting = false;
         }
         //manage energy drain rate
-		if (boosting)
-			energyDrainRate = maxEnergyDrainRate;
-		else if (isMoving)
-			energyDrainRate = minEnergyDrainRate;
-		else
-			energyDrainRate = 0;
+		if (boosting && isMoving) {
+			if (energyDrainRate < maxEnergyDrainRate) energyDrainRate += energyDrainRateAcceleration*Time.fixedDeltaTime;
+		}
+		else {
+			if (energyDrainRate > minEnergyDrainRate) energyDrainRate = minEnergyDrainRate ;
+		}
 	}
 
 	public void Die()
