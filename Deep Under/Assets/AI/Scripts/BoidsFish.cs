@@ -100,7 +100,7 @@ public abstract class BoidsFish : MonoBehaviour
 
 	protected bool GodBeingRepelled = false;
 
-	[SerializeField] private Animator Animator;
+	[SerializeField] public Animator Animator;
 	public BoidsFish BeingEaten;
 
     protected virtual void Awake()

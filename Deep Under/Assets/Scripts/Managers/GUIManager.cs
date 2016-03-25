@@ -288,6 +288,12 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
         }
     }
 
+	public void flashEnergy()
+	{
+		// flash energy bar briefly to show energy is drained
+		HealthBars.flashEnergyBar();
+	}
+
     public void LoadScreen(AsyncOperation load, float minSeconds)
     {
         Action loadComplete = () => {
