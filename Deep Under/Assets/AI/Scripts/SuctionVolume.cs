@@ -6,7 +6,7 @@ public class SuctionVolume : MonoBehaviour
 
     [SerializeField]
     private Player Player;
-    private float SuckStrength = 0;
+    private float SuckStrength = 20;
     private bool Sucking;
     public Light light1;
     public Light light2;

@@ -227,6 +227,8 @@ public class Player : SmallBoidsFish {
 	}
 
 	private void createLightOrb () {
+        energy -= 5;
+        GUIManager.Instance.flashEnergy();
 		lightOrb clone = GameObject.Instantiate(lightOrb);
 		clone.transform.position = lightOrbPosition.position;
 		Vector3 force = transform.forward*throwForce;
@@ -237,7 +239,9 @@ public class Player : SmallBoidsFish {
 
 
 	private void makeSound () {
-		soundSphere.transform.localScale = new Vector3 (5, 5, 5);
+        energy -= 15;
+        GUIManager.Instance.flashEnergy();
+        soundSphere.transform.localScale = new Vector3 (5, 5, 5);
 		volumeSave = audioSource.volume;
 		pitchSave = audioSource.pitch;
 		audioSource.loop = false; 
