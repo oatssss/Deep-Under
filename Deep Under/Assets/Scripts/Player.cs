@@ -21,6 +21,7 @@ public class Player : SmallBoidsFish {
 	public AudioClip moveSound; 
 	public AudioClip screamSound; 
 	public AudioClip aulivEatSound;
+	private float eatVolume = 0.35f; 
 	private float volumeSave; 
 	private float pitchSave; 
 
@@ -31,7 +32,7 @@ public class Player : SmallBoidsFish {
 	private bool isAiming = false;
 
 	public Light spotlight;
-	private bool lightOn = false;
+	private bool lightOn = true;
 
 	public lightOrb lightOrb;
 	public Transform lightOrbPosition;
@@ -278,6 +279,7 @@ public class Player : SmallBoidsFish {
 		if (ghostbar < maxGhost){
 			newG = ghostbar + ghostValue;
 			audioSource.clip = aulivEatSound;
+			audioSource.volume = eatVolume;
 			audioSource.loop = false; 
 			audioSource.Play();
 			if (newG >= maxGhost){
