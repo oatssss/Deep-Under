@@ -3653,7 +3653,7 @@ Transform:
   - {fileID: 1967685229}
   - {fileID: 2002594671}
   m_Father: {fileID: 0}
-  m_RootOrder: 57
+  m_RootOrder: 60
 --- !u!1 &551937946
 GameObject:
   m_ObjectHideFlags: 0
@@ -5229,7 +5229,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
       propertyPath: energyDrainRateAcceleration
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0542ce48aa9ba74291171c256824204, type: 2}
@@ -8844,6 +8844,10 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 752911864}
+    - target: {fileID: 8283300, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0858c1b69db31c84198d2f5ab64a61f6, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
   m_IsPrefabParent: 0
