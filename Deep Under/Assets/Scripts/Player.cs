@@ -113,20 +113,20 @@ public class Player : SmallBoidsFish {
         if (shoot) createLightOrb();
 		if (isMoving) Move(h,v,a);
 		boostAndDrain();
-
+		if (!audioSource.isPlaying || timer > soundDuration) { 
+				audioSource.volume = volumeSave;
+				audioSource.pitch = pitchSave;
+				audioSource.loop = true; 
+				audioSource.clip = moveSound;
+				audioSource.Play();
+			}
 		//put sound stuff in a new method
 		if (makingSound)
 		{
 			soundSphere.transform.localScale *= 1.1f;
 
 			timer += Time.deltaTime;
-			if (!audioSource.isPlaying || timer > soundDuration) { 
-				//audioSource.volume = volumeSave;
-				//audioSource.pitch = pitchSave;
-				audioSource.loop = true; 
-				audioSource.clip = moveSound;
-				audioSource.Play();
-			}
+
 			if (timer > soundDuration)
 			{
 				timer = 0f;
