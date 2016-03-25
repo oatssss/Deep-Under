@@ -54,13 +54,17 @@ public class GUIManager : UnitySingletonPersistent<GUIManager> {
 
     [Header("Miscellaneous")]
     public EventSystem EventSystem;
-    [SerializeField] private Player Player;
-    [SerializeField] private CameraFollow CameraFollow;
+    private Player Player {
+        get { return GameObject.FindWithTag("Player").GetComponent<Player>(); }
+    }
+    private CameraFollow CameraFollow {
+        get { return GameObject.FindWithTag("MainCamera").GetComponent<CameraFollow>(); }
+    }
 
     void Start()
     {
         GUIManager.Instance.FadeToClear(null);
-        GUIManager.Instance.ShowTooltip("Collect the fish souls to complete the level. Recharge energy at the pods.");
+        // GUIManager.Instance.ShowTooltip("Collect the fish souls to complete the level. Recharge energy at the pods.");
     }
 
     private void OpenMenu(Menu menu, TRANSITION transition)
