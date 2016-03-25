@@ -25,31 +25,34 @@ public class SuctionVolume : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (Input.GetAxis("Suck") > 0)
+        if (Player.lightOn)
         {
-            if (!this.Sucking)
-            { this.SuckStrength = 1.1f; this.Sucking = true; }
+            if (Input.GetAxis("Suck") > 0)
+            {
+                if (!this.Sucking)
+                { this.SuckStrength = 1.1f; this.Sucking = true; }
 
 
-            this.SuckStrength = Mathf.Clamp(this.SuckStrength * 1.1f, 1, 50);
-            Vector3 towardsPlayer = (transform.parent.position - other.transform.position).normalized;
-            other.GetComponent<Rigidbody>().velocity = towardsPlayer * SuckStrength;
+                this.SuckStrength = Mathf.Clamp(this.SuckStrength * 1.1f, 1, 50);
+                Vector3 towardsPlayer = (transform.parent.position - other.transform.position).normalized;
+                other.GetComponent<Rigidbody>().velocity = towardsPlayer * SuckStrength;
 
-            
 
-        }
 
-        else
-        {
-            this.Sucking = false;
-            this.SuckStrength *= 0.5f;
+            }
 
+            else
+            {
+                this.Sucking = false;
+                this.SuckStrength *= 0.5f;
+
+            }
         }
     }
 
     void Update()
     {
-        if (Input.GetAxis("Suck") > 0)
+        if (Input.GetAxis("Suck") > 0 && Player.lightOn)
         {
             this.Player.removeEnergy(SuckStrength / 4);
             light1.color = green;

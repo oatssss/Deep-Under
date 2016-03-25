@@ -32,7 +32,7 @@ public class Player : SmallBoidsFish {
 	private bool isAiming = false;
 
 	public Light spotlight;
-	private bool lightOn = true;
+	public bool lightOn = true;
 
 	public lightOrb lightOrb;
 	public Transform lightOrbPosition;
