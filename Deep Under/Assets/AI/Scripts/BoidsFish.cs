@@ -210,7 +210,7 @@ public abstract class BoidsFish : MonoBehaviour
 		this.State = STATE.HUNTING;
 		if (this.Size == SIZE.MEDIUM)
 		{
-            medLight.SetColor("_EmissionColor", Color.yellow);
+            medLight.SetColor("_EmissionColor", Color.red);
             fLight.color = Color.red;
             
         }
@@ -222,7 +222,7 @@ public abstract class BoidsFish : MonoBehaviour
 		StopFollowingTarget ();
 		if (this.Size == SIZE.MEDIUM)
 		{
-            medLight.SetColor("_EmissionColor", Color.red);
+            medLight.SetColor("_EmissionColor", Color.yellow);
             fLight.color = Color.yellow;
             
         }
