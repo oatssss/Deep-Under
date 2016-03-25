@@ -2432,7 +2432,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -2906,45 +2905,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22468054, guid: 61732e2854613496b845c36ed906fade,
     type: 2}
   m_PrefabInternal: {fileID: 786870958}
---- !u!1 &794985041
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 794985043}
-  - 114: {fileID: 794985042}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &794985042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 794985041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 944f1baf8d2ac4f539b47223ffb6f2b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &794985043
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 794985041}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 565.9634, y: -8.678606, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
 --- !u!1001 &811885484
 Prefab:
   m_ObjectHideFlags: 0
@@ -3068,7 +3028,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -3085,6 +3044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ebar: 0
   gbar: 0
+  auliv: {fileID: 0}
   EnergyBar: {fileID: 764254752}
   GhostBar: {fileID: 598555003}
   ebarColor: {r: 0.72794116, g: 0.15522276, b: 0.60754025, a: 0.844}
@@ -3638,6 +3598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ebar: 0
   gbar: 0
+  auliv: {fileID: 0}
   EnergyBar: {fileID: 0}
   GhostBar: {fileID: 0}
   ebarColor: {r: 0, g: 0, b: 0, a: 0}
@@ -3741,22 +3702,10 @@ MonoBehaviour:
   FadeOverlay: {fileID: 245431632}
   EatenOverlay: {fileID: 1760978387}
   BatteryOverlay: {fileID: 0}
-  LoadingOverlay: {fileID: 0}
   Tooltips: []
   Canvas: {fileID: 944082719}
   TooltipDuration: 5
   TooltipPrefab: {fileID: 11429634, guid: 17f694d6837184920b5c4b05a3c05a8e, type: 2}
-  HealthBars: {fileID: 0}
-  Tutorial1: {fileID: 0}
-  Tutorial1Shown: 0
-  Tutorial2: {fileID: 0}
-  Tutorial2Shown: 0
-  Tutorial3: {fileID: 0}
-  Tutorial3Shown: 0
-  Tutorial4: {fileID: 0}
-  Tutorial4Shown: 0
-  Tutorial5: {fileID: 0}
-  Tutorial5Shown: 0
 --- !u!4 &1311018228
 Transform:
   m_ObjectHideFlags: 0

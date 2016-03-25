@@ -68,6 +68,7 @@ public class Player : SmallBoidsFish {
 	[SerializeField] private Color dangercolor;
 
 	[SerializeField] private Animator Animator;
+    [SerializeField] private bool Dead;
 
 	public GameObject soundSphere;
 
@@ -306,6 +307,11 @@ public class Player : SmallBoidsFish {
 
 	public void Die()
     {
+        if (this.Dead)
+            { return; }
+
+        this.Dead = true;
+
         Action reload = () => {
             FishManager.Instance.Reset();
             OrbManager.Instance.Reset();
@@ -317,6 +323,11 @@ public class Player : SmallBoidsFish {
 
     public override void Eaten(BoidsFish eater)
     {
+        if (this.Dead)
+            { return; }
+
+        this.Dead = true;
+
         Action reload = () => {
             FishManager.Instance.Reset();
             OrbManager.Instance.Reset();
