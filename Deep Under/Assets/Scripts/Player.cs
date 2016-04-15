@@ -10,7 +10,7 @@ public class Player : SmallBoidsFish {
 	public float acceleration= 20f;
 	public float maxSpeed = 100f;
 	private float autoTurnSpeed = 10f;
-	public bool otherControls = true;
+	public bool otherControls = false;
 	bool boosting = false;
 	public bool isMoving = false;
     public String nextLevel;
@@ -187,17 +187,8 @@ public class Player : SmallBoidsFish {
 		Vector3 movementForward = (camera.transform.forward * v) * speed * Time.deltaTime;
         Vector3 movementVertical = (Vector3.up * u) * speed/2f * Time.deltaTime;
 		rigidbody.MovePosition(transform.position + movementHorizontal + movementForward +  movementVertical);
-		if (otherControls) {
-			h = Mathf.Clamp(h, -0.15f, 0.15f);
-			v = Math.Abs(v);
-		}
-		Vector3 dir = (camera.transform.forward * v) * speed * Time.deltaTime + (camera.transform.right * h) * speed * Time.deltaTime;
-		if (otherControls) {
-			if (v >= 0.2f) turn(dir);
-		}
-		else {
-			if (Mathf.Abs(h) >= 0.2f && Mathf.Abs(v) >= 0.2f) turn(dir);
-		}
+		Vector3 dir = movementHorizontal + movementForward; 
+		if (!(l2 > 0 || Input.GetKey(KeyCode.LeftShift)))turn(dir);	
 	}
 
 
@@ -308,25 +299,20 @@ public class Player : SmallBoidsFish {
 
 	private void boostAndDrain () {
 
-		if (l2 > 0) autoTurn();
+		if (l2 > 0 || Input.GetKey(KeyCode.LeftShift)) autoTurn();
 		if ((l2 == 1f || Input.GetKey(KeyCode.LeftShift)) && isMoving) {
 			// add boost
 			if (speed < maxSpeed) {
 			speed = speed + (acceleration*Time.fixedDeltaTime);
-
-
-		}
-		boosting = true;
-        }
-
-        else {
-        	//remove boost
-			if (speed > normalSpeed){
-			speed = normalSpeed;
+			}
+			boosting = true;
 		}
 
-		boosting = false;
+        else { //remove boost
+			if (speed > normalSpeed) speed = normalSpeed;
+			boosting = false;
         }
+
         //manage energy drain rate
 		if (boosting && isMoving) {
 			if (energyDrainRate < maxEnergyDrainRate) energyDrainRate += energyDrainRateAcceleration*Time.fixedDeltaTime;

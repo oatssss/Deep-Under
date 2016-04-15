@@ -28,7 +28,6 @@ public class CameraFollow : MonoBehaviour {
 
 	void Start () {
 		if (player != null)  {
-			//dplayer = GetComponent<Player>();
 			offset = transform.position - player.transform.position;
 			offsetLength = offset.magnitude;
 			Cursor.lockState = CursorLockMode.Locked;
@@ -41,7 +40,7 @@ public class CameraFollow : MonoBehaviour {
 			y = Input.GetAxis("Mouse X"); //rotation on y axis
 			x = Input.GetAxis("Mouse Y"); //rotation on x axis
 			oldPosition = transform.position; 
-			follow();
+			Follow();
 			getMovementDir();
 		//time += Time.deltaTime;
 		}
@@ -49,7 +48,7 @@ public class CameraFollow : MonoBehaviour {
 
 
 
-	public void follow () { 
+	public void Follow () { 
 		Vector3 oldRot = transform.rotation * Vector3.forward; //get current/old rotation in vector form
 		if (invert) x = x*-1f ;
 		cameraRotate(x,y);
@@ -57,14 +56,13 @@ public class CameraFollow : MonoBehaviour {
 		Quaternion change = Quaternion.FromToRotation(oldRot, newRot); //record change in rotation using the 2 vectors
 		offset = change * offset; //apply change in rotation to offset
 		Vector3 targetPos = player.transform.position + offset; //apply offset 
-		if (Vector3.Distance(transform.position, targetPos) > 0.1f) transform.position = Vector3.Lerp(transform.position, targetPos,(1 - Mathf.Exp( -smoothing * Time.deltaTime ))); //TODO: jitter caused by smoothing.
-		//transform.position = targetPos;
+		if (Vector3.Distance(transform.position, targetPos) > 0.1f) transform.position = 
+			Vector3.Lerp(transform.position, targetPos,(1 - Mathf.Exp( -smoothing * Time.deltaTime ))); 
 	}
     
 
     private void cameraRotate (float x, float y) { 
 
-		float angle = Vector3.Angle(transform.forward, offset);
 		transform.RotateAround(transform.position, transform.up, y * cameraSpeed * Time.deltaTime); 
 
 		if (x < 0) { 

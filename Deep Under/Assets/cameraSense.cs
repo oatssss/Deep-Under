@@ -6,48 +6,40 @@ public class cameraSense : MonoBehaviour {
 	public CameraFollow cF; //a way to control the camera movement 
 	public Player player; 
 	private Vector3 movementDir; 
-	private float rayDistance = 18f;
+	private float rayDistance;
 	private float amount = 1f; 
 	private bool scaled = false; 
 	RaycastHit hitInfo;
-	private bool isHit = false; 
+
 	// Use this for initialization
 	void Start () {
-		//Debug.Log (cF.offsetLength);
+		rayDistance = (transform.position - player.transform.position).magnitude * 1.25f;
 	}
 	
 	// becasue physics; raycast in the direction of the camera's movement 
 
 	void FixedUpdate () {
-		if (player != null) { 
-			Vector3 dir = cF.getMovementDir();
-			Vector3 ray = dir; 
-			ray.Scale(new Vector3(10f, 10f, 10f));
-			detect();   
-		}
+		Vector3 dir = cF.getMovementDir();
+		Vector3 testRay = dir; 
+		testRay.Scale(new Vector3(10f, 10f, 10f));
+		Debug.Log(player.transform.position);
+		Debug.DrawRay(player.transform.position, (transform.position - player.transform.position) + testRay);
+		if (dir.magnitude > 0.001f)detect(dir);   
 	}
 
-	private void detect () {
-		Vector3 cameraToPlayer = player.transform.position - transform.position;
-		Vector3 cameraToFollowThis = cF.player.transform.position - transform.position; 
-		float x = Vector3.Angle(transform.forward, cameraToPlayer);
-		float y = Vector3.Angle(transform.forward, cameraToFollowThis);
-		Ray ray = new Ray(player.transform.position, -1*transform.forward); //make the ray go toward the camera instead of camera.backwards
+	private void detect (Vector3 dir) {
+		
+		Ray ray = new Ray(player.transform.position, (transform.position - player.transform.position) + dir);
 		if (Physics.Raycast(ray, out hitInfo, rayDistance)) { 
-			if (hitInfo.collider.tag.Equals("Environment") && hitInfo.distance > cF.offsetLength) { 
+			if (hitInfo.collider.tag.Equals("Environment")) { 
 				if (!scaled){
-					//amount = hitInfo.distance/rayDistance;
-					//transform.Rotate(new Vector3(x, 0f, 0f));
 					cF.scaleOffsetLength(0.5f);
 					scaled = true;
 				}
 			}
-
 		}
 		else {
 			if (scaled) { 
-					//amount = 1f/amount;
-
 				 	cF.scaleOffsetLength(2f);
 					scaled = false;
 				}
