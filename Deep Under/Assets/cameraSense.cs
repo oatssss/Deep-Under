@@ -22,7 +22,6 @@ public class cameraSense : MonoBehaviour {
 		Vector3 dir = cF.getMovementDir();
 		Vector3 testRay = dir; 
 		testRay.Scale(new Vector3(10f, 10f, 10f));
-		Debug.Log(player.transform.position);
 		Debug.DrawRay(player.transform.position, (transform.position - player.transform.position) + testRay);
 		if (dir.magnitude > 0.001f)detect(dir);   
 	}
