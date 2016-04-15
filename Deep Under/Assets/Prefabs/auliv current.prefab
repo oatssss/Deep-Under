@@ -11643,7 +11643,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190854}
-  m_LocalRotation: {x: -0.29883626, y: -0.64085644, z: 0.64085644, w: 0.29883626}
+  m_LocalRotation: {x: -0.29883623, y: -0.6408564, z: 0.6408564, w: 0.29883623}
   m_LocalPosition: {x: -2.1727464, y: -3.230951, z: -1.3135169}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12340,8 +12340,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190356}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.5349592, z: 0, w: -0.84487796}
+  m_LocalPosition: {x: 297.6, y: 296.8, z: -286.3}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 442492}
@@ -19823,7 +19823,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 8, z: 16}
+  m_Size: {x: 10, y: 10, z: 14}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &8234050
 AudioSource:
@@ -20161,7 +20161,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123430}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0109504c2f6a31b4498a8fd6a490584a, type: 3}
   m_Name: 
@@ -20200,7 +20200,7 @@ MonoBehaviour:
   m_FinalInterpolationShader: {fileID: 4800000, guid: 3fe6f8dd2066bc741806972899aa82f6,
     type: 3}
   m_DepthThreshold: 0.5
-  m_InterpolationStep: 8
+  m_InterpolationStep: 16
   m_ShowSamples: 0
   m_ShowInterpolatedSamples: 0
   m_ShowSamplesBackgroundFade: 0.8
@@ -20249,13 +20249,13 @@ MonoBehaviour:
   m_BrightnessColored: 5
   m_Extinction: 0.5
   m_MinDistFromCamera: 0
-  m_ShadowmapRes: 2048
+  m_ShadowmapRes: 1024
   m_DepthShader: {fileID: 4800000, guid: 7e188a1e08ecfae4785bed08b1013219, type: 3}
   m_ColorFilterShader: {fileID: 4800000, guid: 78da0b5fc3a6e8a469d047d71187e7ef, type: 3}
   m_Colored: 0
   m_ColorBalance: 1
-  m_EpipolarLines: 2048
-  m_EpipolarSamples: 2048
+  m_EpipolarLines: 512
+  m_EpipolarSamples: 512
   m_CoordShader: {fileID: 4800000, guid: 170533b360a07f945b98b5d9d11bff19, type: 3}
   m_DepthBreaksShader: {fileID: 4800000, guid: 8675ad07e6cda494d977506a7a2a8fbd, type: 3}
   m_RaymarchShader: {fileID: 4800000, guid: 8b94af9deac0e2d4e9523f6090a3e61e, type: 3}
@@ -20266,7 +20266,7 @@ MonoBehaviour:
   m_FinalInterpolationShader: {fileID: 4800000, guid: 3fe6f8dd2066bc741806972899aa82f6,
     type: 3}
   m_DepthThreshold: 0.5
-  m_InterpolationStep: 8
+  m_InterpolationStep: 16
   m_ShowSamples: 0
   m_ShowInterpolatedSamples: 0
   m_ShowSamplesBackgroundFade: 0.8
@@ -20315,13 +20315,13 @@ MonoBehaviour:
   m_BrightnessColored: 5
   m_Extinction: 0.5
   m_MinDistFromCamera: 0
-  m_ShadowmapRes: 2048
+  m_ShadowmapRes: 1024
   m_DepthShader: {fileID: 4800000, guid: 7e188a1e08ecfae4785bed08b1013219, type: 3}
   m_ColorFilterShader: {fileID: 4800000, guid: 78da0b5fc3a6e8a469d047d71187e7ef, type: 3}
   m_Colored: 0
   m_ColorBalance: 1
-  m_EpipolarLines: 2048
-  m_EpipolarSamples: 2048
+  m_EpipolarLines: 512
+  m_EpipolarSamples: 512
   m_CoordShader: {fileID: 4800000, guid: 170533b360a07f945b98b5d9d11bff19, type: 3}
   m_DepthBreaksShader: {fileID: 4800000, guid: 8675ad07e6cda494d977506a7a2a8fbd, type: 3}
   m_RaymarchShader: {fileID: 4800000, guid: 8b94af9deac0e2d4e9523f6090a3e61e, type: 3}
@@ -20332,7 +20332,7 @@ MonoBehaviour:
   m_FinalInterpolationShader: {fileID: 4800000, guid: 3fe6f8dd2066bc741806972899aa82f6,
     type: 3}
   m_DepthThreshold: 0.5
-  m_InterpolationStep: 8
+  m_InterpolationStep: 16
   m_ShowSamples: 0
   m_ShowInterpolatedSamples: 0
   m_ShowSamplesBackgroundFade: 0.8
@@ -20359,7 +20359,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107802}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0109504c2f6a31b4498a8fd6a490584a, type: 3}
   m_Name: 

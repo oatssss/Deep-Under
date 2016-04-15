@@ -14,10 +14,10 @@ GameObject:
   - 81: {fileID: 8180672}
   - 114: {fileID: 11463544}
   - 114: {fileID: 11411348}
-  - 114: {fileID: 11451930}
   - 114: {fileID: 11473292}
   - 82: {fileID: 8283300}
   - 114: {fileID: 11462742}
+  - 114: {fileID: 11412234}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -61,8 +61,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112806}
-  m_LocalRotation: {x: 0, y: 0.59665906, z: 0, w: -0.8024949}
-  m_LocalPosition: {x: 316.02322, y: 315.3, z: -299.55676}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.28, y: 3.5, z: -10.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 453584}
@@ -156,7 +156,7 @@ AudioSource:
   m_Volume: 0.04
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   Priority: 128
   DopplerLevel: 1
@@ -204,7 +204,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -235,6 +235,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FishManagerPrefab: {fileID: 199064, guid: 113cb9a613efa4c17ac2867d5edfbdf9, type: 2}
+--- !u!114 &11412234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b88dca888fe5e4f944b9a774a9b081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cF: {fileID: 11473292}
+  player: {fileID: 0}
 --- !u!114 &11433998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,19 +259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02591129b9ba54aaf8ec5b80c705f915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11451930
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 112806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32364782e9b7a3847aa7e20185d437cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cF: {fileID: 11473292}
-  player: {fileID: 11496412, guid: b0542ce48aa9ba74291171c256824204, type: 2}
 --- !u!114 &11462742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,14 +276,14 @@ MonoBehaviour:
   sepBlurSpread: 2.5
   quality: 1
   bloomIntensity: 1
-  bloomThreshold: 0.75
+  bloomThreshold: 0.35
   bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
   bloomBlurIterations: 2
   hollywoodFlareBlurIterations: 2
   flareRotation: 0
-  lensflareMode: 1
-  hollyStretchWidth: 2.5
-  lensflareIntensity: 0
+  lensflareMode: 2
+  hollyStretchWidth: 0.75
+  lensflareIntensity: 2
   lensflareThreshold: 0.3
   lensFlareSaturation: 0.75
   flareColorA: {r: 0.4, g: 0.4, b: 0.8, a: 0.75}
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112806}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd70d448b18cfbc46af26466f752332c, type: 3}
   m_Name: 
@@ -311,7 +311,7 @@ MonoBehaviour:
   visualizeFocus: 0
   focalLength: 30
   focalSize: 2
-  aperture: 0.69
+  aperture: 0.72
   focalTransform: {fileID: 0}
   maxBlurSize: 2
   highResolution: 0

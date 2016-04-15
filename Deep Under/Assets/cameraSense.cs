@@ -14,16 +14,18 @@ public class cameraSense : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rayDistance = (transform.position - player.transform.position).magnitude * 1.25f;
+
 	}
 	
 	// becasue physics; raycast in the direction of the camera's movement 
 
 	void FixedUpdate () {
+		if (player == null) player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		Vector3 dir = cF.getMovementDir();
 		Vector3 testRay = dir; 
 		testRay.Scale(new Vector3(10f, 10f, 10f));
 		Debug.DrawRay(player.transform.position, (transform.position - player.transform.position) + testRay);
-		if (dir.magnitude > 0.001f)detect(dir);   
+		detect(dir);   
 	}
 
 	private void detect (Vector3 dir) {

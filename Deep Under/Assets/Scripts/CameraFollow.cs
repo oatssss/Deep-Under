@@ -5,7 +5,7 @@ public class CameraFollow : MonoBehaviour {
 
 	public Vector3 offset;  
 	public float offsetLength;
-	public bool invert = true; 
+	public bool invert = false; 
 	Quaternion defaultRotation; 
 
 	private float time = 0f; 

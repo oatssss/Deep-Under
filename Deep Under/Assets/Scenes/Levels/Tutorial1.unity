@@ -685,61 +685,9 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 0.29883623
       objectReference: {fileID: 0}
-    - target: {fileID: 11406864, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: m_CurrentCamera
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11435116, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: m_CurrentCamera
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11435116, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: m_ShadowmapRes
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 11435116, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: m_EpipolarSamples
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 11435116, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: m_EpipolarLines
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 11435116, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: m_InterpolationStep
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 11401076, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: m_InterpolationStep
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 11406864, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: m_ShadowmapRes
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 11406864, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: m_EpipolarSamples
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 11406864, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: m_EpipolarLines
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 11406864, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: m_InterpolationStep
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 11436320, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 11436320, guid: b0542ce48aa9ba74291171c256824204, type: 2}
       propertyPath: m_CurrentCamera
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11401076, guid: b0542ce48aa9ba74291171c256824204, type: 2}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11401076, guid: b0542ce48aa9ba74291171c256824204, type: 2}
       propertyPath: m_CurrentCamera
@@ -2487,6 +2435,10 @@ Prefab:
       propertyPath: focalTransform
       value: 
       objectReference: {fileID: 380699445}
+    - target: {fileID: 11412234, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 79501404}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9acb3b50b4510564cafc4ab9baf87bfa, type: 2}
   m_IsPrefabParent: 0
