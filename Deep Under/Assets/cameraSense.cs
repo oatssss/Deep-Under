@@ -4,7 +4,7 @@ using System.Collections;
 public class cameraSense : MonoBehaviour {
 
 	public CameraFollow cF; //a way to control the camera movement 
-	public Player player; 
+	private Player player; 
 	private Vector3 movementDir; 
 	private float rayDistance;
 	private float amount = 1f; 
@@ -13,8 +13,7 @@ public class cameraSense : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		rayDistance = (transform.position - player.transform.position).magnitude * 1.25f;
-
+		rayDistance = cF.offset.magnitude * 1.25f;
 	}
 	
 	// becasue physics; raycast in the direction of the camera's movement 
